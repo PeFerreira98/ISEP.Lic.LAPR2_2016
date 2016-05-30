@@ -34,6 +34,18 @@ public class Utilizador {
         this.username = username;
         this.password = password;
     }
+    
+    public String getUser(){
+        return this.username;
+    }
+    
+    public String getPassword(){
+        return this.password;
+    }
+    
+    public String getEmail(){
+        return this.email;
+    }
 
     /**
      * Método para comparar um objecto com outro
