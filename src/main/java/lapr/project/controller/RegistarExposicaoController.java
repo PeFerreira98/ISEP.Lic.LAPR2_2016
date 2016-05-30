@@ -19,26 +19,25 @@ import lapr.project.utils.Data;
  * @author TiagoSilvestre
  */
 public class RegistarExposicaoController {
-    
+
     Exposicao expo;
     ListaExposicoes lst;
 
-    public RegistarExposicaoController(String titulo, String desc, Data dataInicio, Data dataFim, List<FAE> responsaveis){
+    public RegistarExposicaoController(String titulo, String desc, Data dataInicio, Data dataFim, List<FAE> responsaveis) {
         Exposicao expoAux = new Exposicao(titulo, desc, dataInicio, dataFim, responsaveis);
-        
-        if(valida(expoAux)){
+
+        if (valida(expoAux)) {
             this.expo = expoAux;
-            lst.getLstExpo().add(expo);
+            lst.addExposicao(expo);
         }
     }
-    
-  
-    public boolean valida(Exposicao expo){
-        
-        if(expo.getTitle()=="" || expo.getDescription()==""){
+
+    public boolean valida(Exposicao expo) {
+
+        if (expo.getTitle() == "" || expo.getDescription() == "") {
             throw new IllegalArgumentException("Parametros invalidos");
         }
-        
+
         return true;
     }
 }

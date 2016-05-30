@@ -6,7 +6,7 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.lists.LstUtilizadores;
+import lapr.project.model.lists.ListaUtilizadores;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -15,14 +15,14 @@ import lapr.project.model.users.Utilizador;
  */
 public class LoginController {
     
-    LstUtilizadores lstUsers;
+    ListaUtilizadores lstUsers;
     
     public LoginController(){
     }
     
     public Utilizador checkUtilizador(String user){
-        lstUsers = new LstUtilizadores();
-        List<Utilizador> lstAux = lstUsers.getLstUtilizadores();
+        lstUsers = new ListaUtilizadores();
+        List<Utilizador> lstAux = lstUsers.getListaUtilizadores();
         
         for(Utilizador u : lstAux){
            if(u.getUser().equalsIgnoreCase(user)){

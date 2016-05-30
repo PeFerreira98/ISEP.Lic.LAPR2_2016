@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lapr.project.model.lists.ListaExposicoes;
+import lapr.project.model.lists.ListaUtilizadores;
 
 /**
  *
@@ -18,7 +19,7 @@ import lapr.project.model.lists.ListaExposicoes;
 public class CentroExposicoes {
 
     //TODO: trocar estas listas pelas respetivas classes de lista
-    private List<Utilizador> listaUtilizador;
+    private ListaUtilizadores listaUtilizador;
     private ListaExposicoes listaExposicoes;
 
     /**
@@ -30,7 +31,7 @@ public class CentroExposicoes {
      * @param registoCandidatura o registo de candidaturas
      * @param registoUtilizador o registo de utilizadores
      */
-    public CentroExposicoes(List<Utilizador> listaUtilizador, ListaExposicoes listaExposicoes) {
+    public CentroExposicoes(ListaUtilizadores listaUtilizador, ListaExposicoes listaExposicoes) {
         this.listaUtilizador = listaUtilizador;
         this.listaExposicoes = listaExposicoes;
     }
@@ -39,8 +40,8 @@ public class CentroExposicoes {
      * Construtor vazio de CentroExposicoes
      */
     public CentroExposicoes() {
-        this.listaUtilizador = new ArrayList<>();
-        listaExposicoes = new ListaExposicoes();
+        this.listaUtilizador = new ListaUtilizadores();
+        this.listaExposicoes = new ListaExposicoes();
     }
 
     @Override
@@ -54,7 +55,7 @@ public class CentroExposicoes {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final CentroExposicoes other = (CentroExposicoes) obj;
         if (!Objects.equals(this.listaUtilizador, other.listaUtilizador)) {
             return false;

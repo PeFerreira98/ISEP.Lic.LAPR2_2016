@@ -6,19 +6,20 @@
 package lapr.project.model.users;
 
 import java.util.Objects;
+import lapr.project.model.TipoUtilizador;
 
 /**
  *
  * @author zero_
  */
 public class Utilizador {
-    
+
     private String nome;
     private String email;
     private String username;
     private String password;
     //private boolean registado;
-    
+    private TipoUtilizador tipoUtilizador;
 
     /**
      * Construtor de objecto Utilizador
@@ -34,34 +35,38 @@ public class Utilizador {
         this.username = username;
         this.password = password;
     }
-    
-    public String getUser(){
+
+    public String getUser() {
         return this.username;
     }
-    
-    public String getPassword(){
+
+    public String getPassword() {
         return this.password;
     }
-    
-    public String getEmail(){
+
+    public String getEmail() {
         return this.email;
     }
 
-    /**
-     * Método para comparar um objecto com outro
-     *
-     * @param outroUtilizador objecto a comparar
-     * @return true se todos os parâmetros forem iguais. false caso contrário
-     */
     @Override
-    public boolean equals(Object outroUtilizador) {
-        if (outroUtilizador == null) {
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.email);
+        hash = 67 * hash + Objects.hashCode(this.username);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.tipoUtilizador);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        if (getClass() != outroUtilizador.getClass()) {
-            return false;
-        }
-        final Utilizador other = (Utilizador) outroUtilizador;
+
+        final Utilizador other = (Utilizador) obj;
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -74,17 +79,11 @@ public class Utilizador {
         if (!Objects.equals(this.password, other.password)) {
             return false;
         }
-        return true;
-    }
+        if (this.tipoUtilizador != other.tipoUtilizador) {
+            return false;
+        }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.nome);
-        hash = 83 * hash + Objects.hashCode(this.email);
-        hash = 83 * hash + Objects.hashCode(this.username);
-        hash = 83 * hash + Objects.hashCode(this.password);
-        return hash;
+        return true;
     }
 
 }

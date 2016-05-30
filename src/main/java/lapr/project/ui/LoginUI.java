@@ -7,7 +7,6 @@ package lapr.project.ui;
 
 import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
-import lapr.project.lists.LstUtilizadores;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -107,29 +106,29 @@ public class LoginUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user, pw;
         Utilizador u;
-        
+
         user = jTextField1.getText();
         pw = jTextField2.getText();
-        
+
         LoginController controller = new LoginController();
         u = controller.checkUtilizador(user);
-        
-        if(u==null){
+
+        if (u == null) {
             JOptionPane.showMessageDialog(
-                         LoginUI.this,
-                         "Credenciais errada!",
-                         "Login",
-                         JOptionPane.ERROR_MESSAGE);
-        }else if(u.getPassword().equalsIgnoreCase(pw) && u.getUser().equalsIgnoreCase(user)){
+                    LoginUI.this,
+                    "Credenciais errada!",
+                    "Login",
+                    JOptionPane.ERROR_MESSAGE);
+        } else if (u.getPassword().equalsIgnoreCase(pw) && u.getUser().equalsIgnoreCase(user)) {
             GestorExpoUI frame = new GestorExpoUI();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(
-                         LoginUI.this,
-                         "Credenciais errada!",
-                         "Login",
-                         JOptionPane.ERROR_MESSAGE);
+                    LoginUI.this,
+                    "Credenciais errada!",
+                    "Login",
+                    JOptionPane.ERROR_MESSAGE);
         }
-                
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpActionPerformed

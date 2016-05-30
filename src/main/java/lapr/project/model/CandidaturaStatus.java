@@ -11,6 +11,4 @@ package lapr.project.model;
  */
 public enum CandidaturaStatus {
     IN_SUBMISSION, IN_AVALIATION, VALIDATED, NOT_VALIDATED, ACCEPTED, REJECTED;
-    
-    
 }

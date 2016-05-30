@@ -8,7 +8,7 @@ package lapr.project.ui;
 import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import lapr.project.lists.LstUtilizadores;
+import lapr.project.model.lists.ListaUtilizadores;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -154,9 +154,9 @@ public class SignUpUI extends javax.swing.JFrame {
         username = txtUsername.getText();
         password = txtPassword.getText();
         
-        LstUtilizadores lstUsers = null;
+        ListaUtilizadores lstUsers = null;
         
-        for(Utilizador u : lstUsers.getLstUtilizadores()){
+        for(Utilizador u : lstUsers.getListaUtilizadores()){
             if(u.getUser().equalsIgnoreCase(username)){
                 JOptionPane.showMessageDialog(
                          SignUpUI.this,
@@ -176,7 +176,7 @@ public class SignUpUI extends javax.swing.JFrame {
         
         if(flag==0){
             Utilizador user = new Utilizador(nome, email, username, password);
-            lstUsers.getLstUtilizadores().add(user);
+            lstUsers.getListaUtilizadores().add(user);
         }
         
         

@@ -14,17 +14,18 @@ import lapr.project.model.exhibitions.Exposicao;
  * @author Marcos
  */
 public class ListaExposicoes {
+
     private List<Exposicao> listaExposicoes;
-    
-    public ListaExposicoes(){
+
+    public ListaExposicoes() {
         listaExposicoes = new ArrayList<>();
     }
-    
-    public void addExpo(Exposicao expo){
-        listaExposicoes.add(expo);
+
+    public void addExposicao(Exposicao exposicao) {
+        listaExposicoes.add(exposicao);
     }
-    
-    public List<Exposicao> getLstExpo(){
+
+    public List<Exposicao> getListaExposicoes() {
         return this.listaExposicoes;
     }
 }
