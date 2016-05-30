@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.model;
+package lapr.project.model.exhibitions;
 
+import lapr.project.model.users.FAE;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

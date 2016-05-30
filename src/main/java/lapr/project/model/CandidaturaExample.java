@@ -19,166 +19,166 @@ import java.util.List;
  * @author by Nuno Bettencourt [nmb@isep.ipp.pt] on 29/05/16.
  */
 public class CandidaturaExample implements Importable<CandidaturaExample>, Exportable {
-	private static final String ROOT_ELEMENT_NAME = "candidatura";
-	private static final String DESCRIPTION_ELEMENT_NAME = "description";
-	private static final String KEYWORDS_ELEMENT_NAME = "keywords";
-	private final List<KeywordExample> keywordList = new ArrayList<>();
-	private String description = "";
 
-	/**
-	 * Constructor for CandidaturaExample
-	 *
-	 * @param description CandidaturaDescription
-	 * @param keywordList Keyword List
-	 */
-	public CandidaturaExample(String description, List<KeywordExample> keywordList) {
-		this.description = description;
-		this.keywordList.addAll(keywordList);
-	}
+    private static final String ROOT_ELEMENT_NAME = "candidatura";
+    private static final String DESCRIPTION_ELEMENT_NAME = "description";
+    private static final String KEYWORDS_ELEMENT_NAME = "keywords";
+    private final List<KeywordExample> keywordList = new ArrayList<>();
+    private String description = "";
 
-	/**
-	 * Default public constructor.
-	 */
-	public CandidaturaExample() {
+    /**
+     * Constructor for CandidaturaExample
+     *
+     * @param description CandidaturaDescription
+     * @param keywordList Keyword List
+     */
+    public CandidaturaExample(String description, List<KeywordExample> keywordList) {
+        this.description = description;
+        this.keywordList.addAll(keywordList);
+    }
 
-	}
+    /**
+     * Default public constructor.
+     */
+    public CandidaturaExample() {
 
-	/**
-	 * Obtain Candidatura's description.
-	 *
-	 * @return Candidatura description
-	 */
-	private String getDescription() {
-		return description;
-	}
+    }
 
-	/**
-	 * Add a keyword to Candidatura.
-	 *
-	 * @param keyword Keyword to be added.
-	 */
-	public void addKeyword(KeywordExample keyword) {
-		getKeywordList().add(keyword);
-	}
+    /**
+     * Obtain Candidatura's description.
+     *
+     * @return Candidatura description
+     */
+    private String getDescription() {
+        return description;
+    }
 
-	/**
-	 * Obtain the list of existing keywords.
-	 *
-	 * @return A list of existing keywords.
-	 */
-	public List<KeywordExample> getKeywordList() {
-		return keywordList;
+    /**
+     * Add a keyword to Candidatura.
+     *
+     * @param keyword Keyword to be added.
+     */
+    public void addKeyword(KeywordExample keyword) {
+        getKeywordList().add(keyword);
+    }
 
-	}
+    /**
+     * Obtain the list of existing keywords.
+     *
+     * @return A list of existing keywords.
+     */
+    public List<KeywordExample> getKeywordList() {
+        return keywordList;
 
-	@Override
-	public Node exportContentToXMLNode() {
-		Node rootNode = null;
+    }
 
-		try {
-			DocumentBuilderFactory factory =
-					DocumentBuilderFactory.newInstance();
-			//Create document builder
-			DocumentBuilder builder = factory.newDocumentBuilder();
+    @Override
+    public Node exportContentToXMLNode() {
+        Node rootNode = null;
 
-			//Obtain a new document
-			Document document = builder.newDocument();
+        try {
+            DocumentBuilderFactory factory
+                    = DocumentBuilderFactory.newInstance();
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
 
-			//Create root element
-			Element elementCandidatura = document.createElement(ROOT_ELEMENT_NAME);
+            //Obtain a new document
+            Document document = builder.newDocument();
 
-			//Create a sub-element
-			Element elementDescription = document.createElement(DESCRIPTION_ELEMENT_NAME);
+            //Create root element
+            Element elementCandidatura = document.createElement(ROOT_ELEMENT_NAME);
 
-			//Set the sub-element value
-			elementDescription.setTextContent(getDescription());
+            //Create a sub-element
+            Element elementDescription = document.createElement(DESCRIPTION_ELEMENT_NAME);
 
-			//Add sub-element to root element
-			elementCandidatura.appendChild(elementDescription);
+            //Set the sub-element value
+            elementDescription.setTextContent(getDescription());
 
-			//Create a sub-element
-			Element elementKeywords = document.createElement(KEYWORDS_ELEMENT_NAME);
-			elementCandidatura.appendChild(elementKeywords);
+            //Add sub-element to root element
+            elementCandidatura.appendChild(elementDescription);
 
-			//iterate over keywords
-			for (KeywordExample keyword : getKeywordList()
-					) {
-				Node keywordNode = keyword.exportContentToXMLNode();
-				elementKeywords.appendChild(document.importNode(keywordNode, true));
-			}
+            //Create a sub-element
+            Element elementKeywords = document.createElement(KEYWORDS_ELEMENT_NAME);
+            elementCandidatura.appendChild(elementKeywords);
 
-			//Add root element to document
-			document.appendChild(elementCandidatura);
+            //iterate over keywords
+            for (KeywordExample keyword : getKeywordList()) {
+                Node keywordNode = keyword.exportContentToXMLNode();
+                elementKeywords.appendChild(document.importNode(keywordNode, true));
+            }
 
-			//It exports only the element representation to XMÇ, ommiting the XML header
-			rootNode = elementCandidatura;
+            //Add root element to document
+            document.appendChild(elementCandidatura);
 
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-		return rootNode;
-	}
+            //It exports only the element representation to XMÇ, ommiting the XML header
+            rootNode = elementCandidatura;
 
-	@Override
-	public CandidaturaExample importContentFromXMLNode(Node node) {
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return rootNode;
+    }
 
-			//Create document builder
-			DocumentBuilder builder = factory.newDocumentBuilder();
+    @Override
+    public CandidaturaExample importContentFromXMLNode(Node node) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
-			//Obtain a new document
-			Document document = builder.newDocument();
-			document.appendChild(document.importNode(node, true));
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
 
-			NodeList elementsCandidatura = document.getElementsByTagName(ROOT_ELEMENT_NAME);
+            //Obtain a new document
+            Document document = builder.newDocument();
+            document.appendChild(document.importNode(node, true));
 
-			Node elementCandidatura = elementsCandidatura.item(0);
+            NodeList elementsCandidatura = document.getElementsByTagName(ROOT_ELEMENT_NAME);
 
-			//Get description
-			this.description = elementCandidatura.getFirstChild().getFirstChild().getNodeValue();
+            Node elementCandidatura = elementsCandidatura.item(0);
 
-			NodeList elementsKeywords = document.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
+            //Get description
+            this.description = elementCandidatura.getFirstChild().getFirstChild().getNodeValue();
 
-			NodeList keywords = elementsKeywords.item(0).getChildNodes();
-			for (int position = 0; position < keywords.getLength(); position++) {
-				Node keyword = keywords.item(position);
-				KeywordExample keywordExample = new KeywordExample();
+            NodeList elementsKeywords = document.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
 
-				keywordExample = keywordExample.importContentFromXMLNode(keyword);
-				addKeyword(keywordExample);
-			}
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
+            NodeList keywords = elementsKeywords.item(0).getChildNodes();
+            for (int position = 0; position < keywords.getLength(); position++) {
+                Node keyword = keywords.item(position);
+                KeywordExample keywordExample = new KeywordExample();
 
-		return this;
-	}
+                keywordExample = keywordExample.importContentFromXMLNode(keyword);
+                addKeyword(keywordExample);
+            }
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof CandidaturaExample)) {
-			return false;
-		}
+        return this;
+    }
 
-		CandidaturaExample that = (CandidaturaExample) o;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CandidaturaExample)) {
+            return false;
+        }
 
-		if (!getDescription().equals(that.getDescription())) {
-			return false;
-		}
-		return getKeywordList().equals(that.getKeywordList());
+        CandidaturaExample that = (CandidaturaExample) o;
 
-	}
+        if (!getDescription().equals(that.getDescription())) {
+            return false;
+        }
+        return getKeywordList().equals(that.getKeywordList());
 
-	@Override
-	public int hashCode() {
-		int result = getDescription().hashCode();
-		result = 31 * result + getKeywordList().hashCode();
-		return result;
-	}
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getDescription().hashCode();
+        result = 31 * result + getKeywordList().hashCode();
+        return result;
+    }
 }

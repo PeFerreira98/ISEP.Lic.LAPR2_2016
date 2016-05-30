@@ -9,9 +9,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
-import lapr.project.lists.LstExposicoes;
-import lapr.project.model.Exposicao;
-import lapr.project.model.FAE;
+import lapr.project.model.lists.ListaExposicoes;
+import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.users.FAE;
 import lapr.project.utils.Data;
 
 /**
@@ -21,7 +21,7 @@ import lapr.project.utils.Data;
 public class RegistarExposicaoController {
     
     Exposicao expo;
-    LstExposicoes lst;
+    ListaExposicoes lst;
 
     public RegistarExposicaoController(String titulo, String desc, Data dataInicio, Data dataFim, List<FAE> responsaveis){
         Exposicao expoAux = new Exposicao(titulo, desc, dataInicio, dataFim, responsaveis);
