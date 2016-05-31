@@ -28,39 +28,34 @@ class Main {
      * Private constructor to hide implicit public one.
      */
     private Main() {
-        
-   
+
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        
+
         ListaUtilizadores lstU = new ListaUtilizadores();
         ListaExposicoes lstE = new ListaExposicoes();
-        
+
         List<Utilizador> lstUsers = null;
         List<Exposicao> lstExpo = new ArrayList<>();
         Exposicao expo1 = new Exposicao("expo1", "Expo desc1");
         lstExpo.add(expo1);
-        
-        
+
         try {
             lstUsers = readFile(new File("userList.txt"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         lstU.setUsersList(lstUsers);
         lstE.setListaExposicoes(lstExpo);
-        
+
         CentroExposicoes ce = new CentroExposicoes(lstU, lstE);
 //        new Main().bootStrap();
-        
-        
+
         new LoginUI(ce);
     }
 
@@ -75,24 +70,24 @@ class Main {
 //
         return true;
     }
-    
+
     public static List<Utilizador> readFile(File file) throws FileNotFoundException, IOException {
         List<Utilizador> lstAux = new ArrayList<>();
         String nome = null, email = null, username = null, password = null, userType = null, status = null;
-        
+
         FileReader frE;
         frE = new FileReader(file);
         BufferedReader brE = new BufferedReader(frE);
         int flag = 0;
-        
+
         while (brE.ready()) {
 
             String linha = brE.readLine();
             if (linha.equalsIgnoreCase("---")) {
                 flag = 1;
             }
-            
-            if(linha.equalsIgnoreCase("status:")){
+
+            if (linha.equalsIgnoreCase("status:")) {
                 status = brE.readLine();
             }
             if (linha.equalsIgnoreCase("nome:")) {
@@ -109,7 +104,7 @@ class Main {
                 flag = 0;
             }
             if (flag == 0) {
-                Utilizador u = new Utilizador(nome, email, username, password, userType, status);
+                Utilizador u = new Utilizador(nome, username, password, email, status, userType);
                 lstAux.add(u);
             }
         }
