@@ -44,6 +44,14 @@ public class CentroExposicoes {
         this.listaExposicoes = new ListaExposicoes();
     }
 
+    public List<Exposicao> getLstExposicao() {
+        return listaExposicoes.getListaExposicoes();
+    }
+
+    public List<Utilizador> getLstUtilizadores() {
+        return listaUtilizador.getListaUtilizadores();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

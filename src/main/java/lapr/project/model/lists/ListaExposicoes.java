@@ -21,11 +21,16 @@ public class ListaExposicoes {
         listaExposicoes = new ArrayList<>();
     }
 
-    public void addExposicao(Exposicao exposicao) {
+    public void addExposicao() {
+        Exposicao exposicao = new Exposicao();
         listaExposicoes.add(exposicao);
     }
 
     public List<Exposicao> getListaExposicoes() {
         return this.listaExposicoes;
+    }
+
+    public boolean validaExposicao(Exposicao exposicao) {
+        return exposicao.valida();
     }
 }

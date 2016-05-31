@@ -45,4 +45,11 @@ public class Organizador {
         return true;
     }
 
+    public boolean valida() {
+        if (this.utilizador == null) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -9,8 +9,8 @@ import lapr.project.model.users.FAE;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
-
 
 /**
  *
@@ -22,35 +22,58 @@ public class Exposicao {
 //    private ListaFAE lstFae;
     private String title;
     private String description;
-    private Data dataInicio;
-    private Data dataFim;
+    private String local;
+    private Data dataInicioRealizacao;
+    private Data dataFimRealizacao;
+    private Data dataInicioSubmissao;
+    private Data dataFimSubmissao;
+    private ListaOrganizadores lstOrganizadores;
     private List<FAE> lstFae;
 
     /**
      * Construtor de Exposicao
      *
-     * @param listaCandidatura o registo de candidaturas
-     * @param listaFaes a lista de faes
      * @param nomeExposicao o nome da exposicao
      * @param descricaoExposicao a descricao da exposicao
-     * @param dataInicio a data de inicio da exposicao
-     * @param dataFim a data de fim da exposicao
+     * @param dataInicioSubmissao a data de inicio da submissao da exposicao
+     * @param dataFimSubmissao a data de fim da submissao da exposicao
+     * @param dataInicioRealizacao a data de inicio da realização da exposicao
+     * @param dataFimRealizacao a data de fim da realização da exposicao
      */
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicio, Data dataFim, List<FAE> responsaveis) {
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, List<FAE> responsaveis) {
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
+        this.dataInicioSubmissao = dataInicioSubmissao;
+        this.dataFimSubmissao = dataFimSubmissao;
+        this.local = local;
         this.lstFae = responsaveis;
     }
 
-    public Exposicao(){
+    public Data getDataInicioSubmissao() {
+        return dataInicioSubmissao;
+    }
+
+    public void setDataInicioSubmissao(Data dataInicioSubmissao) {
+        this.dataInicioSubmissao = dataInicioSubmissao;
+    }
+
+    public Data getDataFimSubmissao() {
+        return dataFimSubmissao;
+    }
+
+    public void setDataFimSubmissao(Data dataFimSubmissao) {
+        this.dataFimSubmissao = dataFimSubmissao;
+    }
+
+    public Exposicao() {
         this.title = "";
         this.description = "";
-        this.dataFim = null;
-        this.dataInicio = null;
+        this.dataFimRealizacao = null;
+        this.dataInicioRealizacao = null;
         this.lstFae = new ArrayList<>();
-    } 
+    }
 
     /**
      * @return the title
@@ -81,31 +104,39 @@ public class Exposicao {
     }
 
     /**
-     * @return the dataInicio
+     * @return the dataInicioRealizacao
      */
-    public Data getDataInicio() {
-        return dataInicio;
+    public Data getDataInicioRealizacao() {
+        return dataInicioRealizacao;
     }
 
     /**
-     * @param dataInicio the dataInicio to set
+     * @param dataInicioRealizacao the dataInicioRealizacao to set
      */
-    public void setDataInicio(Data dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setDataInicioRealizacao(Data dataInicioRealizacao) {
+        this.dataInicioRealizacao = dataInicioRealizacao;
     }
 
     /**
-     * @return the dataFim
+     * @return the dataFimRealizacao
      */
-    public Data getDataFim() {
-        return dataFim;
+    public Data getDataFimRealizacao() {
+        return dataFimRealizacao;
     }
 
     /**
-     * @param dataFim the dataFim to set
+     * @param dataFimRealizacao the dataFimRealizacao to set
      */
-    public void setDataFim(Data dataFim) {
-        this.dataFim = dataFim;
+    public void setDataFimRealizacao(Data dataFimRealizacao) {
+        this.dataFimRealizacao = dataFimRealizacao;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
     }
 
     /**
@@ -121,7 +152,11 @@ public class Exposicao {
     public void setLstFae(List<FAE> lstFae) {
         this.lstFae = lstFae;
     }
-    
-    
 
+    public boolean valida() {
+        if (this.title.equalsIgnoreCase("") || this.description.equalsIgnoreCase("") || this.dataInicioRealizacao == null || this.dataFimRealizacao == null || this.dataInicioSubmissao == null || this.dataFimRealizacao == null || this.local.equalsIgnoreCase("")) {
+            return false;
+        }
+        return lstOrganizadores.valida();
+    }
 }
