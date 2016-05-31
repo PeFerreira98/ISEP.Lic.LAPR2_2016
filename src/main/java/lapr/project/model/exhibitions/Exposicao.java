@@ -9,6 +9,7 @@ import lapr.project.model.users.FAE;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
 
@@ -18,8 +19,6 @@ import lapr.project.utils.Data;
  */
 public class Exposicao {
 
-//    private RegistoCandidatura lstCandidatura;
-//    private ListaFAE lstFae;
     private String title;
     private String description;
     private String local;
@@ -28,7 +27,7 @@ public class Exposicao {
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
     private ListaOrganizadores lstOrganizadores;
-    private List<FAE> lstFae;
+    private ListaFAE listaFAE;
 
     /**
      * Construtor de Exposicao
@@ -39,8 +38,10 @@ public class Exposicao {
      * @param dataFimSubmissao a data de fim da submissao da exposicao
      * @param dataInicioRealizacao a data de inicio da realização da exposicao
      * @param dataFimRealizacao a data de fim da realização da exposicao
+     * @param local
+     * @param listaFAE
      */
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, List<FAE> responsaveis) {
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaFAE listaFAE) {
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.dataInicioRealizacao = dataInicioRealizacao;
@@ -48,7 +49,7 @@ public class Exposicao {
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
         this.local = local;
-        this.lstFae = responsaveis;
+        this.listaFAE = listaFAE;
     }
 
     public Data getDataInicioSubmissao() {
@@ -72,7 +73,7 @@ public class Exposicao {
         this.description = "";
         this.dataFimRealizacao = null;
         this.dataInicioRealizacao = null;
-        this.lstFae = new ArrayList<>();
+        this.listaFAE = new ListaFAE();
     }
 
     /**
@@ -137,20 +138,6 @@ public class Exposicao {
 
     public void setLocal(String local) {
         this.local = local;
-    }
-
-    /**
-     * @return the lstFae
-     */
-    public List<FAE> getLstFae() {
-        return lstFae;
-    }
-
-    /**
-     * @param lstFae the lstFae to set
-     */
-    public void setLstFae(List<FAE> lstFae) {
-        this.lstFae = lstFae;
     }
 
     public boolean valida() {

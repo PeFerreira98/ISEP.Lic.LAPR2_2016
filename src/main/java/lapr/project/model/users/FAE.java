@@ -45,4 +45,9 @@ public class FAE {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "\nFAE{" + "utilizador=" + utilizador + '}';
+    }
+
 }
