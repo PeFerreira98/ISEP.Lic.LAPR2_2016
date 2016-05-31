@@ -24,7 +24,7 @@ public class CriacaoUtilizadorController {
     
     public boolean checkUsername(String user){
         for(Utilizador u : this.lstUsers){
-           if(u.getUser().equalsIgnoreCase(user)){
+           if(u.getUsername().equalsIgnoreCase(user)){
                 return true;
            }
         }

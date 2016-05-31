@@ -42,7 +42,7 @@ public class CriarExposicaoController {
     
     public String getUtilizador() {
         centroExposicoes.getLstUtilizadores();
-        return utilizador.getUser();
+        return utilizador.getUsername();
     }
     
     public void addOrganizador(Utilizador utilizador) {

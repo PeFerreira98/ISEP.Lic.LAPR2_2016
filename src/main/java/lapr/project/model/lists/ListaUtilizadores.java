@@ -25,7 +25,22 @@ public class ListaUtilizadores {
         listaUtilizadores.add(utilizador);
     }
 
+    public Utilizador checkUtilizadorByUsername(String username) {
+        for (Utilizador u : listaUtilizadores) {
+            if (u.validateUsername(username)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public List<Utilizador> getListaUtilizadores() {
         return this.listaUtilizadores;
     }
+
+    @Override
+    public String toString() {
+        return "\nListaUtilizadores{" + "listaUtilizadores=" + listaUtilizadores + '}';
+    }
+    
 }

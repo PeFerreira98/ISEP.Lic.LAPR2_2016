@@ -18,8 +18,8 @@ public class Utilizador {
     private String email;
     private String username;
     private String password;
-    //private boolean registado;
     private TipoUtilizador tipoUtilizador;
+    //private boolean registado;
 
     /**
      * Construtor de objecto Utilizador
@@ -29,14 +29,29 @@ public class Utilizador {
      * @param username o username do Utillizador
      * @param password a password do Utilizador
      */
-    public Utilizador(String nome, String email, String username, String password) {
+    public Utilizador(String nome, String email, String username, String password, TipoUtilizador tipoUtilizador) {
         this.nome = nome;
         this.email = email;
         this.username = username;
         this.password = password;
+        this.tipoUtilizador = tipoUtilizador;
     }
 
-    public String getUser() {
+    public boolean validatePassword(String password) {
+        if (this.password.equals(password)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean validateUsername(String username) {
+        if (this.username.equals(username)) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getUsername() {
         return this.username;
     }
 
@@ -48,6 +63,10 @@ public class Utilizador {
         return this.email;
     }
 
+    public void setTipoUtilizador(TipoUtilizador tipoUtilizador) {
+        this.tipoUtilizador = tipoUtilizador;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -84,6 +103,11 @@ public class Utilizador {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "\nUtilizador{" + "nome=" + nome + ", email=" + email + ", username=" + username + ", password=" + password + ", tipoUtilizador=" + tipoUtilizador + '}';
     }
 
 }

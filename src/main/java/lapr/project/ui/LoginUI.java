@@ -132,7 +132,7 @@ public class LoginUI extends javax.swing.JFrame {
                     "Credenciais errada!",
                     "Login",
                     JOptionPane.ERROR_MESSAGE);
-        } else if (u.getPassword().equalsIgnoreCase(pw) && u.getUser().equalsIgnoreCase(user)) {
+        } else if (u.getPassword().equalsIgnoreCase(pw) && u.getUsername().equalsIgnoreCase(user)) {
             GestorExpoUI frame = new GestorExpoUI();
         } else {
             JOptionPane.showMessageDialog(

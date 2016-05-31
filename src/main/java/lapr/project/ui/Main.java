@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lapr.project.model.CalculatorExample;
+import lapr.project.model.TipoUtilizador;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaUtilizadores;
@@ -88,7 +89,7 @@ class Main {
                 flag = 0;
             }
             if (flag == 0) {
-                Utilizador u = new Utilizador(nome, email, username, password);
+                Utilizador u = new Utilizador(nome, email, username, password, TipoUtilizador.UTILIZADOR);
                 lstAux.add(u);
             }
         }

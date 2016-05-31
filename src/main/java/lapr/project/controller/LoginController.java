@@ -27,7 +27,7 @@ public class LoginController {
     public Utilizador getUtilizador(String user) throws IOException{
         
         for(Utilizador u : this.lstUsers){
-           if(u.getUser().equalsIgnoreCase(user)){
+           if(u.getUsername().equalsIgnoreCase(user)){
                 return u;
            }
         }
