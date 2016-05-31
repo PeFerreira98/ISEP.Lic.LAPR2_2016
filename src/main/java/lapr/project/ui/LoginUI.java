@@ -5,6 +5,10 @@
  */
 package lapr.project.ui;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
 import lapr.project.model.users.Utilizador;
@@ -18,9 +22,14 @@ public class LoginUI extends javax.swing.JFrame {
     /**
      * Creates new form LoginUI
      */
-    public LoginUI() {
+    
+    public List<Utilizador> lstUsers;
+    
+    public LoginUI(List<Utilizador> lst) {
+        this.lstUsers = lst;
         initComponents();
         setLocationRelativeTo(null);
+        super.setVisible(true);
     }
 
     /**
@@ -105,13 +114,17 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user, pw;
-        Utilizador u;
+        Utilizador u = null;
 
         user = jTextField1.getText();
         pw = jTextField2.getText();
 
-        LoginController controller = new LoginController();
-        u = controller.checkUtilizador(user);
+        LoginController controller = new LoginController(this.lstUsers);
+        try {
+            u = controller.getUtilizador(user);
+        } catch (IOException ex) {
+            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (u == null) {
             JOptionPane.showMessageDialog(
@@ -132,7 +145,7 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpActionPerformed
-        SignUpUI frame2 = new SignUpUI();
+        SignUpUI frame2 = new SignUpUI(this.lstUsers);
     }//GEN-LAST:event_jSignUpActionPerformed
 
     /**
@@ -162,12 +175,12 @@ public class LoginUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginUI().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LoginUI().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

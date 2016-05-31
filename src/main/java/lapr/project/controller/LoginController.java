@@ -5,6 +5,8 @@
  */
 package lapr.project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import lapr.project.model.lists.ListaUtilizadores;
 import lapr.project.model.users.Utilizador;
@@ -15,21 +17,20 @@ import lapr.project.model.users.Utilizador;
  */
 public class LoginController {
     
-    ListaUtilizadores lstUsers;
+    List<Utilizador> lstUsers;
     
-    public LoginController(){
+    public LoginController(List<Utilizador> lst){
+        this.lstUsers =lst;
+        
     }
     
-    public Utilizador checkUtilizador(String user){
-        lstUsers = new ListaUtilizadores();
-        List<Utilizador> lstAux = lstUsers.getListaUtilizadores();
+    public Utilizador getUtilizador(String user) throws IOException{
         
-        for(Utilizador u : lstAux){
+        for(Utilizador u : this.lstUsers){
            if(u.getUser().equalsIgnoreCase(user)){
                 return u;
            }
         }
-        
         return null;
     }
     
