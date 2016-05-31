@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import lapr.project.model.users.Utilizador;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.utils.Exportable;
