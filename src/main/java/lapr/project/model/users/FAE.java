@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class FAE {
 
-    Utilizador utilizador;
+    private Utilizador utilizador;
 
     /**
      * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
@@ -24,11 +24,22 @@ public class FAE {
         this.utilizador = utilizador;
     }
 
+    public FAE() {
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 67 * hash + Objects.hashCode(this.utilizador);
         return hash;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
     }
 
     @Override
