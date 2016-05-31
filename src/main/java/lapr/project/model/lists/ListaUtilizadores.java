@@ -34,6 +34,10 @@ public class ListaUtilizadores {
         return null;
     }
 
+    public void setUsersList(List<Utilizador> lst){
+        this.listaUtilizadores = lst;
+    }
+    
     public List<Utilizador> getListaUtilizadores() {
         return this.listaUtilizadores;
     }

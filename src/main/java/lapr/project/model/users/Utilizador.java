@@ -18,7 +18,8 @@ public class Utilizador {
     private String email;
     private String username;
     private String password;
-    private TipoUtilizador tipoUtilizador;
+    private String tipoUtilizador;
+    private String status;
     //private boolean registado;
 
     /**
@@ -29,12 +30,13 @@ public class Utilizador {
      * @param username o username do Utillizador
      * @param password a password do Utilizador
      */
-    public Utilizador(String nome, String email, String username, String password, TipoUtilizador tipoUtilizador) {
+    public Utilizador(String nome, String email, String username, String password, String tipoUtilizador, String status) {
         this.nome = nome;
         this.email = email;
         this.username = username;
         this.password = password;
         this.tipoUtilizador = tipoUtilizador;
+        this.status = status;
     }
 
     public boolean validatePassword(String password) {
@@ -42,6 +44,10 @@ public class Utilizador {
             return true;
         }
         return false;
+    }
+    
+    public String getStatus(){
+        return this.status;
     }
 
     public boolean validateUsername(String username) {
@@ -63,7 +69,7 @@ public class Utilizador {
         return this.email;
     }
 
-    public void setTipoUtilizador(TipoUtilizador tipoUtilizador) {
+    public void setTipoUtilizador(String tipoUtilizador) {
         this.tipoUtilizador = tipoUtilizador;
     }
     

@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
+import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -24,9 +25,11 @@ public class LoginUI extends javax.swing.JFrame {
      */
     
     public List<Utilizador> lstUsers;
+    public CentroExposicoes ce;
     
-    public LoginUI(List<Utilizador> lst) {
-        this.lstUsers = lst;
+    public LoginUI(CentroExposicoes ce) {
+        this.ce = ce;
+        this.lstUsers = ce.getLstUtilizadores();
         initComponents();
         setLocationRelativeTo(null);
         super.setVisible(true);
@@ -133,7 +136,17 @@ public class LoginUI extends javax.swing.JFrame {
                     "Login",
                     JOptionPane.ERROR_MESSAGE);
         } else if (u.getPassword().equalsIgnoreCase(pw) && u.getUsername().equalsIgnoreCase(user)) {
-            GestorExpoUI frame = new GestorExpoUI();
+            System.out.println("......" + u.getStatus());
+            if(u.getStatus().equalsIgnoreCase("PENDING")){
+                JOptionPane.showMessageDialog(
+                    LoginUI.this,
+                    "Ainda nao foi aceite pelo o gestor",
+                    "Login",
+                    JOptionPane.ERROR_MESSAGE);
+            }else{
+                new GestorExpoUI(ce);
+            }
+        
         } else {
             JOptionPane.showMessageDialog(
                     LoginUI.this,

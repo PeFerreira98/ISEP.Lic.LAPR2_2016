@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import lapr.project.model.CalculatorExample;
 import lapr.project.model.TipoUtilizador;
 import lapr.project.model.exhibitions.CentroExposicoes;
+import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaUtilizadores;
 import lapr.project.model.users.Utilizador;
@@ -35,19 +36,32 @@ class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
+        
+        ListaUtilizadores lstU = new ListaUtilizadores();
+        ListaExposicoes lstE = new ListaExposicoes();
+        
         List<Utilizador> lstUsers = null;
+        List<Exposicao> lstExpo = new ArrayList<>();
+        Exposicao expo1 = new Exposicao("expo1", "Expo desc1");
+        lstExpo.add(expo1);
+        
         
         try {
             lstUsers = readFile(new File("userList.txt"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        
+        lstU.setUsersList(lstUsers);
+        lstE.setListaExposicoes(lstExpo);
+        
+        CentroExposicoes ce = new CentroExposicoes(lstU, lstE);
 //        new Main().bootStrap();
         
         
-        new LoginUI(lstUsers);
+        new LoginUI(ce);
     }
 
     private boolean bootStrap() {
@@ -64,7 +78,7 @@ class Main {
     
     public static List<Utilizador> readFile(File file) throws FileNotFoundException, IOException {
         List<Utilizador> lstAux = new ArrayList<>();
-        String nome = null, email = null, username = null, password = null;
+        String nome = null, email = null, username = null, password = null, userType = null, status = null;
         
         FileReader frE;
         frE = new FileReader(file);
@@ -77,7 +91,10 @@ class Main {
             if (linha.equalsIgnoreCase("---")) {
                 flag = 1;
             }
-
+            
+            if(linha.equalsIgnoreCase("status:")){
+                status = brE.readLine();
+            }
             if (linha.equalsIgnoreCase("nome:")) {
                 nome = brE.readLine();
             } else if (linha.equalsIgnoreCase("email:")) {
@@ -87,9 +104,12 @@ class Main {
             } else if (linha.equalsIgnoreCase("password:")) {
                 password = brE.readLine();
                 flag = 0;
+            } else if (linha.equalsIgnoreCase("type:")) {
+                userType = brE.readLine();
+                flag = 0;
             }
             if (flag == 0) {
-                Utilizador u = new Utilizador(nome, email, username, password, TipoUtilizador.UTILIZADOR);
+                Utilizador u = new Utilizador(nome, email, username, password, userType, status);
                 lstAux.add(u);
             }
         }

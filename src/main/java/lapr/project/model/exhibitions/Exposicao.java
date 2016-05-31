@@ -51,6 +51,13 @@ public class Exposicao {
         this.local = local;
         this.listaFAE = listaFAE;
     }
+    
+    public Exposicao(String nome, String desc){
+        this.title = nome;
+        this.description = desc;
+    }
+            
+            
 
     public Data getDataInicioSubmissao() {
         return dataInicioSubmissao;

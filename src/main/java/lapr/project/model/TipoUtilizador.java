@@ -10,5 +10,5 @@ package lapr.project.model;
  * @author zero_
  */
 public enum TipoUtilizador {
-    GESTOR, ORGANIZADOR, REPRESENTANTE, FAE, UTILIZADOR;
+    GESTOR, ORGANIZADOR, REPRESENTANTE, FAE;
 }

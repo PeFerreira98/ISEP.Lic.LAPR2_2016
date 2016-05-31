@@ -26,6 +26,10 @@ public class ListaExposicoes {
         listaExposicoes.add(exposicao);
     }
 
+    public void setListaExposicoes(List<Exposicao> lst){
+        this.listaExposicoes = lst;
+    }
+    
     public List<Exposicao> getListaExposicoes() {
         return this.listaExposicoes;
     }
