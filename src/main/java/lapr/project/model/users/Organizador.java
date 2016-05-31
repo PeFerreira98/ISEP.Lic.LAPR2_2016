@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class Organizador {
 
-    Utilizador utilizador;
+    private Utilizador utilizador;
 
     /**
      * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
@@ -21,6 +21,17 @@ public class Organizador {
      * @param utilizador
      */
     public Organizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
+
+    public Organizador() {
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
+    public void setUtilizador(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
 
