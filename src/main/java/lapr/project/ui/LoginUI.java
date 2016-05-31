@@ -136,7 +136,7 @@ public class LoginUI extends javax.swing.JFrame {
                     "Login",
                     JOptionPane.ERROR_MESSAGE);
         } else if (u.getPassword().equalsIgnoreCase(pw) && u.getUserName().equalsIgnoreCase(user)) {
-            System.out.println("......" + u.getStatus());
+            
             if(u.getStatus().equalsIgnoreCase("PENDING")){
                 JOptionPane.showMessageDialog(
                     LoginUI.this,

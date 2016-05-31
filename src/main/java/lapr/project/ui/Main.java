@@ -39,7 +39,7 @@ class Main {
         ListaUtilizadores lstU = new ListaUtilizadores();
         ListaExposicoes lstE = new ListaExposicoes();
 
-        List<Utilizador> lstUsers = null;
+        List<Utilizador> lstUsers = new ArrayList<>();
         List<Exposicao> lstExpo = new ArrayList<>();
         Exposicao expo1 = new Exposicao("expo1", "Expo desc1");
         lstExpo.add(expo1);
@@ -98,7 +98,6 @@ class Main {
                 username = brE.readLine();
             } else if (linha.equalsIgnoreCase("password:")) {
                 password = brE.readLine();
-                flag = 0;
             } else if (linha.equalsIgnoreCase("type:")) {
                 userType = brE.readLine();
                 flag = 0;

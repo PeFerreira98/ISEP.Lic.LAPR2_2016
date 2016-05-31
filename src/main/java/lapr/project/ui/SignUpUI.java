@@ -229,7 +229,7 @@ public class SignUpUI extends javax.swing.JFrame {
 
             if (flag == 0) {
                 writeFile(nome, email, username, password, userType);
-
+                this.lstUsers.add(new Utilizador(nome, email, username, password, password, email));
             }
             
             dispose();
@@ -253,12 +253,16 @@ public class SignUpUI extends javax.swing.JFrame {
 
     public void writeFile(String nome, String email, String username, String password, String tUser) {
         try {
-            File file = new File("pendingUsers.txt");
+            File file = new File("userList.txt");
 
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.newLine();
             bw.write("---");
+            bw.newLine();
+            bw.write("status:");
+            bw.newLine();
+            bw.write("PENDING");
             bw.newLine();
             bw.write("nome:");
             bw.newLine();

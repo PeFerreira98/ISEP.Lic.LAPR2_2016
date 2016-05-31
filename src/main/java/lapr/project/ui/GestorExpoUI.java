@@ -5,24 +5,9 @@
  */
 package lapr.project.ui;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.util.Vector;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaExposicoes;
+import lapr.project.model.users.Utilizador;
 
 /**
  *
@@ -40,6 +25,12 @@ public class GestorExpoUI extends javax.swing.JFrame {
                
         for(Exposicao expo : ce.getLstExposicao()){
             jlstExpo.add(expo.getTitle());
+        }
+        
+        for(Utilizador u : ce.getLstUtilizadores()){
+           if(u.getStatus().equalsIgnoreCase("PENDING")){
+               jlstUsers.add(u.getUserName());
+           }
         }
     }
     
