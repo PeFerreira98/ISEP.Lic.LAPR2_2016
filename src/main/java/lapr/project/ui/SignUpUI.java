@@ -104,7 +104,7 @@ public class SignUpUI extends javax.swing.JFrame {
         jLabel6.setText("*Campos de preenchimento obrigatório");
         jLabel6.setPreferredSize(new java.awt.Dimension(100, 7));
 
-        jcmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Representante", "FAE", "Organizador" }));
+        jcmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REPRESENTANTE", "FAE", "ORGANIZADOR" }));
         jcmbType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcmbTypeActionPerformed(evt);
@@ -204,15 +204,14 @@ public class SignUpUI extends javax.swing.JFrame {
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
         // TODO add your handling code here:
 
-        String nome, email, username, password;
-        TipoUtilizador userType;
+        String nome, email, username, password, userType;
         int flag = 0;
 
         nome = txtName.getText();
         email = txtEmail.getText();
         username = txtUsername.getText();
         password = txtPassword.getText();
-        userType = (TipoUtilizador) jcmbType.getSelectedItem();
+        userType = (String) jcmbType.getSelectedItem();
 
         CriacaoUtilizadorController controller = new CriacaoUtilizadorController(this.lstUsers);
         if (!nome.isEmpty() && !email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
@@ -252,7 +251,7 @@ public class SignUpUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcmbTypeActionPerformed
 
-    public void writeFile(String nome, String email, String username, String password, TipoUtilizador tUser) {
+    public void writeFile(String nome, String email, String username, String password, String tUser) {
         try {
             File file = new File("pendingUsers.txt");
 
@@ -279,7 +278,7 @@ public class SignUpUI extends javax.swing.JFrame {
             bw.newLine();
             bw.write("type:");
             bw.newLine();
-            bw.write(tUser.name());
+            bw.write(tUser);
             bw.close();
 
         } catch (IOException ex) {
