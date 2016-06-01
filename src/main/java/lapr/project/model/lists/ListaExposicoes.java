@@ -21,9 +21,13 @@ public class ListaExposicoes {
         listaExposicoes = new ArrayList<>();
     }
 
-    public void addExposicao() {
-        Exposicao exposicao = new Exposicao();
-        listaExposicoes.add(exposicao);
+    public boolean addExposicao(Exposicao exposicao) {
+        for (Exposicao e : listaExposicoes) {
+            if (e.equals(exposicao)) {
+                return false;
+            }
+        }
+        return listaExposicoes.add(exposicao);
     }
 
     public void setListaExposicoes(List<Exposicao> lst){
@@ -36,5 +40,10 @@ public class ListaExposicoes {
 
     public boolean validaExposicao(Exposicao exposicao) {
         return exposicao.valida();
+    }
+
+    @Override
+    public String toString() {
+        return "\nListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
     }
 }

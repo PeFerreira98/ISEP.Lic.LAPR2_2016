@@ -17,40 +17,28 @@ import lapr.project.utils.Data;
  * @author TiagoSilvestre
  */
 public class CriarExposicaoController {
-    
-    private Exposicao exposicao;
+
+    private ListaExposicoes listaExposicoes;
     private CentroExposicoes centroExposicoes;
-    private ListaExposicoes lstExposicoes;
     private Utilizador utilizador;
-    private ListaOrganizadores lstOrganizadores;
-    
-    public ListaExposicoes novaExposicao() {
-        lstExposicoes.getListaExposicoes();
-        lstExposicoes.addExposicao();
-        return lstExposicoes;
+    private Exposicao exposicao;
+    private ListaOrganizadores listaOrganizadores;
+
+    public boolean novaExposicao(Exposicao exposicao) {
+        return listaExposicoes.addExposicao(exposicao);
     }
-    
-    public void setDados(String titulo, String descricao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
-        exposicao.setTitle(titulo);
-        exposicao.setDescription(descricao);
-        exposicao.setDataInicioRealizacao(dataInicioRealizacao);
-        exposicao.setDataFimRealizacao(dataFimRealizacao);
-        exposicao.setDataInicioSubmissao(dataInicioSubmissao);
-        exposicao.setDataFimSubmissao(dataFimSubmissao);
-        exposicao.setLocal(local);
-    }
-    
+
     public String getUtilizador() {
-        centroExposicoes.getLstUtilizadores();
-        return utilizador.getUserName();
+        centroExposicoes.getRegistoUtilizadores();
+        return utilizador.getUsername();
     }
-    
+
     public void addOrganizador(Utilizador utilizador) {
-        lstOrganizadores.getLstOrganizadores();
-        lstOrganizadores.addOrganizador(utilizador);
+        listaOrganizadores.getLstOrganizadores();
+        listaOrganizadores.addOrganizador(utilizador);
     }
-    
+
     public boolean validaExposicao() {
-        return lstExposicoes.validaExposicao(exposicao);
+        return listaExposicoes.validaExposicao(exposicao);
     }
 }

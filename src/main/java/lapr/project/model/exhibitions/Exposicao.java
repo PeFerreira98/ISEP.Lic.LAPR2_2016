@@ -5,10 +5,6 @@
  */
 package lapr.project.model.exhibitions;
 
-import lapr.project.model.users.FAE;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
@@ -26,7 +22,7 @@ public class Exposicao {
     private Data dataFimRealizacao;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
-    private ListaOrganizadores lstOrganizadores;
+    private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
 
     /**
@@ -44,43 +40,23 @@ public class Exposicao {
     public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaFAE listaFAE) {
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
+        this.local = local;
+
         this.dataInicioRealizacao = dataInicioRealizacao;
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
-        this.local = local;
+
+        this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = listaFAE;
     }
-    
-    public Exposicao(String nome, String desc){
-        this.title = nome;
-        this.description = desc;
-    }
-            
-            
 
     public Data getDataInicioSubmissao() {
         return dataInicioSubmissao;
     }
 
-    public void setDataInicioSubmissao(Data dataInicioSubmissao) {
-        this.dataInicioSubmissao = dataInicioSubmissao;
-    }
-
     public Data getDataFimSubmissao() {
         return dataFimSubmissao;
-    }
-
-    public void setDataFimSubmissao(Data dataFimSubmissao) {
-        this.dataFimSubmissao = dataFimSubmissao;
-    }
-
-    public Exposicao() {
-        this.title = "";
-        this.description = "";
-        this.dataFimRealizacao = null;
-        this.dataInicioRealizacao = null;
-        this.listaFAE = new ListaFAE();
     }
 
     /**
@@ -91,24 +67,10 @@ public class Exposicao {
     }
 
     /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
      * @return the description
      */
     public String getDescription() {
         return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     /**
@@ -119,38 +81,30 @@ public class Exposicao {
     }
 
     /**
-     * @param dataInicioRealizacao the dataInicioRealizacao to set
-     */
-    public void setDataInicioRealizacao(Data dataInicioRealizacao) {
-        this.dataInicioRealizacao = dataInicioRealizacao;
-    }
-
-    /**
      * @return the dataFimRealizacao
      */
     public Data getDataFimRealizacao() {
         return dataFimRealizacao;
     }
 
-    /**
-     * @param dataFimRealizacao the dataFimRealizacao to set
-     */
-    public void setDataFimRealizacao(Data dataFimRealizacao) {
-        this.dataFimRealizacao = dataFimRealizacao;
-    }
-
     public String getLocal() {
         return local;
     }
-
-    public void setLocal(String local) {
-        this.local = local;
+    
+    public ListaFAE getListaFAE(){
+        return this.listaFAE;
     }
 
     public boolean valida() {
         if (this.title.equalsIgnoreCase("") || this.description.equalsIgnoreCase("") || this.dataInicioRealizacao == null || this.dataFimRealizacao == null || this.dataInicioSubmissao == null || this.dataFimRealizacao == null || this.local.equalsIgnoreCase("")) {
             return false;
         }
-        return lstOrganizadores.valida();
+        return listaOrganizadores.valida();
     }
+
+    @Override
+    public String toString() {
+        return "\nExposicao{" + "title=" + title + ", description=" + description + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao=" + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao + ", \nlistaOrganizadores=" + listaOrganizadores + ", \nlistaFAE=" + listaFAE + '}';
+    }
+
 }

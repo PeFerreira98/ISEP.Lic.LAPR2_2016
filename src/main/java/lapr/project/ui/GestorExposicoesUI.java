@@ -13,27 +13,30 @@ import lapr.project.model.users.Utilizador;
  *
  * @author Marcos
  */
-public class GestorExpoUI extends javax.swing.JFrame {
+public class GestorExposicoesUI extends javax.swing.JFrame {
+
+    private CentroExposicoes centroExposicoes;
 
     /**
      * Creates new form GestorExpoUI
      */
-    public GestorExpoUI(CentroExposicoes ce){
+    public GestorExposicoesUI(CentroExposicoes centroExposicoes) {
+        this.centroExposicoes = centroExposicoes;
+
+        super.setTitle("Gestor Exposicoes Menu Window");
         initComponents();
         setLocationRelativeTo(null);
         super.setVisible(true);
-               
-        for(Exposicao expo : ce.getLstExposicao()){
-            jlstExpo.add(expo.getTitle());
+
+        for (Exposicao exposicao : centroExposicoes.getListaExposicoes().getListaExposicoes()) {
+            jlstExpo.add(exposicao.getTitle());
         }
-        
-        for(Utilizador u : ce.getLstUtilizadores()){
-           if(u.getStatus().equalsIgnoreCase("PENDING")){
-               jlstUsers.add(u.getUserName());
-           }
+
+        for (Utilizador utilizador : centroExposicoes.getRegistoUtilizadores().getListaUtilizadoresNaoRegistados()) {
+            jlstUsers.add(utilizador.getUsername());
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +60,11 @@ public class GestorExpoUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnExpoCreate.setText("Create expo");
+        btnExpoCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpoCreateActionPerformed(evt);
+            }
+        });
 
         btnAcceptUser.setText("Accept user");
         btnAcceptUser.addActionListener(new java.awt.event.ActionListener() {
@@ -156,40 +164,9 @@ public class GestorExpoUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnViewUserActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestorExpoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestorExpoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestorExpoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestorExpoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GestorExpoUI().setVisible(true);
-//            }
-//        });
-    }
+    private void btnExpoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpoCreateActionPerformed
+        new CriarExposicaoUI(centroExposicoes.getListaExposicoes());
+    }//GEN-LAST:event_btnExpoCreateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptUser;

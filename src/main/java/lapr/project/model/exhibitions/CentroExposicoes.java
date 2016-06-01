@@ -5,12 +5,9 @@
  */
 package lapr.project.model.exhibitions;
 
-import lapr.project.model.users.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import lapr.project.model.lists.ListaExposicoes;
-import lapr.project.model.lists.ListaUtilizadores;
+import lapr.project.model.lists.RegistoUtilizadores;
 
 /**
  *
@@ -18,8 +15,7 @@ import lapr.project.model.lists.ListaUtilizadores;
  */
 public class CentroExposicoes {
 
-    //TODO: trocar estas listas pelas respetivas classes de lista
-    private ListaUtilizadores listaUtilizador;
+    private RegistoUtilizadores registoUtilizadores;
     private ListaExposicoes listaExposicoes;
 
     /**
@@ -31,25 +27,17 @@ public class CentroExposicoes {
      * @param registoCandidatura o registo de candidaturas
      * @param registoUtilizador o registo de utilizadores
      */
-    public CentroExposicoes(ListaUtilizadores listaUtilizador, ListaExposicoes listaExposicoes) {
-        this.listaUtilizador = listaUtilizador;
+    public CentroExposicoes(RegistoUtilizadores registoUtilizadores, ListaExposicoes listaExposicoes) {
+        this.registoUtilizadores = registoUtilizadores;
         this.listaExposicoes = listaExposicoes;
     }
 
-    /**
-     * Construtor vazio de CentroExposicoes
-     */
-    public CentroExposicoes() {
-        this.listaUtilizador = new ListaUtilizadores();
-        this.listaExposicoes = new ListaExposicoes();
+    public ListaExposicoes getListaExposicoes() {
+        return listaExposicoes;
     }
 
-    public List<Exposicao> getLstExposicao() {
-        return listaExposicoes.getListaExposicoes();
-    }
-
-    public List<Utilizador> getLstUtilizadores() {
-        return listaUtilizador.getListaUtilizadores();
+    public RegistoUtilizadores getRegistoUtilizadores() {
+        return registoUtilizadores;
     }
 
     @Override
@@ -65,7 +53,7 @@ public class CentroExposicoes {
         }
 
         final CentroExposicoes other = (CentroExposicoes) obj;
-        if (!Objects.equals(this.listaUtilizador, other.listaUtilizador)) {
+        if (!Objects.equals(this.registoUtilizadores, other.registoUtilizadores)) {
             return false;
         }
         if (!Objects.equals(this.listaExposicoes, other.listaExposicoes)) {
@@ -73,4 +61,10 @@ public class CentroExposicoes {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "CentroExposicoes{" + "\nregistoUtilizadores=" + registoUtilizadores + ", \nlistaExposicoes=" + listaExposicoes + '}';
+    }
+ 
 }
