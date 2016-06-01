@@ -5,7 +5,7 @@
  */
 package lapr.project.controller;
 
-import lapr.project.model.TipoUtilizador;
+import lapr.project.model.users.TipoUtilizador;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.Utilizador;
@@ -22,17 +22,12 @@ public class DefinirFAEController {
         this.listaFAE = listaFAE;
     }
 
-    public FAE addFAE(Utilizador utilizador) {
-        if (utilizador == null) {
-            return null;
+    public boolean addFAE(Utilizador utilizador) {
+        if (utilizador.isFAE()) {
+            final FAE fae = new FAE(utilizador);
+            return listaFAE.addFAE(fae);
         }
-
-        final FAE fae = new FAE(utilizador);
-
-        if (listaFAE.addFAE(fae) != null) {
-            utilizador.setTipoUtilizador(TipoUtilizador.FAE.toString());
-        }
-        return null;
+        return false;
     }
 
 }

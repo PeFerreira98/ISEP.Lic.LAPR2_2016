@@ -9,7 +9,7 @@ package lapr.project.ui;
 import lapr.project.controller.DefinirFAEController;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.lists.ListaUtilizadores;
+import lapr.project.model.lists.RegistoUtilizadores;
 
 /**
  *
@@ -20,13 +20,13 @@ public class DefinirFAEUI extends javax.swing.JFrame {
     private DefinirFAEController controller;
     private ListaFAE listaFAE;
     private Exposicao exposicao;
-    private ListaUtilizadores listaUtilizadores;
+    private RegistoUtilizadores registoUtilizadores;
     
     /** Creates new form DefinirFAEUI */
-    public DefinirFAEUI(ListaUtilizadores listaUtilizadores, Exposicao exposicao, ListaFAE listaFAE) {
-        this.listaUtilizadores = listaUtilizadores;
+    public DefinirFAEUI(RegistoUtilizadores registoUtilizadores , Exposicao exposicao) {
+        this.registoUtilizadores = registoUtilizadores;
         this.exposicao = exposicao;
-        this.listaFAE = listaFAE;
+        this.listaFAE = exposicao.getListaFAE();
         this.controller = new DefinirFAEController(this.listaFAE);
         
         super.setTitle("Definir FAE");
@@ -128,41 +128,6 @@ public class DefinirFAEUI extends javax.swing.JFrame {
     private void jOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOKActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jOKActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DefinirFAEUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DefinirFAEUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DefinirFAEUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DefinirFAEUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DefinirFAEUI(new ListaUtilizadores(), new Exposicao(), new ListaFAE()).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jCancel;

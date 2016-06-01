@@ -21,14 +21,14 @@ public class ListaFAE {
         listaFAE = new ArrayList<>();
     }
 
-    public FAE addFAE(FAE fae) {
+    public boolean addFAE(FAE fae) {
         //Verificação de ja existe este FAE
         for (FAE f : listaFAE) {
             if (f.equals(fae)) {
-                return null;
+                return false;
             }
         }
-        return fae;
+        return true;
     }
 
     public List<FAE> getListaFAE() {
