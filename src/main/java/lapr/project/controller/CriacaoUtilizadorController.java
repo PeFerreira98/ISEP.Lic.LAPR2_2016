@@ -5,8 +5,7 @@
  */
 package lapr.project.controller;
 
-import java.io.IOException;
-import java.util.List;
+import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -14,30 +13,36 @@ import lapr.project.model.users.Utilizador;
  * @author zero_
  */
 public class CriacaoUtilizadorController {
-    
-    List<Utilizador> lstUsers;
-    
-    public CriacaoUtilizadorController(List<Utilizador> lst){
-        this.lstUsers =lst;
-        
+
+    RegistoUtilizadores registoUtilizadores;
+
+    public CriacaoUtilizadorController(RegistoUtilizadores registoUtilizadores) {
+        this.registoUtilizadores = registoUtilizadores;
     }
-    
-    public boolean checkUsername(String user){
-        for(Utilizador u : this.lstUsers){
-           if(u.getUserName().equalsIgnoreCase(user)){
-                return true;
-           }
+
+    public boolean addUtilizadorNaoRegistado(Utilizador utilizador) {
+        return registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
+    }
+
+    public boolean checkUtilizadorByUsername(String username) {
+        if (registoUtilizadores.checkUtilizadorByUsername(username) == null) {
+            return false;
         }
-        return false;
+        return true;
     }
-    
-    public boolean checkEmail(String email){
-        for(Utilizador u: this.lstUsers){
-            if(u.getEmail().equalsIgnoreCase(email)){
-                return true;
-            }
+
+    public boolean checkUtilizadorByEmail(String email) {
+        if (registoUtilizadores.checkUtilizadorByEmail(email) == null) {
+            return false;
         }
-        return false;
+        return true;
     }
-    
+
+    public boolean validaEmailPattern(String email) {
+        String ePattern = "(([a-z0-9!#$%&'*+-/=?^_`{|}~]+)|([a-z0-9!#$%&'*+-/=?^_`{|}~]+.[a-z0-9!#$%&'*+-/=?^_`{|}~]+))@[a-z]+([.][a-z]+)*";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
 }

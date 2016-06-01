@@ -5,38 +5,26 @@
  */
 package lapr.project.ui;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.util.List;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.CriacaoUtilizadorController;
-import lapr.project.model.TipoUtilizador;
-import lapr.project.model.lists.ListaUtilizadores;
+import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 
 /**
  *
  * @author Marcos
  */
-public class SignUpUI extends javax.swing.JFrame {
+public class CriacaoUtilizadorUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SignUpUI
-     */
-    public List<Utilizador> lstUsers;
+    private CriacaoUtilizadorController controller;
+    private RegistoUtilizadores registoUtilizadores;
 
-    public SignUpUI(List<Utilizador> lst) {
+    public CriacaoUtilizadorUI(RegistoUtilizadores registoUtilizadores) {
+        this.registoUtilizadores = registoUtilizadores;
+        this.controller = new CriacaoUtilizadorController(registoUtilizadores);
+
+        super.setTitle("SignUp Window");
         initComponents();
-
-        this.lstUsers = lst;
         setLocationRelativeTo(null);
         super.setVisible(true);
     }
@@ -202,43 +190,46 @@ public class SignUpUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        // TODO add your handling code here:
 
-        String nome, email, username, password, userType;
-        int flag = 0;
+        String nome, email, username, password, tipoUtilizador;
 
         nome = txtName.getText();
         email = txtEmail.getText();
         username = txtUsername.getText();
         password = txtPassword.getText();
-        userType = (String) jcmbType.getSelectedItem();
+        tipoUtilizador = jcmbType.getName();
 
-        CriacaoUtilizadorController controller = new CriacaoUtilizadorController(this.lstUsers);
         if (!nome.isEmpty() && !email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
-            if (controller.checkUsername(username)) {
-                JOptionPane.showMessageDialog(
-                        SignUpUI.this,
-                        "Username já existente!",
-                        "Sign Up",
-                        JOptionPane.ERROR_MESSAGE);
-                flag = 1;
-            } else if (controller.checkEmail(email)) {
-                JOptionPane.showMessageDialog(SignUpUI.this, "Email já existente!", "Sign Up", JOptionPane.ERROR_MESSAGE);
-                flag = 1;
-            }
+            if (controller.validaEmailPattern(email)) {
+                Utilizador utilizador = new Utilizador(nome, username, password, email, tipoUtilizador);
 
-            if (flag == 0) {
-                writeFile(nome, email, username, password, userType);
-                this.lstUsers.add(new Utilizador(nome, email, username, password, password, email));
+                if (!controller.checkUtilizadorByUsername(username)) {
+                    if (!controller.checkUtilizadorByEmail(email)) {
+                        if (controller.addUtilizadorNaoRegistado(utilizador)) {
+                            
+                            JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
+                                    "Registo Efetuado com Sucesso!", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
+                            dispose();
+                            
+                        } else {
+                            JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
+                                "Erro na Criação de Utilizador!", "Sign Up", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
+                                "Email já existente!", "Sign Up", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
+                            "Username já existente!", "Sign Up", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
+                        "Email não valido!", "Sign Up", JOptionPane.ERROR_MESSAGE);
             }
-            
-            dispose();
-        }else{
-            JOptionPane.showMessageDialog(
-                        SignUpUI.this,
-                        "Por favor preencha os dados todos necessários",
-                        "Sign Up",
-                        JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
+                    "Por favor preencha todos os dados necessários", "Sign Up", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jOkActionPerformed
@@ -250,81 +241,6 @@ public class SignUpUI extends javax.swing.JFrame {
     private void jcmbTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbTypeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcmbTypeActionPerformed
-
-    public void writeFile(String nome, String email, String username, String password, String tUser) {
-        try {
-            File file = new File("userList.txt");
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.newLine();
-            bw.write("---");
-            bw.newLine();
-            bw.write("status:");
-            bw.newLine();
-            bw.write("PENDING");
-            bw.newLine();
-            bw.write("nome:");
-            bw.newLine();
-            bw.write(nome);
-            bw.newLine();
-            bw.write("email:");
-            bw.newLine();
-            bw.write(email);
-            bw.newLine();
-            bw.write("username:");
-            bw.newLine();
-            bw.write(username);
-            bw.newLine();
-            bw.write("password:");
-            bw.newLine();
-            bw.write(password);
-            bw.newLine();
-            bw.write("type:");
-            bw.newLine();
-            bw.write(tUser);
-            bw.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(SignUpUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SignUpUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new SignUpUI().setVisible(true);
-//            }
-//        });    
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jCancel;

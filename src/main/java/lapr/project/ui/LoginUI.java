@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
 import lapr.project.model.exhibitions.CentroExposicoes;
+import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -23,13 +24,14 @@ public class LoginUI extends javax.swing.JFrame {
     /**
      * Creates new form LoginUI
      */
-    
-    public List<Utilizador> lstUsers;
-    public CentroExposicoes ce;
-    
-    public LoginUI(CentroExposicoes ce) {
-        this.ce = ce;
-        this.lstUsers = ce.getLstUtilizadores();
+    private LoginController controller;
+    private CentroExposicoes centroExposicoes;
+
+    public LoginUI(CentroExposicoes centroExposicoes) {
+        this.centroExposicoes = centroExposicoes;
+        this.controller = new LoginController(centroExposicoes.getRegistoUtilizadores());
+
+        super.setTitle("Login Window");
         initComponents();
         setLocationRelativeTo(null);
         super.setVisible(true);
@@ -116,85 +118,41 @@ public class LoginUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String user, pw;
-        Utilizador u = null;
+        final String username, password;
 
-        user = jTextField1.getText();
-        pw = jTextField2.getText();
+        username = jTextField1.getText();
+        password = jTextField2.getText();
 
-        LoginController controller = new LoginController(this.lstUsers);
-        try {
-            u = controller.getUtilizador(user);
-        } catch (IOException ex) {
-            Logger.getLogger(LoginUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Utilizador utilizador = this.controller.getUtilizador(username);
 
-        if (u == null) {
-            JOptionPane.showMessageDialog(
-                    LoginUI.this,
-                    "Credenciais errada!",
-                    "Login",
-                    JOptionPane.ERROR_MESSAGE);
-        } else if (u.getPassword().equalsIgnoreCase(pw) && u.getUserName().equalsIgnoreCase(user)) {
-            
-            if(u.getStatus().equalsIgnoreCase("PENDING")){
-                JOptionPane.showMessageDialog(
-                    LoginUI.this,
-                    "Ainda nao foi aceite pelo o gestor",
-                    "Login",
-                    JOptionPane.ERROR_MESSAGE);
-            }else{
-                new GestorExpoUI(ce);
+        if (utilizador != null) {
+            if (utilizador.validatePassword(password) && utilizador.validateUsername(username)) {
+                if (utilizador.isRegistado()) {
+                    
+                    if (utilizador.isGestor()) new GestorExposicoesUI(centroExposicoes);
+                    else{
+                    JOptionPane.showMessageDialog(LoginUI.this,
+                            "Para já só gestores allowed", "Login", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(LoginUI.this,
+                            "Este Utilizador ainda nao foi aceite pelo o Gestor", "Login", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(LoginUI.this,
+                        "Password Errada!", "Login", JOptionPane.ERROR_MESSAGE);
             }
-        
         } else {
-            JOptionPane.showMessageDialog(
-                    LoginUI.this,
-                    "Credenciais errada!",
-                    "Login",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(LoginUI.this,
+                    "Utilizador Inexistente!", "Login", JOptionPane.ERROR_MESSAGE);
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpActionPerformed
-        SignUpUI frame2 = new SignUpUI(this.lstUsers);
+        CriacaoUtilizadorUI frame2 = new CriacaoUtilizadorUI(this.centroExposicoes.getRegistoUtilizadores());
     }//GEN-LAST:event_jSignUpActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new LoginUI().setVisible(true);
-//            }
-//        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

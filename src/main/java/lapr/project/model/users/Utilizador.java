@@ -6,7 +6,6 @@
 package lapr.project.model.users;
 
 import java.util.Objects;
-import lapr.project.model.TipoUtilizador;
 
 /**
  *
@@ -15,26 +14,54 @@ import lapr.project.model.TipoUtilizador;
 public class Utilizador {
 
     private String nome;
-    private String userName;
+    private String username;
     private String password;
     private String email;
-    private String userType;
-    private String status;
 
-    public Utilizador() {
+    //TODO: Change string to respective state class
+    private String tipoUtilizador;
+    private String estado;
+
+    public Utilizador(String nome, String username, String password, String email, String tipoUtilizador) {
+        this.nome = nome;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+
+        this.estado = "PENDING";
+        this.tipoUtilizador = tipoUtilizador;
     }
 
-    public Utilizador(String m_strNome, String m_strUser, String m_strPwd, String m_strEmail, String status, String userType) {
-        this.nome = m_strNome;
-        this.userName = m_strUser;
-        this.password = m_strPwd;
-        this.email = m_strEmail;
-        this.status = status;
-        this.userType = userType;
+    public boolean validateUsername(String username) {
+        return this.username.equals(username);
     }
 
-    public String getUserName() {
-        return userName;
+    public boolean validatePassword(String password) {
+        return this.password.equals(password);
+    }
+
+    public boolean validateEmail(String email) {
+        return this.email.equals(email);
+    }
+
+    public boolean isRegistado() {
+        return this.estado.equalsIgnoreCase("REGISTERED");
+    }
+
+    public boolean isGestor() {
+        return this.tipoUtilizador.equalsIgnoreCase("GESTOR");
+    }
+
+    public boolean isFAE() {
+        return this.tipoUtilizador.equalsIgnoreCase("FAE");
+    }
+
+    public void setRegistado() {
+        this.estado = "REGISTERED";
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getNome() {
@@ -49,84 +76,58 @@ public class Utilizador {
         return password;
     }
 
-    public String getStatus() {
-        return this.status;
+    public String getEstado() {
+        return this.estado;
     }
 
-    public void setNome(String strNome) {
-        this.nome = strNome;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUserName(String username) {
-        this.userName = username;
-    }
-
-    public void setTipoUtilizador(String tipoUtilizador) {
-        this.userType = tipoUtilizador;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public String getTipoUtilizador() {
+        return this.tipoUtilizador;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.userName);
-        hash = 67 * hash + Objects.hashCode(this.password);
-        hash = 67 * hash + Objects.hashCode(this.userType);
+        hash = 71 * hash + Objects.hashCode(this.nome);
+        hash = 71 * hash + Objects.hashCode(this.username);
+        hash = 71 * hash + Objects.hashCode(this.password);
+        hash = 71 * hash + Objects.hashCode(this.email);
+        hash = 71 * hash + Objects.hashCode(this.tipoUtilizador);
+        hash = 71 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
     @Override
-    public String toString() {
-        return String.format("| Nome: %s | Email: %s | Username: %s | Password: %s | TipoUtilizador: %s |", nome, email, userName, password, userType);
-    }
-
-    public boolean hasID(String strUserName) {
-        return userName.equalsIgnoreCase(strUserName);
-    }
-
-    public boolean validaEmail() {
-        String ePattern = "(([a-z0-9!#$%&'*+-/=?^_`{|}~]+)|([a-z0-9!#$%&'*+-/=?^_`{|}~]+.[a-z0-9!#$%&'*+-/=?^_`{|}~]+))@[a-z]+([.][a-z]+)*";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-    }
-
-    public boolean validateUsername(String username) {
-        if (this.userName.equals(username)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean validatePassword(String password) {
-        if (this.password.equals(password)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean valida() {
-        return validaEmail();
-    }
-
-    public boolean equals(Utilizador u) {
-        if (this == u) {
-            return true;
-        }
-        if (u == null || getClass() != u.getClass()) {
+    public boolean equals(Object obj) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        Utilizador outroUtilizador = (Utilizador) u;
-        return email.equalsIgnoreCase(outroUtilizador.email) && nome.equals(outroUtilizador.nome) && userName.equalsIgnoreCase(outroUtilizador.userName)
-                && password.equalsIgnoreCase(outroUtilizador.password);
+
+        final Utilizador other = (Utilizador) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.username, other.username)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipoUtilizador, other.tipoUtilizador)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+
+        return true;
     }
+
+    @Override
+    public String toString() {
+        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", tipoUtilizador=" + tipoUtilizador + ", estado=" + estado + '}';
+    }
+
 }
