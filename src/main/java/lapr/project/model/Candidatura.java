@@ -21,7 +21,7 @@ public class Candidatura {
     private double areaPretendida;
     private int telemovel;
     private int quantidadeConvites;
-    private CandidaturaStatus candidaturaStatus;
+    private CandidaturaState candidaturaStatus;
 
     /**
      * Construtor de objecto Candidatura
