@@ -128,12 +128,15 @@ public class LoginUI extends javax.swing.JFrame {
         if (utilizador != null) {
             if (utilizador.validatePassword(password) && utilizador.validateUsername(username)) {
                 if (utilizador.isRegistado()) {
-                    
-                    if (utilizador.isGestor()) new GestorExposicoesUI(centroExposicoes);
-                    else{
-                    JOptionPane.showMessageDialog(LoginUI.this,
-                            "Para já só gestores allowed", "Login", JOptionPane.INFORMATION_MESSAGE);
+
+                    if (utilizador.isGestor()) {
+                        new GestorExposicoesUI(centroExposicoes);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(LoginUI.this,
+                                "Para já só gestores allowed", "Login", JOptionPane.INFORMATION_MESSAGE);
                     }
+
                 } else {
                     JOptionPane.showMessageDialog(LoginUI.this,
                             "Este Utilizador ainda nao foi aceite pelo o Gestor", "Login", JOptionPane.ERROR_MESSAGE);
