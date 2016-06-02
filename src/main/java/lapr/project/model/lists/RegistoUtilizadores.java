@@ -89,7 +89,7 @@ public class RegistoUtilizadores {
     }
 
     public List<Utilizador> getListaUtilizadoresRegistados() {
-        return this.listaUtilizadoresNaoRegistados;
+        return this.listaUtilizadoresRegistados;
     }
 
     @Override
