@@ -40,12 +40,12 @@ public class RegistoUtilizadores {
     
     public Utilizador checkUtilizadorByEmail(String email) {
         for (Utilizador u : listaUtilizadoresNaoRegistados) {
-            if (u.validateUsername(email)) {
+            if (u.validateEmail(email)) {
                 return u;
             }
         }
         for (Utilizador u : listaUtilizadoresRegistados) {
-            if (u.validateUsername(email)) {
+            if (u.validateEmail(email)) {
                 return u;
             }
         }
@@ -89,7 +89,7 @@ public class RegistoUtilizadores {
     }
 
     public List<Utilizador> getListaUtilizadoresRegistados() {
-        return this.listaUtilizadoresNaoRegistados;
+        return this.listaUtilizadoresRegistados;
     }
 
     @Override
