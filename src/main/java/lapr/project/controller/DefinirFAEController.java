@@ -5,8 +5,11 @@
  */
 package lapr.project.controller;
 
+import java.util.List;
+import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.TipoUtilizador;
 import lapr.project.model.lists.ListaFAE;
+import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.Utilizador;
 
@@ -16,18 +19,27 @@ import lapr.project.model.users.Utilizador;
  */
 public class DefinirFAEController {
 
-    ListaFAE listaFAE;
+    private RegistoUtilizadores registoUtilizadores;
+    private Exposicao exposicao;
+    private ListaFAE listaFAE;
 
-    public DefinirFAEController(ListaFAE listaFAE) {
-        this.listaFAE = listaFAE;
+    public DefinirFAEController(RegistoUtilizadores registoUtilizadores, Exposicao exposicao) {
+        this.registoUtilizadores = registoUtilizadores;
+        this.exposicao = exposicao;
+        this.listaFAE = exposicao.getListaFAE();
     }
 
-    public boolean addFAE(Utilizador utilizador) {
+    public boolean addUtilizadorListaFAE(Utilizador utilizador) {
         if (utilizador.isFAE()) {
             final FAE fae = new FAE(utilizador);
-            return listaFAE.addFAE(fae);
+            System.out.println(fae);
+            return this.listaFAE.addFAE(fae);
         }
         return false;
+    }
+    
+    public List<Utilizador> getListaUtilizadoresRegistados(){      
+        return this.registoUtilizadores.getListaUtilizadoresRegistados();
     }
 
 }

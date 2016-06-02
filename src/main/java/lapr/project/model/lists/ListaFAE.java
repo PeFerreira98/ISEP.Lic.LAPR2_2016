@@ -14,7 +14,7 @@ import lapr.project.model.users.FAE;
  * @author zero_
  */
 public class ListaFAE {
-        
+
     private List<FAE> listaFAE;
 
     public ListaFAE() {
@@ -22,13 +22,16 @@ public class ListaFAE {
     }
 
     public boolean addFAE(FAE fae) {
+
         //Verificação de ja existe este FAE
         for (FAE f : listaFAE) {
+            System.out.println(fae + " =?= " + f);
             if (f.equals(fae)) {
                 return false;
             }
         }
-        return true;
+
+        return this.listaFAE.add(fae);
     }
 
     public List<FAE> getListaFAE() {
