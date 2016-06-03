@@ -197,12 +197,12 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
         email = txtEmail.getText();
         username = txtUsername.getText();
         password = txtPassword.getText();
-        tipoUtilizador = jcmbType.getName();
+        tipoUtilizador = (String) jcmbType.getSelectedItem();
 
         if (!nome.isEmpty() && !email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
             if (controller.validaEmailPattern(email)) {
                 Utilizador utilizador = new Utilizador(nome, username, password, email, tipoUtilizador);
-
+                   System.out.println("..." + tipoUtilizador);
                 if (!controller.checkUtilizadorByUsername(username)) {
                     if (!controller.checkUtilizadorByEmail(email)) {
                         if (controller.addUtilizadorNaoRegistado(utilizador)) {
