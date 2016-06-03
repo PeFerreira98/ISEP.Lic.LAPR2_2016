@@ -41,6 +41,14 @@ public class ListaExposicoes {
     public boolean validaExposicao(Exposicao exposicao) {
         return exposicao.valida();
     }
+    
+    public boolean registaExposicao(Exposicao exposicao){
+        if (validaExposicao(exposicao) == true) {
+            this.listaExposicoes.add(exposicao);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

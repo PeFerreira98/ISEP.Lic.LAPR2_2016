@@ -46,7 +46,6 @@ public class Exposicao {
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
-
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = listaFAE;
     }
@@ -90,9 +89,49 @@ public class Exposicao {
     public String getLocal() {
         return local;
     }
-    
-    public ListaFAE getListaFAE(){
+
+    public ListaOrganizadores getListaOrganizadores() {
+        return listaOrganizadores;
+    }
+
+    public ListaFAE getListaFAE() {
         return this.listaFAE;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public void setDataInicioRealizacao(Data dataInicioRealizacao) {
+        this.dataInicioRealizacao = dataInicioRealizacao;
+    }
+
+    public void setDataFimRealizacao(Data dataFimRealizacao) {
+        this.dataFimRealizacao = dataFimRealizacao;
+    }
+
+    public void setDataInicioSubmissao(Data dataInicioSubmissao) {
+        this.dataInicioSubmissao = dataInicioSubmissao;
+    }
+
+    public void setDataFimSubmissao(Data dataFimSubmissao) {
+        this.dataFimSubmissao = dataFimSubmissao;
+    }
+
+    public void setListaOrganizadores(ListaOrganizadores listaOrganizadores) {
+        this.listaOrganizadores = listaOrganizadores;
+    }
+
+    public void setListaFAE(ListaFAE listaFAE) {
+        this.listaFAE = listaFAE;
     }
 
     public boolean valida() {
