@@ -200,7 +200,7 @@ public class AlterarPerfiUtilizadorUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(AlterarPerfiUtilizadorUI.this,
                                     "Este campo nao pode estar vazio", "Settings", JOptionPane.ERROR_MESSAGE);
         }
-        this.user.setNome(jTxtName.getText());
+        this.controller.setName(jTxtName.getText());
         JOptionPane.showMessageDialog(AlterarPerfiUtilizadorUI.this,
                                     "Nome Alterado com sucesso", "Settings", JOptionPane.INFORMATION_MESSAGE);
         
@@ -226,9 +226,8 @@ public class AlterarPerfiUtilizadorUI extends javax.swing.JFrame {
         }else if (jTxtOldpw.getText().equalsIgnoreCase(this.user.getPassword()) && jTxtNewpw.getText().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(AlterarPerfiUtilizadorUI.this,
                                     "Insira uma nova password!", "Settings", JOptionPane.ERROR_MESSAGE);            
-        }else if (jTxtOldpw.getText().equalsIgnoreCase(this.user.getPassword()) && !jTxtNewpw.getText().equalsIgnoreCase("")){
-            this.user.setPassword(jTxtNewpw.getText());
-            
+        }else if (this.controller.confirmPassword(jTxtOldpw.getText())){
+            this.controller.setPassword(jTxtNewpw.getText());
             JOptionPane.showMessageDialog(AlterarPerfiUtilizadorUI.this,
                                     "Password Alterada com sucesso!", "Settings", JOptionPane.INFORMATION_MESSAGE);
         }

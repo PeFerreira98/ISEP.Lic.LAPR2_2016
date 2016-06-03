@@ -27,6 +27,17 @@ public class AlterarPerfilUtilizadorController {
         this.user.setNome(name);
     }
     
+    public boolean confirmPassword(String pw){
+        if(this.user.getPassword().equals(pw)){
+            return true;
+        }
+        return false;
+    }
+    
+    public void setPassword(String pw){
+        this.user.setPassword(pw);
+    }
+    
     public boolean setEmail(String email){
         if(this.registoUtilizadores.checkUtilizadorByEmail(email)==null){
             this.user.setEmail(email);
