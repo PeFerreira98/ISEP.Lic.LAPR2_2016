@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.util.List;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
@@ -27,11 +28,20 @@ public class CriarExposicaoController {
     private Exposicao exposicao;
     private ListaOrganizadores listaOrganizadores;
 
+    public CriarExposicaoController() {
+        this.listaExposicoes = new ListaExposicoes();
+        this.centroExposicoes = new CentroExposicoes();
+        this.registoUtilizadores = new RegistoUtilizadores();
+        this.utilizador = new Utilizador();
+        this.exposicao = new Exposicao();
+        this.listaOrganizadores = new ListaOrganizadores();
+    }
+
     public boolean novaExposicao(Exposicao exposicao) {
         return listaExposicoes.addExposicao(exposicao);
     }
-    
-    public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaFAE listaFAE){
+
+    public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
         exposicao.setTitle(nomeExposicao);
         exposicao.setDescription(descricaoExposicao);
         exposicao.setDataInicioRealizacao(dataInicioRealizacao);
@@ -42,21 +52,22 @@ public class CriarExposicaoController {
         exposicao.setListaFAE(listaFAE);
     }
 
-    public Utilizador getUtilizador() {
-        centroExposicoes.getRegistoUtilizadores();
-        return registoUtilizadores.checkUtilizadorByUsername(utilizador.getUsername());
+    public Utilizador getUtilizador(String username) {
+        return registoUtilizadores.checkUtilizadorByUsername(username);
     }
 
     public void addOrganizador(Utilizador utilizador) {
-        listaOrganizadores.getLstOrganizadores();
         listaOrganizadores.addOrganizador(utilizador);
     }
 
     public boolean validaExposicao() {
-        return listaExposicoes.validaExposicao(exposicao);
+        if (listaExposicoes.validaExposicao(exposicao) == true) {
+            return true;
+        }
+        return false;
     }
-    
-    public boolean registaExposicao(){
+
+    public boolean registaExposicao() {
         return listaExposicoes.registaExposicao(exposicao);
     }
 }

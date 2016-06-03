@@ -31,6 +31,11 @@ public class CentroExposicoes {
         this.registoUtilizadores = registoUtilizadores;
         this.listaExposicoes = listaExposicoes;
     }
+    
+    public CentroExposicoes(){
+        this.registoUtilizadores = new RegistoUtilizadores();
+        this.listaExposicoes = new ListaExposicoes();
+    }
 
     public ListaExposicoes getListaExposicoes() {
         return listaExposicoes;

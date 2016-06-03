@@ -35,19 +35,33 @@ public class Exposicao {
      * @param dataInicioRealizacao a data de inicio da realização da exposicao
      * @param dataFimRealizacao a data de fim da realização da exposicao
      * @param local
+     * @param listaOrganizadores
      * @param listaFAE
      */
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaFAE listaFAE) {
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, 
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, 
+            ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.local = local;
-
         this.dataInicioRealizacao = dataInicioRealizacao;
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
-        this.listaOrganizadores = new ListaOrganizadores();
+        this.listaOrganizadores = listaOrganizadores;
         this.listaFAE = listaFAE;
+    }
+
+    public Exposicao() {
+        this.title = "";
+        this.description = "";
+        this.local = "";
+        this.dataInicioRealizacao = new Data();
+        this.dataFimRealizacao = new Data();
+        this.dataInicioSubmissao = new Data();
+        this.dataFimSubmissao = new Data();
+        this.listaOrganizadores = new ListaOrganizadores();
+        this.listaFAE = new ListaFAE();
     }
 
     public Data getDataInicioSubmissao() {
@@ -135,15 +149,22 @@ public class Exposicao {
     }
 
     public boolean valida() {
-        if (this.title.equalsIgnoreCase("") || this.description.equalsIgnoreCase("") || this.dataInicioRealizacao == null || this.dataFimRealizacao == null || this.dataInicioSubmissao == null || this.dataFimRealizacao == null || this.local.equalsIgnoreCase("")) {
+        if (this.title.equalsIgnoreCase("") || this.description.equalsIgnoreCase("") || 
+                this.dataInicioRealizacao == null || this.dataFimRealizacao == null || 
+                this.dataInicioSubmissao == null || this.dataFimRealizacao == null || 
+                this.local.equalsIgnoreCase("") || listaOrganizadores.valida() != true
+                || listaFAE.valida() != true) {
             return false;
         }
-        return listaOrganizadores.valida();
+        return true;
     }
 
     @Override
     public String toString() {
-        return "\nExposicao{" + "title=" + title + ", description=" + description + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao=" + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao + ", \nlistaOrganizadores=" + listaOrganizadores + ", \nlistaFAE=" + listaFAE + '}';
+        return "\nExposicao{" + "title=" + title + ", description=" + description + ", local=" + local 
+                + ", dataInicioRealizacao=" + dataInicioRealizacao + ", dataFimRealizacao=" + dataFimRealizacao 
+                + ", dataInicioSubmissao=" + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao 
+                + ", \nlistaOrganizadores=" + listaOrganizadores + ", \nlistaFAE=" + listaFAE + '}';
     }
 
 }

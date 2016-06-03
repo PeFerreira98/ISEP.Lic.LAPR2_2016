@@ -39,7 +39,10 @@ public class ListaExposicoes {
     }
 
     public boolean validaExposicao(Exposicao exposicao) {
-        return exposicao.valida();
+        if (exposicao.valida() == true) {
+            return true;
+        }
+        return false;
     }
     
     public boolean registaExposicao(Exposicao exposicao){

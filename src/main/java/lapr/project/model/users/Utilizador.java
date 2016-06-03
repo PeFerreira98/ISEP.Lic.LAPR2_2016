@@ -31,6 +31,16 @@ public class Utilizador {
         this.estado = "PENDING";
         this.tipoUtilizador = tipoUtilizador;
     }
+    
+    public Utilizador(){
+        this.nome = "";
+        this.username = "";
+        this.password = "";
+        this.email = "";
+        
+        this.estado = "PENDING";
+        this.tipoUtilizador = "default";
+    }
 
     public boolean validateUsername(String username) {
         return this.username.equals(username);

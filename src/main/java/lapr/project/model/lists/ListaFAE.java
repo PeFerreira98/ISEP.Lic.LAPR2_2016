@@ -37,6 +37,13 @@ public class ListaFAE {
     public List<FAE> getListaFAE() {
         return this.listaFAE;
     }
+    
+    public boolean valida(){
+        if (listaFAE.isEmpty() || listaFAE == null) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString() {

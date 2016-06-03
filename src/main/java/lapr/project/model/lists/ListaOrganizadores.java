@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.users.Organizador;
 import lapr.project.model.users.Utilizador;
@@ -17,6 +18,10 @@ public class ListaOrganizadores {
 
     private List<Organizador> listaOrganizador;
 
+    public ListaOrganizadores() {
+        this.listaOrganizador = new ArrayList<>();
+    }
+
     public List<Organizador> getLstOrganizadores() {
         return this.listaOrganizador;
     }
@@ -24,6 +29,7 @@ public class ListaOrganizadores {
     public void addOrganizador(Utilizador u) {
         Organizador org = new Organizador(u);
         if (validaOrganizador(org)) {
+
             listaOrganizador.add(org);
         }
     }
@@ -33,7 +39,7 @@ public class ListaOrganizadores {
     }
 
     public boolean valida() {
-        if (listaOrganizador == null) {
+        if (listaOrganizador.isEmpty() || listaOrganizador == null) {
             return false;
         }
         return true;
