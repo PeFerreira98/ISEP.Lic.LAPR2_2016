@@ -26,7 +26,7 @@ public class DefinirFAEController {
     public DefinirFAEController(RegistoUtilizadores registoUtilizadores, Exposicao exposicao) {
         this.registoUtilizadores = registoUtilizadores;
         this.exposicao = exposicao;
-        this.listaFAE = exposicao.getListaFAE();
+        this.listaFAE = (ListaFAE) exposicao.getListaFAE();
     }
 
     public boolean addUtilizadorListaFAE(Utilizador utilizador) {
