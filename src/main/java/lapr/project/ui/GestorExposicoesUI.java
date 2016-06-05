@@ -28,11 +28,11 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         super.setVisible(true);
 
-        for (Exposicao exposicao : centroExposicoes.getListaExposicoes().getListaExposicoes()) {
-            jlstExpo.add(exposicao.getTitle());
+        for (Exposicao exposicao : centroExposicoes.getListaExp().getListaExposicoes()) {
+            jlstExpo.add(exposicao.getTitulo());
         }
 
-        for (Utilizador utilizador : centroExposicoes.getRegistoUtilizadores().getListaUtilizadoresNaoRegistados()) {
+        for (Utilizador utilizador : centroExposicoes.getRegistoUt().getListaUtilizadoresNaoRegistados()) {
             jlstUsers.add(utilizador.getUsername());
         }
     }
@@ -165,7 +165,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnExpoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpoCreateActionPerformed
-        new CriarExposicaoUI(centroExposicoes.getListaExposicoes());
+        new CriarExposicaoUI(centroExposicoes.getListaExp());
     }//GEN-LAST:event_btnExpoCreateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
