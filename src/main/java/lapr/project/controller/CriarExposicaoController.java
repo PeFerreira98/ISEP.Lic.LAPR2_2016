@@ -10,7 +10,6 @@ import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.users.Utilizador;
-import lapr.project.utils.Data;
 
 /**
  *
@@ -29,7 +28,7 @@ public class CriarExposicaoController {
     }
 
     public String getUtilizador() {
-        centroExposicoes.getRegistoUtilizadores();
+        centroExposicoes.getRegistoUt();
         return utilizador.getUsername();
     }
 
