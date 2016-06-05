@@ -7,7 +7,6 @@ package lapr.project.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
@@ -17,191 +16,126 @@ public class Candidatura {
 
     private String nomeEmpresa;
     private String moradaEmpresa;
-    private String produto;
     private double areaPretendida;
     private int telemovel;
-    private int quantidadeConvites;
+    private int qtdConvites;
+    private List<Produto> produtos;
+    private List<Demonstracao> demonstracoes;
     private CandidaturaState candidaturaStatus;
 
-    /**
-     * Construtor de objecto Candidatura
-     *
-     * @param nomeEmpresa o nome da empresa
-     * @param moradaEmpresa a morada da empresa
-     * @param telemovel o numero de telemovel da empresa
-     * @param areaPretendida a area pretendida para exposição
-     * @param produto o produto a expôr
-     * @param quantidadeConvites a quantidade de convites pretendida
-     * @param listaDemonstracoes
-     */
-    public Candidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites, String produto) {
+    public Candidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int qtdConvites, List<Produto> listaProdutos, List<Demonstracao> listaDemonstracoes) {
         this.nomeEmpresa = nomeEmpresa;
         this.moradaEmpresa = moradaEmpresa;
         this.telemovel = telemovel;
         this.areaPretendida = areaPretendida;
-        this.quantidadeConvites = quantidadeConvites;
+        this.qtdConvites = qtdConvites;
+        this.demonstracoes = listaDemonstracoes;
+        this.produtos = listaProdutos;
+    }
+
+    public Candidatura() {
+        produtos = new ArrayList<>();
+        demonstracoes = new ArrayList<>();
     }
 
     /**
-     * Devolve o nome da empresa
-     *
-     * @return nome da empresa
+     * @return the nome
      */
-    public String getNomeEmpresa() {
+    public String getNome() {
         return nomeEmpresa;
     }
 
     /**
-     * Modifica o nome da empresa
-     *
-     * @param nomeEmpresa o novo nome da empresa
+     * @return the morada
      */
-    public void setNomeEmpresa(String nomeEmpresa) {
-        if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é inválido!");
-        }
-        this.nomeEmpresa = nomeEmpresa;
-
-    }
-
-    /**
-     * Devolve a morada da empresa
-     *
-     * @return a morada da empresa
-     */
-    public String getMoradaEmpresa() {
+    public String getMorada() {
         return moradaEmpresa;
     }
 
-    /**
-     * Modifica a morada da empresa
-     *
-     * @param moradaEmpresa a nova morada da empresa
-     */
-    public void setMoradaEmpresa(String moradaEmpresa) {
-        if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Morada é inválida!");
-        }
-        this.moradaEmpresa = moradaEmpresa;
+    public void setAreaPretendida(double areaPretendida) {
+        this.areaPretendida = areaPretendida;
+    }
 
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public void setQtdConvites(int qtdConvites) {
+        this.qtdConvites = qtdConvites;
+    }
+
+    public void setTelemovel(int telemovel) {
+        this.telemovel = telemovel;
     }
 
     /**
-     * Devolve o numero de telemovel da empresa
-     *
-     * @return o numero de telemovel da empresa
+     * @param nome the nome to set
      */
+    public void setNome(String nome) {
+        this.nomeEmpresa = nome;
+    }
+
+    /**
+     * @param morada the morada to set
+     */
+    public void setMorada(String morada) {
+        this.moradaEmpresa = morada;
+    }
+
     public int getTelemovel() {
         return telemovel;
     }
 
-    /**
-     * Modifica o numero de telemovel da empresa
-     *
-     * @param telemovel o novo numero de telemovel da empresa
-     */
-    public void setTelemovel(int telemovel) {
-        if (telemovel < 100000000 || telemovel > 999999999) {
-            throw new NumberFormatException("Telemóvel é inválido!");
-        }
-        this.telemovel = telemovel;
-
+    public int getQtdConvites() {
+        return qtdConvites;
     }
 
-    /**
-     * Devolve a area pretendida para exposicao
-     *
-     * @return a area pretendida para exposicao
-     */
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public List<Demonstracao> getDemonstracoes() {
+        return demonstracoes;
+    }
+
     public double getAreaPretendida() {
         return areaPretendida;
     }
 
-    /**
-     * Modifica a area pretendida para exposicao
-     *
-     * @param areaPretendida a nova area pretendida para exposicao
-     */
-    public void setAreaPretendida(double areaPretendida) {
-        if (areaPretendida == 0) {
-            throw new IllegalArgumentException("Área é inválida!");
+    public boolean valida() {
+        if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome inválido!");
+        } else if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Morada inválida!");
+        } else if (qtdConvites < 0) {
+            throw new IllegalArgumentException("Convites inválidos!");
+        } else if (telemovel < 100000000 || telemovel > 999999999) {
+            throw new IllegalArgumentException("Número de telemóvel inválido!");
+        } else if (areaPretendida <= 0) {
+            throw new IllegalArgumentException("Área expositor inválids!");
         }
-        this.areaPretendida = areaPretendida;
-
-    }
-
-    /**
-     * Devolve a quantidade de convites
-     *
-     * @return a quantidade de convites
-     */
-    public int getQuantidadeConvites() {
-        return quantidadeConvites;
-    }
-
-    /**
-     * Modifica a quantidade de convites
-     *
-     * @param quantidadeConvites a nova quantidade de convites
-     */
-    public void setQuantidadeConvites(int quantidadeConvites) {
-        if (quantidadeConvites == 0) {
-            throw new IllegalArgumentException("Quantidade de convites é inválida!");
-        }
-        this.quantidadeConvites = quantidadeConvites;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
-
-    /**
-     * Método para comparar um objecto com outro do mesmo tipo
-     *
-     * @param obj objecto Candidatura a comparar
-     * @return true se todos os parâmetros forem iguais. false caso contrário
-     */
-    public boolean equals(Candidatura obj) {
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final Candidatura other = (Candidatura) obj;
-        if (!Objects.equals(this.nomeEmpresa, other.nomeEmpresa)) {
-            return false;
-        }
-        if (!Objects.equals(this.moradaEmpresa, other.moradaEmpresa)) {
-            return false;
-        }
-        if (this.telemovel != other.telemovel) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.areaPretendida) != Double.doubleToLongBits(other.areaPretendida)) {
-            return false;
-        }
-        if (this.quantidadeConvites != other.quantidadeConvites) {
-            return false;
-        }
-
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", produto=" + produto + ", areaPretendida=" + areaPretendida + ", telemovel=" + telemovel + ", quantidadeConvites=" + quantidadeConvites + ", candidaturaStatus=" + candidaturaStatus + '}';
+    public void addProduto(String produto) {
+        produtos.add(new Produto(produto));
     }
 
-    /**
-     * Método para validar a Candidatura
-     *
-     * @return true caso valide, false caso contrario
-     */
-    public boolean valida() {
-        return !(this.areaPretendida == 0 || this.moradaEmpresa.equalsIgnoreCase("") || this.nomeEmpresa.equalsIgnoreCase("") || this.telemovel == 0 && this.quantidadeConvites < 1);
+    public void addDemonstracao(Demonstracao demo) {
+        demonstracoes.add(demo);
+    }
+
+    public boolean equals(Candidatura c) {
+        if (this == c) {
+            return true;
+        }
+        if (c == null || getClass() != c.getClass()) {
+            return false;
+        }
+        Candidatura outraCandidatura = (Candidatura) c;
+
+        return nomeEmpresa.equalsIgnoreCase(outraCandidatura.nomeEmpresa) && moradaEmpresa.equals(outraCandidatura.moradaEmpresa) && telemovel == outraCandidatura.telemovel
+                && qtdConvites == outraCandidatura.qtdConvites && areaPretendida == outraCandidatura.areaPretendida;
     }
 
 }
