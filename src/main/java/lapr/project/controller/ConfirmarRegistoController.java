@@ -23,7 +23,7 @@ public class ConfirmarRegistoController {
     }
 
     public List<Utilizador> getListUtNaoConfirmado() {
-        return m_centro_exposicoes.getRegistoUtilizadores().getListaUtilizadoresNaoRegistados();
+        return m_centro_exposicoes.getRegistoUt().getListaUtilizadoresNaoRegistados();
     }
 
     public void setUtilizador(Utilizador utilizador) {
@@ -35,6 +35,6 @@ public class ConfirmarRegistoController {
     }
 
     public void confirmaUtilizador() {
-        m_centro_exposicoes.getRegistoUtilizadores().registarUtilizador(utilizador);
+        m_centro_exposicoes.getRegistoUt().registarUtilizador(utilizador);
     }
 }
