@@ -30,20 +30,40 @@ public class ListaExposicoes {
         return listaExposicoes.add(exposicao);
     }
 
-    public void setListaExposicoes(List<Exposicao> lst){
+    public void setListaExposicoes(List<Exposicao> lst) {
         this.listaExposicoes = lst;
     }
-    
+
     public List<Exposicao> getListaExposicoes() {
         return this.listaExposicoes;
     }
 
-    public boolean validaExposicao(Exposicao exposicao) {
-        return exposicao.valida();
+    public List<Exposicao> getListaExpOrg(String id) {
+        List<Exposicao> ex = new ArrayList<>();
+        for (Exposicao e : listaExposicoes) {
+            if (e.hasOrg(id)) {
+                ex.add(e);
+            }
+        }
+        return ex;
+    }
+
+    public List<Exposicao> getListaExpFAE(String id) {
+        List<Exposicao> ex = new ArrayList<>();
+        for (Exposicao e : listaExposicoes) {
+            if (e.hasFAE(id)) {
+                ex.add(e);
+            }
+        }
+        return ex;
     }
 
     @Override
     public String toString() {
         return "\nListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
+    }
+
+    public boolean validaExposicao(Exposicao exposicao) {
+        return !listaExposicoes.isEmpty();
     }
 }
