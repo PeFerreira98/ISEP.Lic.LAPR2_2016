@@ -22,33 +22,27 @@ public class ListaExposicoes {
     }
 
     public boolean addExposicao(Exposicao exposicao) {
-        for (Exposicao e : listaExposicoes) {
-            if (e.equals(exposicao)) {
-                return false;
-            }
+        if (!listaExposicoes.stream().noneMatch((e) -> (e.equals(exposicao)))) {
+            return false;
         }
         return listaExposicoes.add(exposicao);
     }
 
-    public void setListaExposicoes(List<Exposicao> lst){
+    public void setListaExposicoes(List<Exposicao> lst) {
         this.listaExposicoes = lst;
     }
-    
+
     public List<Exposicao> getListaExposicoes() {
         return this.listaExposicoes;
     }
 
     public boolean validaExposicao(Exposicao exposicao) {
-        if (exposicao.valida() == true) {
-            return true;
-        }
-        return false;
+        return exposicao.valida();
     }
-    
-    public boolean registaExposicao(Exposicao exposicao){
+
+    public boolean registaExposicao(Exposicao exposicao) {
         if (validaExposicao(exposicao) == true) {
-            this.listaExposicoes.add(exposicao);
-            return true;
+            return this.listaExposicoes.add(exposicao);
         }
         return false;
     }

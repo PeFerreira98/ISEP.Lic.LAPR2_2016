@@ -7,7 +7,6 @@ package lapr.project.controller;
 
 import java.util.List;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.users.TipoUtilizador;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.FAE;
@@ -32,7 +31,6 @@ public class DefinirFAEController {
     public boolean addUtilizadorListaFAE(Utilizador utilizador) {
         if (utilizador.isFAE()) {
             final FAE fae = new FAE(utilizador);
-            System.out.println(fae);
             return this.listaFAE.addFAE(fae);
         }
         return false;
