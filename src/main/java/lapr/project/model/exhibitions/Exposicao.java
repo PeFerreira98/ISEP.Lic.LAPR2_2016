@@ -5,6 +5,8 @@
  */
 package lapr.project.model.exhibitions;
 
+import lapr.project.model.Candidatura;
+import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
@@ -24,6 +26,8 @@ public class Exposicao {
     private Data dataFimSubmissao;
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
+    private ListaDemonstracoes listaDemonstracoes;
+    private Candidatura candidatura;
 
     /**
      * Construtor de Exposicao
@@ -38,30 +42,62 @@ public class Exposicao {
      * @param listaOrganizadores
      * @param listaFAE
      */
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, 
-            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, 
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local,
             ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
+
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.local = local;
+
         this.dataInicioRealizacao = dataInicioRealizacao;
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
+
         this.listaOrganizadores = listaOrganizadores;
         this.listaFAE = listaFAE;
+        this.listaDemonstracoes = new ListaDemonstracoes();
+    }
+
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
+
+        this.title = nomeExposicao;
+        this.description = descricaoExposicao;
+        this.local = local;
+
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
+        this.dataInicioSubmissao = dataInicioSubmissao;
+        this.dataFimSubmissao = dataFimSubmissao;
+
+        this.listaOrganizadores = new ListaOrganizadores();
+        this.listaFAE = new ListaFAE();
+        this.listaDemonstracoes = new ListaDemonstracoes();
     }
 
     public Exposicao() {
         this.title = "";
         this.description = "";
         this.local = "";
+
         this.dataInicioRealizacao = new Data();
         this.dataFimRealizacao = new Data();
         this.dataInicioSubmissao = new Data();
         this.dataFimSubmissao = new Data();
+
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
+        this.listaDemonstracoes = new ListaDemonstracoes();
+    }
+
+    public boolean addCandidatura(Candidatura candidatura) {
+        if (this.candidatura == null) {
+            this.candidatura = candidatura;
+            return true;
+        }
+        return false;
     }
 
     public Data getDataInicioSubmissao() {
@@ -112,6 +148,10 @@ public class Exposicao {
         return this.listaFAE;
     }
 
+    public ListaDemonstracoes getListaDemonstracoes() {
+        return this.listaDemonstracoes;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -149,22 +189,25 @@ public class Exposicao {
     }
 
     public boolean valida() {
-        if (this.title.equalsIgnoreCase("") || this.description.equalsIgnoreCase("") || 
-                this.dataInicioRealizacao == null || this.dataFimRealizacao == null || 
-                this.dataInicioSubmissao == null || this.dataFimRealizacao == null || 
-                this.local.equalsIgnoreCase("") || listaOrganizadores.valida() != true
-                || listaFAE.valida() != true) {
-            return false;
-        }
-        return true;
+        return !(this.title.equalsIgnoreCase("")
+                || this.description.equalsIgnoreCase("")
+                || this.dataInicioRealizacao == null
+                || this.dataFimRealizacao == null
+                || this.dataInicioSubmissao == null
+                || this.dataFimRealizacao == null
+                || this.local.equalsIgnoreCase("")
+                || !listaFAE.valida()
+                || !listaOrganizadores.valida());
     }
 
     @Override
     public String toString() {
-        return "\nExposicao{" + "title=" + title + ", description=" + description + ", local=" + local 
-                + ", dataInicioRealizacao=" + dataInicioRealizacao + ", dataFimRealizacao=" + dataFimRealizacao 
-                + ", dataInicioSubmissao=" + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao 
-                + ", \nlistaOrganizadores=" + listaOrganizadores + ", \nlistaFAE=" + listaFAE + '}';
+        return "\nExposicao{" + "title=" + title + ", description=" + description
+                + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao
+                + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao="
+                + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao + ", \nlistaOrganizadores="
+                + listaOrganizadores + ", \nlistaFAE=" + listaFAE + ", \nlistaDemonstracoes="
+                + listaDemonstracoes + ", \ncandidatura=" + candidatura + '}';
     }
 
 }
