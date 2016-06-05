@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Sara Silva
@@ -24,4 +26,31 @@ public class Produto {
         return descricao;
     }
 
+    
+    public static boolean validaDesignacao(String designacao){
+        return !(designacao == null || designacao.isEmpty());
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.descricao);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Produto other = (Produto) obj;
+        return Objects.equals(this.descricao, other.descricao);
+    }
+
+    @Override
+    public String toString() {
+        return "\nProduto{" + "produto=" + descricao + '}';
+    }
+    
 }

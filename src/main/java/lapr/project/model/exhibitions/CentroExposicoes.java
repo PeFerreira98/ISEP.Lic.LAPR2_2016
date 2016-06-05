@@ -8,6 +8,7 @@ package lapr.project.model.exhibitions;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lapr.project.model.MecanismoAtribuicao;
 import lapr.project.model.MecanismoCargaFAE;
 import lapr.project.model.MecanismoExpProfissional;
@@ -37,7 +38,6 @@ public class CentroExposicoes implements Serializable {
         listaMecanismos.add(new MecanismoExpProfissional());
         listaMecanismos.add(new MecanismoNumeroFAE());
     }
-    
 
     public RegistoUtilizadores getRegistoUt() {
         return registoUt;
@@ -74,5 +74,32 @@ public class CentroExposicoes implements Serializable {
      */
     public ListaExposicoes getRegistoExp() {
         return registoExp;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final CentroExposicoes other = (CentroExposicoes) obj;
+        if (!Objects.equals(this.registoUt, other.registoUt)) {
+            return false;
+        }
+        if (!Objects.equals(this.registoExp, other.registoExp)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CentroExposicoes{" + "\nregistoUtilizadores=" + registoUt + ", \nlistaExposicoes=" + registoExp + '}';
     }
 }

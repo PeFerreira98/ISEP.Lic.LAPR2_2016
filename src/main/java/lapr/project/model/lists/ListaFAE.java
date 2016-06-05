@@ -24,11 +24,8 @@ public class ListaFAE {
     public boolean addFAE(FAE fae) {
 
         //Verificação de ja existe este FAE
-        for (FAE f : listaFAE) {
-            System.out.println(fae + " =?= " + f);
-            if (f.equals(fae)) {
-                return false;
-            }
+        if (!listaFAE.stream().noneMatch((f) -> (f.equals(fae)))) {
+            return false;
         }
 
         return this.listaFAE.add(fae);
@@ -36,6 +33,10 @@ public class ListaFAE {
 
     public List<FAE> getListaFAE() {
         return this.listaFAE;
+    }
+    
+    public boolean valida(){
+        return !(listaFAE.isEmpty() || listaFAE == null);
     }
 
     @Override

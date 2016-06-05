@@ -31,6 +31,16 @@ public class Utilizador {
         this.estado = "PENDING";
         this.tipoUtilizador = tipoUtilizador;
     }
+    
+    public Utilizador(){
+        this.nome = "";
+        this.username = "";
+        this.password = "";
+        this.email = "";
+        
+        this.estado = "PENDING";
+        this.tipoUtilizador = "default";
+    }
 
     public boolean validateUsername(String username) {
         return this.username.equals(username);
@@ -67,13 +77,25 @@ public class Utilizador {
     public String getNome() {
         return nome;
     }
+    
+    public void setNome(String nome){
+        this.nome = nome;
+    }
 
     public String getEmail() {
         return email;
     }
+    
+    public void setEmail(String email){
+        this.email = email;
+    }
 
     public String getPassword() {
         return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public String getEstado() {
@@ -107,26 +129,14 @@ public class Utilizador {
         }
 
         final Utilizador other = (Utilizador) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
+        if (Objects.equals(this.username, other.username)) {
+            return true;
         }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.tipoUtilizador, other.tipoUtilizador)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
+        if (Objects.equals(this.email, other.email)) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override

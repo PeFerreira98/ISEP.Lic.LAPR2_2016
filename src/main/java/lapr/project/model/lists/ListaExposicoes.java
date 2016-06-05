@@ -22,10 +22,8 @@ public class ListaExposicoes {
     }
 
     public boolean addExposicao(Exposicao exposicao) {
-        for (Exposicao e : listaExposicoes) {
-            if (e.equals(exposicao)) {
-                return false;
-            }
+        if (!listaExposicoes.stream().noneMatch((e) -> (e.equals(exposicao)))) {
+            return false;
         }
         return listaExposicoes.add(exposicao);
     }
@@ -56,6 +54,13 @@ public class ListaExposicoes {
             }
         }
         return ex;
+    }
+
+    public boolean registaExposicao(Exposicao exposicao) {
+        if (validaExposicao(exposicao) == true) {
+            return this.listaExposicoes.add(exposicao);
+        }
+        return false;
     }
 
     @Override

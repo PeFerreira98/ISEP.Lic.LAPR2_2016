@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lapr.project.model.Candidatura;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
@@ -36,7 +38,11 @@ class Main {
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
 
         new LoginUI(centroExposicoes);
-
+        //Janelas ainda não conectadas (apenas para testes)
+        
+        //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
+        //new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
+        
         System.out.println(centroExposicoes);
     }
 
@@ -67,10 +73,27 @@ class Main {
 
         final ListaExposicoes listaExposicoes = new ListaExposicoes();
 
-        Exposicao exposicao1 = new Exposicao("exposicao1", "descricao1", new Date(2016, 5, 31), new Date(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House", new ListaOrganizadores(), new ListaFAE(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        Exposicao exposicao2 = new Exposicao("exposicao1", "descricao1", new Date(2016, 5, 31), new Date(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House", new ListaOrganizadores(), new ListaFAE(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        Exposicao exposicao3 = new Exposicao("exposicao1", "descricao1", new Date(2016, 5, 31), new Date(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House", new ListaOrganizadores(), new ListaFAE(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Exposicao exposicao1 = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
+        Exposicao exposicao2 = new Exposicao("exposicao2", "descricao2", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
+        Exposicao exposicao3 = new Exposicao("exposicao3", "descricao3", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
+        Demonstracao demonstracao1 = new Demonstracao("demo1");
+        Demonstracao demonstracao2 = new Demonstracao("demo2");
+        Demonstracao demonstracao3 = new Demonstracao("demo3");
+        
+        exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao1);
+        exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao2);
+        exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao3);
+        
+        exposicao2.getListaDemonstracoes().addDemonstracao(demonstracao1);
+        exposicao2.getListaDemonstracoes().addDemonstracao(demonstracao2);
+        
+        exposicao3.getListaDemonstracoes().addDemonstracao(demonstracao1);
+        
+        Candidatura candidatura1 = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
+        Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20);
+        Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800);
+       
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);

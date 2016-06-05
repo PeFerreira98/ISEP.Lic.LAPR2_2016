@@ -59,7 +59,7 @@ public class DefinirFAEControllerTest {
         registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
         registoUtilizadores.registarUtilizador(utilizador);
 
-        Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Date(2016, 5, 31), new Date(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House", new ListaOrganizadores(), new ListaFAE(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
         DefinirFAEController instance = new DefinirFAEController(registoUtilizadores, exposicao);
         boolean expResult = true;
@@ -82,7 +82,7 @@ public class DefinirFAEControllerTest {
         registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
         registoUtilizadores.registarUtilizador(utilizador);
 
-        Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Date(2016, 5, 31), new Date(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House", new ListaOrganizadores(), new ListaFAE(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
         DefinirFAEController instance = new DefinirFAEController(registoUtilizadores, exposicao);
 
