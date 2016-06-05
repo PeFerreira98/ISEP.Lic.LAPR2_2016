@@ -125,26 +125,14 @@ public class Utilizador {
         }
 
         final Utilizador other = (Utilizador) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
+        if (Objects.equals(this.username, other.username)) {
+            return true;
         }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
-            return false;
-        }
-        if (!Objects.equals(this.tipoUtilizador, other.tipoUtilizador)) {
-            return false;
-        }
-        if (!Objects.equals(this.estado, other.estado)) {
-            return false;
+        if (Objects.equals(this.email, other.email)) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override
