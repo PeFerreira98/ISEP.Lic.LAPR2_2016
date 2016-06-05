@@ -60,7 +60,7 @@ public class Atribuicao {
 
     @Override
     public String toString() {
-        return fae.getUtilizador().getNome() + " - " + avaliacao.getCandidatura().getNomeEmpresa();
+        return fae.getUtilizador().getNome() + " - " + avaliacao.getCandidatura().getNome();
     }
 
 }
