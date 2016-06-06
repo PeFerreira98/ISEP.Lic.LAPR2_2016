@@ -26,7 +26,7 @@ public class XMLParserTest {
         /*
         String expected = "<keyword>\n"
                 + "<value>Doors</value>\n"
-                + "</keyword>\n";
+                + "</keyword> \n";
 
         KeywordExample keyword = new KeywordExample("Doors");
         Node node = keyword.exportContentToXMLNode();
@@ -43,7 +43,7 @@ public class XMLParserTest {
         String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
                 + "<keyword>\n"
                 + "<value>Doors</value>\n"
-                + "</keyword>\n";
+                + "</keyword> \n";
 
         DocumentBuilderFactory factory
                 = DocumentBuilderFactory.newInstance();

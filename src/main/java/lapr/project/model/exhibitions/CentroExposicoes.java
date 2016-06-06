@@ -6,14 +6,24 @@
 package lapr.project.model.exhibitions;
 
 import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author zero_
  */
-public class CentroExposicoes {
+public class CentroExposicoes implements Exportable, Importable<CentroExposicoes> {
+
+    private static final String ROOT_ELEMENT_NAME = "centroExposicoes";
 
     private RegistoUtilizadores registoUtilizadores;
     private ListaExposicoes listaExposicoes;
@@ -31,8 +41,8 @@ public class CentroExposicoes {
         this.registoUtilizadores = registoUtilizadores;
         this.listaExposicoes = listaExposicoes;
     }
-    
-    public CentroExposicoes(){
+
+    public CentroExposicoes() {
         this.registoUtilizadores = new RegistoUtilizadores();
         this.listaExposicoes = new ListaExposicoes();
     }
@@ -71,5 +81,42 @@ public class CentroExposicoes {
     public String toString() {
         return "CentroExposicoes{" + "\nregistoUtilizadores=" + registoUtilizadores + ", \nlistaExposicoes=" + listaExposicoes + '}';
     }
- 
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node rootNode = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementCentroExposicoes = document.createElement(ROOT_ELEMENT_NAME);
+
+            
+            //Create a sub-element
+            Node registoUtilizadoresNode = this.registoUtilizadores.exportContentToXMLNode();
+            elementCentroExposicoes.appendChild(document.importNode(registoUtilizadoresNode, true));
+
+            //Create a sub-element
+//            Node listaExposicoesNode = this.listaExposicoes.exportContentToXMLNode();
+//            elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
+
+            
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementCentroExposicoes);
+            rootNode = elementCentroExposicoes;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return rootNode;
+    }
+
+    @Override
+    public CentroExposicoes importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

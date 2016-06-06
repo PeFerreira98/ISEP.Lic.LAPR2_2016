@@ -14,7 +14,6 @@ import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.FileOp;
-import lapr.project.utils.ReadWriteTxtFile;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -34,14 +33,17 @@ class Main {
     public static void main(String[] args) {
 
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
-        
+
         new LoginUI(centroExposicoes);
+
         //Janelas ainda não conectadas (apenas para testes)
         
         //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
         //new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
-        
+       
         System.out.println(centroExposicoes);
+        
+        new FileOp().writeXMLFile(centroExposicoes);
     }
 
     private CentroExposicoes bootStrap() {
@@ -53,7 +55,7 @@ class Main {
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 //            System.out.println("File userlist not found");
 //        }
-       try {
+        try {
             registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,8 +74,7 @@ class Main {
 //        registoUtilizadores.registarUtilizador(utilizador2);
 //        registoUtilizadores.registarUtilizador(utilizador3);
 //        registoUtilizadores.registarUtilizador(utilizador4);
-        
-        
+
         final ListaExposicoes listaExposicoes = new ListaExposicoes();
 
         Exposicao exposicao1 = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
@@ -83,26 +84,26 @@ class Main {
         Demonstracao demonstracao1 = new Demonstracao("demo1");
         Demonstracao demonstracao2 = new Demonstracao("demo2");
         Demonstracao demonstracao3 = new Demonstracao("demo3");
-        
+
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao1);
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao2);
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao3);
-        
+
         exposicao2.getListaDemonstracoes().addDemonstracao(demonstracao1);
         exposicao2.getListaDemonstracoes().addDemonstracao(demonstracao2);
-        
+
         exposicao3.getListaDemonstracoes().addDemonstracao(demonstracao1);
-        
+
         Candidatura candidatura1 = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20);
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800);
-       
+
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);
 
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
-        
+
         return centroExposicoes;
     }
 

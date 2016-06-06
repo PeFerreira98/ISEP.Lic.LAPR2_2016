@@ -8,12 +8,15 @@ package lapr.project.model.lists;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Marcos
  */
-public class ListaExposicoes {
+public class ListaExposicoes implements Exportable, Importable<ListaExposicoes>{
 
     private List<Exposicao> listaExposicoes;
 
@@ -50,5 +53,15 @@ public class ListaExposicoes {
     @Override
     public String toString() {
         return "\nListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ListaExposicoes importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

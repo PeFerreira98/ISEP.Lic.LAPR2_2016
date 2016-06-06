@@ -6,12 +6,28 @@
 package lapr.project.model.users;
 
 import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Sara Silva
  */
-public class Utilizador {
+public class Utilizador implements Exportable, Importable<Utilizador> {
+
+    private static final String ROOT_ELEMENT_NAME = "utilizador";
+    private static final String NAME_ELEMENT_NAME = "nome";
+    private static final String USERNAME_ELEMENT_NAME = "username";
+    private static final String PASSWORD_ELEMENT_NAME = "password";
+    private static final String EMAIL_ELEMENT_NAME = "email";
+    private static final String USERTYPE_ELEMENT_NAME = "usertype";
+    private static final String STATE_ELEMENT_NAME = "estado";
 
     private String nome;
     private String username;
@@ -31,13 +47,13 @@ public class Utilizador {
         this.estado = "PENDING";
         this.tipoUtilizador = tipoUtilizador;
     }
-    
-    public Utilizador(){
+
+    public Utilizador() {
         this.nome = "";
         this.username = "";
         this.password = "";
         this.email = "";
-        
+
         this.estado = "PENDING";
         this.tipoUtilizador = "default";
     }
@@ -77,24 +93,24 @@ public class Utilizador {
     public String getNome() {
         return nome;
     }
-    
-    public void setNome(String nome){
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
     public String getEmail() {
         return email;
     }
-    
-    public void setEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
-    
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -138,6 +154,65 @@ public class Utilizador {
     @Override
     public String toString() {
         return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", tipoUtilizador=" + tipoUtilizador + ", estado=" + estado + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementUtilizador = document.createElement(ROOT_ELEMENT_NAME);
+
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementName = document.createElement(NAME_ELEMENT_NAME);
+            elementName.setTextContent(getNome());
+            elementUtilizador.appendChild(elementName);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementUserName = document.createElement(USERNAME_ELEMENT_NAME);
+            elementUserName.setTextContent(getUsername());
+            elementUtilizador.appendChild(elementUserName);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementPassword = document.createElement(PASSWORD_ELEMENT_NAME);
+            elementPassword.setTextContent(getPassword());
+            elementUtilizador.appendChild(elementPassword);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementEmail = document.createElement(EMAIL_ELEMENT_NAME);
+            elementEmail.setTextContent(getEmail());
+            elementUtilizador.appendChild(elementEmail);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementUserType = document.createElement(USERTYPE_ELEMENT_NAME);
+            elementUserType.setTextContent(getTipoUtilizador());
+            elementUtilizador.appendChild(elementUserType);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementState = document.createElement(STATE_ELEMENT_NAME);
+            elementState.setTextContent(getEstado());
+            elementUtilizador.appendChild(elementState);
+
+            
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementUtilizador);
+            node = elementUtilizador;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
+    }
+
+    @Override
+    public Utilizador importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

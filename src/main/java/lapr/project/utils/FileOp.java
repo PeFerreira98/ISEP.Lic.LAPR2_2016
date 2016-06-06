@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 
@@ -43,7 +44,7 @@ public class FileOp {
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            bw.write(estado+","+nome+","+email+","+username+","+password+","+tipoUtilizador);
+            bw.write(estado + "," + nome + "," + email + "," + username + "," + password + "," + tipoUtilizador);
             bw.newLine();
             bw.close();
 
@@ -65,20 +66,36 @@ public class FileOp {
         while (brE.ready()) {
 
             String linha = brE.readLine();
-            if(!linha.equals("")){
-            String[] aux = linha.split(",");
-            
-            Utilizador user = new Utilizador(aux[1], aux[3], aux[4], aux[2], aux[5]);
-            if (registoUtilizadores.checkUtilizadorByUsername(aux[3]) == null) {
-                if (aux[0].equalsIgnoreCase("PENDING")) {
-                    registoUtilizadores.addUtilizadorNaoRegistadoByFicheiro(user);
-                } else {
-                    registoUtilizadores.addUtilizadorNaoRegistadoByFicheiro(user);
-                    registoUtilizadores.registarUtilizador(user);
+            if (!linha.equals("")) {
+                String[] aux = linha.split(",");
+
+                Utilizador user = new Utilizador(aux[1], aux[3], aux[4], aux[2], aux[5]);
+                if (registoUtilizadores.checkUtilizadorByUsername(aux[3]) == null) {
+                    if (aux[0].equalsIgnoreCase("PENDING")) {
+                        registoUtilizadores.addUtilizadorNaoRegistadoByFicheiro(user);
+                    } else {
+                        registoUtilizadores.addUtilizadorNaoRegistadoByFicheiro(user);
+                        registoUtilizadores.registarUtilizador(user);
+                    }
                 }
-            }
             }
         }
         return registoUtilizadores;
+    }
+
+    public void writeXMLFile(CentroExposicoes centroExposicoes) {
+        final String centroExposicoesString = centroExposicoes.exportContentToString();
+
+        try {
+            File file = new File("CentroExposicoesXML.xml");
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            bw.write(centroExposicoesString);
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("IOException >> No file found/created");
+        }
     }
 }
