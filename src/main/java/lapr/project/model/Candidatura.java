@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import lapr.project.model.states.CandidaturaState;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
