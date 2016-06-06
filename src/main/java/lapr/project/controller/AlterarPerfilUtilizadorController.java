@@ -24,7 +24,7 @@ public class AlterarPerfilUtilizadorController {
     }
     
     public void setName(String name){
-        this.user.setNome(name);
+        registoUtilizadores.checkUtilizadorByUsername(this.user.getUsername()).setNome(name);
     }
     
     public boolean confirmPassword(String pw){

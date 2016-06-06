@@ -8,6 +8,7 @@ package lapr.project.model.lists;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.users.Utilizador;
+import lapr.project.utils.FileOp;
 import lapr.project.utils.ReadWriteTxtFile;
 
 /**
@@ -63,8 +64,22 @@ public class RegistoUtilizadores {
                 return false;
             }
         }
-        System.out.println(utilizador);
-        new ReadWriteTxtFile().writeFile(utilizador);
+//        System.out.println(utilizador);
+        new FileOp().writeFile(utilizador);
+        return listaUtilizadoresNaoRegistados.add(utilizador);
+    }
+    
+    public boolean addUtilizadorNaoRegistadoByFicheiro(Utilizador utilizador) {
+        for (Utilizador u : listaUtilizadoresRegistados) {
+            if (u.equals(utilizador)) {
+                return false;
+            }
+        }
+        for (Utilizador u : listaUtilizadoresNaoRegistados) {
+            if (u.equals(utilizador)) {
+                return false;
+            }
+        }
         return listaUtilizadoresNaoRegistados.add(utilizador);
     }
 

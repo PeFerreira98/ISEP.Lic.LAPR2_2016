@@ -13,6 +13,7 @@ import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
+import lapr.project.utils.FileOp;
 import lapr.project.utils.ReadWriteTxtFile;
 
 /**
@@ -35,7 +36,6 @@ class Main {
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
         
         new LoginUI(centroExposicoes);
-        
         //Janelas ainda não conectadas (apenas para testes)
         
         //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
@@ -47,28 +47,33 @@ class Main {
     private CentroExposicoes bootStrap() {
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
 
-        try {
-            registoUtilizadores = new ReadWriteTxtFile().readFile(new File("userList.txt"));
+//        try {
+//            registoUtilizadores = new ReadWriteTxtFile().readFile(new File("userList.txt"));
+//        } catch (IOException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println("File userlist not found");
+//        }
+       try {
+            registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("File userlist not found");
         }
+//        
+//        Utilizador utilizador1 = new Utilizador("Dummy2", "representante", "representante", "representante@domain.pt", "REPRESENTANTE");
+//        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
+//        Utilizador utilizador3 = new Utilizador("Dummy4", "gestor", "gestor", "gestor@domain.pt", "GESTOR");
+//        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt", "ORGANIZADOR");
+//
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador1);
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador2);
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador3);
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador4);
+//
+//        registoUtilizadores.registarUtilizador(utilizador2);
+//        registoUtilizadores.registarUtilizador(utilizador3);
+//        registoUtilizadores.registarUtilizador(utilizador4);
         
-        Utilizador utilizador1 = new Utilizador("Dummy2", "representante", "representante", "representante@domain.pt", "REPRESENTANTE");
-        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
-        Utilizador utilizador3 = new Utilizador("Dummy4", "gestor", "gestor", "gestor@domain.pt", "GESTOR");
-        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt", "ORGANIZADOR");
-
-        registoUtilizadores.addUtilizadorNaoRegistado(utilizador1);
-        registoUtilizadores.addUtilizadorNaoRegistado(utilizador2);
-        registoUtilizadores.addUtilizadorNaoRegistado(utilizador3);
-        registoUtilizadores.addUtilizadorNaoRegistado(utilizador4);
-
-        registoUtilizadores.registarUtilizador(utilizador1);
-        registoUtilizadores.registarUtilizador(utilizador2);
-        registoUtilizadores.registarUtilizador(utilizador3);
-        registoUtilizadores.registarUtilizador(utilizador4);
-
+        
         final ListaExposicoes listaExposicoes = new ListaExposicoes();
 
         Exposicao exposicao1 = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
@@ -97,7 +102,7 @@ class Main {
         listaExposicoes.addExposicao(exposicao3);
 
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
-
+        
         return centroExposicoes;
     }
 

@@ -22,7 +22,7 @@ import lapr.project.model.users.Utilizador;
 public class ReadWriteTxtFile {
 
     public ReadWriteTxtFile() {
-
+        
     }
 
     public void writeFile(Utilizador utilizador) {
@@ -109,11 +109,12 @@ public class ReadWriteTxtFile {
             }
             if (flag == 0) {
                 Utilizador utilizador = new Utilizador(nome, username, password, email, userType);
-                if (registoUtilizadores.checkUtilizadorByUsername(username) != null) {
+                if (registoUtilizadores.checkUtilizadorByUsername(username) == null) {
+                    System.out.println("status...." + status);
                     if (status.equalsIgnoreCase("PENDING")) {
-                        registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
+                        registoUtilizadores.addUtilizadorNaoRegistadoByFicheiro(utilizador);
                     } else {
-                        registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
+                        registoUtilizadores.addUtilizadorNaoRegistadoByFicheiro(utilizador);
                         registoUtilizadores.registarUtilizador(utilizador);
                     }
                 }

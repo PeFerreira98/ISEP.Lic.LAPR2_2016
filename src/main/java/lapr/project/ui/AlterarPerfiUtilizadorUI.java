@@ -5,10 +5,16 @@
  */
 package lapr.project.ui;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import lapr.project.controller.AlterarPerfilUtilizadorController;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
+import lapr.project.utils.FileOp;
+import lapr.project.utils.ReadWriteTxtFile;
 
 /**
  *
@@ -20,11 +26,13 @@ public class AlterarPerfiUtilizadorUI extends javax.swing.JFrame {
      * Creates new form AlterarPerfiUtilizadorUI
      */
     private AlterarPerfilUtilizadorController controller;
+    private RegistoUtilizadores rUsers;
     private Utilizador user;
 
     public AlterarPerfiUtilizadorUI(Utilizador user, RegistoUtilizadores rUsers) {
         this.user = user;
         this.controller = new AlterarPerfilUtilizadorController(user, rUsers);
+        this.rUsers = rUsers;
 
         super.setTitle("Settings");
         initComponents();
@@ -234,6 +242,23 @@ public class AlterarPerfiUtilizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPasswrodActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter("newList.txt");
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utilizador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for(Utilizador u : rUsers.getListaUtilizadoresNaoRegistados()){
+            System.out.println("SAIR..." + u.getUsername());
+            FileOp f = new FileOp();
+            f.writeFile(u);
+        }
+        for(Utilizador u : rUsers.getListaUtilizadoresRegistados()){
+            System.out.println("SAIR..." + u.getUsername());
+            FileOp f = new FileOp();
+            f.writeFile(u);
+        }
         dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
