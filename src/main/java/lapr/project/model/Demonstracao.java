@@ -5,54 +5,20 @@
  */
 package lapr.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
  *
- * @author Sara Silva
+ * @author zero_
  */
 public class Demonstracao {
 
-    private String codigo;
-    private String descricao;
-    private List<Recurso> recursos;
-
-    public Demonstracao() {
-        recursos = new ArrayList<>();
-    }
-
-    public Demonstracao(String demo) {
-        this.codigo= demo;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public List<Recurso> getRecursos() {
-        return recursos;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setRecursos(List<Recurso> recursos) {
-        this.recursos = recursos;
-    }
-
-    public void addRecursos(Recurso recurso) {
-        this.recursos.add(recurso);
+    //Classe incompleta. Não especificação sobre o que a Demonstracao se trata
+    
+    private String designacao;
+    
+    public Demonstracao(String designacao) {
+        this.designacao = designacao;
     }
     
     public static boolean validateDesignacao(String designacao){
@@ -60,13 +26,13 @@ public class Demonstracao {
     }
 
     public String getDesignacao() {
-        return descricao;
+        return designacao;
     }
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.descricao);
+        hash = 83 * hash + Objects.hashCode(this.designacao);
         return hash;
     }
 
@@ -82,7 +48,7 @@ public class Demonstracao {
             return false;
         }
         final Demonstracao other = (Demonstracao) obj;
-        if (!Objects.equals(this.descricao, other.descricao)) {
+        if (!Objects.equals(this.designacao, other.designacao)) {
             return false;
         }
         return true;
@@ -90,7 +56,7 @@ public class Demonstracao {
 
     @Override
     public String toString() {
-        return "\nDemonstracao{" + "designacao=" + descricao + '}';
+        return "\nDemonstracao{" + "designacao=" + designacao + '}';
     }
     
 }

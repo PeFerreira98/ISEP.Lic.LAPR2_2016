@@ -31,12 +31,11 @@ public class ReadWriteTxtFile {
         final String username = utilizador.getUsername();
         final String password = utilizador.getPassword();
         final String tipoUtilizador = utilizador.getTipoUtilizador();
-        
+
         String estado = "PENDING";
         if (utilizador.isRegistado()) {
             estado = "REGISTERED";
         }
-        
 
         try {
             File file = new File("userList.txt");
@@ -78,7 +77,7 @@ public class ReadWriteTxtFile {
 
     public RegistoUtilizadores readFile(File file) throws FileNotFoundException, IOException {
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
-        
+
         String nome = null, email = null, username = null, password = null, userType = null, status = null;
 
         FileReader frE;
@@ -110,12 +109,13 @@ public class ReadWriteTxtFile {
             }
             if (flag == 0) {
                 Utilizador utilizador = new Utilizador(nome, username, password, email, userType);
-
-                if (status.equalsIgnoreCase("PENDING")) {
-                    registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
-                } else {
-                    registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
-                    registoUtilizadores.registarUtilizador(utilizador);
+                if (registoUtilizadores.checkUtilizadorByUsername(username) != null) {
+                    if (status.equalsIgnoreCase("PENDING")) {
+                        registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
+                    } else {
+                        registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
+                        registoUtilizadores.registarUtilizador(utilizador);
+                    }
                 }
             }
         }

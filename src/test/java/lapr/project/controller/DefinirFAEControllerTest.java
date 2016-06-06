@@ -5,12 +5,8 @@
  */
 package lapr.project.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;

@@ -9,23 +9,17 @@ import java.util.Objects;
 
 /**
  *
- * @author Sara Silva
+ * @author zero_
  */
 public class Produto {
 
-    private String descricao;
-
+    //Classe incompleta. Não especificação sobre o que o produto se trata
+    
+    private String designacao;
+    
     public Produto(String designacao) {
-        this.descricao = designacao;
+        this.designacao = designacao;
     }
-
-    /**
-     * @return the designacao
-     */
-    public String getDescricao() {
-        return descricao;
-    }
-
     
     public static boolean validaDesignacao(String designacao){
         return !(designacao == null || designacao.isEmpty());
@@ -34,7 +28,7 @@ public class Produto {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.descricao);
+        hash = 71 * hash + Objects.hashCode(this.designacao);
         return hash;
     }
 
@@ -45,12 +39,12 @@ public class Produto {
         }
         
         final Produto other = (Produto) obj;
-        return Objects.equals(this.descricao, other.descricao);
+        return Objects.equals(this.designacao, other.designacao);
     }
 
     @Override
     public String toString() {
-        return "\nProduto{" + "produto=" + descricao + '}';
+        return "\nProduto{" + "produto=" + designacao + '}';
     }
     
 }

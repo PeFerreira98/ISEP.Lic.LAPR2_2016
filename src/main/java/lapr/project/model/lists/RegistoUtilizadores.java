@@ -37,7 +37,7 @@ public class RegistoUtilizadores {
         }
         return null;
     }
-    
+
     public Utilizador checkUtilizadorByEmail(String email) {
         for (Utilizador u : listaUtilizadoresNaoRegistados) {
             if (u.validateEmail(email)) {
@@ -63,6 +63,7 @@ public class RegistoUtilizadores {
                 return false;
             }
         }
+        System.out.println(utilizador);
         new ReadWriteTxtFile().writeFile(utilizador);
         return listaUtilizadoresNaoRegistados.add(utilizador);
     }

@@ -19,10 +19,11 @@ public class Candidatura {
 
     private String nomeEmpresa;
     private String moradaEmpresa;
-    private double areaPretendida;
     private int telemovel;
-    private int qtdConvites;
-    private CandidaturaState candidaturaStatus;
+    private double areaPretendida;
+    private int quantidadeConvites;
+    
+    private CandidaturaState candidaturaState;
     private ListaDemonstracoes listaDemonstracoes;
     private List<Produto> listaProdutos;
 
@@ -40,37 +41,32 @@ public class Candidatura {
         this.moradaEmpresa = moradaEmpresa;
         this.telemovel = telemovel;
         this.areaPretendida = areaPretendida;
-        this.qtdConvites = qtdConvites;
-        this.listaDemonstracoes = listaDemonstracoes;
-        this.listaProdutos = listaProdutos;
+        this.quantidadeConvites = quantidadeConvites;
+
+        this.candidaturaState = CandidaturaState.IN_SUBMISSION;
+        this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaProdutos = new ArrayList<>();
     }
 
-    public Candidatura() {
-        listaProdutos = new ArrayList<>();
-        listaDemonstracoes = new ListaDemonstracoes();
-
-        this.candidaturaStatus = CandidaturaState.IN_SUBMISSION;
-    }
-
-    public boolean addDemonstracao(Demonstracao demonstracao) {
+    public boolean addDemonstracao(Demonstracao demonstracao){
         return this.listaDemonstracoes.addDemonstracao(demonstracao);
     }
-
+    
     public boolean addProduto(Produto produto) {
         if (!this.listaProdutos.stream().noneMatch((p) -> (p.equals(produto)))) {
             return false;
         }
         return this.listaProdutos.add(produto);
     }
-
+    
     public static boolean validaNomeEmpresa(String nomeEmpresa) {
         return !(nomeEmpresa == null || nomeEmpresa.trim().isEmpty());
     }
-
+    
     public static boolean validaMoradaEmpresa(String moradaEmpresa) {
         return !(moradaEmpresa == null || moradaEmpresa.trim().isEmpty());
     }
-
+    
     public static boolean validaTelemovel(int telemovel) {
         return (telemovel > 100000000 && telemovel < 999999999);
     }
@@ -85,76 +81,8 @@ public class Candidatura {
 
     public String getNomeEmpresa() {
         return nomeEmpresa;
-    }
-
-    /**
-     * @return the morada
-     */
-    public String getMorada() {
-        return moradaEmpresa;
-    }
-
-    public void setAreaPretendida(double areaPretendida) {
-        this.areaPretendida = areaPretendida;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.listaProdutos = produtos;
-    }
-
-    public void setQtdConvites(int qtdConvites) {
-        this.qtdConvites = qtdConvites;
-    }
-
-    public void setTelemovel(int telemovel) {
-        this.telemovel = telemovel;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nomeEmpresa = nome;
-    }
-
-    /**
-     * @param morada the morada to set
-     */
-    public void setMorada(String morada) {
-        this.moradaEmpresa = morada;
-    }
-
-    public int getTelemovel() {
-        return telemovel;
-    }
-
-    public int getQtdConvites() {
-        return qtdConvites;
-    }
-
-    public List<Produto> getProdutos() {
-        return listaProdutos;
-    }
-
-    public double getAreaPretendida() {
-        return areaPretendida;
-    }
-
-    public boolean valida() {
-        if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome inválido!");
-        } else if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Morada inválida!");
-        } else if (qtdConvites < 0) {
-            throw new IllegalArgumentException("Convites inválidos!");
-        } else if (telemovel < 100000000 || telemovel > 999999999) {
-            throw new IllegalArgumentException("Número de telemóvel inválido!");
-        } else if (areaPretendida <= 0) {
-            throw new IllegalArgumentException("Área expositor inválids!");
-        }
-        return true;
-    }
-
+    } 
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -186,21 +114,18 @@ public class Candidatura {
         if (Double.doubleToLongBits(this.areaPretendida) != Double.doubleToLongBits(other.areaPretendida)) {
             return false;
         }
-        if (this.qtdConvites != other.qtdConvites) {
+        if (this.quantidadeConvites != other.quantidadeConvites) {
             return false;
         }
 
         return true;
     }
 
-    public void addProduto(String produto) {
-        listaProdutos.add(new Produto(produto));
-    }
-
     @Override
     public String toString() {
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
-                + qtdConvites + ", candidaturaState=" + candidaturaStatus + ",\n listaDemonstracoes=" + listaDemonstracoes + ",\n listaProdutos=" + listaProdutos + '}';
+                + quantidadeConvites + ", candidaturaState=" + candidaturaState + ",\n listaDemonstracoes=" + listaDemonstracoes + ",\n listaProdutos=" + listaProdutos + '}';
     }
 
+    
 }

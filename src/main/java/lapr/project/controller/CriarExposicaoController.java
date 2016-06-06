@@ -41,11 +41,6 @@ public class CriarExposicaoController {
         return listaExposicoes.addExposicao(exposicao);
     }
 
-    public String getUtilizador() {
-        centroExposicoes.getRegistoUt();
-        return utilizador.getUsername();
-    }
-
     public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
         exposicao.setTitle(nomeExposicao);
         exposicao.setDescription(descricaoExposicao);

@@ -36,24 +36,8 @@ public class ListaExposicoes {
         return this.listaExposicoes;
     }
 
-    public List<Exposicao> getListaExpOrg(String id) {
-        List<Exposicao> ex = new ArrayList<>();
-        for (Exposicao e : listaExposicoes) {
-            if (e.hasOrg(id)) {
-                ex.add(e);
-            }
-        }
-        return ex;
-    }
-
-    public List<Exposicao> getListaExpFAE(String id) {
-        List<Exposicao> ex = new ArrayList<>();
-        for (Exposicao e : listaExposicoes) {
-            if (e.hasFAE(id)) {
-                ex.add(e);
-            }
-        }
-        return ex;
+    public boolean validaExposicao(Exposicao exposicao) {
+        return exposicao.valida();
     }
 
     public boolean registaExposicao(Exposicao exposicao) {
@@ -66,9 +50,5 @@ public class ListaExposicoes {
     @Override
     public String toString() {
         return "\nListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
-    }
-
-    public boolean validaExposicao(Exposicao exposicao) {
-        return !listaExposicoes.isEmpty();
     }
 }

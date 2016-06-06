@@ -44,6 +44,7 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         jOk = new javax.swing.JButton();
         jCancel = new javax.swing.JButton();
@@ -54,7 +55,6 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jcmbType = new javax.swing.JComboBox<>();
-        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -141,12 +141,13 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))))
                 .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(txtEmail)
-                    .addComponent(txtUsername)
-                    .addComponent(jcmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                        .addComponent(txtEmail)
+                        .addComponent(txtUsername)
+                        .addComponent(txtPassword))
+                    .addComponent(jcmbType, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -170,8 +171,8 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
@@ -195,8 +196,8 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
         nome = txtName.getText();
         email = txtEmail.getText();
         username = txtUsername.getText();
-        password = new String(jPasswordField1.getPassword());
-        tipoUtilizador = jcmbType.getName();
+        password = txtPassword.getText();
+        tipoUtilizador = (String) jcmbType.getSelectedItem();
 
         if (!nome.isEmpty() && !email.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
             if (controller.validaEmailPattern(email)) {
@@ -205,14 +206,14 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
                 if (!controller.checkUtilizadorByUsername(username)) {
                     if (!controller.checkUtilizadorByEmail(email)) {
                         if (controller.addUtilizadorNaoRegistado(utilizador)) {
-
+                            
                             JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
                                     "Registo Efetuado com Sucesso!", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
                             dispose();
-
+                            
                         } else {
                             JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
-                                    "Erro na Criação de Utilizador!", "Sign Up", JOptionPane.ERROR_MESSAGE);
+                                "Erro na Criação de Utilizador!", "Sign Up", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(CriacaoUtilizadorUI.this,
@@ -254,10 +255,10 @@ public class CriacaoUtilizadorUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jOk;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JComboBox<String> jcmbType;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

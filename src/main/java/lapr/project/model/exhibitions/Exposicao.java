@@ -5,19 +5,10 @@
  */
 package lapr.project.model.exhibitions;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Demonstracao;
-import lapr.project.model.Local;
 import lapr.project.model.Candidatura;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
-import lapr.project.model.users.FAE;
-import lapr.project.model.users.Organizador;
-import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
 
 /**
@@ -26,25 +17,17 @@ import lapr.project.utils.Data;
  */
 public class Exposicao {
 
-    private String titulo;
-    private String descricao;
-    private Data dataInicio;
-    private Data dataFim;
-    private Local local;
+    private String title;
+    private String description;
+    private String local;
+    private Data dataInicioRealizacao;
+    private Data dataFimRealizacao;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
-    private List<Atribuicao> listaAtribuicoes;
-    private List<Candidatura> listaCandidaturas;
     private ListaDemonstracoes listaDemonstracoes;
-
-    public Exposicao(String titulo, String descricao, Data converterParaData, Data converterParaData0, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.dataInicio = converterParaData;
-        this.dataFim = converterParaData0;
-    }
+    private Candidatura candidatura;
 
     /**
      * Construtor de Exposicao
@@ -63,12 +46,12 @@ public class Exposicao {
             Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local,
             ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
 
-        this.titulo = nomeExposicao;
-        this.descricao = descricaoExposicao;
-        this.local = new Local(local);
+        this.title = nomeExposicao;
+        this.description = descricaoExposicao;
+        this.local = local;
 
-        this.dataInicio = dataInicioRealizacao;
-        this.dataFim = dataFimRealizacao;
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
 
@@ -77,19 +60,44 @@ public class Exposicao {
         this.listaDemonstracoes = new ListaDemonstracoes();
     }
 
-    public Exposicao() {
-        this.titulo = "";
-        this.descricao = "";
-        this.local = new Local();
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
 
-        this.dataInicio = new Data();
-        this.dataFim = new Data();
+        this.title = nomeExposicao;
+        this.description = descricaoExposicao;
+        this.local = local;
+
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
+        this.dataInicioSubmissao = dataInicioSubmissao;
+        this.dataFimSubmissao = dataFimSubmissao;
+
+        this.listaOrganizadores = new ListaOrganizadores();
+        this.listaFAE = new ListaFAE();
+        this.listaDemonstracoes = new ListaDemonstracoes();
+    }
+
+    public Exposicao() {
+        this.title = "";
+        this.description = "";
+        this.local = "";
+
+        this.dataInicioRealizacao = new Data();
+        this.dataFimRealizacao = new Data();
         this.dataInicioSubmissao = new Data();
         this.dataFimSubmissao = new Data();
 
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
         this.listaDemonstracoes = new ListaDemonstracoes();
+    }
+
+    public boolean addCandidatura(Candidatura candidatura) {
+        if (this.candidatura == null) {
+            this.candidatura = candidatura;
+            return true;
+        }
+        return false;
     }
 
     public Data getDataInicioSubmissao() {
@@ -101,18 +109,35 @@ public class Exposicao {
     }
 
     /**
-     * @return the titulo
+     * @return the title
      */
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
-    public Local getLocal() {
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @return the dataInicioRealizacao
+     */
+    public Data getDataInicioRealizacao() {
+        return dataInicioRealizacao;
+    }
+
+    /**
+     * @return the dataFimRealizacao
+     */
+    public Data getDataFimRealizacao() {
+        return dataFimRealizacao;
+    }
+
+    public String getLocal() {
         return local;
-    }
-
-    public Data getDataInicio() {
-        return dataInicio;
     }
 
     public ListaOrganizadores getListaOrganizadores() {
@@ -123,158 +148,28 @@ public class Exposicao {
         return this.listaFAE;
     }
 
-    public Data getDataFim() {
-        return dataFim;
-    }
-
     public ListaDemonstracoes getListaDemonstracoes() {
-        return listaDemonstracoes;
-    }
-
-    /**
-     * @return the descricao
-     */
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public FAE getFAE(String id) {
-        for (FAE fae : listaFAE.getListaFAE()) {
-            if (fae.getUtilizador().hasID(id)) {
-                return fae;
-            }
-        }
-        return new FAE();
-    }
-
-    /**
-     * @param titulo the titulo to set
-     */
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    /**
-     * @param descricao the descricao to set
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    /**
-     * @param dataInicio the dataInicio to set
-     */
-    public void setDataInicio(Data dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    /**
-     * @param dataFim the dataFim to set
-     */
-    public void setDataFim(Data dataFim) {
-        this.dataFim = dataFim;
-    }
-
-    public boolean addCandidatura(Candidatura c) {
-        return listaCandidaturas.add(c);
-    }
-
-    public void addAtribuicao(Atribuicao a) {
-        listaAtribuicoes.add(a);
-    }
-
-    public void addFAE(FAE fae) {
-        listaFAE.getListaFAE().add(fae);
-    }
-
-    public Candidatura novaCandidatura() {
-        return new Candidatura();
-    }
-
-    public List<Candidatura> getListaCandidaturas() {
-        return listaCandidaturas;
-    }
-
-    public FAE novoFAE(Utilizador ut) {
-        FAE fae = new FAE();
-        fae.setUtilizador(ut);
-        return fae;
-    }
-
-    public void registaListaFAE(List<FAE> listaFAE) {
-        listaFAE.addAll(listaFAE);
-    }
-
-    public boolean registaCandidatura(Candidatura candidatura) {
-        if (validaCandidatura(candidatura)) {
-            return addCandidatura(candidatura);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean validaCandidatura(Candidatura candidatura) {
-        return candidatura.valida() && !listaCandidaturas.contains(candidatura);
-    }
-
-    public List<Atribuicao> getAtribuicoes(String id) {
-        List<Atribuicao> atr = new ArrayList<>();
-        for (Atribuicao at : listaAtribuicoes) {
-            if (at.getFae().getUtilizador().getUsername().equals(id)) {
-                atr.add(at);
-            }
-        }
-        return atr;
-    }
-
-    public List<Atribuicao> getListaAtribuicoes() {
-        return listaAtribuicoes;
-    }
-
-    public Atribuicao novaAtribuicao() {
-        return new Atribuicao();
-    }
-
-    public boolean hasFAE(String id) {
-        for (FAE fae : listaFAE.getListaFAE()) {
-            if (fae.getUtilizador().hasID(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean hasOrg(String id) {
-        for (Organizador org : listaOrganizadores.getLstOrganizadores()) {
-            if (org.getUtilizador().hasID(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void addAtribuicoes(List<Atribuicao> atrs) {
-        listaAtribuicoes.addAll(atrs);
+        return this.listaDemonstracoes;
     }
 
     public void setTitle(String title) {
-        this.titulo = title;
+        this.title = title;
     }
 
     public void setDescription(String description) {
-        this.descricao = description;
+        this.description = description;
     }
 
     public void setLocal(String local) {
-        this.local = new Local(local);
+        this.local = local;
     }
 
     public void setDataInicioRealizacao(Data dataInicioRealizacao) {
-        this.dataInicio = dataInicioRealizacao;
+        this.dataInicioRealizacao = dataInicioRealizacao;
     }
 
     public void setDataFimRealizacao(Data dataFimRealizacao) {
-        this.dataFim = dataFimRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
     }
 
     public void setDataInicioSubmissao(Data dataInicioSubmissao) {
@@ -294,25 +189,25 @@ public class Exposicao {
     }
 
     public boolean valida() {
-        return !(this.titulo.equalsIgnoreCase("")
-                || this.descricao.equalsIgnoreCase("")
-                || this.dataInicio == null
-                || this.dataFim == null
+        return !(this.title.equalsIgnoreCase("")
+                || this.description.equalsIgnoreCase("")
+                || this.dataInicioRealizacao == null
+                || this.dataFimRealizacao == null
                 || this.dataInicioSubmissao == null
-                || this.dataFimSubmissao == null
-                || this.local.valida()
+                || this.dataFimRealizacao == null
+                || this.local.equalsIgnoreCase("")
                 || !listaFAE.valida()
                 || !listaOrganizadores.valida());
     }
 
     @Override
     public String toString() {
-        return "\nExposicao{" + "title=" + titulo + ", description=" + descricao
-                + ", local=" + local + ", dataInicioRealizacao=" + dataInicio
-                + ", dataFimRealizacao=" + dataFim + ", dataInicioSubmissao="
+        return "\nExposicao{" + "title=" + title + ", description=" + description
+                + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao
+                + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao="
                 + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao + ", \nlistaOrganizadores="
                 + listaOrganizadores + ", \nlistaFAE=" + listaFAE + ", \nlistaDemonstracoes="
-                + listaDemonstracoes + '}';
+                + listaDemonstracoes + ", \ncandidatura=" + candidatura + '}';
     }
 
 }

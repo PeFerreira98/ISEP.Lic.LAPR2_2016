@@ -106,10 +106,6 @@ public class Utilizador {
         return this.tipoUtilizador;
     }
 
-    public boolean hasID(String strUserName) {
-        return username.equalsIgnoreCase(strUserName);
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;

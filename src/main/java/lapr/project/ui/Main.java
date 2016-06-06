@@ -2,8 +2,6 @@ package lapr.project.ui;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lapr.project.model.Candidatura;
@@ -12,7 +10,6 @@ import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaFAE;
-import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
@@ -36,8 +33,9 @@ class Main {
     public static void main(String[] args) {
 
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
-
+        
         new LoginUI(centroExposicoes);
+        
         //Janelas ainda não conectadas (apenas para testes)
         
         //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
@@ -55,7 +53,7 @@ class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("File userlist not found");
         }
-
+        
         Utilizador utilizador1 = new Utilizador("Dummy2", "representante", "representante", "representante@domain.pt", "REPRESENTANTE");
         Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
         Utilizador utilizador3 = new Utilizador("Dummy4", "gestor", "gestor", "gestor@domain.pt", "GESTOR");
@@ -98,7 +96,7 @@ class Main {
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);
 
-        CentroExposicoes centroExposicoes = new CentroExposicoes();
+        CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
 
         return centroExposicoes;
     }
