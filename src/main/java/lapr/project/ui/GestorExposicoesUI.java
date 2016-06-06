@@ -5,6 +5,7 @@
  */
 package lapr.project.ui;
 
+import javax.swing.JOptionPane;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.Utilizador;
@@ -16,13 +17,14 @@ import lapr.project.model.users.Utilizador;
 public class GestorExposicoesUI extends javax.swing.JFrame {
 
     private CentroExposicoes centroExposicoes;
+    private Utilizador user;
 
     /**
      * Creates new form GestorExpoUI
      */
-    public GestorExposicoesUI(CentroExposicoes centroExposicoes) {
+    public GestorExposicoesUI(Utilizador user, CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
-
+        this.user = user;
         super.setTitle("Gestor Exposicoes Menu Window");
         initComponents();
         setLocationRelativeTo(null);
@@ -48,6 +50,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         choice1 = new java.awt.Choice();
+        jMenu3 = new javax.swing.JMenu();
         btnExpoCreate = new javax.swing.JButton();
         btnAcceptUser = new javax.swing.JButton();
         jlstExpo = new java.awt.List();
@@ -56,6 +59,12 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         btnViewUser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuAccount = new javax.swing.JMenu();
+        jMenuItemSettings = new javax.swing.JMenuItem();
+        jMenuItemLogout = new javax.swing.JMenuItem();
+
+        jMenu3.setText("jMenu3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,58 +107,92 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
 
         jLabel2.setText("Pending users");
 
+        jMenuAccount.setText("My account");
+
+        jMenuItemSettings.setText("Settings");
+        jMenuItemSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSettingsActionPerformed(evt);
+            }
+        });
+        jMenuAccount.add(jMenuItemSettings);
+
+        jMenuItemLogout.setText("Logout");
+        jMenuItemLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLogoutActionPerformed(evt);
+            }
+        });
+        jMenuAccount.add(jMenuItemLogout);
+
+        jMenuBar1.add(jMenuAccount);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jlstExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlstUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(115, 115, 115))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(btnExpoCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnViewExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(btnAcceptUser, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnViewUser)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jlstExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlstUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(75, 75, 75))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExpoCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnViewExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(btnAcceptUser, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnViewUser)))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jlstExpo, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(jlstUsers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jlstExpo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlstUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnViewUser)
                     .addComponent(btnAcceptUser)
                     .addComponent(btnViewExpo)
                     .addComponent(btnExpoCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcceptUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptUserActionPerformed
-        // TODO add your handling code here:
+       Utilizador u = centroExposicoes.getRegistoUtilizadores().checkUtilizadorByUsername(jlstUsers.getSelectedItem());
+       if(u != null){
+           this.centroExposicoes.getRegistoUtilizadores().registarUtilizador(u);
+           this.jlstUsers.remove(u.getUsername());
+           
+       JOptionPane.showMessageDialog(GestorExposicoesUI.this,
+                                    u.getUsername() + " foi aceite!", "Pending users", JOptionPane.INFORMATION_MESSAGE);
+       }else{
+        JOptionPane.showMessageDialog(GestorExposicoesUI.this,
+                                    "Select a pending user", "Pending users", JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_btnAcceptUserActionPerformed
 
     private void jlstExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlstExpoActionPerformed
@@ -161,12 +204,22 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jlstUsersActionPerformed
 
     private void btnViewUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUserActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnExpoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpoCreateActionPerformed
         new CriarExposicaoUI(centroExposicoes.getListaExposicoes());
     }//GEN-LAST:event_btnExpoCreateActionPerformed
+
+    private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
+       new AlterarPerfiUtilizadorUI(user, centroExposicoes.getRegistoUtilizadores());
+    }//GEN-LAST:event_jMenuItemSettingsActionPerformed
+
+    private void jMenuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoutActionPerformed
+        dispose();
+        new LoginUI(centroExposicoes);
+    }//GEN-LAST:event_jMenuItemLogoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptUser;
@@ -176,6 +229,11 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     private java.awt.Choice choice1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenuAccount;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemLogout;
+    private javax.swing.JMenuItem jMenuItemSettings;
     private javax.swing.JScrollBar jScrollBar1;
     private java.awt.List jlstExpo;
     private java.awt.List jlstUsers;

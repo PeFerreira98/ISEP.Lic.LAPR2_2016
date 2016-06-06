@@ -157,7 +157,7 @@ public class LoginUI extends javax.swing.JFrame {
                 if (utilizador.isRegistado()) {
 
                     if (utilizador.isGestor()) {
-                        new GestorExposicoesUI(centroExposicoes);
+                        new GestorExposicoesUI(utilizador, centroExposicoes);
                         dispose();
                     } else {
                         JOptionPane.showMessageDialog(LoginUI.this,

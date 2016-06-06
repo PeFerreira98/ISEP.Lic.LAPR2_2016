@@ -1,4 +1,4 @@
 PENDING,Dummy2,representante@domain.pt,representante,representante,REPRESENTANTE
-RESGISTRED,Dummy3,fae@domain.pt,FAE,FAE,FAE
-RESGISTRED,Dummy4,gestor@domain.pt,gestor,gestor,GESTOR
-RESGISTRED,Dummy5,organizador@domain.pt,organizador,organizador,ORGANIZADOR
+REGISTERED,Dummy3,fae@domain.pt,FAE,FAE,FAE
+REGISTERED,Dummy4 alterado,gestor@domain.pt,gestor,gestor,GESTOR
+REGISTERED,Dummy5,organizador@domain.pt,organizador,organizador,ORGANIZADOR
