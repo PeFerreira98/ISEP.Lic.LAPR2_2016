@@ -23,22 +23,18 @@ public class CriarExposicaoController {
 
     private ListaExposicoes listaExposicoes;
     private CentroExposicoes centroExposicoes;
-    private RegistoUtilizadores registoUtilizadores;
-    private Utilizador utilizador;
     private Exposicao exposicao;
     private ListaOrganizadores listaOrganizadores;
 
     public CriarExposicaoController() {
         this.listaExposicoes = new ListaExposicoes();
         this.centroExposicoes = new CentroExposicoes();
-        this.registoUtilizadores = new RegistoUtilizadores();
-        this.utilizador = new Utilizador();
         this.exposicao = new Exposicao();
         this.listaOrganizadores = new ListaOrganizadores();
     }
 
-    public boolean novaExposicao(Exposicao exposicao) {
-        return listaExposicoes.addExposicao(exposicao);
+    public boolean novaExposicao() {
+        return this.listaExposicoes.addExposicao(exposicao);
     }
 
     public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
@@ -48,26 +44,28 @@ public class CriarExposicaoController {
         exposicao.setDataFimRealizacao(dataFimRealizacao);
         exposicao.setDataInicioSubmissao(dataInicioSubmissao);
         exposicao.setDataFimSubmissao(dataFimSubmissao);
+        exposicao.setLocal(local);
         exposicao.setListaOrganizadores(listaOrganizadores);
         exposicao.setListaFAE(listaFAE);
     }
 
     public Utilizador getUtilizador(String username) {
-        return registoUtilizadores.checkUtilizadorByUsername(username);
+        return this.getRegistoUtilizadores().checkUtilizadorByUsername(username);
+    }
+    
+    public RegistoUtilizadores getRegistoUtilizadores(){
+        return this.centroExposicoes.getRegistoUtilizadores();
     }
 
     public void addOrganizador(Utilizador utilizador) {
-        listaOrganizadores.addOrganizador(utilizador);
+        this.listaOrganizadores.addOrganizador(utilizador);
     }
 
     public boolean validaExposicao() {
-        if (listaExposicoes.validaExposicao(exposicao) == true) {
-            return true;
-        }
-        return false;
+        return this.exposicao.valida();
     }
 
     public boolean registaExposicao() {
-        return listaExposicoes.registaExposicao(exposicao);
+        return this.listaExposicoes.registaExposicao(exposicao);
     }
 }
