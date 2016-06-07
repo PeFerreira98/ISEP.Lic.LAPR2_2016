@@ -7,15 +7,26 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.users.Organizador;
 import lapr.project.model.users.Utilizador;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author TiagoSilvestre
  */
-public class ListaOrganizadores {
+public class ListaOrganizadores implements Exportable, Importable<ListaOrganizadores>{
 
+    private static final String ROOT_ELEMENT_NAME = "listaOrganizadores";
+    private static final String ORG_LST_ELEMENT_NAME = "organizadores";
+    
     private List<Organizador> listaOrganizador;
 
     public ListaOrganizadores() {
@@ -52,6 +63,43 @@ public class ListaOrganizadores {
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementListaOrganizadores = document.createElement(ROOT_ELEMENT_NAME);
+
+            
+            //Create a sub-element //iterate over keywords
+            Element elementOrganizadores = document.createElement(ORG_LST_ELEMENT_NAME);
+            elementListaOrganizadores.appendChild(elementOrganizadores);
+            for (Organizador organizador : getLstOrganizadores()) {
+                Node organizadorNode = organizador.exportContentToXMLNode();
+                elementOrganizadores.appendChild(document.importNode(organizadorNode, true));
+            }
+
+            
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementListaOrganizadores);
+            node = elementListaOrganizadores;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
+    }
+
+    @Override
+    public ListaOrganizadores importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

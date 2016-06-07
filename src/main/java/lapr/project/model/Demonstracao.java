@@ -6,29 +6,39 @@
 package lapr.project.model;
 
 import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author zero_
  */
-public class Demonstracao {
+public class Demonstracao implements Exportable, Importable<Demonstracao> {
 
     //Classe incompleta. Não especificação sobre o que a Demonstracao se trata
+    private static final String ROOT_ELEMENT_NAME = "demonstracao";
+    private static final String DES_ELEMENT_NAME = "designacao";
     
     private String designacao;
-    
+
     public Demonstracao(String designacao) {
         this.designacao = designacao;
     }
-    
-    public static boolean validateDesignacao(String designacao){
+
+    public static boolean validateDesignacao(String designacao) {
         return !(designacao == null || designacao.isEmpty());
     }
 
     public String getDesignacao() {
         return designacao;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -58,5 +68,39 @@ public class Demonstracao {
     public String toString() {
         return "\nDemonstracao{" + "designacao=" + designacao + '}';
     }
-    
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node rootNode = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementDemo = document.createElement(ROOT_ELEMENT_NAME);
+
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementDescricao = document.createElement(DES_ELEMENT_NAME);
+            elementDescricao.setTextContent(getDesignacao());
+            elementDemo.appendChild(elementDescricao);
+
+            
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementDemo);
+            rootNode = elementDemo;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return rootNode;
+    }
+
+    @Override
+    public Demonstracao importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

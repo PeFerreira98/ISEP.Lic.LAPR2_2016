@@ -27,22 +27,10 @@ import org.w3c.dom.Node;
 public class Exposicao implements Exportable, Importable<Exposicao> {
 
     private static final String ROOT_ELEMENT_NAME = "exposicao";
-    
     private static final String TITLE_ELEMENT_NAME = "titulo";
     private static final String DESC_ELEMENT_NAME = "descricao";
     private static final String LOCAL_ELEMENT_NAME = "local";
-    
-    private static final String DATA_INI_REA_ELEMENT_NAME = "dataInicioRealizacao";
-    private static final String DATA_FIM_REA_ELEMENT_NAME = "dataFimRealizacao";
-    private static final String DATA_INI_SUB_ELEMENT_NAME = "dataInicioSubmicao";
-    private static final String DATA_FIM_SUB_ELEMENT_NAME = "dataFimSubmissao";
-    
-    private static final String ORG_LST_ELEMENT_NAME = "listaOrganizadores";
-    private static final String FAE_LST_ELEMENT_NAME = "listaFAE";
-    private static final String DEMO_LST_ELEMENT_NAME = "listaDemonstracoes";
-    private static final String CANDID_ELEMENT_NAME = "candidatura";
-    
-    
+        
     private String title;
     private String description;
     private String local;
@@ -287,15 +275,15 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
             Node dataFimSubNode = this.dataFimSubmissao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataFimSubNode, true));
             
-//            //Create a sub-element
-//            Node listaOrgNode = this.listaOrganizadores.exportContentToXMLNode();
-//            elementExposicao.appendChild(document.importNode(listaOrgNode, true));
-//            
-//            //Create a sub-element
-//            Node listaFaeNode = this.listaFAE.exportContentToXMLNode();
-//            elementExposicao.appendChild(document.importNode(listaFaeNode, true));
-//            
-//            //Create a sub-element
+            //Create a sub-element
+            Node listaOrgNode = this.listaOrganizadores.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(listaOrgNode, true));
+            
+            //Create a sub-element
+            Node listaFaeNode = this.listaFAE.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(listaFaeNode, true));
+            
+            //Create a sub-element
 //            Node candidaturaNode = this.candidatura.exportContentToXMLNode();
 //            elementExposicao.appendChild(document.importNode(candidaturaNode, true));
 
