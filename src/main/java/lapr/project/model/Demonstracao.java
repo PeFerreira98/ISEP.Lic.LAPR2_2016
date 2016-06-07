@@ -37,6 +37,10 @@ public class Demonstracao implements Exportable, Importable<Demonstracao> {
 //        this.listaRecursos = new ListaRecursos();
     }
     
+    public Demonstracao(String desc){
+        this.designacao = desc;
+    }
+    
     public Demonstracao(String cod, String designacao/*, ListaRecursos lst*/) {
         this.cod = cod;
         this.designacao = designacao;
