@@ -57,6 +57,16 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
         }
         return false;
     }
+    
+     public Exposicao getExpoByName(String title){
+        for(Exposicao e : this.listaExposicoes){
+            if(e.getTitle().equalsIgnoreCase(title)){
+                return e;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {

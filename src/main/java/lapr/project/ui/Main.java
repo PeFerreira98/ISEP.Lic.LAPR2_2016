@@ -97,13 +97,17 @@ class Main {
         Candidatura candidatura1 = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20);
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800);
-
+        
+        exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("organizador"));
+        
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);
 
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
-
+        
+        new OrganizadorUI(registoUtilizadores.checkUtilizadorByUsername("organizador"), centroExposicoes);
+        
         return centroExposicoes;
     }
 

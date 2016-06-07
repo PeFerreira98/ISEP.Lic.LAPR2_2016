@@ -12,6 +12,7 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.model.users.Organizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -215,6 +216,10 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
 
     public void setListaFAE(ListaFAE listaFAE) {
         this.listaFAE = listaFAE;
+    }
+    
+    public boolean isOrganizador(Organizador org){
+       return this.listaOrganizadores.isOrganizador(org);
     }
 
     public boolean valida() {

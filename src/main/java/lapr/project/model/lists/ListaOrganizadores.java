@@ -25,7 +25,16 @@ public class ListaOrganizadores {
     public List<Organizador> getLstOrganizadores() {
         return this.listaOrganizador;
     }
-
+    
+    public boolean isOrganizador(Organizador org){
+        for(Organizador o : this.listaOrganizador){
+            if(o.equals(org)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void addOrganizador(Utilizador u) {
         Organizador org = new Organizador(u);
         if (validaOrganizador(org)) {
