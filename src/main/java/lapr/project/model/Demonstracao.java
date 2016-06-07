@@ -9,6 +9,7 @@ import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.lists.ListaRecursos;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -29,31 +30,31 @@ public class Demonstracao implements Exportable, Importable<Demonstracao> {
     
     private String designacao;
     private String cod;
-//    private ListaRecursos listaRecursos;
+    private ListaRecursos listaRecursos;
 
     public Demonstracao(){
         this.cod = "";
         this.designacao = "";
-//        this.listaRecursos = new ListaRecursos();
+        this.listaRecursos = new ListaRecursos();
     }
     
     public Demonstracao(String desc){
         this.designacao = desc;
     }
     
-    public Demonstracao(String cod, String designacao/*, ListaRecursos lst*/) {
+    public Demonstracao(String cod, String designacao, ListaRecursos lst) {
         this.cod = cod;
         this.designacao = designacao;
-//        this.listaRecursos = lst;
+        this.listaRecursos = lst;
     }
 
     public static boolean validateDesignacao(String designacao) {
         return !(designacao == null || designacao.isEmpty());
     }
 
-//    public void addListaRecursos(ListaRecursos lst){
-//        this.listaRecursos = lst;
-//    }
+    public void addListaRecursos(ListaRecursos lst){
+        this.listaRecursos = lst;
+    }
     
     public String getDesignacao() {
         return designacao;

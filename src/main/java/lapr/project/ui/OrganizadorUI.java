@@ -6,6 +6,7 @@
 package lapr.project.ui;
 
 import javax.swing.JOptionPane;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.Organizador;
@@ -20,8 +21,8 @@ public class OrganizadorUI extends javax.swing.JFrame {
     /**
      * Creates new form OrganizadorUI
      */
-    Utilizador user;
-    CentroExposicoes centroExpo;
+    private Utilizador user;
+    private CentroExposicoes centroExpo;
 
     public OrganizadorUI(Utilizador u, CentroExposicoes centroExpo) {
         this.user = u;
@@ -32,18 +33,21 @@ public class OrganizadorUI extends javax.swing.JFrame {
             if (expo.getListaFAE().getListaFAE().isEmpty()) {
                 Organizador o = new Organizador(user);
                 if (expo.isOrganizador(o)) {
-                    jLstExpo.add(expo.getTitle());
+                    jLstExpo1.add(expo.getTitle());
                 }
 
             }
+        }
 
+        for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
+            for (Demonstracao d : expo.getListaDemonstracoes().getListaDemonstracoes()) {
+
+            }
         }
         setLocationRelativeTo(null);
         super.setVisible(true);
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,21 +57,16 @@ public class OrganizadorUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLstExpo = new java.awt.List();
         btnDefinirFAE = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        jLstExpo1 = new java.awt.List();
+        btnDemoCreate = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLstExpo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLstExpoActionPerformed(evt);
-            }
-        });
 
         btnDefinirFAE.setText("Definir FAE");
         btnDefinirFAE.addActionListener(new java.awt.event.ActionListener() {
@@ -78,12 +77,35 @@ public class OrganizadorUI extends javax.swing.JFrame {
 
         jLabel1.setText("Lista de exposições");
 
+        jLstExpo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLstExpo1ActionPerformed(evt);
+            }
+        });
+
+        btnDemoCreate.setText("Criar demonstração");
+        btnDemoCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDemoCreateActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("My account");
 
         jMenuItem1.setText("Settings");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Logout");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -94,53 +116,74 @@ public class OrganizadorUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(btnDefinirFAE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addComponent(jLstExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLstExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(365, Short.MAX_VALUE))
+                            .addComponent(btnDefinirFAE)
+                            .addComponent(btnDemoCreate)))
+                    .addComponent(jLabel1))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addComponent(jLstExpo, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDefinirFAE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLstExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnDefinirFAE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDemoCreate)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLstExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLstExpoActionPerformed
-
-    }//GEN-LAST:event_jLstExpoActionPerformed
-
     private void btnDefinirFAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDefinirFAEActionPerformed
-        String expo = jLstExpo.getSelectedItem();
+        String expo = jLstExpo1.getSelectedItem();
         if (expo == null) {
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "Nenhuma exposiçao seleccionada", "Exposições", JOptionPane.ERROR_MESSAGE);
-        } else if(this.centroExpo.getListaExposicoes().getExpoByName(expo) == null){
-            
+        } else if (this.centroExpo.getListaExposicoes().getExpoByName(expo) == null) {
+
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "BOOOOOM", "Exposições", JOptionPane.ERROR_MESSAGE);
-            
-        }else{
+
+        } else {
             new DefinirFAEUI(this.centroExpo.getRegistoUtilizadores(), this.centroExpo.getListaExposicoes().getExpoByName(expo));
 
         }
 
     }//GEN-LAST:event_btnDefinirFAEActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new AlterarPerfiUtilizadorUI(user, centroExpo.getRegistoUtilizadores());
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jLstExpo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLstExpo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLstExpo1ActionPerformed
+
+    private void btnDemoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoCreateActionPerformed
+        String expo = jLstExpo1.getSelectedItem();
+        if (expo == null) {
+            JOptionPane.showMessageDialog(OrganizadorUI.this,
+                    "Nenhuma exposiçao seleccionada", "Exposições", JOptionPane.ERROR_MESSAGE);
+        } else {
+            new CriarDemonstracaoUI(centroExpo, this.centroExpo.getListaExposicoes().getExpoByName(expo));
+        }
+    }//GEN-LAST:event_btnDemoCreateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,8 +222,9 @@ public class OrganizadorUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnDefinirFAE;
+    private javax.swing.JToggleButton btnDemoCreate;
     private javax.swing.JLabel jLabel1;
-    private java.awt.List jLstExpo;
+    private java.awt.List jLstExpo1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

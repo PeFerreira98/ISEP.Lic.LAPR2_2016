@@ -81,9 +81,9 @@ class Main {
         Exposicao exposicao2 = new Exposicao("exposicao2", "descricao2", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
         Exposicao exposicao3 = new Exposicao("exposicao3", "descricao3", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
-        Demonstracao demonstracao1 = new Demonstracao("cod1", "demo1");
-        Demonstracao demonstracao2 = new Demonstracao("cod", "demo2");
-        Demonstracao demonstracao3 = new Demonstracao("cod", "demo3");
+        Demonstracao demonstracao1 = new Demonstracao("demo1");
+        Demonstracao demonstracao2 = new Demonstracao("demo2");
+        Demonstracao demonstracao3 = new Demonstracao("demo3");
 
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao1);
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao2);
