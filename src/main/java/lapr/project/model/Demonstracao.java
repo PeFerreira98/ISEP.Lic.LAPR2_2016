@@ -25,16 +25,32 @@ public class Demonstracao implements Exportable, Importable<Demonstracao> {
     private static final String ROOT_ELEMENT_NAME = "demonstracao";
     private static final String DES_ELEMENT_NAME = "designacao";
     
+    //TODO: depois de adicionar a classe ListaRecursos, retirar os comentarios
+    
     private String designacao;
+    private String cod;
+//    private ListaRecursos listaRecursos;
 
-    public Demonstracao(String designacao) {
+    public Demonstracao(){
+        this.cod = "";
+        this.designacao = "";
+//        this.listaRecursos = new ListaRecursos();
+    }
+    
+    public Demonstracao(String cod, String designacao/*, ListaRecursos lst*/) {
+        this.cod = cod;
         this.designacao = designacao;
+//        this.listaRecursos = lst;
     }
 
     public static boolean validateDesignacao(String designacao) {
         return !(designacao == null || designacao.isEmpty());
     }
 
+//    public void addListaRecursos(ListaRecursos lst){
+//        this.listaRecursos = lst;
+//    }
+    
     public String getDesignacao() {
         return designacao;
     }
