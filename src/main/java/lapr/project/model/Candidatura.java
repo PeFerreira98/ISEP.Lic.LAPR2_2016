@@ -48,6 +48,12 @@ public class Candidatura {
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ArrayList<>();
     }
+    
+    public Candidatura() {
+        this.candidaturaState = CandidaturaState.IN_SUBMISSION;
+        this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaProdutos = new ArrayList<>();
+    }
 
     public boolean addDemonstracao(Demonstracao demonstracao){
         return this.listaDemonstracoes.addDemonstracao(demonstracao);
@@ -83,6 +89,21 @@ public class Candidatura {
     public String getNomeEmpresa() {
         return nomeEmpresa;
     } 
+    
+    public boolean valida() {
+        if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome inválido!");
+        } else if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
+            throw new IllegalArgumentException("Morada inválida!");
+        } else if (quantidadeConvites < 0) {
+            throw new IllegalArgumentException("Convites inválidos!");
+        } else if (telemovel < 100000000 || telemovel > 999999999) {
+            throw new IllegalArgumentException("Número de telemóvel inválido!");
+        } else if (areaPretendida <= 0) {
+            throw new IllegalArgumentException("Área expositor inválids!");
+        }
+        return true;
+    }
     
     @Override
     public int hashCode() {

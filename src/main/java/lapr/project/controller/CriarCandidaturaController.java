@@ -104,6 +104,7 @@ public class CriarCandidaturaController {
             }
 
             return exposicao.addCandidatura(this.candidatura);
+//            return exposicao.getListaCandidaturas().registaCandidatura(this.candidatura);
         }
 
         return false;

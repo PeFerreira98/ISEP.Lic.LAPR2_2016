@@ -5,12 +5,19 @@
  */
 package lapr.project.model.exhibitions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.lists.ListaExposicoes;
+import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.mecanismos.MecanismoAtribuicao;
+import lapr.project.model.mecanismos.MecanismoCargaFAE;
+import lapr.project.model.mecanismos.MecanismoExpProfissional;
+import lapr.project.model.mecanismos.MecanismoNumeroFAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -27,6 +34,9 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
     private RegistoUtilizadores registoUtilizadores;
     private ListaExposicoes listaExposicoes;
+    
+    private final List<MecanismoAtribuicao> listaMecanismos;
+    private ListaRecursos listaRecursos;
 
     /**
      * Construtor de CentroExposicoes
@@ -40,11 +50,24 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     public CentroExposicoes(RegistoUtilizadores registoUtilizadores, ListaExposicoes listaExposicoes) {
         this.registoUtilizadores = registoUtilizadores;
         this.listaExposicoes = listaExposicoes;
+        
+        listaMecanismos = new ArrayList<>();
+        listaMecanismos.add(new MecanismoCargaFAE());
+        listaMecanismos.add(new MecanismoExpProfissional());
+        listaMecanismos.add(new MecanismoNumeroFAE());
+        listaRecursos = new ListaRecursos();
     }
 
     public CentroExposicoes() {
-        this.registoUtilizadores = new RegistoUtilizadores();
-        this.listaExposicoes = new ListaExposicoes();
+
+        listaExposicoes = new ListaExposicoes();
+        registoUtilizadores = new RegistoUtilizadores();
+        
+        listaMecanismos = new ArrayList<>();
+        listaMecanismos.add(new MecanismoCargaFAE());
+        listaMecanismos.add(new MecanismoExpProfissional());
+        listaMecanismos.add(new MecanismoNumeroFAE());
+        listaRecursos = new ListaRecursos();
     }
 
     public ListaExposicoes getListaExposicoes() {
@@ -53,6 +76,14 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
     public RegistoUtilizadores getRegistoUtilizadores() {
         return registoUtilizadores;
+    }
+    
+    public ListaRecursos getListaRecursos() {
+        return listaRecursos;
+    }
+
+    public List<MecanismoAtribuicao> getListaMecanismos() {
+        return listaMecanismos;
     }
 
     @Override

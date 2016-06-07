@@ -9,9 +9,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Candidatura;
+import lapr.project.model.Local;
+import lapr.project.model.lists.ListaAtribuicoes;
+import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.model.users.FAE;
 import lapr.project.model.users.Organizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
@@ -33,7 +37,9 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         
     private String title;
     private String description;
+    //TODO export
     private String local;
+    private Local local2;
     
     private Data dataInicioRealizacao;
     private Data dataFimRealizacao;
@@ -43,9 +49,11 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
     private ListaDemonstracoes listaDemonstracoes;
+    private ListaAtribuicoes listaAtribuicoes;
     
     //TODO:  Change to list
     private Candidatura candidatura;
+    private ListaCandidaturas listaCandidaturas;
 
     /**
      * Construtor de Exposicao
@@ -94,11 +102,47 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.listaFAE = new ListaFAE();
         this.listaDemonstracoes = new ListaDemonstracoes();
     }
+    
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, Local local,
+            ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
+
+        this.title = nomeExposicao;
+        this.description = descricaoExposicao;
+        this.local2 = local;
+
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
+        this.dataInicioSubmissao = dataInicioSubmissao;
+        this.dataFimSubmissao = dataFimSubmissao;
+
+        this.listaOrganizadores = listaOrganizadores;
+        this.listaFAE = listaFAE;
+        this.listaDemonstracoes = new ListaDemonstracoes();
+    }
+
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, Local local) {
+
+        this.title = nomeExposicao;
+        this.description = descricaoExposicao;
+        this.local2 = local;
+
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
+        this.dataInicioSubmissao = dataInicioSubmissao;
+        this.dataFimSubmissao = dataFimSubmissao;
+
+        this.listaOrganizadores = new ListaOrganizadores();
+        this.listaFAE = new ListaFAE();
+        this.listaDemonstracoes = new ListaDemonstracoes();
+    }
 
     public Exposicao() {
         this.title = "";
         this.description = "";
         this.local = "";
+        this.local2 = new Local();
 
         this.dataInicioRealizacao = new Data();
         this.dataFimRealizacao = new Data();
@@ -108,6 +152,41 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
         this.listaDemonstracoes = new ListaDemonstracoes();
+    }
+    
+    public FAE getFAE(String id) {
+        for (FAE fae : listaFAE.getListaFAE()) {
+            if (fae.getUtilizador().validateUsername(id)) {
+                return fae;
+            }
+        }
+        return null;
+    }
+    
+    public ListaAtribuicoes getListaAtribuicoes() {
+        return listaAtribuicoes;
+    }
+
+    public ListaCandidaturas getListaCandidaturas() {
+        return listaCandidaturas;
+    }
+    
+    public boolean hasFAE(String id) {
+        for (FAE fae : listaFAE.getListaFAE()) {
+            if (fae.getUtilizador().validateUsername(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean hasOrg(String id) {
+        for (Organizador org : listaOrganizadores.getLstOrganizadores()) {
+            if (org.getUtilizador().validateUsername(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
@@ -221,6 +300,18 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
                 || !listaFAE.valida()
                 || !listaOrganizadores.valida());
     }
+    /*
+    public boolean valida() {
+        return !(this.title.equalsIgnoreCase("")
+                || this.description.equalsIgnoreCase("")
+                || this.dataInicioRealizacao == null
+                || this.dataFimRealizacao == null
+                || this.dataInicioSubmissao == null
+                || this.dataFimRealizacao == null
+                || this.local == null
+                || !listaFAE.valida()
+                || !listaOrganizadores.valida());
+    }*/
 
     @Override
     public String toString() {
