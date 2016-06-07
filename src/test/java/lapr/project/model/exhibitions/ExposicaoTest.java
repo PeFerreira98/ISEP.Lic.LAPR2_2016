@@ -5,7 +5,12 @@
  */
 package lapr.project.model.exhibitions;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Candidatura;
+import lapr.project.model.lists.ListaAtribuicoes;
+import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
@@ -19,6 +24,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
@@ -53,6 +61,7 @@ public class ExposicaoTest {
         System.out.println("addCandidatura");
 
         Candidatura candidatura = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
+        
         Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
         boolean expResult = true;
@@ -79,6 +88,84 @@ public class ExposicaoTest {
         boolean expResult = true;
         boolean result = instance.valida();
 
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getFAE method, of class Exposicao.
+     */
+    @Test
+    public void testGetFAE() {
+        System.out.println("getFAE");
+        
+        String username = "FAE";
+        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
+        FAE fae = new FAE(utilizador2);
+        
+        Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
+        instance.getListaFAE().addFAE(fae);
+        
+        FAE expResult = fae;
+        FAE result = instance.getFAE(username);
+        
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hasFAE method, of class Exposicao.
+     */
+    @Test
+    public void testHasFAE() {
+        System.out.println("hasFAE");
+        
+        String username = "FAE";
+        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
+        FAE fae = new FAE(utilizador2);
+        
+        Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
+        instance.getListaFAE().addFAE(fae);
+        
+        boolean expResult = true;
+        boolean result = instance.hasFAE(username);
+        
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of hasOrganizador method, of class Exposicao.
+     */
+    @Test
+    public void testHasOrganizador() {
+        System.out.println("hasOrganizador");
+        
+        String username = "ORGANIZADOR";
+        Utilizador utilizador2 = new Utilizador("Dummy3", "ORGANIZADOR", "ORGANIZADOR", "fae@domain.pt", "ORGANIZADOR");
+        
+        Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
+        instance.getListaOrganizadores().addOrganizador(utilizador2);
+        
+        boolean expResult = true;
+        boolean result = instance.hasOrganizador(username);
+        
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of isOrganizador method, of class Exposicao.
+     */
+    @Test
+    public void testIsOrganizador() {
+        System.out.println("isOrganizador");
+        
+        String username = "ORGANIZADOR";
+        Utilizador utilizador2 = new Utilizador("Dummy3", "ORGANIZADOR", "ORGANIZADOR", "fae@domain.pt", "ORGANIZADOR");
+        Organizador org = new Organizador(utilizador2);
+        Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
+        instance.getListaOrganizadores().addOrganizador(utilizador2);
+        
+        boolean expResult = true;
+        boolean result = instance.isOrganizador(org);
+        
         assertEquals(expResult, result);
     }
 
