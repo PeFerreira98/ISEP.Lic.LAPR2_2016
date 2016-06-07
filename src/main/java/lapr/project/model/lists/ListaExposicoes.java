@@ -70,7 +70,7 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
 
     @Override
     public String toString() {
-        return "\nListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
+        return "\n ListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
     }
 
     @Override

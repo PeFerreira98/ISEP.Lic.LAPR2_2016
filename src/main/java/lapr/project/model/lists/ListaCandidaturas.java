@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Candidatura;
 
@@ -16,12 +17,24 @@ public class ListaCandidaturas {
 
     private List<Candidatura> listaCandidaturas;
 
+    public ListaCandidaturas() {
+        this.listaCandidaturas = new ArrayList<>();
+    }
+
     public boolean registaCandidatura(Candidatura candidatura) {
         if (validaCandidatura(candidatura)) {
             return addCandidatura(candidatura);
         } else {
             return false;
         }
+    }
+
+    public boolean addCandidatura(Candidatura candidatura) {
+        //procura na lista se ja existe esta candidatura
+        if (!this.listaCandidaturas.stream().noneMatch((can) -> (can.equals(candidatura)))) {
+            return false;
+        }
+        return this.listaCandidaturas.add(candidatura);
     }
 
     private boolean validaCandidatura(Candidatura candidatura) {
@@ -36,8 +49,9 @@ public class ListaCandidaturas {
         return listaCandidaturas;
     }
 
-    public boolean addCandidatura(Candidatura c) {
-        return listaCandidaturas.add(c);
+    @Override
+    public String toString() {
+        return "\n ListaCandidaturas{" + "listaCandidaturas=" + listaCandidaturas + '}';
     }
 
 }

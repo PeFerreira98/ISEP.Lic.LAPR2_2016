@@ -49,7 +49,7 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
 
     @Override
     public String toString() {
-        return "\nListaDemonstracoes{" + "listaDemonstracoes=" + listaDemonstracoes + '}';
+        return "\n ListaDemonstracoes{" + "listaDemonstracoes=" + listaDemonstracoes + '}';
     }
 
     @Override

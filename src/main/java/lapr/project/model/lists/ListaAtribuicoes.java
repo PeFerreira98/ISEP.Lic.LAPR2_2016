@@ -17,16 +17,24 @@ public class ListaAtribuicoes {
 
     private List<Atribuicao> listaAtribuicoes;
 
+    public ListaAtribuicoes() {
+        this.listaAtribuicoes = new ArrayList<>();
+    }
+
     public void addAtribuicoes(List<Atribuicao> atrs) {
         listaAtribuicoes.addAll(atrs);
     }
 
-    public List<Atribuicao> getListaAtribuicoes() {
-        return listaAtribuicoes;
+    public boolean addAtribuicao(Atribuicao atribuicao) {
+        //procura na lista se ja existe esta atribuição
+        if (!this.listaAtribuicoes.stream().noneMatch((atr) -> (atr.equals(atribuicao)))) {
+            return false;
+        }
+        return this.listaAtribuicoes.add(atribuicao);
     }
 
-    public Atribuicao novaAtribuicao() {
-        return new Atribuicao();
+    public List<Atribuicao> getListaAtribuicoes() {
+        return listaAtribuicoes;
     }
 
     public List<Atribuicao> getAtribuicoes(String id) {
@@ -39,8 +47,9 @@ public class ListaAtribuicoes {
         return atr;
     }
 
-    public void addAtribuicao(Atribuicao a) {
-        listaAtribuicoes.add(a);
+    @Override
+    public String toString() {
+        return "\n ListaAtribuicoes{" + "listaAtribuicoes=" + listaAtribuicoes + '}';
     }
 
 }

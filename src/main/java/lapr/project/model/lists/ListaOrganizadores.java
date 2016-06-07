@@ -22,35 +22,35 @@ import org.w3c.dom.Node;
  *
  * @author TiagoSilvestre
  */
-public class ListaOrganizadores implements Exportable, Importable<ListaOrganizadores>{
+public class ListaOrganizadores implements Exportable, Importable<ListaOrganizadores> {
 
     private static final String ROOT_ELEMENT_NAME = "listaOrganizadores";
     private static final String ORG_LST_ELEMENT_NAME = "organizadores";
-    
-    private List<Organizador> listaOrganizador;
+
+    private List<Organizador> listaOrganizadores;
 
     public ListaOrganizadores() {
-        this.listaOrganizador = new ArrayList<>();
+        this.listaOrganizadores = new ArrayList<>();
     }
 
     public List<Organizador> getLstOrganizadores() {
-        return this.listaOrganizador;
+        return this.listaOrganizadores;
     }
-    
-    public boolean isOrganizador(Organizador org){
-        for(Organizador o : this.listaOrganizador){
-            if(o.equals(org)){
-                return true;
-            }
-        }
-        return false;
+
+    public boolean isOrganizador(Organizador org) {
+        //Verifica se existe este organizador. Retorna true or false
+        return this.listaOrganizadores.stream().anyMatch((o) -> (o.equals(org)));
     }
-    
+
+    public boolean hasOrganizador(String username) {
+        //Verifica se algum organizador tem este username. Retorna true or false
+        return listaOrganizadores.stream().anyMatch((org) -> (org.getUtilizador().validateUsername(username)));
+    }
+
     public void addOrganizador(Utilizador u) {
         Organizador org = new Organizador(u);
         if (validaOrganizador(org)) {
-
-            listaOrganizador.add(org);
+            listaOrganizadores.add(org);
         }
     }
 
@@ -59,12 +59,14 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
     }
 
     public boolean valida() {
-        if (listaOrganizador.isEmpty() || listaOrganizador == null) {
-            return false;
-        }
-        return true;
+        return !(listaOrganizadores.isEmpty() || listaOrganizadores == null);
     }
-    
+
+    @Override
+    public String toString() {
+        return "\n ListaOrganizadores{" + "listaOrganizadores=" + listaOrganizadores + '}';
+    }
+
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
@@ -76,7 +78,6 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
             Document document = builder.newDocument();
             Element elementListaOrganizadores = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element //iterate over keywords
             Element elementOrganizadores = document.createElement(ORG_LST_ELEMENT_NAME);
             elementListaOrganizadores.appendChild(elementOrganizadores);
@@ -85,7 +86,6 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
                 elementOrganizadores.appendChild(document.importNode(organizadorNode, true));
             }
 
-            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementListaOrganizadores);
             node = elementListaOrganizadores;

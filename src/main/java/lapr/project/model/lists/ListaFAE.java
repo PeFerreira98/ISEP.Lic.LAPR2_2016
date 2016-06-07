@@ -25,11 +25,25 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
 
     private static final String ROOT_ELEMENT_NAME = "listaFAE";
     private static final String FAE_LST_ELEMENT_NAME = "FAEs";
-    
+
     private List<FAE> listaFAE;
 
     public ListaFAE() {
         listaFAE = new ArrayList<>();
+    }
+
+    public FAE getFAE(String username) {
+        for (FAE fae : listaFAE) {
+            if (fae.getUtilizador().validateUsername(username)) {
+                return fae;
+            }
+        }
+        return null;
+    }
+    
+    public boolean hasFAE(String username) {
+        //Procura na lista se este FAE existe, retorna true or false
+        return (listaFAE.stream().anyMatch((fae) -> (fae.getUtilizador().validateUsername(username))));
     }
 
     public boolean addFAE(FAE fae) {
@@ -52,7 +66,7 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
 
     @Override
     public String toString() {
-        return "\nListaFAE{" + "listaFAE=" + listaFAE + '}';
+        return "\n ListaFAE{" + "listaFAE=" + listaFAE + '}';
     }
 
     @Override
@@ -66,7 +80,6 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
             Document document = builder.newDocument();
             Element elementListaFAE = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element //iterate over keywords
             Element elementFAEs = document.createElement(FAE_LST_ELEMENT_NAME);
             elementListaFAE.appendChild(elementFAEs);
@@ -75,7 +88,6 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
                 elementFAEs.appendChild(document.importNode(faeNode, true));
             }
 
-            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementListaFAE);
             node = elementListaFAE;

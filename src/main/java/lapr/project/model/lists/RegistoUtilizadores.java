@@ -14,7 +14,6 @@ import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.FileOp;
 import lapr.project.utils.Importable;
-import lapr.project.utils.ReadWriteTxtFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -121,7 +120,7 @@ public class RegistoUtilizadores implements Exportable, Importable<RegistoUtiliz
 
     @Override
     public String toString() {
-        return "\nRegistoUtilizadores{" + "listaUtilizadoresRegistados=" + listaUtilizadoresRegistados + ", \n\tlistaUtilizadoresNaoRegistados=" + listaUtilizadoresNaoRegistados + '}';
+        return "\n RegistoUtilizadores{" + "listaUtilizadoresRegistados=" + listaUtilizadoresRegistados + ", \n\tlistaUtilizadoresNaoRegistados=" + listaUtilizadoresNaoRegistados + '}';
     }
 
     @Override

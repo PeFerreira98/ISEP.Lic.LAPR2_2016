@@ -25,8 +25,16 @@ public class ListaRecursos {
         return listaRecursos;
     }
 
-    public void addRecurso(Recurso r) {
-        listaRecursos.add(r);
+    public boolean addRecurso(Recurso recurso) {
+        if (listaRecursos.stream().anyMatch((rec) -> (rec.equals(recurso)))) {
+            return false;
+        }
+        return listaRecursos.add(recurso);
+    }
+
+    @Override
+    public String toString() {
+        return "\n ListaRecursos{" + "listaRecursos=" + listaRecursos + '}';
     }
 
 }
