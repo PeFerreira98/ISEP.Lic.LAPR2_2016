@@ -49,31 +49,11 @@ class Main {
     private CentroExposicoes bootStrap() {
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
 
-//        try {
-//            registoUtilizadores = new ReadWriteTxtFile().readFile(new File("userList.txt"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("File userlist not found");
-//        }
         try {
             registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        
-//        Utilizador utilizador1 = new Utilizador("Dummy2", "representante", "representante", "representante@domain.pt", "REPRESENTANTE");
-//        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
-//        Utilizador utilizador3 = new Utilizador("Dummy4", "gestor", "gestor", "gestor@domain.pt", "GESTOR");
-//        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt", "ORGANIZADOR");
-//
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador1);
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador2);
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador3);
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador4);
-//
-//        registoUtilizadores.registarUtilizador(utilizador2);
-//        registoUtilizadores.registarUtilizador(utilizador3);
-//        registoUtilizadores.registarUtilizador(utilizador4);
 
         final ListaExposicoes listaExposicoes = new ListaExposicoes();
 
@@ -110,5 +90,28 @@ class Main {
         
         return centroExposicoes;
     }
+    
+    
 
 }
+
+//        try {
+//            registoUtilizadores = new ReadWriteTxtFile().readFile(new File("userList.txt"));
+//        } catch (IOException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            System.out.println("File userlist not found");
+//        }
+//        
+//        Utilizador utilizador1 = new Utilizador("Dummy2", "representante", "representante", "representante@domain.pt", "REPRESENTANTE");
+//        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
+//        Utilizador utilizador3 = new Utilizador("Dummy4", "gestor", "gestor", "gestor@domain.pt", "GESTOR");
+//        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt", "ORGANIZADOR");
+//
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador1);
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador2);
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador3);
+//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador4);
+//
+//        registoUtilizadores.registarUtilizador(utilizador2);
+//        registoUtilizadores.registarUtilizador(utilizador3);
+//        registoUtilizadores.registarUtilizador(utilizador4);

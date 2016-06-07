@@ -22,17 +22,17 @@ public class MecanismoExpProfissional implements MecanismoAtribuicao {
     }
 
     @Override
+    public List<Atribuicao> gerarAtribuicoes(Exposicao exposicao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public String getDescricao() {
         return descricao;
     }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    @Override
-    public List<Atribuicao> gerarAtribuicoes(Exposicao exposicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

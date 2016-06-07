@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Candidatura;
-import lapr.project.model.Local;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;
@@ -34,25 +33,21 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     private static final String TITLE_ELEMENT_NAME = "titulo";
     private static final String DESC_ELEMENT_NAME = "descricao";
     private static final String LOCAL_ELEMENT_NAME = "local";
-        
+
     private String title;
     private String description;
-    //TODO export
     private String local;
-    private Local local2;
     
     private Data dataInicioRealizacao;
     private Data dataFimRealizacao;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
-    
+
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
     private ListaDemonstracoes listaDemonstracoes;
+    //TODO export
     private ListaAtribuicoes listaAtribuicoes;
-    
-    //TODO:  Change to list
-    private Candidatura candidatura;
     private ListaCandidaturas listaCandidaturas;
 
     /**
@@ -75,7 +70,7 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.local = local;
-
+        
         this.dataInicioRealizacao = dataInicioRealizacao;
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
@@ -84,6 +79,8 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.listaOrganizadores = listaOrganizadores;
         this.listaFAE = listaFAE;
         this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaAtribuicoes = new ListaAtribuicoes();
+        this.listaCandidaturas = new ListaCandidaturas();
     }
 
     public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
@@ -92,7 +89,7 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.local = local;
-
+        
         this.dataInicioRealizacao = dataInicioRealizacao;
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
@@ -101,48 +98,14 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
         this.listaDemonstracoes = new ListaDemonstracoes();
-    }
-    
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
-            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, Local local,
-            ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
-
-        this.title = nomeExposicao;
-        this.description = descricaoExposicao;
-        this.local2 = local;
-
-        this.dataInicioRealizacao = dataInicioRealizacao;
-        this.dataFimRealizacao = dataFimRealizacao;
-        this.dataInicioSubmissao = dataInicioSubmissao;
-        this.dataFimSubmissao = dataFimSubmissao;
-
-        this.listaOrganizadores = listaOrganizadores;
-        this.listaFAE = listaFAE;
-        this.listaDemonstracoes = new ListaDemonstracoes();
-    }
-
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
-            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, Local local) {
-
-        this.title = nomeExposicao;
-        this.description = descricaoExposicao;
-        this.local2 = local;
-
-        this.dataInicioRealizacao = dataInicioRealizacao;
-        this.dataFimRealizacao = dataFimRealizacao;
-        this.dataInicioSubmissao = dataInicioSubmissao;
-        this.dataFimSubmissao = dataFimSubmissao;
-
-        this.listaOrganizadores = new ListaOrganizadores();
-        this.listaFAE = new ListaFAE();
-        this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaAtribuicoes = new ListaAtribuicoes();
+        this.listaCandidaturas = new ListaCandidaturas();
     }
 
     public Exposicao() {
         this.title = "";
         this.description = "";
         this.local = "";
-        this.local2 = new Local();
 
         this.dataInicioRealizacao = new Data();
         this.dataFimRealizacao = new Data();
@@ -152,17 +115,14 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
         this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaAtribuicoes = new ListaAtribuicoes();
+        this.listaCandidaturas = new ListaCandidaturas();
     }
-    
-    public FAE getFAE(String id) {
-        for (FAE fae : listaFAE.getListaFAE()) {
-            if (fae.getUtilizador().validateUsername(id)) {
-                return fae;
-            }
-        }
-        return null;
+
+    public FAE getFAE(String username) {
+        return this.listaFAE.getFAE(username);
     }
-    
+
     public ListaAtribuicoes getListaAtribuicoes() {
         return listaAtribuicoes;
     }
@@ -170,31 +130,17 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     public ListaCandidaturas getListaCandidaturas() {
         return listaCandidaturas;
     }
-    
-    public boolean hasFAE(String id) {
-        for (FAE fae : listaFAE.getListaFAE()) {
-            if (fae.getUtilizador().validateUsername(id)) {
-                return true;
-            }
-        }
-        return false;
+
+    public boolean hasFAE(String username) {
+        return this.listaFAE.hasFAE(username);
     }
-    
-    public boolean hasOrg(String id) {
-        for (Organizador org : listaOrganizadores.getLstOrganizadores()) {
-            if (org.getUtilizador().validateUsername(id)) {
-                return true;
-            }
-        }
-        return false;
+
+    public boolean hasOrganizador(String username) {
+        return this.listaOrganizadores.hasOrganizador(username);
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
-        if (this.candidatura == null) {
-            this.candidatura = candidatura;
-            return true;
-        }
-        return false;
+        return this.listaCandidaturas.addCandidatura(candidatura);
     }
 
     public Data getDataInicioSubmissao() {
@@ -234,11 +180,11 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     }
 
     public String getLocal() {
-        return local;
+        return this.local;
     }
 
     public ListaOrganizadores getListaOrganizadores() {
-        return listaOrganizadores;
+        return this.listaOrganizadores;
     }
 
     public ListaFAE getListaFAE() {
@@ -284,9 +230,9 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     public void setListaFAE(ListaFAE listaFAE) {
         this.listaFAE = listaFAE;
     }
-    
-    public boolean isOrganizador(Organizador org){
-       return this.listaOrganizadores.isOrganizador(org);
+
+    public boolean isOrganizador(Organizador org) {
+        return this.listaOrganizadores.isOrganizador(org);
     }
 
     public boolean valida() {
@@ -300,27 +246,16 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
                 || !listaFAE.valida()
                 || !listaOrganizadores.valida());
     }
-    /*
-    public boolean valida() {
-        return !(this.title.equalsIgnoreCase("")
-                || this.description.equalsIgnoreCase("")
-                || this.dataInicioRealizacao == null
-                || this.dataFimRealizacao == null
-                || this.dataInicioSubmissao == null
-                || this.dataFimRealizacao == null
-                || this.local == null
-                || !listaFAE.valida()
-                || !listaOrganizadores.valida());
-    }*/
 
     @Override
     public String toString() {
-        return "\nExposicao{" + "title=" + title + ", description=" + description
+        return "Exposicao{" + "title=" + title + ", description=" + description
                 + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao
                 + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao="
-                + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao + ", \nlistaOrganizadores="
-                + listaOrganizadores + ", \nlistaFAE=" + listaFAE + ", \nlistaDemonstracoes="
-                + listaDemonstracoes + ", \ncandidatura=" + candidatura + '}';
+                + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao
+                + ",\n listaOrganizadores=" + listaOrganizadores + ",\n listaFAE=" + listaFAE
+                + ",\n listaDemonstracoes=" + listaDemonstracoes + ",\n listaAtribuicoes="
+                + listaAtribuicoes + ",\n listaCandidaturas=" + listaCandidaturas + '}';
     }
 
     @Override
@@ -334,50 +269,48 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
             Document document = builder.newDocument();
             Element elementExposicao = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementTitle = document.createElement(TITLE_ELEMENT_NAME);
             elementTitle.setTextContent(getTitle());
             elementExposicao.appendChild(elementTitle);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementDesc = document.createElement(DESC_ELEMENT_NAME);
             elementDesc.setTextContent(getDescription());
             elementExposicao.appendChild(elementDesc);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementLocal = document.createElement(LOCAL_ELEMENT_NAME);
             elementLocal.setTextContent(getLocal());
             elementExposicao.appendChild(elementLocal);
-            
+
             //Create a sub-element
             Node dataInicioReaNode = this.dataInicioRealizacao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataInicioReaNode, true));
-            
+
             //Create a sub-element
             Node dataFimReaNode = this.dataFimRealizacao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataFimReaNode, true));
-            
+
             //Create a sub-element
             Node dataInicioSubNode = this.dataInicioSubmissao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataInicioSubNode, true));
-            
+
             //Create a sub-element
             Node dataFimSubNode = this.dataFimSubmissao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataFimSubNode, true));
-            
+
             //Create a sub-element
             Node listaOrgNode = this.listaOrganizadores.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(listaOrgNode, true));
-            
+
             //Create a sub-element
             Node listaFaeNode = this.listaFAE.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(listaFaeNode, true));
-            
+
             //Create a sub-element
 //            Node candidaturaNode = this.candidatura.exportContentToXMLNode();
 //            elementExposicao.appendChild(document.importNode(candidaturaNode, true));
-
 
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementExposicao);
