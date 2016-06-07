@@ -5,28 +5,57 @@
  */
 package lapr.project.model.exhibitions;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Candidatura;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.utils.Data;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author TiagoSilvestre
  */
-public class Exposicao {
+public class Exposicao implements Exportable, Importable<Exposicao> {
 
+    private static final String ROOT_ELEMENT_NAME = "exposicao";
+    
+    private static final String TITLE_ELEMENT_NAME = "titulo";
+    private static final String DESC_ELEMENT_NAME = "descricao";
+    private static final String LOCAL_ELEMENT_NAME = "local";
+    
+    private static final String DATA_INI_REA_ELEMENT_NAME = "dataInicioRealizacao";
+    private static final String DATA_FIM_REA_ELEMENT_NAME = "dataFimRealizacao";
+    private static final String DATA_INI_SUB_ELEMENT_NAME = "dataInicioSubmicao";
+    private static final String DATA_FIM_SUB_ELEMENT_NAME = "dataFimSubmissao";
+    
+    private static final String ORG_LST_ELEMENT_NAME = "listaOrganizadores";
+    private static final String FAE_LST_ELEMENT_NAME = "listaFAE";
+    private static final String DEMO_LST_ELEMENT_NAME = "listaDemonstracoes";
+    private static final String CANDID_ELEMENT_NAME = "candidatura";
+    
+    
     private String title;
     private String description;
     private String local;
+    
     private Data dataInicioRealizacao;
     private Data dataFimRealizacao;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
+    
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
     private ListaDemonstracoes listaDemonstracoes;
+    
+    //TODO:  Change to list
     private Candidatura candidatura;
 
     /**
@@ -208,6 +237,78 @@ public class Exposicao {
                 + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao + ", \nlistaOrganizadores="
                 + listaOrganizadores + ", \nlistaFAE=" + listaFAE + ", \nlistaDemonstracoes="
                 + listaDemonstracoes + ", \ncandidatura=" + candidatura + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementExposicao = document.createElement(ROOT_ELEMENT_NAME);
+
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementTitle = document.createElement(TITLE_ELEMENT_NAME);
+            elementTitle.setTextContent(getTitle());
+            elementExposicao.appendChild(elementTitle);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementDesc = document.createElement(DESC_ELEMENT_NAME);
+            elementDesc.setTextContent(getDescription());
+            elementExposicao.appendChild(elementDesc);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementLocal = document.createElement(LOCAL_ELEMENT_NAME);
+            elementLocal.setTextContent(getLocal());
+            elementExposicao.appendChild(elementLocal);
+            
+            //Create a sub-element
+            Node dataInicioReaNode = this.dataInicioRealizacao.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(dataInicioReaNode, true));
+            
+            //Create a sub-element
+            Node dataFimReaNode = this.dataFimRealizacao.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(dataFimReaNode, true));
+            
+            //Create a sub-element
+            Node dataInicioSubNode = this.dataInicioSubmissao.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(dataInicioSubNode, true));
+            
+            //Create a sub-element
+            Node dataFimSubNode = this.dataFimSubmissao.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(dataFimSubNode, true));
+            
+//            //Create a sub-element
+//            Node listaOrgNode = this.listaOrganizadores.exportContentToXMLNode();
+//            elementExposicao.appendChild(document.importNode(listaOrgNode, true));
+//            
+//            //Create a sub-element
+//            Node listaFaeNode = this.listaFAE.exportContentToXMLNode();
+//            elementExposicao.appendChild(document.importNode(listaFaeNode, true));
+//            
+//            //Create a sub-element
+//            Node candidaturaNode = this.candidatura.exportContentToXMLNode();
+//            elementExposicao.appendChild(document.importNode(candidaturaNode, true));
+
+
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementExposicao);
+            node = elementExposicao;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
+    }
+
+    @Override
+    public Exposicao importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

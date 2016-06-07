@@ -1,39 +1,50 @@
 package lapr.project.utils;
 
 import java.util.Calendar;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Representa uma data através do dia, mês e ano.
  *
  * @author ISEP-DEI-PPROG
  */
-public class Data implements Comparable<Data> {
+public class Data implements Comparable<Data>, Exportable, Importable<Data> {
 
+    private static final String ROOT_ELEMENT_NAME = "data";
+    private static final String YEAR_ELEMENT_NAME = "ano";
+    private static final String MES_ELEMENT_NAME = "mes";
+    private static final String DIA_ELEMENT_NAME = "dia";
+    
     /**
      * O ano da data.
      */
     private int ano;
-    
+
     /**
      * O mês da data.
      */
     private int mes;
-    
+
     /**
      * O dia da data.
      */
     private int dia;
-    
+
     /**
      * O ano por omissão.
      */
     private static final int ANO_POR_OMISSAO = 1;
-    
+
     /**
      * O mês por omissão.
      */
     private static final int MES_POR_OMISSAO = 1;
-    
+
     /**
      * O dia por omissão.
      */
@@ -152,13 +163,13 @@ public class Data implements Comparable<Data> {
     public String toAnoMesDiaString() {
         return String.format("%04d/%02d/%02d", ano, mes, dia);
     }
-    
+
     /**
      * Compara a data com o objeto recebido.
      *
      * @param outroObjeto o objeto a comparar com a data.
      * @return true se o objeto recebido representar uma data equivalente à
-     *         data. Caso contrário, retorna false.
+     * data. Caso contrário, retorna false.
      */
     @Override
     public boolean equals(Object outroObjeto) {
@@ -177,9 +188,9 @@ public class Data implements Comparable<Data> {
      * Compara a data com a outra data recebida por parâmetro.
      *
      * @param outraData a data a ser comparada.
-     * @return o valor 0 se a outraData recebida é igual à data; o valor -1 se
-     *         a outraData for posterior à data; o valor 1 se a outraData for 
-     *         anterior à data.
+     * @return o valor 0 se a outraData recebida é igual à data; o valor -1 se a
+     * outraData for posterior à data; o valor 1 se a outraData for anterior à
+     * data.
      */
     @Override
     public int compareTo(Data outraData) {
@@ -198,14 +209,13 @@ public class Data implements Comparable<Data> {
         return nomeDiaDaSemana[totalDias];
     }
 
-
     /**
      * Devolve true se a data for maior do que a data recebida por parâmetro. Se
      * a data for menor ou igual à data recebida por parâmetro, devolve false.
      *
      * @param outraData a outra data com a qual se compara a data.
      * @return true se a data for maior do que a data recebida por parâmetro,
-     *         caso contrário devolve false.
+     * caso contrário devolve false.
      */
     public boolean isMaior(Data outraData) {
         int totalDias = contaDias();
@@ -219,9 +229,9 @@ public class Data implements Comparable<Data> {
      * parâmetro.
      *
      * @param outraData a outra data com a qual se compara a data para calcular
-     *                  a diferença do número de dias.
+     * a diferença do número de dias.
      * @return diferença em número de dias entre a data e a data recebida por
-     *         parâmetro.
+     * parâmetro.
      */
     public int diferenca(Data outraData) {
         int totalDias = contaDias();
@@ -235,13 +245,13 @@ public class Data implements Comparable<Data> {
      * parâmetro com ano, mês e dia.
      *
      * @param ano o ano da data com a qual se compara a data para calcular a
-     *            diferença do número de dias.
+     * diferença do número de dias.
      * @param mes o mês da data com a qual se compara a data para calcular a
-     *            diferença do número de dias.
+     * diferença do número de dias.
      * @param dia o dia da data com a qual se compara a data para calcular a
-     *            diferença do número de dias.
+     * diferença do número de dias.
      * @return diferença em número de dias entre a data e a data recebida por
-     *         parâmetro com ano, mês e dia.
+     * parâmetro com ano, mês e dia.
      */
     public int diferenca(int ano, int mes, int dia) {
         int totalDias = contaDias();
@@ -257,7 +267,7 @@ public class Data implements Comparable<Data> {
      *
      * @param ano o ano a validar.
      * @return true se o ano passado por parâmetro for bissexto, caso contrário
-     *         devolve false.
+     * devolve false.
      */
     public static boolean isAnoBissexto(int ano) {
         return ano % 4 == 0 && ano % 100 != 0 || ano % 400 == 0;
@@ -294,5 +304,49 @@ public class Data implements Comparable<Data> {
         totalDias += dia;
 
         return totalDias;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementData = document.createElement(ROOT_ELEMENT_NAME);
+
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementYear = document.createElement(YEAR_ELEMENT_NAME);
+            elementYear.setTextContent(Integer.toString(getAno()));
+            elementData.appendChild(elementYear);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementMes = document.createElement(MES_ELEMENT_NAME);
+            elementMes.setTextContent(Integer.toString(getMes()));
+            elementData.appendChild(elementMes);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementDia = document.createElement(DIA_ELEMENT_NAME);
+            elementDia.setTextContent(Integer.toString(getDia()));
+            elementData.appendChild(elementDia);
+            
+
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementData);
+            node = elementData;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
+    }
+
+    @Override
+    public Data importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

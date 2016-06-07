@@ -89,7 +89,7 @@ public class FileOp {
         try {
             File file = new File("CentroExposicoesXML.xml");
 
-            FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), false);
             BufferedWriter bw = new BufferedWriter(fw);
 
             bw.write(centroExposicoesString);

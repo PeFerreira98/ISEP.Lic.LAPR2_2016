@@ -99,8 +99,8 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             elementCentroExposicoes.appendChild(document.importNode(registoUtilizadoresNode, true));
 
             //Create a sub-element
-//            Node listaExposicoesNode = this.listaExposicoes.exportContentToXMLNode();
-//            elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
+            Node listaExposicoesNode = this.listaExposicoes.exportContentToXMLNode();
+            elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
 
             
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
