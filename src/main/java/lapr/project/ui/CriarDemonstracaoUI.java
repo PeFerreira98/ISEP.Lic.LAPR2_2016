@@ -29,16 +29,17 @@ public class CriarDemonstracaoUI extends javax.swing.JFrame {
      */
     private Exposicao expo;
     private CentroExposicoes centroExpo;
-    private ListaRecursos listaRecursos;
+    private ListaRecursos listaRecursosAux;
     private CriarDemonstracaoController controller;
 
     public CriarDemonstracaoUI(CentroExposicoes centroExpo, Exposicao expo) {
         this.expo = expo;
         this.centroExpo = centroExpo;
-        this.listaRecursos = new ListaRecursos();
+        this.listaRecursosAux = new ListaRecursos();
         this.controller = new CriarDemonstracaoController(expo);
 
         initComponents();
+        inicializarLista();
         jLblExpoName.setText(expo.getTitle());
 
         setLocationRelativeTo(null);
@@ -225,11 +226,11 @@ public class CriarDemonstracaoUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
                     "Seleccione um recurso", "Recursos", JOptionPane.ERROR_MESSAGE);
 
-        } else if (this.listaRecursos.getListaRecursos().contains(jLstRecursos.getSelectedValue())) {
+        } else if (this.listaRecursosAux.getListaRecursos().contains(jLstRecursos.getSelectedValue())) {
             JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
                     "Esse recurso já esta adicionado", "Recursos", JOptionPane.ERROR_MESSAGE);
         } else {
-            this.listaRecursos.addRecurso(jLstRecursos.getSelectedValue());
+            this.listaRecursosAux.addRecurso(jLstRecursos.getSelectedValue());
             JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
                     "Recurso adicionado com sucesso", "Recursos", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -240,14 +241,14 @@ public class CriarDemonstracaoUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
                     "Insira os dados todos", "Falta de dados", JOptionPane.ERROR_MESSAGE);
         } else {
-            this.controller.criarDemo(txtCod.getText(), txtDesc.getText(), this.listaRecursos);
+            this.controller.criarDemo(txtCod.getText(), txtDesc.getText(), this.listaRecursosAux);
             JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
                     "Demonstração criada", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.listaRecursos = new ListaRecursos();
+        this.listaRecursosAux = new ListaRecursos();
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

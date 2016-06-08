@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Recurso;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
@@ -83,8 +84,13 @@ class Main {
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);
-
+        
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
+        
+        Recurso r1 = new Recurso("Desc1");
+        Recurso r2 = new Recurso("Desc2");
+        centroExposicoes.getListaRecursos().addRecurso(r1);
+        centroExposicoes.getListaRecursos().addRecurso(r2);
         
         new OrganizadorUI(registoUtilizadores.checkUtilizadorByUsername("organizador"), centroExposicoes);
         

@@ -27,6 +27,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
     public OrganizadorUI(Utilizador u, CentroExposicoes centroExpo) {
         this.user = u;
         this.centroExpo = centroExpo;
+        super.setTitle("Organizador menu (" + this.user.getUsername() + ")");
 
         initComponents();
         for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
@@ -66,7 +67,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnDefinirFAE.setText("Definir FAE");
         btnDefinirFAE.addActionListener(new java.awt.event.ActionListener() {
