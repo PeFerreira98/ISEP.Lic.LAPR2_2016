@@ -141,18 +141,5 @@ public class RegistoUtilizadoresTest {
         assertEquals(expResult, result);
         
     }
-
-    /**
-     * Test of toString method, of class RegistoUtilizadores.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        RegistoUtilizadores instance = new RegistoUtilizadores();
-        String expResult = "\nRegistoUtilizadores{" + "listaUtilizadoresRegistados=[], \n\tlistaUtilizadoresNaoRegistados=[]}";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        
-    }
     
 }
