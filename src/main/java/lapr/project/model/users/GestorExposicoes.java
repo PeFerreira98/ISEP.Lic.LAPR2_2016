@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class GestorExposicoes {
 
-    Utilizador utilizador;
+    private Utilizador utilizador;
 
     /**
      * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
@@ -26,24 +26,31 @@ public class GestorExposicoes {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.utilizador);
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.utilizador);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
-
+        
         final GestorExposicoes other = (GestorExposicoes) obj;
         if (!Objects.equals(this.utilizador, other.utilizador)) {
             return false;
         }
-
+        
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "\n GestorExposicoes{" + "utilizador=" + utilizador + '}';
     }
 
 }

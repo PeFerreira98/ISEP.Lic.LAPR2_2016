@@ -22,7 +22,7 @@ import org.w3c.dom.Node;
 public class FAE implements Exportable, Importable<FAE> {
 
     private static final String ROOT_ELEMENT_NAME = "FAE";
-    
+
     private Utilizador utilizador;
 
     /**
@@ -37,13 +37,6 @@ public class FAE implements Exportable, Importable<FAE> {
     public FAE() {
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.utilizador);
-        return hash;
-    }
-
     public void setUtilizador(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
@@ -53,7 +46,17 @@ public class FAE implements Exportable, Importable<FAE> {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.utilizador);
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }

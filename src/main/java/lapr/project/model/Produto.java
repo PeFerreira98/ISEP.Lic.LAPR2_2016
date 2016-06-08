@@ -34,13 +34,22 @@ public class Produto {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
         
         final Produto other = (Produto) obj;
-        return Objects.equals(this.designacao, other.designacao);
+        if (!Objects.equals(this.designacao, other.designacao)) {
+            return false;
+        }
+        
+        return true;
     }
+
+    
 
     @Override
     public String toString() {

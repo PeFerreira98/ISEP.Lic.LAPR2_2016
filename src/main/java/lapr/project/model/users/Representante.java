@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class Representante {
 
-    Utilizador utilizador;
+    private Utilizador utilizador;
 
     /**
      * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
@@ -26,13 +26,16 @@ public class Representante {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.utilizador);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.utilizador);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
@@ -43,6 +46,11 @@ public class Representante {
         }
 
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "\n Representante{" + "utilizador=" + utilizador + '}';
     }
 
 }

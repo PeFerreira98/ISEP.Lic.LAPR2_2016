@@ -22,7 +22,7 @@ import org.w3c.dom.Node;
 public class Organizador implements Exportable, Importable<Organizador> {
 
     private static final String ROOT_ELEMENT_NAME = "organizador";
-    
+
     private Utilizador utilizador;
 
     /**
@@ -45,15 +45,25 @@ public class Organizador implements Exportable, Importable<Organizador> {
         this.utilizador = utilizador;
     }
 
+    public boolean valida() {
+        if (this.utilizador == null) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.utilizador);
+        int hash = 5;
+        hash = 83 * hash + Objects.hashCode(this.utilizador);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
@@ -66,11 +76,9 @@ public class Organizador implements Exportable, Importable<Organizador> {
         return true;
     }
 
-    public boolean valida() {
-        if (this.utilizador == null) {
-            return false;
-        }
-        return true;
+    @Override
+    public String toString() {
+        return "\n Organizador{" + "utilizador=" + utilizador + '}';
     }
 
     @Override
@@ -84,12 +92,10 @@ public class Organizador implements Exportable, Importable<Organizador> {
             Document document = builder.newDocument();
             Element elementOrganizador = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element
             Node utilizadorNode = this.utilizador.exportContentToXMLNode();
             elementOrganizador.appendChild(document.importNode(utilizadorNode, true));
 
-            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementOrganizador);
             rootNode = elementOrganizador;

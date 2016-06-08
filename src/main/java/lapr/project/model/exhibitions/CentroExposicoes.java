@@ -87,28 +87,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        final CentroExposicoes other = (CentroExposicoes) obj;
-        if (!Objects.equals(this.registoUtilizadores, other.registoUtilizadores)) {
-            return false;
-        }
-        if (!Objects.equals(this.listaExposicoes, other.listaExposicoes)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         return "CentroExposicoes{" + "\nregistoUtilizadores=" + registoUtilizadores + ", \nlistaExposicoes=" + listaExposicoes + '}';
     }
