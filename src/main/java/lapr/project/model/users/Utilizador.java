@@ -126,16 +126,19 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
     public int hashCode() {
         int hash = 5;
         hash = 71 * hash + Objects.hashCode(this.nome);
-        hash = 71 * hash + Objects.hashCode(this.username);
-        hash = 71 * hash + Objects.hashCode(this.password);
-        hash = 71 * hash + Objects.hashCode(this.email);
-        hash = 71 * hash + Objects.hashCode(this.tipoUtilizador);
-        hash = 71 * hash + Objects.hashCode(this.estado);
+        hash = 72 * hash + Objects.hashCode(this.username);
+        hash = 73 * hash + Objects.hashCode(this.password);
+        hash = 74 * hash + Objects.hashCode(this.email);
+        hash = 75 * hash + Objects.hashCode(this.tipoUtilizador);
+        hash = 76 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
@@ -167,38 +170,36 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
             Document document = builder.newDocument();
             Element elementUtilizador = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementName = document.createElement(NAME_ELEMENT_NAME);
             elementName.setTextContent(getNome());
             elementUtilizador.appendChild(elementName);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementUserName = document.createElement(USERNAME_ELEMENT_NAME);
             elementUserName.setTextContent(getUsername());
             elementUtilizador.appendChild(elementUserName);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementPassword = document.createElement(PASSWORD_ELEMENT_NAME);
             elementPassword.setTextContent(getPassword());
             elementUtilizador.appendChild(elementPassword);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementEmail = document.createElement(EMAIL_ELEMENT_NAME);
             elementEmail.setTextContent(getEmail());
             elementUtilizador.appendChild(elementEmail);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementUserType = document.createElement(USERTYPE_ELEMENT_NAME);
             elementUserType.setTextContent(getTipoUtilizador());
             elementUtilizador.appendChild(elementUserType);
-            
+
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementState = document.createElement(STATE_ELEMENT_NAME);
             elementState.setTextContent(getEstado());
             elementUtilizador.appendChild(elementState);
 
-            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementUtilizador);
             node = elementUtilizador;

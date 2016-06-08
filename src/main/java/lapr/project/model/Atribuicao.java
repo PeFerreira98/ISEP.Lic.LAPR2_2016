@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
 import lapr.project.model.users.FAE;
 
 /**
@@ -46,16 +47,30 @@ public class Atribuicao {
     }
 
     @Override
-    public boolean equals(Object a) {
-        if (this == a) {
-            return true;
-        }
-        if (a == null || getClass() != a.getClass()) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Atribuicao outraAtribuicao = (Atribuicao) a;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Atribuicao other = (Atribuicao) obj;
+        if (!Objects.equals(this.avaliacao, other.avaliacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.fae, other.fae)) {
+            return false;
+        }
+        return true;
+    }
 
-        return fae.equals(outraAtribuicao.fae) && avaliacao.equals(outraAtribuicao.avaliacao);
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.avaliacao);
+        hash = 71 * hash + Objects.hashCode(this.fae);
+        return hash;
     }
 
     @Override

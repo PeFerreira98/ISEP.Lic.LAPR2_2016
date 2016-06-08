@@ -48,6 +48,7 @@ public class FileOp {
             bw.newLine();
             bw.close();
 
+            fw.close();
         } catch (IOException ex) {
             System.out.println("IOException >> No file found/created");
         }
@@ -80,6 +81,10 @@ public class FileOp {
                 }
             }
         }
+        
+        brE.close();
+        frE.close();
+        
         return registoUtilizadores;
     }
 
