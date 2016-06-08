@@ -5,13 +5,13 @@
  */
 package lapr.project.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Produto;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.ListaProdutos;
 
 /**
  *
@@ -23,12 +23,12 @@ public class CriarCandidaturaController {
     
     private Candidatura candidatura;
     private ListaDemonstracoes listaDemonstracoes;
-    private List<Produto> listaProdutos;
+    private ListaProdutos listaProdutos;
 
     public CriarCandidaturaController(Exposicao exposicao) {
         this.exposicao = exposicao;
         this.listaDemonstracoes = new ListaDemonstracoes();
-        this.listaProdutos = new ArrayList<>();
+        this.listaProdutos = new ListaProdutos();
     }
 
     public boolean createCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
@@ -62,7 +62,7 @@ public class CriarCandidaturaController {
 
         if (Produto.validaDesignacao(designacao)) {
             prod = new Produto(designacao);
-            return this.listaProdutos.add(prod);
+            return this.listaProdutos.addProduto(prod);
         }
 
         return false;
@@ -80,15 +80,13 @@ public class CriarCandidaturaController {
     }
 
     private void addProdutosToCandidatura() {
-        this.listaProdutos.stream().forEach((p) -> {
-            this.candidatura.addProduto(p);
-        });
+        this.listaProdutos.getListaProdutos().stream().forEach((p) -> 
+        {this.candidatura.addProduto(p);});
     }
 
     private void addDemonstracoesToCandidatura() {
-        this.listaDemonstracoes.getListaDemonstracoes().stream().forEach((d) -> {
-            this.candidatura.addDemonstracao(d);
-        });
+        this.listaDemonstracoes.getListaDemonstracoes().stream().forEach((d) -> 
+        {this.candidatura.addDemonstracao(d);});
     }
 
     public boolean addCandidaturaToExposicao() {
@@ -99,7 +97,7 @@ public class CriarCandidaturaController {
             }
 
             //adiciona os produtos da lista temporaria a lista dentro da candidatura
-            if (!this.listaProdutos.isEmpty()) {
+            if (!this.listaProdutos.getListaProdutos().isEmpty()) {
                 addProdutosToCandidatura();
             }
 

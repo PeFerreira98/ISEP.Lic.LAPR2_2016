@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import lapr.project.model.lists.ListaDemonstracoes;
+import lapr.project.model.lists.ListaProdutos;
 
 /**
  *
@@ -23,10 +24,10 @@ public class Candidatura {
     private int telemovel;
     private double areaPretendida;
     private int quantidadeConvites;
-    
+
     private CandidaturaState candidaturaState;
     private ListaDemonstracoes listaDemonstracoes;
-    private List<Produto> listaProdutos;
+    private ListaProdutos listaProdutos;
 
     /**
      * Construtor de objecto Candidatura
@@ -46,34 +47,31 @@ public class Candidatura {
 
         this.candidaturaState = CandidaturaState.IN_SUBMISSION;
         this.listaDemonstracoes = new ListaDemonstracoes();
-        this.listaProdutos = new ArrayList<>();
+        this.listaProdutos = new ListaProdutos();
     }
-    
+
     public Candidatura() {
         this.candidaturaState = CandidaturaState.IN_SUBMISSION;
         this.listaDemonstracoes = new ListaDemonstracoes();
-        this.listaProdutos = new ArrayList<>();
+        this.listaProdutos = new ListaProdutos();
     }
 
-    public boolean addDemonstracao(Demonstracao demonstracao){
+    public boolean addDemonstracao(Demonstracao demonstracao) {
         return this.listaDemonstracoes.addDemonstracao(demonstracao);
     }
-    
+
     public boolean addProduto(Produto produto) {
-        if (!this.listaProdutos.stream().noneMatch((p) -> (p.equals(produto)))) {
-            return false;
-        }
-        return this.listaProdutos.add(produto);
+        return this.listaProdutos.addProduto(produto);
     }
-    
+
     public static boolean validaNomeEmpresa(String nomeEmpresa) {
         return !(nomeEmpresa == null || nomeEmpresa.trim().isEmpty());
     }
-    
+
     public static boolean validaMoradaEmpresa(String moradaEmpresa) {
         return !(moradaEmpresa == null || moradaEmpresa.trim().isEmpty());
     }
-    
+
     public static boolean validaTelemovel(int telemovel) {
         return (telemovel > 100000000 && telemovel < 999999999);
     }
@@ -88,8 +86,8 @@ public class Candidatura {
 
     public String getNomeEmpresa() {
         return nomeEmpresa;
-    } 
-    
+    }
+
     public boolean valida() {
         if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome inválido!");
@@ -104,32 +102,28 @@ public class Candidatura {
         }
         return true;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.nomeEmpresa);
+        hash = 53 * hash + Objects.hashCode(this.moradaEmpresa);
+        hash = 53 * hash + this.telemovel;
+        hash = 53 * hash + (int) (Double.doubleToLongBits(this.areaPretendida) ^ (Double.doubleToLongBits(this.areaPretendida) >>> 32));
+        hash = 53 * hash + this.quantidadeConvites;
         return hash;
     }
 
-    /**
-     * Método para comparar um objecto com outro do mesmo tipo
-     *
-     * @param obj objecto Candidatura a comparar
-     * @return true se todos os parâmetros forem iguais. false caso contrário
-     */
-    public boolean equals(Candidatura obj) {
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (getClass() != obj.getClass()) {
             return false;
         }
 
         final Candidatura other = (Candidatura) obj;
-        if (!Objects.equals(this.nomeEmpresa, other.nomeEmpresa)) {
-            return false;
-        }
-        if (!Objects.equals(this.moradaEmpresa, other.moradaEmpresa)) {
-            return false;
-        }
         if (this.telemovel != other.telemovel) {
             return false;
         }
@@ -139,7 +133,12 @@ public class Candidatura {
         if (this.quantidadeConvites != other.quantidadeConvites) {
             return false;
         }
-
+        if (!Objects.equals(this.nomeEmpresa, other.nomeEmpresa)) {
+            return false;
+        }
+        if (!Objects.equals(this.moradaEmpresa, other.moradaEmpresa)) {
+            return false;
+        }
         return true;
     }
 
@@ -149,5 +148,4 @@ public class Candidatura {
                 + quantidadeConvites + ", candidaturaState=" + candidaturaState + ",\n listaDemonstracoes=" + listaDemonstracoes + ",\n listaProdutos=" + listaProdutos + '}';
     }
 
-    
 }
