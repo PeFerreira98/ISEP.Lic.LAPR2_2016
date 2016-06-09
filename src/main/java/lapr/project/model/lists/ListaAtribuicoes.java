@@ -21,8 +21,8 @@ public class ListaAtribuicoes {
         this.listaAtribuicoes = new ArrayList<>();
     }
 
-    public void addAtribuicoes(List<Atribuicao> atrs) {
-        listaAtribuicoes.addAll(atrs);
+    public boolean addAtribuicoes(List<Atribuicao> atrs) {
+        return listaAtribuicoes.addAll(atrs);
     }
 
     public boolean addAtribuicao(Atribuicao atribuicao) {
@@ -37,19 +37,9 @@ public class ListaAtribuicoes {
         return listaAtribuicoes;
     }
 
-    public List<Atribuicao> getAtribuicoes(String id) {
-        List<Atribuicao> atr = new ArrayList<>();
-        for (Atribuicao at : listaAtribuicoes) {
-            if (at.getFae().getUtilizador().getUsername().equals(id)) {
-                atr.add(at);
-            }
-        }
-        return atr;
-    }
-
     @Override
     public String toString() {
-        return "\n ListaAtribuicoes{" + "listaAtribuicoes=" + listaAtribuicoes + '}';
+        return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listaAtribuicoes + '}';
     }
 
 }

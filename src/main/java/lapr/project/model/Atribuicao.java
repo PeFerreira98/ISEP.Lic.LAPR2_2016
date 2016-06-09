@@ -14,14 +14,8 @@ import lapr.project.model.users.FAE;
  */
 public class Atribuicao {
 
-//    private Avaliacao avaliacao;
     private FAE fae;
     private Candidatura candidatura;
-
-    public Atribuicao() {
-        this.fae = new FAE();
-        this.candidatura = new Candidatura();
-    }
     
     public Atribuicao(FAE f, Candidatura c) {
         this.fae = f;
@@ -39,55 +33,9 @@ public class Atribuicao {
         return this.candidatura;
     }
 
-//    public Avaliacao getAvaliacao() {
-//        return avaliacao;
-//    }
-//
-//    public void setAvaliacao(Avaliacao avaliacao) {
-//        this.avaliacao = avaliacao;
-//    }
-
-    /**
-     * @param fae the fae to set
-     */
-    public void setFae(FAE fae) {
-        this.fae = fae;
-    }
-
-    Avaliacao novaAvaliacao() {
-        return new Avaliacao();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        
-//        final Atribuicao other = (Atribuicao) obj;
-//        if (!Objects.equals(this.avaliacao, other.avaliacao)) {
-//            return false;
-//        }
-//        if (!Objects.equals(this.fae, other.fae)) {
-//            return false;
-//        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-//        hash = 71 * hash + Objects.hashCode(this.avaliacao);
-//        hash = 71 * hash + Objects.hashCode(this.fae);
-        return hash;
-    }
-
     @Override
     public String toString() {
-        return fae.getUtilizador().getNome() + " - " + this.candidatura.getNomeEmpresa();
+        return "\n Atribuicao{" + "fae=" + fae + ", candidatura=" + candidatura + '}';
     }
 
 }

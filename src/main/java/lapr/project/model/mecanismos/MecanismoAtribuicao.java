@@ -15,7 +15,8 @@ import lapr.project.model.exhibitions.Exposicao;
  */
 public interface MecanismoAtribuicao {
 
-    public List<Atribuicao> gerarAtribuicoes(Exposicao exposicao);
-
+    public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao);
+    
     public String getDescricao();
+
 }

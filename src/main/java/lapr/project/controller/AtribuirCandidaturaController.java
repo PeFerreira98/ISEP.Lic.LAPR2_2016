@@ -6,6 +6,7 @@
 package lapr.project.controller;
 
 import java.util.List;
+import lapr.project.model.Atribuicao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaAtribuicoes;
@@ -18,17 +19,41 @@ import lapr.project.model.mecanismos.MecanismoAtribuicao;
 public class AtribuirCandidaturaController {
 
     private final CentroExposicoes centroExp;
+    
     private Exposicao exposicao;
     private MecanismoAtribuicao mecanismo;
-    private ListaAtribuicoes atribuicoes;
+    private ListaAtribuicoes listaAtribuicoes;
+    
+    private List<Atribuicao> atribuicoesTemporaria;
 
     public AtribuirCandidaturaController(CentroExposicoes ce) {
         this.centroExp = ce;
+    }
+    
+    public List<Exposicao> getListaExposicoes(){
+        return centroExp.getListaExposicoes().getListaExposicoes();
     }
 
     public List<MecanismoAtribuicao> getListaMecanismos() {
         return centroExp.getListaMecanismos();
     }
     
+    public List<Atribuicao> getListaAtribuicoes() {
+        this.atribuicoesTemporaria = mecanismo.getListaAtribuicoes(this.exposicao);
+        return this.atribuicoesTemporaria;
+    }
+    
+    public boolean registarAtribuicoes(){
+        return listaAtribuicoes.addAtribuicoes(this.atribuicoesTemporaria);
+    }
+    
+    public void setExposicao(Exposicao exposicao){
+        this.exposicao = exposicao;
+        this.listaAtribuicoes = this.exposicao.getListaAtribuicoes();
+    }
+    
+    public void setMecanismo(MecanismoAtribuicao mecanismo){
+        this.mecanismo = mecanismo;
+    }
     
 }

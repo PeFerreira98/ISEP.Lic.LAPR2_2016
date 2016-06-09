@@ -5,17 +5,133 @@
  */
 package lapr.project.ui;
 
+import java.awt.Component;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
+import lapr.project.controller.AtribuirCandidaturaController;
+import lapr.project.model.Candidatura;
+import lapr.project.model.exhibitions.CentroExposicoes;
+import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.mecanismos.MecanismoAtribuicao;
+import lapr.project.model.users.FAE;
+
 /**
  *
  * @author Sara Silva
  */
 public class AtribuirCandidaturaUI extends javax.swing.JFrame {
 
+    private AtribuirCandidaturaController controller;
+
     /**
      * Creates new form AtribuirCandidaturaUI
      */
-    public AtribuirCandidaturaUI() {
+    public AtribuirCandidaturaUI(CentroExposicoes centroExposicoes) {
+        this.controller = new AtribuirCandidaturaController(centroExposicoes);
+
+        super.setTitle("Atribuir Candidatura");
         initComponents();
+
+        inicializarListaExposicao();
+        inicializarListaMecanismos();
+        super.setLocationRelativeTo(null);
+        super.setVisible(true);
+    }
+
+    private void inicializarListaExposicao() {
+        final List<Exposicao> listaExposicao = this.controller.getListaExposicoes();
+
+        if (listaExposicao.isEmpty()) {
+            this.jListExposicao.setModel(new DefaultListModel<>());
+        }
+
+        DefaultListModel listModel = new DefaultListModel() {
+            @Override
+            public int getSize() {
+                return listaExposicao.size();
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                return listaExposicao.get(i);
+            }
+        };
+
+        this.jListExposicao.setModel(listModel);
+        this.jListExposicao.setCellRenderer(new CellRendererExposicao());
+    }
+
+    private void inicializarListaMecanismos() {
+        final List<MecanismoAtribuicao> listaMecanismos = this.controller.getListaMecanismos();
+
+        if (listaMecanismos.isEmpty()) {
+            this.jListMecanismo.setModel(new DefaultListModel<>());
+        }
+
+        DefaultListModel listModel = new DefaultListModel() {
+            @Override
+            public int getSize() {
+                return listaMecanismos.size();
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                return listaMecanismos.get(i);
+            }
+        };
+
+        this.jListMecanismo.setModel(listModel);
+        this.jListMecanismo.setCellRenderer(new CellRendererMecanismos());
+    }
+
+    private class CellRendererExposicao extends JLabel implements ListCellRenderer<Exposicao> {
+
+        public CellRendererExposicao() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Exposicao> list, Exposicao value, int index, boolean isSelected, boolean cellHasFocus) {
+            setText(value.getTitle());
+
+            if (isSelected) {
+                setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
+            } else {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            }
+
+            return this;
+        }
+
+    }
+
+    private class CellRendererMecanismos extends JLabel implements ListCellRenderer<MecanismoAtribuicao> {
+
+        public CellRendererMecanismos() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends MecanismoAtribuicao> list, MecanismoAtribuicao mecanismoAtribuicao, int index, boolean isSelected, boolean cellHasFocus) {
+            setText(mecanismoAtribuicao.getDescricao());
+
+            if (isSelected) {
+                setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
+            } else {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            }
+
+            return this;
+        }
+
     }
 
     /**
@@ -27,119 +143,92 @@ public class AtribuirCandidaturaUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListExposicao = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jListMecanismo = new javax.swing.JList<>();
+        jButtonAtribir = new javax.swing.JButton();
+        jButtonDone = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Mecanismos:");
+        jScrollPane1.setViewportView(jListExposicao);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jScrollPane2.setViewportView(jListMecanismo);
+
+        jButtonAtribir.setText("Atribuir");
+        jButtonAtribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtribirActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButtonDone.setText("Done");
+        jButtonDone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDoneActionPerformed(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList2);
-
-        jButton1.setText("Gerar>>");
-
-        jButton2.setText("OK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonAtribir, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonDone, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(jButton1)))))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAtribir)
+                    .addComponent(jButtonDone))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AtribuirCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AtribuirCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AtribuirCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AtribuirCandidaturaUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButtonDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDoneActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonDoneActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AtribuirCandidaturaUI().setVisible(true);
+    private void jButtonAtribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtribirActionPerformed
+        if (this.jListExposicao.getSelectedValue() != null) {
+            if (this.jListMecanismo.getSelectedValue() != null) {
+                controller.setExposicao(this.jListExposicao.getSelectedValue());
+                controller.setMecanismo(this.jListMecanismo.getSelectedValue());
+
+                new AtribuicaoTempListUI(controller);
+            } else {
+                JOptionPane.showMessageDialog(AtribuirCandidaturaUI.this,
+                        "Seleccione um mecanismo", "Atribuir Candidatura", JOptionPane.INFORMATION_MESSAGE);
             }
-        });
-    }
-    
+        } else {
+            JOptionPane.showMessageDialog(AtribuirCandidaturaUI.this,
+                    "Seleccione uma exposicao", "Atribuir Candidatura", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButtonAtribirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JButton jButtonAtribir;
+    private javax.swing.JButton jButtonDone;
+    private javax.swing.JList<Exposicao> jListExposicao;
+    private javax.swing.JList<MecanismoAtribuicao> jListMecanismo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.model.mecanismos;
+package lapr.project.model.mecanismos.atribuicao;
 
 import java.util.List;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.mecanismos.MecanismoAtribuicao;
 
 /**
  *
@@ -22,11 +23,10 @@ public class MecanismoExpProfissional implements MecanismoAtribuicao {
     }
 
     @Override
-    public List<Atribuicao> gerarAtribuicoes(Exposicao exposicao) {
+    public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public String getDescricao() {
         return descricao;
     }
