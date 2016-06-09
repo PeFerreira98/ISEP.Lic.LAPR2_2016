@@ -11,7 +11,6 @@ package lapr.project.model;
  */
 public class Avaliacao {
 
-    private Candidatura candidatura;
     private String decisao;
     private String justificacao;
     int[] array = new int[5];
@@ -31,20 +30,12 @@ public class Avaliacao {
         this.decisao = decisao;
     }
 
-    public void setCandidatura(Candidatura candidatura) {
-        this.candidatura = candidatura;
-    }
-
     public String getJustificacao() {
         return justificacao;
     }
 
     public void setJustificacao(String justificacao) {
         this.justificacao = justificacao;
-    }
-
-    public Candidatura getCandidatura() {
-        return candidatura;
     }
 
     public boolean valida() {
@@ -58,15 +49,15 @@ public class Avaliacao {
         return true;
     }
 
-    public boolean equals(Avaliacao a) {
-        if (this == a) {
-            return true;
-        }
-        if (a == null || getClass() != a.getClass()) {
-            return false;
-        }
-        Avaliacao outraAvaliacao = (Avaliacao) a;
-
-        return candidatura.equals(outraAvaliacao.candidatura);
-    }
+//    public boolean equals(Avaliacao a) {
+//        if (this == a) {
+//            return true;
+//        }
+//        if (a == null || getClass() != a.getClass()) {
+//            return false;
+//        }
+//        Avaliacao outraAvaliacao = (Avaliacao) a;
+//
+//        return candidatura.equals(outraAvaliacao.candidatura);
+//    }
 }

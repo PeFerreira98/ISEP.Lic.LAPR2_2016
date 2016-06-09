@@ -5,7 +5,7 @@
  */
 package lapr.project.model;
 
-import java.util.Objects;
+//import java.util.Objects;
 import lapr.project.model.users.FAE;
 
 /**
@@ -14,10 +14,18 @@ import lapr.project.model.users.FAE;
  */
 public class Atribuicao {
 
-    private Avaliacao avaliacao;
+//    private Avaliacao avaliacao;
     private FAE fae;
+    private Candidatura candidatura;
 
     public Atribuicao() {
+        this.fae = new FAE();
+        this.candidatura = new Candidatura();
+    }
+    
+    public Atribuicao(FAE f, Candidatura c) {
+        this.fae = f;
+        this.candidatura = c;
     }
 
     /**
@@ -26,14 +34,18 @@ public class Atribuicao {
     public FAE getFae() {
         return fae;
     }
-
-    public Avaliacao getAvaliacao() {
-        return avaliacao;
+    
+    public Candidatura getCandidatura(){
+        return this.candidatura;
     }
 
-    public void setAvaliacao(Avaliacao avaliacao) {
-        this.avaliacao = avaliacao;
-    }
+//    public Avaliacao getAvaliacao() {
+//        return avaliacao;
+//    }
+//
+//    public void setAvaliacao(Avaliacao avaliacao) {
+//        this.avaliacao = avaliacao;
+//    }
 
     /**
      * @param fae the fae to set
@@ -55,27 +67,27 @@ public class Atribuicao {
             return false;
         }
         
-        final Atribuicao other = (Atribuicao) obj;
-        if (!Objects.equals(this.avaliacao, other.avaliacao)) {
-            return false;
-        }
-        if (!Objects.equals(this.fae, other.fae)) {
-            return false;
-        }
+//        final Atribuicao other = (Atribuicao) obj;
+//        if (!Objects.equals(this.avaliacao, other.avaliacao)) {
+//            return false;
+//        }
+//        if (!Objects.equals(this.fae, other.fae)) {
+//            return false;
+//        }
         return true;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.avaliacao);
-        hash = 71 * hash + Objects.hashCode(this.fae);
+//        hash = 71 * hash + Objects.hashCode(this.avaliacao);
+//        hash = 71 * hash + Objects.hashCode(this.fae);
         return hash;
     }
 
     @Override
     public String toString() {
-        return fae.getUtilizador().getNome() + " - " + avaliacao.getCandidatura().getNomeEmpresa();
+        return fae.getUtilizador().getNome() + " - " + this.candidatura.getNomeEmpresa();
     }
 
 }
