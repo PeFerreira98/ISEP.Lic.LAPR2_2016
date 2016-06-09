@@ -59,6 +59,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         btnViewUser = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnRefresh = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAccount = new javax.swing.JMenu();
         jMenuItemSettings = new javax.swing.JMenuItem();
@@ -95,6 +96,11 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         });
 
         btnViewExpo.setText("View Info");
+        btnViewExpo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewExpoActionPerformed(evt);
+            }
+        });
 
         btnViewUser.setText("View client info");
         btnViewUser.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +112,19 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         jLabel1.setText("Expo list");
 
         jLabel2.setText("Pending users");
+
+        btnRefresh.setText("Refresh");
+        btnRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnRefreshMousePressed(evt);
+            }
+        });
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         jMenuAccount.setText("My account");
 
@@ -155,8 +174,13 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
                         .addGap(71, 71, 71)
                         .addComponent(btnAcceptUser, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnViewUser)))
+                        .addComponent(btnViewUser)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(35, 35, 35))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(btnRefresh)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +199,9 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
                     .addComponent(btnAcceptUser)
                     .addComponent(btnViewExpo)
                     .addComponent(btnExpoCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRefresh)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -209,7 +235,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnExpoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpoCreateActionPerformed
-        new CriarExposicaoUI(centroExposicoes.getListaExposicoes());
+        new CriarExposicaoUI(centroExposicoes);
     }//GEN-LAST:event_btnExpoCreateActionPerformed
 
     private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
@@ -221,9 +247,28 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         new LoginUI(centroExposicoes);
     }//GEN-LAST:event_jMenuItemLogoutActionPerformed
 
+    private void btnViewExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewExpoActionPerformed
+        new ViewExpoUI(this.centroExposicoes.getListaExposicoes().getExpoByName(jlstExpo.getSelectedItem()));
+    }//GEN-LAST:event_btnViewExpoActionPerformed
+
+    private void btnRefreshMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMousePressed
+       jlstExpo.removeAll();
+        for (Exposicao exposicao : centroExposicoes.getListaExposicoes().getListaExposicoes()) {
+            jlstExpo.add(exposicao.getTitle());
+        }
+    }//GEN-LAST:event_btnRefreshMousePressed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        jlstExpo.removeAll();
+        for (Exposicao exposicao : centroExposicoes.getListaExposicoes().getListaExposicoes()) {
+            jlstExpo.add(exposicao.getTitle());
+        }
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptUser;
     private javax.swing.JButton btnExpoCreate;
+    private javax.swing.JToggleButton btnRefresh;
     private javax.swing.JButton btnViewExpo;
     private javax.swing.JButton btnViewUser;
     private java.awt.Choice choice1;

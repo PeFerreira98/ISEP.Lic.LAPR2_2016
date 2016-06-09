@@ -6,86 +6,78 @@
 package lapr.project.ui;
 
 import java.awt.Component;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import lapr.project.controller.CriarExposicao2Controller;
-import lapr.project.controller.CriarExposicaoController;
-import lapr.project.model.Recurso;
-import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaExposicoes;
-import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.users.Organizador;
-import lapr.project.model.users.Utilizador;
-import lapr.project.utils.Data;
-
 /**
  *
  * @author TiagoSilvestre
  */
-public class CriarExposicaoUI extends javax.swing.JFrame {
+public class ViewExpoUI extends javax.swing.JFrame {
 
     private Exposicao expo;
-    private CriarExposicao2Controller controller;
-    private CentroExposicoes centroExpo;
-    private ListaOrganizadores lstOrgAux;
-    
+
     /**
      * Creates new form CriarExposicaoUI
-     * @param centroExpo
+     *
+     * @param e
      */
-    public CriarExposicaoUI(CentroExposicoes centroExpo) {
-        this.centroExpo = centroExpo;
-        this.controller = new CriarExposicao2Controller(centroExpo);
-        this.lstOrgAux = new ListaOrganizadores();
-        
-        
-        super.setTitle("Create Exhibition Window");
+    public ViewExpoUI(Exposicao e) {
+        this.expo = e;
+        super.setTitle("View Exhibition");
         initComponents();
         inicializarLista();
+
+        txtTitulo.setText(this.expo.getTitle());
+        txtDescricao.setText(this.expo.getDescription());
+        txtLocal.setText(this.expo.getLocal());
+        fTxtPeriodoRealizacaoInicio.setText(this.expo.getDataInicioRealizacao().toString());
+        fTxtPeriodoRealizacaoFim.setText(this.expo.getDataFimRealizacao().toString());
+        fTxtPeriodoSubmissaoInicio.setText(this.expo.getDataInicioSubmissao().toString());
+        fTxtPeriodoSubmissaoFim.setText(this.expo.getDataFimSubmissao().toString());
+
         setLocationRelativeTo(null);
         super.setVisible(true);
     }
-    
-    
-    private void inicializarLista() {
-        final List<Utilizador> lstUsers = this.centroExpo.getRegistoUtilizadores().getListaUtilizadoresRegistados();
 
-        if (lstUsers.isEmpty()) {
-            this.jLstUtilizadores.setModel(new DefaultListModel<>());
-            JOptionPane.showMessageDialog(this, "Não existem recursos");
+    private void inicializarLista() {
+        final List<Organizador> lstOrg = this.expo.getListaOrganizadores().getLstOrganizadores();
+
+        if (lstOrg.isEmpty()) {
+            this.jLstOrganizadores.setModel(new DefaultListModel<>());
+            JOptionPane.showMessageDialog(this, "Não existem organizadores");
         }
 
         DefaultListModel listModel = new DefaultListModel() {
             @Override
             public int getSize() {
-                return lstUsers.size();
+                return lstOrg.size();
             }
 
             @Override
             public Object getElementAt(int i) {
-                return lstUsers.get(i);
+                return lstOrg.get(i);
             }
         };
 
-        this.jLstUtilizadores.setModel(listModel);
-        this.jLstUtilizadores.setCellRenderer(new CellRenderer());
+        this.jLstOrganizadores.setModel(listModel);
+        this.jLstOrganizadores.setCellRenderer(new CellRenderer());
     }
 
-    private class CellRenderer extends JLabel implements ListCellRenderer<Utilizador> {
+    private class CellRenderer extends JLabel implements ListCellRenderer<Organizador> {
 
         public CellRenderer() {
             setOpaque(true);
         }
 
         @Override
-        public Component getListCellRendererComponent(JList<? extends Utilizador> list, Utilizador user, int index, boolean isSelected, boolean cellHasFocus) {
-            setText(user.getUsername());
+        public Component getListCellRendererComponent(JList<? extends Organizador> list, Organizador user, int index, boolean isSelected, boolean cellHasFocus) {
+            setText(user.getUtilizador().getUsername());
 
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
@@ -98,7 +90,6 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             return this;
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,14 +119,12 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
         fTxtPeriodoSubmissaoInicio = new javax.swing.JFormattedTextField();
         fTxtPeriodoSubmissaoFim = new javax.swing.JFormattedTextField();
         jPanelSouth = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jLstUtilizadores = new javax.swing.JList<Utilizador>();
-        btnAddOrg = new javax.swing.JToggleButton();
+        jLstOrganizadores = new javax.swing.JList<Organizador>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Nova Exposição");
+        setTitle("Expo info");
 
         lblTitulo.setText("Título:");
 
@@ -143,10 +132,13 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
 
         lblLocal.setText("Local:");
 
+        txtDescricao.setEditable(false);
         txtDescricao.setToolTipText("Descrição da Exposição");
 
+        txtTitulo.setEditable(false);
         txtTitulo.setToolTipText("Título da Exposição");
 
+        txtLocal.setEditable(false);
         txtLocal.setToolTipText("Local da Exposição");
 
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
@@ -198,20 +190,20 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
 
         lblPeriodoSubmissaoFim.setText("Fim:");
 
+        fTxtPeriodoRealizacaoInicio.setEditable(false);
         fTxtPeriodoRealizacaoInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        fTxtPeriodoRealizacaoInicio.setText("dd-mm-aaaa");
         fTxtPeriodoRealizacaoInicio.setToolTipText("Data de início da realização da Exposição");
 
+        fTxtPeriodoRealizacaoFim.setEditable(false);
         fTxtPeriodoRealizacaoFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        fTxtPeriodoRealizacaoFim.setText("dd-mm-aaaa");
         fTxtPeriodoRealizacaoFim.setToolTipText("Data do fim da realização da Exposição");
 
+        fTxtPeriodoSubmissaoInicio.setEditable(false);
         fTxtPeriodoSubmissaoInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        fTxtPeriodoSubmissaoInicio.setText("dd-mm-aaaa");
         fTxtPeriodoSubmissaoInicio.setToolTipText("Data do início da submissão da Exposição");
 
+        fTxtPeriodoSubmissaoFim.setEditable(false);
         fTxtPeriodoSubmissaoFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        fTxtPeriodoSubmissaoFim.setText("dd-mm-aaaa");
         fTxtPeriodoSubmissaoFim.setToolTipText("Data do fim da submissão da Exposição");
 
         javax.swing.GroupLayout jPanelCenterLayout = new javax.swing.GroupLayout(jPanelCenter);
@@ -267,13 +259,6 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         btnOk.setText("OK");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,48 +273,33 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnOk)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
                 .addContainerGap())
         );
         jPanelSouthLayout.setVerticalGroup(
             jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSouthLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelSouthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnOk))
+                .addComponent(btnOk)
                 .addContainerGap())
         );
 
-        jScrollPane1.setViewportView(jLstUtilizadores);
-
-        btnAddOrg.setText("Adicionar Organizador");
-        btnAddOrg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddOrgActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jLstOrganizadores);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelSouth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelSouth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanelCenter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelNorth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAddOrg, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(39, 39, 39))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,69 +312,29 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                         .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddOrg)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelSouth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        super.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if(!txtDescricao.getText().equalsIgnoreCase("") && !txtDescricao.getText().equalsIgnoreCase("") && !txtLocal.getText().equalsIgnoreCase("")){
-            this.controller.addListaOrganizador(lstOrgAux);
-            Data dRinicio = this.controller.convertStringToData(fTxtPeriodoRealizacaoInicio.getText());
-            Data dRfim = this.controller.convertStringToData(fTxtPeriodoRealizacaoFim.getText());
-            Data dSinicio = this.controller.convertStringToData(fTxtPeriodoSubmissaoInicio.getText());
-            Data dSfim = this.controller.convertStringToData(fTxtPeriodoSubmissaoFim.getText());
-            
-            this.controller.criarExpo(txtTitulo.getText(), txtDescricao.getText(), txtLocal.getText(), dSinicio, dSinicio, dSinicio, dSfim);
-            if(!this.lstOrgAux.getLstOrganizadores().isEmpty()){
-                this.controller.addListaOrganizador(lstOrgAux);
-            }
-            JOptionPane.showMessageDialog(CriarExposicaoUI.this,
-                    "Exposição criada", "Utilizadores", JOptionPane.INFORMATION_MESSAGE);
-            
-            dispose();
-        }else{
-           JOptionPane.showMessageDialog(CriarExposicaoUI.this,
-                    "Preencha os campos obrigatórios", "Falta de dados", JOptionPane.ERROR_MESSAGE);
-             
-        }
+        dispose();
     }//GEN-LAST:event_btnOkActionPerformed
-
-    private void btnAddOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrgActionPerformed
-        Utilizador user = jLstUtilizadores.getSelectedValue();
-        if(user == null){
-            JOptionPane.showMessageDialog(CriarExposicaoUI.this,
-                    "Nenhum utilizador seleccionado", "Utilizadores", JOptionPane.ERROR_MESSAGE);
-        }else{
-            lstOrgAux.addOrganizador(user);
-            JOptionPane.showMessageDialog(CriarExposicaoUI.this,
-                    "Organizador adicionado", "Utilizadores", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_btnAddOrgActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnAddOrg;
     private javax.swing.JButton btnOk;
     private javax.swing.JFormattedTextField fTxtPeriodoRealizacaoFim;
     private javax.swing.JFormattedTextField fTxtPeriodoRealizacaoInicio;
     private javax.swing.JFormattedTextField fTxtPeriodoSubmissaoFim;
     private javax.swing.JFormattedTextField fTxtPeriodoSubmissaoInicio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JList<Utilizador> jLstUtilizadores;
+    private javax.swing.JList<Organizador> jLstOrganizadores;
     private javax.swing.JPanel jPanelCenter;
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
