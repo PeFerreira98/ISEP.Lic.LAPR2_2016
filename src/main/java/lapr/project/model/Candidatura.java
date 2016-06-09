@@ -28,6 +28,8 @@ public class Candidatura {
     private CandidaturaState candidaturaState;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
+    
+    private List<Avaliacao> lstAvaliacoes;
 
     /**
      * Construtor de objecto Candidatura
@@ -48,12 +50,23 @@ public class Candidatura {
         this.candidaturaState = CandidaturaState.IN_SUBMISSION;
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
+        
+        this.lstAvaliacoes = new ArrayList<>();
     }
 
     public Candidatura() {
         this.candidaturaState = CandidaturaState.IN_SUBMISSION;
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
+        this.lstAvaliacoes = new ArrayList<>();
+    }
+    
+    public void addAvaliacao(Avaliacao a){
+        this.lstAvaliacoes.add(a);
+    }
+    
+    public void changeState(CandidaturaState cs){
+        this.candidaturaState = cs;
     }
 
     public boolean addDemonstracao(Demonstracao demonstracao) {
