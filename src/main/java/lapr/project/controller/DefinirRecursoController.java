@@ -21,13 +21,9 @@ public class DefinirRecursoController {
     public DefinirRecursoController(CentroExposicoes centroExp) {
         listaRecursos = centroExp.getListaRecursos();
     }
-
-    public List<Recurso> getListaRecursos() {
-        return listaRecursos.getListaRecursos();
-    }
-
-    public void addRecurso(Recurso rec) {
-        listaRecursos.addRecurso(rec);
+    
+    public void addRecurso(String rec) {
+        listaRecursos.addRecurso(new Recurso(rec));
     }
 
 }

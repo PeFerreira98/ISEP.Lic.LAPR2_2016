@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Sara Silva
@@ -23,6 +25,25 @@ public class Recurso {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this){
+            return true;
+        }
+        if(obj.getClass() == this.getClass()){
+            Recurso that =(Recurso) obj;
+            return this.descricao.equals(that.descricao);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.descricao);
+        return hash;
     }
 
 }

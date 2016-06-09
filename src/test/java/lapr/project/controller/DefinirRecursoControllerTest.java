@@ -42,23 +42,6 @@ public class DefinirRecursoControllerTest {
     }
 
     /**
-     * Test of getListaRecursos method, of class DefinirRecursoController.
-     */
-    @Test
-    public void testGetListaRecursos() {
-        System.out.println("getListaRecursos");
-        CentroExposicoes centroExp = new CentroExposicoes();
-        Recurso r = new Recurso("agua");
-        DefinirRecursoController instance = new DefinirRecursoController(centroExp);
-        List<Recurso> expResult = new ArrayList<>();
-        expResult.add(r);
-        instance.addRecurso(r);
-        List<Recurso> result = instance.getListaRecursos();
-        assertEquals(expResult, result);
-
-    }
-
-    /**
      * Test of addRecurso method, of class DefinirRecursoController.
      */
     @Test
@@ -67,7 +50,7 @@ public class DefinirRecursoControllerTest {
         CentroExposicoes centroExp = new CentroExposicoes();
         Recurso rec = new Recurso("xpto");
         DefinirRecursoController instance = new DefinirRecursoController(centroExp);
-        instance.addRecurso(rec);
+        instance.addRecurso("xpto");
         Recurso result = centroExp.getListaRecursos().getListaRecursos().get(0);
         assertEquals(rec, result);
     }
