@@ -45,7 +45,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
 
             }
         }
-        setLocationRelativeTo(null);
+        super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
 
@@ -62,6 +62,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLstExpo1 = new java.awt.List();
         btnDemoCreate = new javax.swing.JToggleButton();
+        btnAtribCandid = new javax.swing.JToggleButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -88,6 +89,13 @@ public class OrganizadorUI extends javax.swing.JFrame {
         btnDemoCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDemoCreateActionPerformed(evt);
+            }
+        });
+
+        btnAtribCandid.setText("Atribuir Candidaturas");
+        btnAtribCandid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtribCandidActionPerformed(evt);
             }
         });
 
@@ -125,9 +133,10 @@ public class OrganizadorUI extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDefinirFAE)
-                            .addComponent(btnDemoCreate)))
+                            .addComponent(btnDemoCreate)
+                            .addComponent(btnAtribCandid)))
                     .addComponent(jLabel1))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,12 +144,14 @@ public class OrganizadorUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLstExpo1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnDefinirFAE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDemoCreate)))
+                        .addComponent(btnDemoCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAtribCandid)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -186,6 +197,10 @@ public class OrganizadorUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDemoCreateActionPerformed
 
+    private void btnAtribCandidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtribCandidActionPerformed
+        new AtribuirCandidaturaUI(centroExpo);
+    }//GEN-LAST:event_btnAtribCandidActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +237,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAtribCandid;
     private javax.swing.JToggleButton btnDefinirFAE;
     private javax.swing.JToggleButton btnDemoCreate;
     private javax.swing.JLabel jLabel1;

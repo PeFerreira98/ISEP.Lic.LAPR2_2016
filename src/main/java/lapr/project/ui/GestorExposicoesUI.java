@@ -25,7 +25,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     public GestorExposicoesUI(Utilizador user, CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
         this.user = user;
-        super.setTitle("Gestor Exposicoes Menu Window");
+        super.setTitle("Gestor Exposicoes Menu (" + user.getUsername() + ")");
         initComponents();
         setLocationRelativeTo(null);
         super.setVisible(true);

@@ -34,49 +34,50 @@ public class FaeUI extends javax.swing.JFrame {
     private FAE fae;
     private CentroExposicoes centroExpo;
     
-    public FaeUI(CentroExposicoes cExpo, Utilizador user) {
-        this.centroExpo = cExpo;
-        this.fae = new FAE(user);
-        super.setTitle("FAE Menu (" + user.getUsername()+ ")");
+    public FaeUI(Utilizador utilizador, CentroExposicoes centroExposicoes) {
+        this.centroExpo = centroExposicoes;
+        this.fae = new FAE(utilizador);
         
+        super.setTitle("FAE Menu (" + utilizador.getUsername() + ")");
         initComponents();
         inicializarLista();
+        super.setVisible(true);
     }
     
     private void inicializarLista() {
         final List<Candidatura> listaCandidaturas = getCandidaturasByFAE(this.fae);
-
+        
         if (listaCandidaturas.isEmpty()) {
             this.jLstCandidaturas.setModel(new DefaultListModel<>());
             JOptionPane.showMessageDialog(this, "Não existem recursos");
         }
-
+        
         DefaultListModel listModel = new DefaultListModel() {
             @Override
             public int getSize() {
                 return listaCandidaturas.size();
             }
-
+            
             @Override
             public Object getElementAt(int i) {
                 return listaCandidaturas.get(i);
             }
         };
-
+        
         this.jLstCandidaturas.setModel(listModel);
         this.jLstCandidaturas.setCellRenderer(new CellRenderer());
     }
-
+    
     private class CellRenderer extends JLabel implements ListCellRenderer<Candidatura> {
-
+        
         public CellRenderer() {
             setOpaque(true);
         }
-
+        
         @Override
         public Component getListCellRendererComponent(JList<? extends Candidatura> list, Candidatura candidatura, int index, boolean isSelected, boolean cellHasFocus) {
             setText(candidatura.getNomeEmpresa());
-
+            
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());
@@ -84,7 +85,7 @@ public class FaeUI extends javax.swing.JFrame {
                 setBackground(list.getBackground());
                 setForeground(list.getForeground());
             }
-
+            
             return this;
         }
     }
@@ -159,12 +160,12 @@ public class FaeUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public List<Candidatura> getCandidaturasByFAE(FAE f){
+    public List<Candidatura> getCandidaturasByFAE(FAE f) {
         List<Candidatura> lstCandidaturas = new ArrayList<>();
         
-        for(Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()){
-            for(Atribuicao a : expo.getListaAtribuicoes().getListaAtribuicoes()){
-                if(a.getFae() == f){
+        for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
+            for (Atribuicao a : expo.getListaAtribuicoes().getListaAtribuicoes()) {
+                if (a.getFae() == f) {
                     lstCandidaturas.add(a.getCandidatura());
                 }
             }
@@ -174,56 +175,21 @@ public class FaeUI extends javax.swing.JFrame {
     
     private void btnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarActionPerformed
         Candidatura c = jLstCandidaturas.getSelectedValue();
-        if(c == null){
+        if (c == null) {
             
-        }else{
+        } else {
             new AvaliarCandidaturaUI(c);
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 
     private void btnCandidaturaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCandidaturaInfoActionPerformed
         Candidatura c = jLstCandidaturas.getSelectedValue();
-        if(c == null){
+        if (c == null) {
             
-        }else{
+        } else {
             new CandidaturaInfoUI(c);
         }
     }//GEN-LAST:event_btnCandidaturaInfoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FaeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FaeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FaeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FaeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FaeUI().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAvaliar;

@@ -10,10 +10,13 @@ import lapr.project.model.Recurso;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
-import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.mecanismos.atribuicao.MecanismoAtribuicao1;
+import lapr.project.model.mecanismos.atribuicao.MecanismoCargaFAE;
+import lapr.project.model.mecanismos.atribuicao.MecanismoExpProfissional;
+import lapr.project.model.mecanismos.atribuicao.MecanismoNumeroFAE;
+import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
-import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.FileOp;
 
@@ -39,12 +42,13 @@ class Main {
         new LoginUI(centroExposicoes);
 
         //Janelas ainda não conectadas (apenas para testes)
-        
         //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
-        //new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
-       
+        new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
+        //new OrganizadorUI(centroExposicoes.getRegistoUtilizadores().checkUtilizadorByUsername("organizador"), centroExposicoes);
+        //new AtribuirCandidaturaUI(centroExposicoes);
+
         System.out.println(centroExposicoes);
-        
+
         new FileOp().writeXMLFile(centroExposicoes);
     }
 
@@ -79,50 +83,38 @@ class Main {
         Candidatura candidatura1 = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20);
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800);
-        
+
         exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("organizador"));
+
         exposicao1.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
         exposicao2.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
         exposicao3.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
-        
-        
+
+        exposicao1.addCandidatura(candidatura1);
+        exposicao1.addCandidatura(candidatura2);
+        exposicao1.addCandidatura(candidatura3);
+
+        exposicao1.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")));
+        exposicao2.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")));
+
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);
-        
+
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
         
+        centroExposicoes.addMecanismo(new MecanismoCargaFAE());
+        centroExposicoes.addMecanismo(new MecanismoExpProfissional());
+        centroExposicoes.addMecanismo(new MecanismoNumeroFAE());
+        centroExposicoes.addMecanismo(new MecanismoAtribuicao1());
+
         Recurso r1 = new Recurso("Desc1");
         Recurso r2 = new Recurso("Desc2");
+
         centroExposicoes.getListaRecursos().addRecurso(r1);
         centroExposicoes.getListaRecursos().addRecurso(r2);
-        
-        new OrganizadorUI(registoUtilizadores.checkUtilizadorByUsername("organizador"), centroExposicoes);
-        
+
         return centroExposicoes;
     }
-    
-    
 
 }
-
-//        try {
-//            registoUtilizadores = new ReadWriteTxtFile().readFile(new File("userList.txt"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("File userlist not found");
-//        }
-//        
-//        Utilizador utilizador1 = new Utilizador("Dummy2", "representante", "representante", "representante@domain.pt", "REPRESENTANTE");
-//        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
-//        Utilizador utilizador3 = new Utilizador("Dummy4", "gestor", "gestor", "gestor@domain.pt", "GESTOR");
-//        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt", "ORGANIZADOR");
-//
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador1);
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador2);
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador3);
-//        registoUtilizadores.addUtilizadorNaoRegistado(utilizador4);
-//
-//        registoUtilizadores.registarUtilizador(utilizador2);
-//        registoUtilizadores.registarUtilizador(utilizador3);
-//        registoUtilizadores.registarUtilizador(utilizador4);

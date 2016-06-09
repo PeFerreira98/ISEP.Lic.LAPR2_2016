@@ -62,11 +62,12 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnDefinirFAE" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDemoCreate" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAtribCandid" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="216" max="32767" attributes="0"/>
+              <EmptySpace pref="209" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,12 +77,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLstExpo1" min="-2" pref="265" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btnDefinirFAE" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnDemoCreate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnAtribCandid" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="59" max="32767" attributes="0"/>
@@ -114,6 +117,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDemoCreateActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="btnAtribCandid">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Atribuir Candidaturas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtribCandidActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
