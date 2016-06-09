@@ -20,6 +20,7 @@ import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
@@ -34,12 +35,14 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     private CriarExposicao2Controller controller;
     private CentroExposicoes centroExpo;
     private ListaOrganizadores lstOrgAux;
+    private Utilizador user;
     
     /**
      * Creates new form CriarExposicaoUI
      * @param centroExpo
      */
-    public CriarExposicaoUI(CentroExposicoes centroExpo) {
+    public CriarExposicaoUI(CentroExposicoes centroExpo, Utilizador user) {
+        this.user = user;
         this.centroExpo = centroExpo;
         this.controller = new CriarExposicao2Controller(centroExpo);
         this.lstOrgAux = new ListaOrganizadores();
@@ -368,6 +371,8 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
             if(!this.lstOrgAux.getLstOrganizadores().isEmpty()){
                 this.controller.addListaOrganizador(lstOrgAux);
             }
+            GestorExposicoes ge = new GestorExposicoes(this.user);
+            this.controller.addGestor(ge);
             JOptionPane.showMessageDialog(CriarExposicaoUI.this,
                     "Exposição criada", "Utilizadores", JOptionPane.INFORMATION_MESSAGE);
             

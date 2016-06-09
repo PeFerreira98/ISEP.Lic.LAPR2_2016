@@ -15,6 +15,7 @@ import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.users.FAE;
+import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
@@ -37,6 +38,8 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     private String title;
     private String description;
     private String local;
+    
+    private GestorExposicoes gestor;
     
     private Data dataInicioRealizacao;
     private Data dataFimRealizacao;
@@ -117,6 +120,14 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaAtribuicoes = new ListaAtribuicoes();
         this.listaCandidaturas = new ListaCandidaturas();
+    }
+    
+    public void setGestor(GestorExposicoes ge){
+        this.gestor = ge; 
+    }
+    
+    public GestorExposicoes getGestor(){
+        return this.gestor;
     }
 
     public FAE getFAE(String username) {

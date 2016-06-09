@@ -235,7 +235,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnExpoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpoCreateActionPerformed
-        new CriarExposicaoUI(centroExposicoes);
+        new CriarExposicaoUI(centroExposicoes, this.user);
     }//GEN-LAST:event_btnExpoCreateActionPerformed
 
     private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed

@@ -33,6 +33,7 @@ public class ViewExpoUI extends javax.swing.JFrame {
         initComponents();
         inicializarLista();
 
+        jTxtGestor.setText(this.expo.getGestor().getUtilizador().getUsername());
         txtTitulo.setText(this.expo.getTitle());
         txtDescricao.setText(this.expo.getDescription());
         txtLocal.setText(this.expo.getLocal());
@@ -50,7 +51,6 @@ public class ViewExpoUI extends javax.swing.JFrame {
 
         if (lstOrg.isEmpty()) {
             this.jLstOrganizadores.setModel(new DefaultListModel<>());
-            JOptionPane.showMessageDialog(this, "Não existem organizadores");
         }
 
         DefaultListModel listModel = new DefaultListModel() {
@@ -107,6 +107,8 @@ public class ViewExpoUI extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
         txtLocal = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTxtGestor = new javax.swing.JTextField();
         jPanelCenter = new javax.swing.JPanel();
         lblPeriodoRealizacao = new javax.swing.JLabel();
         lblPeriodoRealizacaoInicio = new javax.swing.JLabel();
@@ -141,6 +143,10 @@ public class ViewExpoUI extends javax.swing.JFrame {
         txtLocal.setEditable(false);
         txtLocal.setToolTipText("Local da Exposição");
 
+        jLabel1.setText("Gestor:");
+
+        jTxtGestor.setEditable(false);
+
         javax.swing.GroupLayout jPanelNorthLayout = new javax.swing.GroupLayout(jPanelNorth);
         jPanelNorth.setLayout(jPanelNorthLayout);
         jPanelNorthLayout.setHorizontalGroup(
@@ -148,20 +154,30 @@ public class ViewExpoUI extends javax.swing.JFrame {
             .addGroup(jPanelNorthLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblDescricao)
-                    .addComponent(lblTitulo)
-                    .addComponent(lblLocal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescricao)
-                    .addComponent(txtTitulo)
-                    .addComponent(txtLocal))
+                    .addGroup(jPanelNorthLayout.createSequentialGroup()
+                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDescricao)
+                            .addComponent(lblTitulo)
+                            .addComponent(lblLocal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                            .addComponent(txtTitulo)
+                            .addComponent(txtLocal)))
+                    .addGroup(jPanelNorthLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTxtGestor)))
                 .addContainerGap())
         );
         jPanelNorthLayout.setVerticalGroup(
             jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNorthLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNorthLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTxtGestor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
                     .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,7 +189,7 @@ public class ViewExpoUI extends javax.swing.JFrame {
                 .addGroup(jPanelNorthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLocal)
                     .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         lblPeriodoRealizacao.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -307,8 +323,8 @@ public class ViewExpoUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanelNorth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelNorth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -334,11 +350,13 @@ public class ViewExpoUI extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField fTxtPeriodoRealizacaoInicio;
     private javax.swing.JFormattedTextField fTxtPeriodoSubmissaoFim;
     private javax.swing.JFormattedTextField fTxtPeriodoSubmissaoInicio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList<Organizador> jLstOrganizadores;
     private javax.swing.JPanel jPanelCenter;
     private javax.swing.JPanel jPanelNorth;
     private javax.swing.JPanel jPanelSouth;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTxtGestor;
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblPeriodoRealizacao;

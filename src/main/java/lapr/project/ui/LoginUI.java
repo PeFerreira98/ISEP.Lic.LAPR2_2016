@@ -139,6 +139,7 @@ public class LoginUI extends javax.swing.JFrame {
 
                     if (utilizador.isGestor()) {
                         new GestorExposicoesUI(utilizador, centroExposicoes);
+                        dispose();
                     } else {
                         JOptionPane.showMessageDialog(LoginUI.this,
                                 "Para já só gestores allowed", "Login", JOptionPane.INFORMATION_MESSAGE);

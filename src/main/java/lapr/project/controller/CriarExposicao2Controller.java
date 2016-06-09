@@ -9,6 +9,7 @@ import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
 import lapr.project.utils.Data;
 
@@ -47,6 +48,10 @@ public class CriarExposicao2Controller {
         for (Organizador o : lst.getLstOrganizadores()) {
             this.exposicao.getListaOrganizadores().getLstOrganizadores().add(o);
         }
+    }
+    
+    public void addGestor(GestorExposicoes g){
+        this.exposicao.setGestor(g);
     }
 
     public void criarExpo(String titulo, String desc, String local, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao) {

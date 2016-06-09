@@ -16,12 +16,16 @@ public class GestorExposicoes {
     private Utilizador utilizador;
 
     /**
-     * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
+     * Construtor de objecto Gestor
      *
      * @param utilizador
      */
     public GestorExposicoes(Utilizador utilizador) {
         this.utilizador = utilizador;
+    }
+    
+    public Utilizador getUtilizador() {
+        return utilizador;
     }
 
     @Override

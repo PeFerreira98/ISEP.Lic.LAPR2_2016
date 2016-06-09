@@ -12,6 +12,7 @@ import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.FileOp;
@@ -80,6 +81,10 @@ class Main {
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800);
         
         exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("organizador"));
+        exposicao1.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
+        exposicao2.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
+        exposicao3.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
+        
         
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
