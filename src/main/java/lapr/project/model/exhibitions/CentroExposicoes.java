@@ -15,9 +15,6 @@ import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.mecanismos.MecanismoAtribuicao;
-import lapr.project.model.mecanismos.MecanismoCargaFAE;
-import lapr.project.model.mecanismos.MecanismoExpProfissional;
-import lapr.project.model.mecanismos.MecanismoNumeroFAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -35,7 +32,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     private RegistoUtilizadores registoUtilizadores;
     private ListaExposicoes listaExposicoes;
     
-    private final List<MecanismoAtribuicao> listaMecanismos;
+    private List<MecanismoAtribuicao> listaMecanismos;
     private ListaRecursos listaRecursos;
 
     /**
@@ -52,9 +49,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         this.listaExposicoes = listaExposicoes;
         
         listaMecanismos = new ArrayList<>();
-        listaMecanismos.add(new MecanismoCargaFAE());
-        listaMecanismos.add(new MecanismoExpProfissional());
-        listaMecanismos.add(new MecanismoNumeroFAE());
         listaRecursos = new ListaRecursos();
     }
 
@@ -64,10 +58,11 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         registoUtilizadores = new RegistoUtilizadores();
         
         listaMecanismos = new ArrayList<>();
-        listaMecanismos.add(new MecanismoCargaFAE());
-        listaMecanismos.add(new MecanismoExpProfissional());
-        listaMecanismos.add(new MecanismoNumeroFAE());
         listaRecursos = new ListaRecursos();
+    }
+    
+    public void addMecanismo(MecanismoAtribuicao mecanismoAtribuicao){
+        listaMecanismos.add(mecanismoAtribuicao);
     }
 
     public ListaExposicoes getListaExposicoes() {

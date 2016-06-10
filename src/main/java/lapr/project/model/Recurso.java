@@ -28,22 +28,31 @@ public class Recurso {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if(obj == this){
-            return true;
-        }
-        if(obj.getClass() == this.getClass()){
-            Recurso that =(Recurso) obj;
-            return this.descricao.equals(that.descricao);
-        }
-        return false;
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.descricao);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.descricao);
-        return hash;
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Recurso other = (Recurso) obj;
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "\nRecurso{" + "descricao=" + descricao + '}';
     }
 
 }

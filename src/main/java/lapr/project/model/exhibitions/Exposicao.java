@@ -260,7 +260,7 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
 
     @Override
     public String toString() {
-        return "Exposicao{" + "title=" + title + ", description=" + description
+        return "\nExposicao{" + "title=" + title + ", description=" + description
                 + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao
                 + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao="
                 + dataInicioSubmissao + ", dataFimSubmissao=" + dataFimSubmissao
