@@ -20,7 +20,7 @@ import lapr.project.model.lists.ListaProdutos;
 public class CriarCandidaturaController {
 
     private Exposicao exposicao;
-    
+
     private Candidatura candidatura;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
@@ -43,18 +43,11 @@ public class CriarCandidaturaController {
     }
 
     private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
-        if (Candidatura.validaNomeEmpresa(nomeEmpresa)) {
-            if (Candidatura.validaMoradaEmpresa(moradaEmpresa)) {
-                if (Candidatura.validaTelemovel(telemovel)) {
-                    if (Candidatura.validaAreaPretendida(areaPretendida)) {
-                        if (Candidatura.validaQuantidadeConvites(quantidadeConvites)) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return (Candidatura.validaNomeEmpresa(nomeEmpresa)
+                && Candidatura.validaMoradaEmpresa(moradaEmpresa)
+                && Candidatura.validaTelemovel(telemovel)
+                && Candidatura.validaAreaPretendida(areaPretendida)
+                && Candidatura.validaQuantidadeConvites(quantidadeConvites));
     }
 
     public boolean addProduto(String designacao) {
@@ -80,13 +73,17 @@ public class CriarCandidaturaController {
     }
 
     private void addProdutosToCandidatura() {
-        this.listaProdutos.getListaProdutos().stream().forEach((p) -> 
-        {this.candidatura.addProduto(p);});
+        //Não usar func operations, SonarCube não gosta...
+        for (Produto p : listaProdutos.getListaProdutos()) {
+            this.candidatura.addProduto(p);
+        }
     }
 
     private void addDemonstracoesToCandidatura() {
-        this.listaDemonstracoes.getListaDemonstracoes().stream().forEach((d) -> 
-        {this.candidatura.addDemonstracao(d);});
+        //Não usar func operations, SonarCube não gosta...
+        for (Demonstracao d : listaDemonstracoes.getListaDemonstracoes()) {
+            this.candidatura.addDemonstracao(d);
+        }
     }
 
     public boolean addCandidaturaToExposicao() {

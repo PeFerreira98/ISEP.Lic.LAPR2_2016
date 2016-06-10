@@ -252,10 +252,8 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
                 || this.dataInicioRealizacao == null
                 || this.dataFimRealizacao == null
                 || this.dataInicioSubmissao == null
-                || this.dataFimRealizacao == null
-                || this.local.equalsIgnoreCase("")
-                || !listaFAE.valida()
-                || !listaOrganizadores.valida());
+                || this.dataFimSubmissao == null
+                || this.local.equalsIgnoreCase(""));
     }
 
     @Override

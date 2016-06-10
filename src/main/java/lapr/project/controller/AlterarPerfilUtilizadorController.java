@@ -5,7 +5,7 @@
  */
 package lapr.project.controller;
 
-import javax.swing.text.Utilities;
+
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 

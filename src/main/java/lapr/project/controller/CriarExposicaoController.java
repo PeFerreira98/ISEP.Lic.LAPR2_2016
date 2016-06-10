@@ -5,7 +5,6 @@
  */
 package lapr.project.controller;
 
-import java.util.List;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
@@ -37,7 +36,7 @@ public class CriarExposicaoController {
         return this.listaExposicoes.addExposicao(exposicao);
     }
 
-    public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local, ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
+    public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
         exposicao.setTitle(nomeExposicao);
         exposicao.setDescription(descricaoExposicao);
         exposicao.setDataInicioRealizacao(dataInicioRealizacao);
@@ -45,8 +44,6 @@ public class CriarExposicaoController {
         exposicao.setDataInicioSubmissao(dataInicioSubmissao);
         exposicao.setDataFimSubmissao(dataFimSubmissao);
         exposicao.setLocal(local);
-        exposicao.setListaOrganizadores(listaOrganizadores);
-        exposicao.setListaFAE(listaFAE);
     }
 
     public Utilizador getUtilizador(String username) {

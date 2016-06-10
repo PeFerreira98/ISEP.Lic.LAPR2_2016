@@ -19,12 +19,10 @@ import lapr.project.model.users.Utilizador;
 public class DefinirFAEController {
 
     private RegistoUtilizadores registoUtilizadores;
-    private Exposicao exposicao;
     private ListaFAE listaFAE;
 
     public DefinirFAEController(RegistoUtilizadores registoUtilizadores, Exposicao exposicao) {
         this.registoUtilizadores = registoUtilizadores;
-        this.exposicao = exposicao;
         this.listaFAE = exposicao.getListaFAE();
     }
 

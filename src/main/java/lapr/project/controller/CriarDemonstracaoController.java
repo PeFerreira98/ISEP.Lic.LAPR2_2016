@@ -6,8 +6,6 @@
 package lapr.project.controller;
 
 import lapr.project.model.Demonstracao;
-import lapr.project.model.Recurso;
-import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaRecursos;
 

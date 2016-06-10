@@ -140,9 +140,6 @@ public class Candidatura {
         if (this.telemovel != other.telemovel) {
             return false;
         }
-        if (Double.doubleToLongBits(this.areaPretendida) != Double.doubleToLongBits(other.areaPretendida)) {
-            return false;
-        }
         if (this.quantidadeConvites != other.quantidadeConvites) {
             return false;
         }

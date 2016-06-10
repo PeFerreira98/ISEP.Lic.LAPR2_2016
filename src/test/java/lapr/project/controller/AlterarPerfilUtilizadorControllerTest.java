@@ -74,6 +74,19 @@ public class AlterarPerfilUtilizadorControllerTest {
 
     }
 
+    @Test
+    public void testConfirmPasswordFail() {
+        System.out.println("confirmPassword");
+        String pw = "passw";
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt", "organizador");
+        RegistoUtilizadores rUers = new RegistoUtilizadores();
+        AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
+        boolean expResult = false;
+        boolean result = instance.confirmPassword(pw);
+        assertEquals(expResult, result);
+
+    }
+
     /**
      * Test of setPassword method, of class AlterarPerfilUtilizadorController.
      */
@@ -98,13 +111,30 @@ public class AlterarPerfilUtilizadorControllerTest {
     public void testSetEmail() {
         System.out.println("setEmail");
         String email = "1140956@isep.ipp.pt";
-       Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         boolean expResult = true;
         boolean result = instance.setEmail(email);
         assertEquals(expResult, result);
-       
+
+    }
+
+    @Test
+    public void testSetEmailFail() {
+        System.out.println("setEmail");
+        
+        String email = "1140956@isep.ipp.pt";
+        Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador");
+        RegistoUtilizadores rUers = new RegistoUtilizadores();
+        rUers.addUtilizadorNaoRegistado(new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador"));
+        AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
+        
+        boolean expResult = false;
+        boolean result = instance.setEmail(email);
+        
+        assertEquals(expResult, result);
+
     }
 
 }

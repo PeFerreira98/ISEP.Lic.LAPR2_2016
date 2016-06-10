@@ -15,15 +15,15 @@ import lapr.project.model.users.Utilizador;
  */
 public class ConfirmarRegistoController {
 
-    private final CentroExposicoes m_centro_exposicoes;
+    private final CentroExposicoes centroExposicoes;
     private Utilizador utilizador;
 
-    public ConfirmarRegistoController(CentroExposicoes centro_exposicoes) {
-        m_centro_exposicoes = centro_exposicoes;
+    public ConfirmarRegistoController(CentroExposicoes centroExposicoes) {
+        this.centroExposicoes = centroExposicoes;
     }
 
     public List<Utilizador> getListUtNaoConfirmado() {
-        return m_centro_exposicoes.getRegistoUtilizadores().getListaUtilizadoresNaoRegistados();
+        return this.centroExposicoes.getRegistoUtilizadores().getListaUtilizadoresNaoRegistados();
     }
 
     public void setUtilizador(Utilizador utilizador) {
@@ -31,10 +31,10 @@ public class ConfirmarRegistoController {
     }
 
     public String utilizadorToString() {
-        return utilizador.toString();
+        return this.utilizador.toString();
     }
 
     public void confirmaUtilizador() {
-        m_centro_exposicoes.getRegistoUtilizadores().registarUtilizador(utilizador);
+        this.centroExposicoes.getRegistoUtilizadores().registarUtilizador(utilizador);
     }
 }

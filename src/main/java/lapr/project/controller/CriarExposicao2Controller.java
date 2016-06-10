@@ -7,7 +7,6 @@ package lapr.project.controller;
 
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
@@ -21,23 +20,22 @@ public class CriarExposicao2Controller {
 
     private CentroExposicoes centroExposicoes;
     private Exposicao exposicao;
-    private ListaOrganizadores listaOrganizadores;
 
     public CriarExposicao2Controller(CentroExposicoes centroExpo) {
         this.centroExposicoes = centroExpo;
         this.exposicao = new Exposicao();
-        this.listaOrganizadores = new ListaOrganizadores();
     }
 
     public Data convertStringToData(String data) {
-        Data d = new Data();
+        final Data d;
+
         String[] aux = data.split("-");
         int dia = Integer.parseInt(aux[0]);
         int mes = Integer.parseInt(aux[1]);
         int ano = Integer.parseInt(aux[2]);
-        
+
         d = new Data(ano, mes, dia);
-                
+
         return d;
     }
 
@@ -49,13 +47,13 @@ public class CriarExposicao2Controller {
             this.exposicao.getListaOrganizadores().getLstOrganizadores().add(o);
         }
     }
-    
-    public void addGestor(GestorExposicoes g){
+
+    public void addGestor(GestorExposicoes g) {
         this.exposicao.setGestor(g);
     }
 
     public void criarExpo(String titulo, String desc, String local, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao) {
-        this.exposicao = new Exposicao(local, desc, dataInicioRealizacao, dataFimRealizacao, dataInicioSubmissao, dataFimSubmissao, local);
+        this.exposicao = new Exposicao(titulo, desc, dataInicioRealizacao, dataFimRealizacao, dataInicioSubmissao, dataFimSubmissao, local);
         addExpo(exposicao);
     }
 

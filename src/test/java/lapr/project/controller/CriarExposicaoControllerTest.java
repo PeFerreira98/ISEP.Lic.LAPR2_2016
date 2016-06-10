@@ -51,14 +51,12 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testNovaExposicao() {
         System.out.println("novaExposicao");
-        ListaOrganizadores listaOrganizadores = new ListaOrganizadores();
-        ListaFAE listaFAE = new ListaFAE();
         Data data1 = new Data(2010, 5, 21);
         Data data2 = new Data(2010, 5, 30);
         Data data3 = new Data(2009, 8, 10);
         Data data4 = new Data(2010, 1, 30);
         CriarExposicaoController instance = new CriarExposicaoController();
-        instance.setDados("expo 1", "chinelos", data1, data2, data3, data4, "exponor", listaOrganizadores, listaFAE);
+        instance.setDados("expo 1", "chinelos", data1, data2, data3, data4, "exponor");
         boolean expResult = true;
         boolean result = instance.novaExposicao();
         assertEquals(expResult, result);
@@ -81,7 +79,7 @@ public class CriarExposicaoControllerTest {
         ListaOrganizadores listaOrganizadores = new ListaOrganizadores();
         ListaFAE listaFAE = new ListaFAE();
         CriarExposicaoController instance = new CriarExposicaoController();
-        instance.setDados(nomeExposicao, descricaoExposicao, dataInicioRealizacao, dataFimRealizacao, dataInicioSubmissao, dataFimSubmissao, local, listaOrganizadores, listaFAE);
+        instance.setDados(nomeExposicao, descricaoExposicao, dataInicioRealizacao, dataFimRealizacao, dataInicioSubmissao, dataFimSubmissao, local);
     }
 
     /**
@@ -131,7 +129,7 @@ public class CriarExposicaoControllerTest {
 
         CriarExposicaoController instance = new CriarExposicaoController();
 
-        instance.setDados("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House", exposicao.getListaOrganizadores(), exposicao.getListaFAE());
+        instance.setDados("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
         boolean expResult = true;
         boolean result = instance.validaExposicao();
@@ -154,7 +152,7 @@ public class CriarExposicaoControllerTest {
         CriarExposicaoController instance = new CriarExposicaoController();
         instance.setDados(exposicao.getTitle(), exposicao.getDescription(), exposicao.getDataInicioRealizacao(),
                 exposicao.getDataFimRealizacao(), exposicao.getDataInicioSubmissao(), exposicao.getDataFimSubmissao(),
-                exposicao.getLocal(), exposicao.getListaOrganizadores(), exposicao.getListaFAE());
+                exposicao.getLocal());
         boolean expResult = true;
         boolean result = instance.registaExposicao();
         assertEquals(expResult, result);
