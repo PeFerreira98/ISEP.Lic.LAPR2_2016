@@ -15,31 +15,34 @@ import lapr.project.model.Atribuicao;
  */
 public class ListaAtribuicoes {
 
-    private List<Atribuicao> listaAtribuicoes;
+    private List<Atribuicao> listAtribuicoes;
 
     public ListaAtribuicoes() {
-        this.listaAtribuicoes = new ArrayList<>();
+        this.listAtribuicoes = new ArrayList<>();
     }
 
     public boolean addAtribuicoes(List<Atribuicao> atrs) {
-        return listaAtribuicoes.addAll(atrs);
+        return listAtribuicoes.addAll(atrs);
     }
 
     public boolean addAtribuicao(Atribuicao atribuicao) {
+
         //procura na lista se ja existe esta atribuição
-        if (!this.listaAtribuicoes.stream().noneMatch((atr) -> (atr.equals(atribuicao)))) {
-            return false;
+        for (Atribuicao a : this.listAtribuicoes) {
+            if (a.equals(atribuicao)) {
+                return false;
+            }
         }
-        return this.listaAtribuicoes.add(atribuicao);
+        return this.listAtribuicoes.add(atribuicao);
     }
 
     public List<Atribuicao> getListaAtribuicoes() {
-        return listaAtribuicoes;
+        return listAtribuicoes;
     }
 
     @Override
     public String toString() {
-        return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listaAtribuicoes + '}';
+        return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listAtribuicoes + '}';
     }
 
 }

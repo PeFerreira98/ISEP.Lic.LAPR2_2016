@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-//import java.util.Objects;
 import lapr.project.model.users.FAE;
 
 /**

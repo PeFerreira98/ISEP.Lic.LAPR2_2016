@@ -7,7 +7,6 @@ package lapr.project.model;
 
 import lapr.project.model.states.CandidaturaState;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import lapr.project.model.lists.ListaDemonstracoes;
@@ -86,15 +85,15 @@ public class Candidatura {
     }
 
     public static boolean validaTelemovel(int telemovel) {
-        return (telemovel > 100000000 && telemovel < 999999999);
+        return telemovel > 100000000 && telemovel < 999999999;
     }
 
     public static boolean validaAreaPretendida(double areaPretendida) {
-        return (areaPretendida != 0);
+        return areaPretendida != 0;
     }
 
     public static boolean validaQuantidadeConvites(int quantidadeConvites) {
-        return (quantidadeConvites != 0);
+        return quantidadeConvites != 0;
     }
 
     public String getNomeEmpresa() {
@@ -104,13 +103,17 @@ public class Candidatura {
     public boolean valida() {
         if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome inválido!");
-        } else if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
+        }
+        if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
             throw new IllegalArgumentException("Morada inválida!");
-        } else if (quantidadeConvites < 0) {
+        }
+        if (quantidadeConvites < 0) {
             throw new IllegalArgumentException("Convites inválidos!");
-        } else if (telemovel < 100000000 || telemovel > 999999999) {
+        }
+        if (telemovel < 100000000 || telemovel > 999999999) {
             throw new IllegalArgumentException("Número de telemóvel inválido!");
-        } else if (areaPretendida <= 0) {
+        }
+        if (areaPretendida <= 0) {
             throw new IllegalArgumentException("Área expositor inválids!");
         }
         return true;

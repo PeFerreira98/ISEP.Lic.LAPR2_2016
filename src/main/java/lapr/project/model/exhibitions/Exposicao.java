@@ -53,39 +53,6 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     private ListaAtribuicoes listaAtribuicoes;
     private ListaCandidaturas listaCandidaturas;
 
-    /**
-     * Construtor de Exposicao
-     *
-     * @param nomeExposicao o nome da exposicao
-     * @param descricaoExposicao a descricao da exposicao
-     * @param dataInicioSubmissao a data de inicio da submissao da exposicao
-     * @param dataFimSubmissao a data de fim da submissao da exposicao
-     * @param dataInicioRealizacao a data de inicio da realização da exposicao
-     * @param dataFimRealizacao a data de fim da realização da exposicao
-     * @param local
-     * @param listaOrganizadores
-     * @param listaFAE
-     */
-    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
-            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local,
-            ListaOrganizadores listaOrganizadores, ListaFAE listaFAE) {
-
-        this.title = nomeExposicao;
-        this.description = descricaoExposicao;
-        this.local = local;
-        
-        this.dataInicioRealizacao = dataInicioRealizacao;
-        this.dataFimRealizacao = dataFimRealizacao;
-        this.dataInicioSubmissao = dataInicioSubmissao;
-        this.dataFimSubmissao = dataFimSubmissao;
-
-        this.listaOrganizadores = listaOrganizadores;
-        this.listaFAE = listaFAE;
-        this.listaDemonstracoes = new ListaDemonstracoes();
-        this.listaAtribuicoes = new ListaAtribuicoes();
-        this.listaCandidaturas = new ListaCandidaturas();
-    }
-
     public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
             Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
 
@@ -247,13 +214,13 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     }
 
     public boolean valida() {
-        return !(this.title.equalsIgnoreCase("")
-                || this.description.equalsIgnoreCase("")
+        return !("".equalsIgnoreCase(this.title)
+                || "".equalsIgnoreCase(this.description)
                 || this.dataInicioRealizacao == null
                 || this.dataFimRealizacao == null
                 || this.dataInicioSubmissao == null
                 || this.dataFimSubmissao == null
-                || this.local.equalsIgnoreCase(""));
+                || "".equalsIgnoreCase(this.local));
     }
 
     @Override

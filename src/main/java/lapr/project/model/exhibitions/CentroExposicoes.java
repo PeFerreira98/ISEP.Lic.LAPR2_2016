@@ -7,7 +7,6 @@ package lapr.project.model.exhibitions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;

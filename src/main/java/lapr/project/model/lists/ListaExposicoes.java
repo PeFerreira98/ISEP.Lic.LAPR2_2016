@@ -26,25 +26,29 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
     private static final String ROOT_ELEMENT_NAME = "listaExposicoes";
     private static final String EXPO_ELEMENT_NAME = "exposicoes";
     
-    private List<Exposicao> listaExposicoes;
+    private List<Exposicao> listExposicoes;
 
     public ListaExposicoes() {
-        listaExposicoes = new ArrayList<>();
+        listExposicoes = new ArrayList<>();
     }
 
     public boolean addExposicao(Exposicao exposicao) {
-        if (!listaExposicoes.stream().noneMatch((e) -> (e.equals(exposicao)))) {
-            return false;
+
+        //procura na lista se ja existe esta expo
+        for (Exposicao e : this.listExposicoes) {
+            if (e.equals(exposicao)) {
+                return false;
+            }
         }
-        return listaExposicoes.add(exposicao);
+        return listExposicoes.add(exposicao);
     }
 
     public void setListaExposicoes(List<Exposicao> lst) {
-        this.listaExposicoes = lst;
+        this.listExposicoes = lst;
     }
 
     public List<Exposicao> getListaExposicoes() {
-        return this.listaExposicoes;
+        return this.listExposicoes;
     }
 
     public boolean validaExposicao(Exposicao exposicao) {
@@ -52,14 +56,14 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
     }
 
     public boolean registaExposicao(Exposicao exposicao) {
-        if (validaExposicao(exposicao) == true) {
-            return this.listaExposicoes.add(exposicao);
+        if (validaExposicao(exposicao)) {
+            return this.listExposicoes.add(exposicao);
         }
         return false;
     }
     
      public Exposicao getExpoByName(String title){
-        for(Exposicao e : this.listaExposicoes){
+        for(Exposicao e : this.listExposicoes){
             if(e.getTitle().equalsIgnoreCase(title)){
                 return e;
             }
@@ -70,7 +74,7 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
 
     @Override
     public String toString() {
-        return "\n ListaExposicoes{" + "listaExposicoes=" + listaExposicoes + '}';
+        return "\n ListaExposicoes{" + "listaExposicoes=" + listExposicoes + '}';
     }
 
     @Override

@@ -60,6 +60,14 @@ public class Demonstracao implements Exportable, Importable<Demonstracao> {
         return designacao;
     }
 
+    public String getCod() {
+        return cod;
+    }
+
+    public ListaRecursos getListaRecursos() {
+        return listaRecursos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

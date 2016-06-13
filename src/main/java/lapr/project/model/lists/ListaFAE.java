@@ -26,14 +26,14 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
     private static final String ROOT_ELEMENT_NAME = "listaFAE";
     private static final String FAE_LST_ELEMENT_NAME = "FAEs";
 
-    private List<FAE> listaFAE;
+    private List<FAE> listFAE;
 
     public ListaFAE() {
-        listaFAE = new ArrayList<>();
+        listFAE = new ArrayList<>();
     }
 
     public FAE getFAE(String username) {
-        for (FAE fae : listaFAE) {
+        for (FAE fae : listFAE) {
             if (fae.getUtilizador().validateUsername(username)) {
                 return fae;
             }
@@ -42,31 +42,37 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
     }
     
     public boolean hasFAE(String username) {
+        
         //Procura na lista se este FAE existe, retorna true or false
-        return (listaFAE.stream().anyMatch((fae) -> (fae.getUtilizador().validateUsername(username))));
+        for (FAE fae : listFAE) {
+            if (fae.getUtilizador().validateUsername(username)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean addFAE(FAE fae) {
 
         //Verificação de ja existe este FAE
-        if (!listaFAE.stream().noneMatch((f) -> (f.equals(fae)))) {
+        if (!listFAE.stream().noneMatch((f) -> (f.equals(fae)))) {
             return false;
         }
 
-        return this.listaFAE.add(fae);
+        return this.listFAE.add(fae);
     }
 
     public List<FAE> getListaFAE() {
-        return this.listaFAE;
+        return this.listFAE;
     }
 
     public boolean valida() {
-        return !(listaFAE.isEmpty() || listaFAE == null);
+        return !(listFAE.isEmpty() || listFAE == null);
     }
 
     @Override
     public String toString() {
-        return "\n ListaFAE{" + "listaFAE=" + listaFAE + '}';
+        return "\n ListaFAE{" + "listaFAE=" + listFAE + '}';
     }
 
     @Override

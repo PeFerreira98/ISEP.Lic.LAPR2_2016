@@ -11,7 +11,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
-import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -26,30 +25,31 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
 
     private static final String ROOT_ELEMENT_NAME = "listaDemonstracoes";
     private static final String DEMO_LST_ELEMENT_NAME = "demonstracoes";
-    
-    private List<Demonstracao> listaDemonstracoes;
+
+    private List<Demonstracao> listDemonstracoes;
 
     public ListaDemonstracoes() {
-        listaDemonstracoes = new ArrayList<>();
+        listDemonstracoes = new ArrayList<>();
     }
 
     public boolean addDemonstracao(Demonstracao demonstracao) {
 
-        //Verificação de ja existe esta Demonstracao
-        if (!listaDemonstracoes.stream().noneMatch((d) -> (d.equals(demonstracao)))) {
-            return false;
+        //procura na lista se ja existe esta demo
+        for (Demonstracao d : this.listDemonstracoes) {
+            if (d.equals(demonstracao)) {
+                return false;
+            }
         }
-
-        return this.listaDemonstracoes.add(demonstracao);
+        return this.listDemonstracoes.add(demonstracao);
     }
 
     public List<Demonstracao> getListaDemonstracoes() {
-        return this.listaDemonstracoes;
+        return this.listDemonstracoes;
     }
 
     @Override
     public String toString() {
-        return "\n ListaDemonstracoes{" + "listaDemonstracoes=" + listaDemonstracoes + '}';
+        return "\n ListaDemonstracoes{" + "listaDemonstracoes=" + listDemonstracoes + '}';
     }
 
     @Override
@@ -63,7 +63,6 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
             Document document = builder.newDocument();
             Element elementListaDemonstracoes = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element //iterate over keywords
             Element elementDemos = document.createElement(DEMO_LST_ELEMENT_NAME);
             elementListaDemonstracoes.appendChild(elementDemos);
@@ -76,7 +75,6 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
             document.appendChild(elementListaDemonstracoes);
             node = elementListaDemonstracoes;
 
-            
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

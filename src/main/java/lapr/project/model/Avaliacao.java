@@ -16,7 +16,7 @@ public class Avaliacao {
     int[] array = new int[5];
 
     public Avaliacao() {
-
+        //To use with sets
     }
 
     /**
@@ -43,21 +43,10 @@ public class Avaliacao {
             throw new IllegalArgumentException("Texto descritivo inválido!");
         } else if (decisao == null || decisao.trim().isEmpty()) {
             throw new IllegalArgumentException("Decisão inválida!");
-        } else if (!decisao.equalsIgnoreCase("Sim") && !decisao.equalsIgnoreCase("Nao") && !decisao.equalsIgnoreCase("Não")) {
+        } else if (!"sim".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao)) {
             return false;
         }
         return true;
     }
 
-//    public boolean equals(Avaliacao a) {
-//        if (this == a) {
-//            return true;
-//        }
-//        if (a == null || getClass() != a.getClass()) {
-//            return false;
-//        }
-//        Avaliacao outraAvaliacao = (Avaliacao) a;
-//
-//        return candidatura.equals(outraAvaliacao.candidatura);
-//    }
 }

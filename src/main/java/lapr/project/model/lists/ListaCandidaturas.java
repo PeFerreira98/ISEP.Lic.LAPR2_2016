@@ -15,10 +15,10 @@ import lapr.project.model.Candidatura;
  */
 public class ListaCandidaturas {
 
-    private List<Candidatura> listaCandidaturas;
+    private List<Candidatura> listCandidaturas;
 
     public ListaCandidaturas() {
-        this.listaCandidaturas = new ArrayList<>();
+        this.listCandidaturas = new ArrayList<>();
     }
 
     public boolean registaCandidatura(Candidatura candidatura) {
@@ -30,15 +30,18 @@ public class ListaCandidaturas {
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
-        //procura na lista se ja existe esta candidatura
-        if (!this.listaCandidaturas.stream().noneMatch((can) -> (can.equals(candidatura)))) {
-            return false;
+        
+        //procura na lista se ja existe esta cand
+        for (Candidatura c : this.listCandidaturas) {
+            if (c.equals(candidatura)) {
+                return false;
+            }
         }
-        return this.listaCandidaturas.add(candidatura);
+        return this.listCandidaturas.add(candidatura);
     }
 
     private boolean validaCandidatura(Candidatura candidatura) {
-        return candidatura.valida() && !listaCandidaturas.contains(candidatura);
+        return candidatura.valida() && !listCandidaturas.contains(candidatura);
     }
 
     public Candidatura novaCandidatura() {
@@ -46,12 +49,12 @@ public class ListaCandidaturas {
     }
 
     public List<Candidatura> getListaCandidaturas() {
-        return listaCandidaturas;
+        return listCandidaturas;
     }
 
     @Override
     public String toString() {
-        return "\n ListaCandidaturas{" + "listaCandidaturas=" + listaCandidaturas + '}';
+        return "\n ListaCandidaturas{" + "listaCandidaturas=" + listCandidaturas + '}';
     }
 
 }

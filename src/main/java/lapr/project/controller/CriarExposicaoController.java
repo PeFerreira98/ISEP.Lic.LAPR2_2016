@@ -8,7 +8,6 @@ package lapr.project.controller;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
-import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
