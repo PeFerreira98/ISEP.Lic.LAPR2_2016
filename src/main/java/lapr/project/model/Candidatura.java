@@ -27,7 +27,7 @@ public class Candidatura {
     private CandidaturaState candidaturaState;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
-    
+
     private List<Avaliacao> lstAvaliacoes;
 
     /**
@@ -49,7 +49,7 @@ public class Candidatura {
         this.candidaturaState = CandidaturaState.IN_SUBMISSION;
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
-        
+
         this.lstAvaliacoes = new ArrayList<>();
     }
 
@@ -59,12 +59,12 @@ public class Candidatura {
         this.listaProdutos = new ListaProdutos();
         this.lstAvaliacoes = new ArrayList<>();
     }
-    
-    public void addAvaliacao(Avaliacao a){
+
+    public void addAvaliacao(Avaliacao a) {
         this.lstAvaliacoes.add(a);
     }
-    
-    public void changeState(CandidaturaState cs){
+
+    public void changeState(CandidaturaState cs) {
         this.candidaturaState = cs;
     }
 
@@ -98,6 +98,10 @@ public class Candidatura {
 
     public String getNomeEmpresa() {
         return nomeEmpresa;
+    }
+
+    public List<Avaliacao> getLstAvaliacoes() {
+        return lstAvaliacoes;
     }
 
     public boolean valida() {
