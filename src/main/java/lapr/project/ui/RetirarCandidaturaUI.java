@@ -86,14 +86,6 @@ public class RetirarCandidaturaUI extends javax.swing.JFrame {
 
     }
 
-    private void refreshJList() {
-//        jListRetiraveis = new JList<>();
-//        inicializarLista();
-        jListRetiraveis.remove(jListRetiraveis.getSelectedIndex());
-        jScrollPane1.validate();
-        jScrollPane1.repaint();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,7 +154,6 @@ public class RetirarCandidaturaUI extends javax.swing.JFrame {
             if (this.controller.retirarCandidatura(jListRetiraveis.getSelectedValue())) {
                 JOptionPane.showMessageDialog(RetirarCandidaturaUI.this,
                         "Candidatura retirada com sucesso", "Retirar Candidatura", JOptionPane.INFORMATION_MESSAGE);
-                refreshJList();
             } else {
                 JOptionPane.showMessageDialog(RetirarCandidaturaUI.this,
                         "Erro ao Retirar candidatura (Bad State?)", "Retirar Candidatura", JOptionPane.ERROR_MESSAGE);
