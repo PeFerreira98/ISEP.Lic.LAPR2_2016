@@ -18,15 +18,16 @@ public class MecanismoCargaFAE implements MecanismoAtribuicao {
 
     private String descricao;
 
+    public MecanismoCargaFAE() {
+        descricao = "Carga FAE";
+    }
+
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public MecanismoCargaFAE() {
-        descricao = "Carga FAE";
-    }
-
+    @Override
     public String getDescricao() {
         return descricao;
     }

@@ -40,9 +40,9 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
         }
         return null;
     }
-    
+
     public boolean hasFAE(String username) {
-        
+
         //Procura na lista se este FAE existe, retorna true or false
         for (FAE fae : listFAE) {
             if (fae.getUtilizador().validateUsername(username)) {
@@ -55,10 +55,11 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
     public boolean addFAE(FAE fae) {
 
         //Verificação de ja existe este FAE
-        if (!listFAE.stream().noneMatch((f) -> (f.equals(fae)))) {
-            return false;
+        for (FAE f : this.listFAE) {
+            if (f.equals(fae)) {
+                return false;
+            }
         }
-
         return this.listFAE.add(fae);
     }
 
