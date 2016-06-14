@@ -15,28 +15,26 @@ import lapr.project.model.Recurso;
  */
 public class ListaRecursos {
 
-    private final List<Recurso> listRecursos;
+    private final List<Recurso> listaRecursos;
 
     public ListaRecursos() {
-        this.listRecursos = new ArrayList<>();
+        this.listaRecursos = new ArrayList<>();
     }
 
-    public List<Recurso> getListRecursos() {
-        return listRecursos;
+    public List<Recurso> getListaRecursos() {
+        return listaRecursos;
     }
 
     public boolean addRecurso(Recurso recurso) {
-        for (Recurso r : this.listRecursos) {
-            if (r.equals(recurso)) {
-                return false;
-            }
+        if (listaRecursos.stream().anyMatch((rec) -> (rec.equals(recurso)))) {
+            return false;
         }
-        return listRecursos.add(recurso);
+        return listaRecursos.add(recurso);
     }
 
     @Override
     public String toString() {
-        return "\n ListaRecursos{" + "listaRecursos=" + listRecursos + '}';
+        return "\n ListaRecursos{" + "listaRecursos=" + listaRecursos + '}';
     }
 
 }

@@ -27,40 +27,30 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
     private static final String ROOT_ELEMENT_NAME = "listaOrganizadores";
     private static final String ORG_LST_ELEMENT_NAME = "organizadores";
 
-    private List<Organizador> listOrganizadores;
+    private List<Organizador> listaOrganizadores;
 
     public ListaOrganizadores() {
-        this.listOrganizadores = new ArrayList<>();
+        this.listaOrganizadores = new ArrayList<>();
     }
 
     public List<Organizador> getLstOrganizadores() {
-        return this.listOrganizadores;
+        return this.listaOrganizadores;
     }
 
     public boolean isOrganizador(Organizador org) {
         //Verifica se existe este organizador. Retorna true or false
-        for (Organizador o : this.listOrganizadores) {
-            if (o.equals(org)) {
-                return true;
-            }
-        }
-        return false;
+        return this.listaOrganizadores.stream().anyMatch((o) -> (o.equals(org)));
     }
 
     public boolean hasOrganizador(String username) {
         //Verifica se algum organizador tem este username. Retorna true or false
-        for (Organizador o : this.listOrganizadores) {
-            if (o.getUtilizador().validateUsername(username)) {
-                return true;
-            }
-        }
-        return false;
+        return listaOrganizadores.stream().anyMatch((org) -> (org.getUtilizador().validateUsername(username)));
     }
 
     public void addOrganizador(Utilizador u) {
         Organizador org = new Organizador(u);
         if (validaOrganizador(org)) {
-            listOrganizadores.add(org);
+            listaOrganizadores.add(org);
         }
     }
 
@@ -69,12 +59,12 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
     }
 
     public boolean valida() {
-        return !(listOrganizadores.isEmpty() || listOrganizadores == null);
+        return !(listaOrganizadores.isEmpty() || listaOrganizadores == null);
     }
 
     @Override
     public String toString() {
-        return "\n ListaOrganizadores{" + "listaOrganizadores=" + listOrganizadores + '}';
+        return "\n ListaOrganizadores{" + "listaOrganizadores=" + listaOrganizadores + '}';
     }
 
     @Override

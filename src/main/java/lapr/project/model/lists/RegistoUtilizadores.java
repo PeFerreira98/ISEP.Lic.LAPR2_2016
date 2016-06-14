@@ -32,8 +32,8 @@ public class RegistoUtilizadores implements Exportable, Importable<RegistoUtiliz
     private List<Utilizador> listaUtilizadoresNaoRegistados;
 
     public RegistoUtilizadores() {
-        this.listaUtilizadoresRegistados = new ArrayList<>();
-        this.listaUtilizadoresNaoRegistados = new ArrayList<>();
+        this.listaUtilizadoresRegistados = new ArrayList<Utilizador>();
+        this.listaUtilizadoresNaoRegistados = new ArrayList<Utilizador>();
     }
 
     public Utilizador checkUtilizadorByUsername(String username) {

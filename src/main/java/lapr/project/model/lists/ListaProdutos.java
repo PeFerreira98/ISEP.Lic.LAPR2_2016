@@ -14,24 +14,22 @@ import lapr.project.model.Produto;
  * @author zero_
  */
 public class ListaProdutos {
-
-    private List<Produto> listProdutos;
-
-    public ListaProdutos() {
-        listProdutos = new ArrayList<>();
+    
+    private List<Produto> listaProdutos;
+    
+    public ListaProdutos(){
+        listaProdutos = new ArrayList<>();
     }
-
-    public boolean addProduto(Produto produto) {
-        for (Produto p : this.listProdutos) {
-            if (p.equals(produto)) {
-                return false;
-            }
+    
+    public boolean addProduto(Produto produto){
+        if (!this.listaProdutos.stream().noneMatch((p) -> (p.equals(produto)))) {
+            return false;
         }
-        return this.listProdutos.add(produto);
+        return this.listaProdutos.add(produto);
     }
-
+    
     public List<Produto> getListaProdutos() {
-        return this.listProdutos;
+        return this.listaProdutos;
     }
-
+    
 }
