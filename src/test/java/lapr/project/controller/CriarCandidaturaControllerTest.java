@@ -59,7 +59,7 @@ public class CriarCandidaturaControllerTest {
         CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
 
         boolean expResult = true;
-        boolean result = instance.createCandidatura(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites);
+        boolean result = instance.setDados(nomeEmpresa, moradaEmpresa, areaPretendida, telemovel, quantidadeConvites);
 
         assertEquals(expResult, result);
     }
@@ -137,7 +137,7 @@ public class CriarCandidaturaControllerTest {
         int quantidadeConvites = 100;
         Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
         CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
-        instance.createCandidatura(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites);
+        instance.setDados(nomeEmpresa, moradaEmpresa, areaPretendida, telemovel, quantidadeConvites);
 
         boolean expResult = true;
         boolean result = instance.addCandidaturaToExposicao();

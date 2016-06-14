@@ -207,7 +207,7 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jProdButton)
                     .addComponent(jDemoButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
@@ -280,10 +280,10 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
             int iTelemovel = Integer.parseInt(telemovel);
             double dArea = Double.parseDouble(areaPretendida);
             int iQuantidade = Integer.parseInt(quantidadeConvites);
-
-            if (controller.createCandidatura(nomeEmpresa, moradaEmpresa, iTelemovel, dArea, iQuantidade)) {
+            controller.novaCandidatura();
+            if (controller.setDados(nomeEmpresa, moradaEmpresa, dArea, iTelemovel, iQuantidade)) {
                 
-                if (controller.addCandidaturaToExposicao()) {
+                if (controller.registarCandidatura()) {
 
                     JOptionPane.showMessageDialog(CriarCandidaturaUI.this,
                             "Candidatura adicionada com Sucesso!", "Create Submission Window", JOptionPane.INFORMATION_MESSAGE);

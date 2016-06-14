@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +18,22 @@ import static org.junit.Assert.*;
  * @author zero_
  */
 public class CandidaturaTest {
-    
+
     public CandidaturaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,13 +44,13 @@ public class CandidaturaTest {
     @Test
     public void testAddDemonstracao() {
         System.out.println("addDemonstracao");
-        
+
         Demonstracao demonstracao = new Demonstracao("msn");
-        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
-        
+        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
+
         boolean expResult = true;
         boolean result = instance.addDemonstracao(demonstracao);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -59,13 +60,13 @@ public class CandidaturaTest {
     @Test
     public void testAddProduto() {
         System.out.println("addProduto");
-        
+
         Produto produto = new Produto("dude");
-        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
-        
+        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
+
         boolean expResult = true;
         boolean result = instance.addProduto(produto);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -75,12 +76,12 @@ public class CandidaturaTest {
     @Test
     public void testValidaNomeEmpresa() {
         System.out.println("validaNomeEmpresa");
-        
+
         String nomeEmpresa = "Something";
-        
+
         boolean expResult = true;
         boolean result = Candidatura.validaNomeEmpresa(nomeEmpresa);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -90,12 +91,12 @@ public class CandidaturaTest {
     @Test
     public void testValidaMoradaEmpresa() {
         System.out.println("validaMoradaEmpresa");
-        
+
         String moradaEmpresa = "Rua dos pss";
-        
+
         boolean expResult = true;
         boolean result = Candidatura.validaMoradaEmpresa(moradaEmpresa);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -105,12 +106,12 @@ public class CandidaturaTest {
     @Test
     public void testValidaTelemovel() {
         System.out.println("validaTelemovel");
-        
+
         int telemovel = 911999999;
-        
+
         boolean expResult = true;
         boolean result = Candidatura.validaTelemovel(telemovel);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -120,12 +121,12 @@ public class CandidaturaTest {
     @Test
     public void testValidaAreaPretendida() {
         System.out.println("validaAreaPretendida");
-        
+
         double areaPretendida = 27.7;
-        
+
         boolean expResult = true;
         boolean result = Candidatura.validaAreaPretendida(areaPretendida);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -135,12 +136,12 @@ public class CandidaturaTest {
     @Test
     public void testValidaQuantidadeConvites() {
         System.out.println("validaQuantidadeConvites");
-        
+
         int quantidadeConvites = 20;
-        
+
         boolean expResult = true;
         boolean result = Candidatura.validaQuantidadeConvites(quantidadeConvites);
-        
+
         assertEquals(expResult, result);
     }
 
@@ -150,12 +151,12 @@ public class CandidaturaTest {
     @Test
     public void testGetNomeEmpresa() {
         System.out.println("getNomeEmpresa");
-        
-        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
-        
+
+        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
+
         String expResult = "EfoCorp";
         String result = instance.getNomeEmpresa();
-        
+
         assertEquals(expResult, result);
     }
 
@@ -165,14 +166,14 @@ public class CandidaturaTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        
-        Candidatura obj = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
-        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
-        
+
+        Candidatura obj = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
+        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
+
         boolean expResult = true;
         boolean result = instance.equals(obj);
-        
+
         assertEquals(expResult, result);
     }
-    
+
 }

@@ -27,8 +27,9 @@ public class Candidatura {
     private CandidaturaState candidaturaState;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
-    
+
     private List<Avaliacao> lstAvaliacoes;
+    private final List<Keyword> keywordList = new ArrayList<>();
 
     /**
      * Construtor de objecto Candidatura
@@ -39,7 +40,7 @@ public class Candidatura {
      * @param areaPretendida a area pretendida para exposição
      * @param quantidadeConvites a quantidade de convites pretendida
      */
-    public Candidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
+    public Candidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites, List<Keyword> keywordList) {
         this.nomeEmpresa = nomeEmpresa;
         this.moradaEmpresa = moradaEmpresa;
         this.telemovel = telemovel;
@@ -49,8 +50,9 @@ public class Candidatura {
         this.candidaturaState = CandidaturaState.IN_SUBMISSION;
         this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
-        
+
         this.lstAvaliacoes = new ArrayList<>();
+        this.keywordList.addAll(keywordList);
     }
 
     public Candidatura() {
@@ -59,12 +61,12 @@ public class Candidatura {
         this.listaProdutos = new ListaProdutos();
         this.lstAvaliacoes = new ArrayList<>();
     }
-    
-    public void addAvaliacao(Avaliacao a){
+
+    public void addAvaliacao(Avaliacao a) {
         this.lstAvaliacoes.add(a);
     }
-    
-    public void changeState(CandidaturaState cs){
+
+    public void changeState(CandidaturaState cs) {
         this.candidaturaState = cs;
     }
 
@@ -74,6 +76,24 @@ public class Candidatura {
 
     public boolean addProduto(Produto produto) {
         return this.listaProdutos.addProduto(produto);
+    }
+
+    /**
+     * Add a keyword to Candidatura.
+     *
+     * @param keyword Keyword to be added.
+     */
+    public void addKeyword(Keyword keyword) {
+        getKeywordList().add(keyword);
+    }
+
+    /**
+     * Obtain the list of existing keywords.
+     *
+     * @return A list of existing keywords.
+     */
+    public List<Keyword> getKeywordList() {
+        return keywordList;
     }
 
     public static boolean validaNomeEmpresa(String nomeEmpresa) {
@@ -98,6 +118,55 @@ public class Candidatura {
 
     public String getNomeEmpresa() {
         return nomeEmpresa;
+    }
+
+    public int getTelemovel() {
+        return telemovel;
+    }
+
+    public String getMoradaEmpresa() {
+        return moradaEmpresa;
+    }
+
+    public double getAreaPretendida() {
+        return areaPretendida;
+    }
+
+    public int getQuantidadeConvites() {
+        return quantidadeConvites;
+    }
+
+    public ListaProdutos getListaProdutos() {
+        return listaProdutos;
+    }
+
+    public ListaDemonstracoes getListaDemonstracoes() {
+        return listaDemonstracoes;
+    }
+    
+
+    public void setMoradaEmpresa(String moradaEmpresa) {
+        this.moradaEmpresa = moradaEmpresa;
+    }
+
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
+    }
+
+    public void setAreaPretendida(double areaPretendida) {
+        this.areaPretendida = areaPretendida;
+    }
+
+    public void setTelemovel(int telemovel) {
+        this.telemovel = telemovel;
+    }
+
+    public void setQuantidadeConvites(int quantidadeConvites) {
+        this.quantidadeConvites = quantidadeConvites;
+    }
+
+    public void setListaProdutos(ListaProdutos listaProdutos) {
+        this.listaProdutos = listaProdutos;
     }
 
     public boolean valida() {

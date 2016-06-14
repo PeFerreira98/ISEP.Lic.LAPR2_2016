@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.TipoConflito;
+import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.RegistoUtilizadores;
@@ -31,7 +32,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
     private RegistoUtilizadores registoUtilizadores;
     private ListaExposicoes listaExposicoes;
-
+    private ListaCandidaturas listaCandidaturas;
     private List<MecanismoAtribuicao> listaMecanismos;
     private ListaRecursos listaRecursos;
     private List<TipoConflito> listaTipoConflito;
@@ -86,6 +87,10 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
     public List<TipoConflito> getListaTipoConflito() {
         return listaTipoConflito;
+    }
+
+    public ListaCandidaturas getListaCandidaturas() {
+        return listaCandidaturas;
     }
 
     @Override

@@ -5,9 +5,11 @@
  */
 package lapr.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaDemonstracoes;
@@ -24,6 +26,7 @@ public class CriarCandidaturaController {
     private Candidatura candidatura;
     private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
+    private final List<Keyword> keywordList = new ArrayList<>();
 
     public CriarCandidaturaController(Exposicao exposicao) {
         this.exposicao = exposicao;
@@ -31,27 +34,51 @@ public class CriarCandidaturaController {
         this.listaProdutos = new ListaProdutos();
     }
 
-    public boolean createCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
-        System.out.println(nomeEmpresa + " - " + moradaEmpresa + " - " + telemovel
-                + " - " + areaPretendida + " - " + quantidadeConvites);
-
-        if (validate(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites)) {
-            this.candidatura = new Candidatura(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites);
-            return true;
-        }
-        return false;
+//    public boolean createCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
+//        System.out.println(nomeEmpresa + " - " + moradaEmpresa + " - " + telemovel
+//                + " - " + areaPretendida + " - " + quantidadeConvites);
+//
+//        if (validate(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites)) {
+//            this.candidatura = new Candidatura(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites);
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
+//        if (Candidatura.validaNomeEmpresa(nomeEmpresa)
+//                && Candidatura.validaMoradaEmpresa(moradaEmpresa)
+//                && Candidatura.validaTelemovel(telemovel)
+//                && Candidatura.validaAreaPretendida(areaPretendida)
+//                && Candidatura.validaQuantidadeConvites(quantidadeConvites)) {
+//
+//            return true;
+//        }
+//        return false;
+//    }
+    public boolean setDados(String nomeEmpresa, String moradaEmpresa, double areaPretendida, int telemovel, int qtdConvites) {
+        
+        candidatura.setNomeEmpresa(nomeEmpresa);
+        candidatura.setMoradaEmpresa(moradaEmpresa);
+        candidatura.setAreaPretendida(areaPretendida);
+        candidatura.setTelemovel(telemovel);
+        candidatura.setQuantidadeConvites(qtdConvites);
+        candidatura.setListaProdutos(listaProdutos);
+        addDemonstracoesToCandidatura();
+        return candidatura.valida();
     }
-
-    private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
-        if (Candidatura.validaNomeEmpresa(nomeEmpresa)
-                && Candidatura.validaMoradaEmpresa(moradaEmpresa)
-                && Candidatura.validaTelemovel(telemovel)
-                && Candidatura.validaAreaPretendida(areaPretendida)
-                && Candidatura.validaQuantidadeConvites(quantidadeConvites)){
-            
-            return true;
-        }
-        return false;
+    
+    public void addKeyword(String keyword){
+        Keyword kw = new Keyword(keyword);
+        candidatura.addKeyword(kw);
+    }
+    
+    public void novaCandidatura(){
+        this.candidatura = new Candidatura();
+    }
+    
+    public boolean registarCandidatura(){
+        return exposicao.addCandidatura(candidatura);
     }
 
     public boolean addProduto(String designacao) {

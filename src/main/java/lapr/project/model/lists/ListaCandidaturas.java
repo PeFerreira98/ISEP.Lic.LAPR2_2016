@@ -30,7 +30,7 @@ public class ListaCandidaturas {
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
-        
+
         //procura na lista se ja existe esta cand
         for (Candidatura c : this.listCandidaturas) {
             if (c.equals(candidatura)) {

@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lapr.project.model.Candidatura;
@@ -80,9 +81,9 @@ class Main {
 
         exposicao3.getListaDemonstracoes().addDemonstracao(demonstracao1);
 
-        Candidatura candidatura1 = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100);
-        Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20);
-        Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800);
+        Candidatura candidatura1 = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
+        Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20, new ArrayList<>());
+        Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
         exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("organizador"));
 
