@@ -7,10 +7,9 @@ package lapr.project.controller;
 
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaOrganizadores;
-import lapr.project.model.lists.RegistoUtilizadores;
-import lapr.project.model.users.Utilizador;
+import lapr.project.model.users.GestorExposicoes;
+import lapr.project.model.users.Organizador;
 import lapr.project.utils.Data;
 
 /**
@@ -19,49 +18,47 @@ import lapr.project.utils.Data;
  */
 public class CriarExposicaoController {
 
-    private ListaExposicoes listaExposicoes;
     private CentroExposicoes centroExposicoes;
     private Exposicao exposicao;
-    private ListaOrganizadores listaOrganizadores;
 
-    public CriarExposicaoController() {
-        this.listaExposicoes = new ListaExposicoes();
-        this.centroExposicoes = new CentroExposicoes();
+    public CriarExposicaoController(CentroExposicoes centroExpo) {
+        this.centroExposicoes = centroExpo;
         this.exposicao = new Exposicao();
-        this.listaOrganizadores = new ListaOrganizadores();
     }
 
-    public boolean novaExposicao() {
-        return this.listaExposicoes.addExposicao(exposicao);
+    public Data convertStringToData(String data) {
+        final Data d;
+
+        String[] aux = data.split("-");
+        int dia = Integer.parseInt(aux[0]);
+        int mes = Integer.parseInt(aux[1]);
+        int ano = Integer.parseInt(aux[2]);
+
+        d = new Data(ano, mes, dia);
+
+        return d;
     }
 
-    public void setDados(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
-        exposicao.setTitle(nomeExposicao);
-        exposicao.setDescription(descricaoExposicao);
-        exposicao.setDataInicioRealizacao(dataInicioRealizacao);
-        exposicao.setDataFimRealizacao(dataFimRealizacao);
-        exposicao.setDataInicioSubmissao(dataInicioSubmissao);
-        exposicao.setDataFimSubmissao(dataFimSubmissao);
-        exposicao.setLocal(local);
+    public void addListaOrganizador(ListaOrganizadores lst) {
+        if (lst.getLstOrganizadores().isEmpty()) {
+            return;
+        }
+        for (Organizador o : lst.getLstOrganizadores()) {
+            this.exposicao.getListaOrganizadores().getLstOrganizadores().add(o);
+        }
     }
 
-    public Utilizador getUtilizador(String username) {
-        return this.getRegistoUtilizadores().checkUtilizadorByUsername(username);
-    }
-    
-    public RegistoUtilizadores getRegistoUtilizadores(){
-        return this.centroExposicoes.getRegistoUtilizadores();
+    public void addGestor(GestorExposicoes g) {
+        this.exposicao.setGestor(g);
     }
 
-    public void addOrganizador(Utilizador utilizador) {
-        this.listaOrganizadores.addOrganizador(utilizador);
+    public void criarExpo(String titulo, String desc, String local, Data dataInicioRealizacao, Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao) {
+        this.exposicao = new Exposicao(titulo, desc, dataInicioRealizacao, dataFimRealizacao, dataInicioSubmissao, dataFimSubmissao, local);
+        addExpo(exposicao);
     }
 
-    public boolean validaExposicao() {
-        return this.exposicao.valida();
+    private void addExpo(Exposicao expo) {
+        this.centroExposicoes.getListaExposicoes().addExposicao(expo);
     }
 
-    public boolean registaExposicao() {
-        return this.listaExposicoes.registaExposicao(exposicao);
-    }
 }
