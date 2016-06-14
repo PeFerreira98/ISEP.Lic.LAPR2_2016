@@ -44,13 +44,14 @@ class Main {
 
         //Janelas ainda não conectadas (apenas para testes)
         //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
-        new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
         //new OrganizadorUI(centroExposicoes.getRegistoUtilizadores().checkUtilizadorByUsername("organizador"), centroExposicoes);
         //new AtribuirCandidaturaUI(centroExposicoes);
+        //new DefinirRecursoUI(centroExposicoes);
+
+        new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
+        new RetirarCandidaturaUI(centroExposicoes);
 
         System.out.println(centroExposicoes);
-
-        new FileOp().writeXMLFile(centroExposicoes);
     }
 
     private CentroExposicoes bootStrap() {
@@ -86,10 +87,18 @@ class Main {
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
         exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("organizador"));
+        
+        exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("admin"));
+        exposicao2.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("admin"));
+        exposicao3.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("admin"));
 
         exposicao1.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
         exposicao2.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
         exposicao3.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("gestor")));
+
+        exposicao1.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("admin")));
+        exposicao2.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("admin")));
+        exposicao3.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("admin")));
 
         exposicao1.addCandidatura(candidatura1);
         exposicao1.addCandidatura(candidatura2);
@@ -97,6 +106,10 @@ class Main {
 
         exposicao1.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")));
         exposicao2.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")));
+
+        exposicao1.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
+        exposicao2.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
+        exposicao3.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
 
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);

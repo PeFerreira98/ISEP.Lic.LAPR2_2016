@@ -5,10 +5,12 @@
  */
 package lapr.project.model.exhibitions;
 
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Candidatura;
+import lapr.project.model.Retiravel;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;
@@ -221,6 +223,15 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
                 || this.dataInicioSubmissao == null
                 || this.dataFimSubmissao == null
                 || "".equalsIgnoreCase(this.local));
+    }
+    
+    
+    public List<Retiravel> getCandidaturasExposicoesRetiraveis() {
+        return this.listaCandidaturas.getCandidaturasRetiraveis();
+    }
+    
+    public List<Retiravel> getCandidaturasDemonstracoesRetiraveis() {
+        return this.listaDemonstracoes.getCandidaturasDemonstracoesRetiraveis();
     }
 
     @Override

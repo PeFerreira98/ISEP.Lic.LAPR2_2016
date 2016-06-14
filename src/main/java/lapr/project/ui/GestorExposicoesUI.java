@@ -25,9 +25,12 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     public GestorExposicoesUI(Utilizador user, CentroExposicoes centroExposicoes) {
         this.centroExposicoes = centroExposicoes;
         this.user = user;
+        
         super.setTitle("Gestor Exposicoes Menu (" + user.getUsername() + ")");
+        
         initComponents();
-        setLocationRelativeTo(null);
+        
+        super.setLocationRelativeTo(null);
         super.setVisible(true);
 
         for (Exposicao exposicao : centroExposicoes.getListaExposicoes().getListaExposicoes()) {
@@ -60,6 +63,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnRefresh = new javax.swing.JToggleButton();
+        jBRecurso = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAccount = new javax.swing.JMenu();
         jMenuItemSettings = new javax.swing.JMenuItem();
@@ -126,6 +130,13 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
             }
         });
 
+        jBRecurso.setText("Definir Recurso");
+        jBRecurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRecursoActionPerformed(evt);
+            }
+        });
+
         jMenuAccount.setText("My account");
 
         jMenuItemSettings.setText("Settings");
@@ -180,7 +191,9 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addComponent(btnRefresh)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBRecurso)
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,8 +213,10 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
                     .addComponent(btnViewExpo)
                     .addComponent(btnExpoCreate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRefresh)
-                .addGap(16, 16, 16))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRefresh)
+                    .addComponent(jBRecurso))
+                .addGap(46, 46, 46))
         );
 
         pack();
@@ -243,8 +258,8 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSettingsActionPerformed
 
     private void jMenuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoutActionPerformed
-        dispose();
         new LoginUI(centroExposicoes);
+        dispose();
     }//GEN-LAST:event_jMenuItemLogoutActionPerformed
 
     private void btnViewExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewExpoActionPerformed
@@ -265,6 +280,10 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void jBRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRecursoActionPerformed
+        new DefinirRecursoUI(centroExposicoes);
+    }//GEN-LAST:event_jBRecursoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceptUser;
     private javax.swing.JButton btnExpoCreate;
@@ -272,6 +291,7 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     private javax.swing.JButton btnViewExpo;
     private javax.swing.JButton btnViewUser;
     private java.awt.Choice choice1;
+    private javax.swing.JButton jBRecurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu3;

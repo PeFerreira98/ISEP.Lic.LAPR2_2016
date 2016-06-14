@@ -5,11 +5,14 @@
  */
 package lapr.project.model.lists;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.Candidatura;
+import lapr.project.model.Retiravel;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -25,7 +28,7 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
 
     private static final String ROOT_ELEMENT_NAME = "listaExposicoes";
     private static final String EXPO_ELEMENT_NAME = "exposicoes";
-    
+
     private List<Exposicao> listExposicoes;
 
     public ListaExposicoes() {
@@ -61,16 +64,23 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
         }
         return false;
     }
-    
-     public Exposicao getExpoByName(String title){
-        for(Exposicao e : this.listExposicoes){
-            if(e.getTitle().equalsIgnoreCase(title)){
+
+    public Exposicao getExpoByName(String title) {
+        for (Exposicao e : this.listExposicoes) {
+            if (e.getTitle().equalsIgnoreCase(title)) {
                 return e;
             }
         }
         return null;
     }
 
+    public List<Retiravel> getCandidaturasExposicoesRetiraveis() {
+        List<Retiravel> lRetiraveis = new ArrayList<>();
+        for (Exposicao e : this.listExposicoes) {
+            lRetiraveis.addAll(e.getCandidaturasExposicoesRetiraveis());
+        }
+        return lRetiraveis;
+    }
 
     @Override
     public String toString() {

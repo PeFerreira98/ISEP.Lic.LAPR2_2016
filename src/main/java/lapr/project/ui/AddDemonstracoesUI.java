@@ -33,6 +33,7 @@ public class AddDemonstracoesUI extends javax.swing.JFrame {
         initComponents();
         inicializarLista();
         super.setAlwaysOnTop(true);
+        super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
 

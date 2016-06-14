@@ -20,9 +20,9 @@ public class DefinirRecursoController {
     public DefinirRecursoController(CentroExposicoes centroExp) {
         listaRecursos = centroExp.getListaRecursos();
     }
-    
-    public void addRecurso(String rec) {
-        listaRecursos.addRecurso(new Recurso(rec));
+
+    public boolean addRecurso(String rec) {
+        return listaRecursos.addRecurso(new Recurso(rec));
     }
 
 }

@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.Retiravel;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -45,6 +46,14 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
 
     public List<Demonstracao> getListaDemonstracoes() {
         return this.listDemonstracoes;
+    }
+
+    public List<Retiravel> getCandidaturasDemonstracoesRetiraveis() {
+        List<Retiravel> lRetiraveis = new ArrayList<>();
+        for (Demonstracao d : this.listDemonstracoes) {
+            lRetiraveis.addAll(d.getCandidaturasDemonstracoesRetiraveis());
+        }
+        return lRetiraveis;
     }
 
     @Override
