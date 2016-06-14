@@ -10,7 +10,6 @@ import java.util.List;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.mecanismos.MecanismoAtribuicao;
@@ -24,7 +23,6 @@ public class MecanismoAtribuicao1 implements MecanismoAtribuicao{
 
     private List<Atribuicao> listaAtribuicoesTemp;
     
-    //private ListaAtribuicoes listaAtribuicoes;
     private ListaCandidaturas listaCandidaturas;
     private ListaFAE listaFAE;
     
@@ -35,9 +33,7 @@ public class MecanismoAtribuicao1 implements MecanismoAtribuicao{
     
     @Override
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao) {
-        listaAtribuicoesTemp = new ArrayList<>();
-        
-        //this.listaAtribuicoes = exposicao.getListaAtribuicoes();
+        listaAtribuicoesTemp = new ArrayList<>();        
         this.listaCandidaturas = exposicao.getListaCandidaturas();
         this.listaFAE = exposicao.getListaFAE();
         
