@@ -5,6 +5,9 @@
  */
 package lapr.project.model;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  *
  * @author Sara Silva
@@ -43,10 +46,45 @@ public class Avaliacao {
             throw new IllegalArgumentException("Texto descritivo inválido!");
         } else if (decisao == null || decisao.trim().isEmpty()) {
             throw new IllegalArgumentException("Decisão inválida!");
-        } else if (!"sim".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao)) {
+        } else if (!"sim".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao)) {
             return false;
         }
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.decisao);
+        hash = 89 * hash + Objects.hashCode(this.justificacao);
+        hash = 89 * hash + Arrays.hashCode(this.array);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Avaliacao other = (Avaliacao) obj;
+        if (!Objects.equals(this.decisao, other.decisao)) {
+            return false;
+        }
+        if (!Objects.equals(this.justificacao, other.justificacao)) {
+            return false;
+        }
+        if (!Arrays.equals(this.array, other.array)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

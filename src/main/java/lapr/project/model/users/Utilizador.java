@@ -71,15 +71,15 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
     }
 
     public boolean isRegistado() {
-        return this.estado.equalsIgnoreCase("REGISTERED");
+        return "REGISTERED".equalsIgnoreCase(this.estado);
     }
 
     public boolean isGestor() {
-        return this.tipoUtilizador.equalsIgnoreCase("GESTOR");
+        return "GESTOR".equalsIgnoreCase(this.tipoUtilizador);
     }
 
     public boolean isFAE() {
-        return this.tipoUtilizador.equalsIgnoreCase("FAE");
+        return "FAE".equalsIgnoreCase(this.tipoUtilizador);
     }
 
     public void setRegistado() {

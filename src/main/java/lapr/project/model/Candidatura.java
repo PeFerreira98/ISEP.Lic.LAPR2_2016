@@ -143,7 +143,6 @@ public class Candidatura {
     public ListaDemonstracoes getListaDemonstracoes() {
         return listaDemonstracoes;
     }
-    
 
     public void setMoradaEmpresa(String moradaEmpresa) {
         this.moradaEmpresa = moradaEmpresa;
@@ -167,6 +166,10 @@ public class Candidatura {
 
     public void setListaProdutos(ListaProdutos listaProdutos) {
         this.listaProdutos = listaProdutos;
+    }
+
+    public List<Avaliacao> getLstAvaliacoes() {
+        return lstAvaliacoes;
     }
 
     public boolean valida() {

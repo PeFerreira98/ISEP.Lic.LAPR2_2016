@@ -57,7 +57,7 @@ public class CriarCandidaturaController {
 //        return false;
 //    }
     public boolean setDados(String nomeEmpresa, String moradaEmpresa, double areaPretendida, int telemovel, int qtdConvites) {
-        
+
         candidatura.setNomeEmpresa(nomeEmpresa);
         candidatura.setMoradaEmpresa(moradaEmpresa);
         candidatura.setAreaPretendida(areaPretendida);
@@ -67,18 +67,28 @@ public class CriarCandidaturaController {
         addDemonstracoesToCandidatura();
         return candidatura.valida();
     }
-    
-    public void addKeyword(String keyword){
+
+    public void addKeyword(String keyword) {
         Keyword kw = new Keyword(keyword);
         candidatura.addKeyword(kw);
     }
-    
-    public void novaCandidatura(){
+
+    public void novaCandidatura() {
         this.candidatura = new Candidatura();
     }
-    
-    public boolean registarCandidatura(){
+
+    public boolean registarCandidatura() {
         return exposicao.addCandidatura(candidatura);
+    }
+
+    private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
+        boolean condicao1 = Candidatura.validaNomeEmpresa(nomeEmpresa) && Candidatura.validaMoradaEmpresa(moradaEmpresa);
+        boolean condicao2 = Candidatura.validaTelemovel(telemovel) && Candidatura.validaAreaPretendida(areaPretendida);
+        boolean condicao3 = Candidatura.validaQuantidadeConvites(quantidadeConvites);
+        if (condicao1 && condicao2 && condicao3) {
+            return true;
+        }
+        return false;
     }
 
     public boolean addProduto(String designacao) {
