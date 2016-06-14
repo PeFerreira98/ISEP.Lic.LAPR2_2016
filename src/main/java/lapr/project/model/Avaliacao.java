@@ -43,7 +43,7 @@ public class Avaliacao {
             throw new IllegalArgumentException("Texto descritivo inválido!");
         } else if (decisao == null || decisao.trim().isEmpty()) {
             throw new IllegalArgumentException("Decisão inválida!");
-        } else if (!"sim".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao)) {
+        } else if (!"sim".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao)) {
             return false;
         }
         return true;

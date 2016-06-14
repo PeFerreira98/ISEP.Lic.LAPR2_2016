@@ -43,12 +43,10 @@ public class CriarCandidaturaController {
     }
 
     private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
-        if (Candidatura.validaNomeEmpresa(nomeEmpresa)
-                && Candidatura.validaMoradaEmpresa(moradaEmpresa)
-                && Candidatura.validaTelemovel(telemovel)
-                && Candidatura.validaAreaPretendida(areaPretendida)
-                && Candidatura.validaQuantidadeConvites(quantidadeConvites)){
-            
+        boolean condicao1 = Candidatura.validaNomeEmpresa(nomeEmpresa) && Candidatura.validaMoradaEmpresa(moradaEmpresa);
+        boolean condicao2 = Candidatura.validaTelemovel(telemovel) && Candidatura.validaAreaPretendida(areaPretendida);
+        boolean condicao3 = Candidatura.validaQuantidadeConvites(quantidadeConvites);
+        if (condicao1 && condicao2 && condicao3){            
             return true;
         }
         return false;
