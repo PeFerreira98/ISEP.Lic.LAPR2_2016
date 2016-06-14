@@ -35,6 +35,7 @@ public class Organizador implements Exportable, Importable<Organizador> {
     }
 
     public Organizador() {
+        // Do nothing because it can be usable with sets
     }
 
     public Utilizador getUtilizador() {
