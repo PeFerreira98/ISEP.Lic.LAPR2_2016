@@ -10,6 +10,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.TipoConflito;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.RegistoUtilizadores;
@@ -30,9 +31,10 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
     private RegistoUtilizadores registoUtilizadores;
     private ListaExposicoes listaExposicoes;
-    
+
     private List<MecanismoAtribuicao> listaMecanismos;
     private ListaRecursos listaRecursos;
+    private List<TipoConflito> listaTipoConflito;
 
     /**
      * Construtor de CentroExposicoes
@@ -46,21 +48,23 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     public CentroExposicoes(RegistoUtilizadores registoUtilizadores, ListaExposicoes listaExposicoes) {
         this.registoUtilizadores = registoUtilizadores;
         this.listaExposicoes = listaExposicoes;
-        
+
         listaMecanismos = new ArrayList<>();
         listaRecursos = new ListaRecursos();
+        listaTipoConflito = new ArrayList<>();
     }
 
     public CentroExposicoes() {
 
         listaExposicoes = new ListaExposicoes();
         registoUtilizadores = new RegistoUtilizadores();
-        
+
         listaMecanismos = new ArrayList<>();
         listaRecursos = new ListaRecursos();
+        listaTipoConflito = new ArrayList<>();
     }
-    
-    public void addMecanismo(MecanismoAtribuicao mecanismoAtribuicao){
+
+    public void addMecanismo(MecanismoAtribuicao mecanismoAtribuicao) {
         listaMecanismos.add(mecanismoAtribuicao);
     }
 
@@ -71,13 +75,17 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     public RegistoUtilizadores getRegistoUtilizadores() {
         return registoUtilizadores;
     }
-    
+
     public ListaRecursos getListaRecursos() {
         return listaRecursos;
     }
 
     public List<MecanismoAtribuicao> getListaMecanismos() {
         return listaMecanismos;
+    }
+
+    public List<TipoConflito> getListaTipoConflito() {
+        return listaTipoConflito;
     }
 
     @Override
@@ -96,7 +104,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             Document document = builder.newDocument();
             Element elementCentroExposicoes = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element
             Node registoUtilizadoresNode = this.registoUtilizadores.exportContentToXMLNode();
             elementCentroExposicoes.appendChild(document.importNode(registoUtilizadoresNode, true));
@@ -105,7 +112,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             Node listaExposicoesNode = this.listaExposicoes.exportContentToXMLNode();
             elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
 
-            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementCentroExposicoes);
             rootNode = elementCentroExposicoes;
