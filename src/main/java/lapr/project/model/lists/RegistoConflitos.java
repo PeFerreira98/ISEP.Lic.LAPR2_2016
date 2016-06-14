@@ -18,7 +18,7 @@ public class RegistoConflitos {
     private List<Conflito> listaConflitos;
 
     public RegistoConflitos() {
-        this.listaConflitos = new ArrayList<Conflito>();
+        this.listaConflitos = new ArrayList<>();
     }
 
     public Conflito novoConflito(String descricao) {
