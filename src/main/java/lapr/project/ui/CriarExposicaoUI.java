@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import lapr.project.controller.CriarExposicao2Controller;
 import lapr.project.controller.CriarExposicaoController;
 import lapr.project.model.Recurso;
 import lapr.project.model.exhibitions.CentroExposicoes;
@@ -32,7 +31,7 @@ import lapr.project.utils.Data;
 public class CriarExposicaoUI extends javax.swing.JFrame {
 
     private Exposicao expo;
-    private CriarExposicao2Controller controller;
+    private CriarExposicaoController controller;
     private CentroExposicoes centroExpo;
     private ListaOrganizadores lstOrgAux;
     private Utilizador user;
@@ -44,7 +43,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     public CriarExposicaoUI(CentroExposicoes centroExpo, Utilizador user) {
         this.user = user;
         this.centroExpo = centroExpo;
-        this.controller = new CriarExposicao2Controller(centroExpo);
+        this.controller = new CriarExposicaoController(centroExpo);
         this.lstOrgAux = new ListaOrganizadores();
         
         
