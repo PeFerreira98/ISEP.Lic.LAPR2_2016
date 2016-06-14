@@ -35,6 +35,7 @@ public class FAE implements Exportable, Importable<FAE> {
     }
 
     public FAE() {
+        //Do nothing. Usable with sets
     }
 
     public void setUtilizador(Utilizador utilizador) {
