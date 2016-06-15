@@ -298,7 +298,13 @@ public class RepresentanteUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarDemoActionPerformed
 
     private void btnCriarCandidaturaDemoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarCandidaturaDemoActionPerformed
-        // TODO add your handling code here:
+        Demonstracao demo = jLstDemos.getSelectedValue();
+        if (demo == null) {
+            JOptionPane.showMessageDialog(RepresentanteUI.this,
+                    "Seleccione uma demonstração", "Demonstração", JOptionPane.ERROR_MESSAGE);
+        } else {
+            new CriarCandidaturaDemoUI(demo);
+        }
     }//GEN-LAST:event_btnCriarCandidaturaDemoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
