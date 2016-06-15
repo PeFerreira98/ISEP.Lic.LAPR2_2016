@@ -34,9 +34,11 @@ public class RepresentanteUI extends javax.swing.JFrame {
      */
     private Representante rep;
     private CentroExposicoes centroExpo;
+    private Utilizador utilizador;
 
     public RepresentanteUI(Utilizador utilizador, CentroExposicoes centroExposicoes) {
         this.centroExpo = centroExposicoes;
+        this.utilizador = utilizador;
         this.rep = new Representante(utilizador);
 
         super.setTitle("Representante Menu (" + utilizador.getUsername() + ")");
@@ -155,8 +157,12 @@ public class RepresentanteUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnMostrarDemo = new javax.swing.JButton();
         btnCriarCandidaturaDemo = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jScrollPane1.setViewportView(jLstExpo);
 
@@ -187,6 +193,28 @@ public class RepresentanteUI extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("My Account");
+
+        jMenuItem1.setText("Settings");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Logout");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,7 +222,7 @@ public class RepresentanteUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(btnMostrarDemo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
@@ -215,7 +243,7 @@ public class RepresentanteUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -273,6 +301,15 @@ public class RepresentanteUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCriarCandidaturaDemoActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new LoginUI(centroExpo);
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new AlterarPerfiUtilizadorUI(this.utilizador, this.centroExpo.getRegistoUtilizadores());
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCriarCandidaturaDemo;
     private javax.swing.JButton btnCriarCandidaturaExpo;
@@ -281,6 +318,10 @@ public class RepresentanteUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<Demonstracao> jLstDemos;
     private javax.swing.JList<Exposicao> jLstExpo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
