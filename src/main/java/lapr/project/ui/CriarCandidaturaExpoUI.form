@@ -89,11 +89,6 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jProdButton" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jDemoButton" min="-2" pref="200" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -140,10 +135,7 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jProdButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDemoButton" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jProdButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="36" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -263,14 +255,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar Produtos"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jDemoButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Adicionar Demonstra&#xe7;&#xf5;es"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jDemoButtonActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

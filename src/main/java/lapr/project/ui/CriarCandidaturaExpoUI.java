@@ -11,21 +11,21 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import lapr.project.controller.CriarCandidaturaController;
+import lapr.project.controller.CriarCandidaturaExpoController;
 import lapr.project.model.exhibitions.Exposicao;
 
 /**
  *
  * @author Marcos
  */
-public class CriarCandidaturaUI extends javax.swing.JFrame {
+public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
 
-    private CriarCandidaturaController controller;
+    private CriarCandidaturaExpoController controller;
     private Exposicao exposicao;
 
-    public CriarCandidaturaUI(Exposicao exposicao) {
+    public CriarCandidaturaExpoUI(Exposicao exposicao) {
         this.exposicao = exposicao;
-        this.controller = new CriarCandidaturaController(exposicao);
+        this.controller = new CriarCandidaturaExpoController(exposicao);
 
         super.setTitle("Create Submission Window");
         initComponents();
@@ -62,7 +62,6 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtArea = new javax.swing.JTextField();
         jProdButton = new javax.swing.JButton();
-        jDemoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -107,13 +106,6 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
         txtArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jProdButton.setText("Adicionar Produtos");
-
-        jDemoButton.setText("Adicionar Demonstrações");
-        jDemoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jDemoButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,11 +160,7 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
                                         .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jDemoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(jProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -207,9 +195,7 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProdButton)
-                    .addComponent(jDemoButton))
+                .addComponent(jProdButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,20 +271,20 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
                 
                 if (controller.registarCandidatura()) {
 
-                    JOptionPane.showMessageDialog(CriarCandidaturaUI.this,
+                    JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
                             "Candidatura adicionada com Sucesso!", "Create Submission Window", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     
                 } else {
-                    JOptionPane.showMessageDialog(CriarCandidaturaUI.this,
+                    JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
                             "Erro na adição da candidatura, esta candidatura já existe", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(CriarCandidaturaUI.this,
+                JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
                         "Erro na criação da candidatura, por favor verifique os dados inseridos", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(CriarCandidaturaUI.this,
+            JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
                     "Por favor preencha todos os dados necessários", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -308,13 +294,8 @@ public class CriarCandidaturaUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jCancelActionPerformed
 
-    private void jDemoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDemoButtonActionPerformed
-        new AddDemonstracoesUI(controller);
-    }//GEN-LAST:event_jDemoButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jCancel;
-    private javax.swing.JButton jDemoButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

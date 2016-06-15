@@ -48,7 +48,7 @@ class Main {
         //new AtribuirCandidaturaUI(centroExposicoes);
         //new DefinirRecursoUI(centroExposicoes);
 
-        new CriarCandidaturaUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
+        new CriarCandidaturaExpoUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
         new RetirarCandidaturaUI(centroExposicoes);
 
         System.out.println(centroExposicoes);

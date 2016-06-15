@@ -39,22 +39,6 @@ public class CandidaturaTest {
     }
 
     /**
-     * Test of addDemonstracao method, of class Candidatura.
-     */
-    @Test
-    public void testAddDemonstracao() {
-        System.out.println("addDemonstracao");
-
-        Demonstracao demonstracao = new Demonstracao("msn");
-        Candidatura instance = new Candidatura("EfoCorp", "Rua do queijo", 916658064, 20, 100, new ArrayList<>());
-
-        boolean expResult = true;
-        boolean result = instance.addDemonstracao(demonstracao);
-
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of addProduto method, of class Candidatura.
      */
     @Test

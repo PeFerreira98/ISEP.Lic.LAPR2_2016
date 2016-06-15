@@ -12,25 +12,22 @@ import lapr.project.model.Demonstracao;
 import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaProdutos;
 
 /**
  *
  * @author zero_
  */
-public class CriarCandidaturaController {
+public class CriarCandidaturaExpoController {
 
     private Exposicao exposicao;
 
     private Candidatura candidatura;
-    private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
     private final List<Keyword> keywordList = new ArrayList<>();
 
-    public CriarCandidaturaController(Exposicao exposicao) {
+    public CriarCandidaturaExpoController(Exposicao exposicao) {
         this.exposicao = exposicao;
-        this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
     }
 
@@ -64,7 +61,6 @@ public class CriarCandidaturaController {
         candidatura.setTelemovel(telemovel);
         candidatura.setQuantidadeConvites(qtdConvites);
         candidatura.setListaProdutos(listaProdutos);
-        addDemonstracoesToCandidatura();
         return candidatura.valida();
     }
 
@@ -102,13 +98,6 @@ public class CriarCandidaturaController {
         return false;
     }
 
-    public boolean addDemonstracao(Demonstracao demonstracao) {
-        if (demonstracao != null) {
-            return this.listaDemonstracoes.addDemonstracao(demonstracao);
-        }
-        return false;
-    }
-
     public List<Demonstracao> getListaDemonstracoesExposicao() {
         return this.exposicao.getListaDemonstracoes().getListaDemonstracoes();
     }
@@ -120,21 +109,9 @@ public class CriarCandidaturaController {
         }
     }
 
-    private void addDemonstracoesToCandidatura() {
-        //Não usar func operations, SonarCube não gosta...
-        for (Demonstracao d : listaDemonstracoes.getListaDemonstracoes()) {
-            this.candidatura.addDemonstracao(d);
-        }
-    }
-
     public boolean addCandidaturaToExposicao() {
         if (this.candidatura != null) {
-            //adiciona as demonstraçoes da lista temporária na lista dentro da candidatura
-            if (!this.listaDemonstracoes.getListaDemonstracoes().isEmpty()) {
-                addDemonstracoesToCandidatura();
-            }
-
-            //adiciona os produtos da lista temporaria a lista dentro da candidatura
+//adiciona os produtos da lista temporaria a lista dentro da candidatura
             if (!this.listaProdutos.getListaProdutos().isEmpty()) {
                 addProdutosToCandidatura();
             }

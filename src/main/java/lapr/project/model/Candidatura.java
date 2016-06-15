@@ -8,7 +8,6 @@ package lapr.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaProdutos;
 import lapr.project.model.states.EstadoCandidatura;
 import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
@@ -26,7 +25,6 @@ public class Candidatura implements Retiravel {
     private int quantidadeConvites;
 
     private EstadoCandidatura estadoCandidatura;
-    private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
 
     private List<Avaliacao> lstAvaliacoes;
@@ -49,7 +47,6 @@ public class Candidatura implements Retiravel {
         this.quantidadeConvites = quantidadeConvites;
 
         this.estadoCandidatura = new EstadoCandidaturaEmSubmissao(this);
-        this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
 
         this.lstAvaliacoes = new ArrayList<>();
@@ -60,7 +57,6 @@ public class Candidatura implements Retiravel {
 
     public Candidatura() {
         this.estadoCandidatura = new EstadoCandidaturaEmSubmissao(this);
-        this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaProdutos = new ListaProdutos();
         this.lstAvaliacoes = new ArrayList<>();
         this.keywordList = new ArrayList<>();
@@ -68,10 +64,6 @@ public class Candidatura implements Retiravel {
 
     public void addAvaliacao(Avaliacao a) {
         this.lstAvaliacoes.add(a);
-    }
-
-    public boolean addDemonstracao(Demonstracao demonstracao) {
-        return this.listaDemonstracoes.addDemonstracao(demonstracao);
     }
 
     public boolean addProduto(Produto produto) {
@@ -141,9 +133,6 @@ public class Candidatura implements Retiravel {
         return listaProdutos;
     }
 
-    public ListaDemonstracoes getListaDemonstracoes() {
-        return listaDemonstracoes;
-    }
 
     public void setMoradaEmpresa(String moradaEmpresa) {
         this.moradaEmpresa = moradaEmpresa;
@@ -244,7 +233,7 @@ public class Candidatura implements Retiravel {
     @Override
     public String toString() {
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
-                + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura + ",\n listaDemonstracoes=" + listaDemonstracoes + ",\n listaProdutos=" + listaProdutos + '}';
+                + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura +  ",\n listaProdutos=" + listaProdutos + '}';
     }
 
 }

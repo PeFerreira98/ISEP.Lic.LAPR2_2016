@@ -250,7 +250,7 @@ public class RepresentanteUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(RepresentanteUI.this,
                     "Seleccione uma exposição", "Exposição", JOptionPane.ERROR_MESSAGE);
         } else {
-            new CriarCandidaturaUI(expo);
+            new CriarCandidaturaExpoUI(expo);
         }
     }//GEN-LAST:event_btnCriarCandidaturaExpoActionPerformed
 

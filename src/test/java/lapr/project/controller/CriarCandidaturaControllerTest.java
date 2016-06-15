@@ -56,7 +56,7 @@ public class CriarCandidaturaControllerTest {
         int telemovel = 917320606;
         double areaPretendida = 5666;
         int quantidadeConvites = 100;
-        CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
+        CriarCandidaturaExpoController instance = new CriarCandidaturaExpoController(exposicao);
         instance.novaCandidatura();
         boolean expResult = true;
         boolean result = instance.setDados(nomeEmpresa, moradaEmpresa, areaPretendida, telemovel, quantidadeConvites);
@@ -74,28 +74,10 @@ public class CriarCandidaturaControllerTest {
         Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
         String designacao = "produto1";
-        CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
+        CriarCandidaturaExpoController instance = new CriarCandidaturaExpoController(exposicao);
 
         boolean expResult = true;
         boolean result = instance.addProduto(designacao);
-
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of addDemonstracao method, of class CriarCandidaturaController.
-     */
-    @Test
-    public void testAddDemonstracao() {
-        System.out.println("addDemonstracao");
-
-        Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
-
-        Demonstracao demonstracao = new Demonstracao("demo1");
-        CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
-
-        boolean expResult = true;
-        boolean result = instance.addDemonstracao(demonstracao);
 
         assertEquals(expResult, result);
     }
@@ -114,7 +96,7 @@ public class CriarCandidaturaControllerTest {
         exposicao.getListaDemonstracoes().addDemonstracao(demo1);
         exposicao.getListaDemonstracoes().addDemonstracao(demo2);
 
-        CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
+        CriarCandidaturaExpoController instance = new CriarCandidaturaExpoController(exposicao);
 
         List<Demonstracao> expResult = exposicao.getListaDemonstracoes().getListaDemonstracoes();
         List<Demonstracao> result = instance.getListaDemonstracoesExposicao();
@@ -136,7 +118,7 @@ public class CriarCandidaturaControllerTest {
         double areaPretendida = 5666;
         int quantidadeConvites = 100;
         Exposicao exposicao = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
-        CriarCandidaturaController instance = new CriarCandidaturaController(exposicao);
+        CriarCandidaturaExpoController instance = new CriarCandidaturaExpoController(exposicao);
         instance.novaCandidatura();
         instance.setDados(nomeEmpresa, moradaEmpresa, areaPretendida, telemovel, quantidadeConvites);
 

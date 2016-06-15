@@ -82,6 +82,14 @@ public class Demonstracao implements Exportable, Importable<Demonstracao> {
     public ListaRecursos getListaRecursos() {
         return listaRecursos;
     }
+    
+    public boolean addCandidatura(Candidatura candidatura) {
+        return this.listaCandidaturas.addCandidatura(candidatura);
+    }
+    
+    public ListaCandidaturas getListaCandidaturas() {
+        return listaCandidaturas;
+    }
 
     public List<Retiravel> getCandidaturasDemonstracoesRetiraveis() {
         return this.listaCandidaturas.getCandidaturasRetiraveis();
