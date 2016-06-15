@@ -7,6 +7,7 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -94,6 +95,24 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
     @Override
     public ListaDemonstracoes importContentFromXMLNode(Node node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ListaDemonstracoes other = (ListaDemonstracoes) obj;
+        if (!Objects.equals(this.listDemonstracoes, other.listDemonstracoes)) {
+            return false;
+        }
+        return true;
     }
 
 }

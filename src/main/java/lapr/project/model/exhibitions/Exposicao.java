@@ -6,6 +6,7 @@
 package lapr.project.model.exhibitions;
 
 import java.util.List;
+import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -313,6 +314,61 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     @Override
     public Exposicao importContentFromXMLNode(Node node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exposicao other = (Exposicao) obj;
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.local, other.local)) {
+            return false;
+        }
+        if (!Objects.equals(this.gestor, other.gestor)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInicioRealizacao, other.dataInicioRealizacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataFimRealizacao, other.dataFimRealizacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataInicioSubmissao, other.dataInicioSubmissao)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataFimSubmissao, other.dataFimSubmissao)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaOrganizadores, other.listaOrganizadores)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaFAE, other.listaFAE)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaDemonstracoes, other.listaDemonstracoes)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaAtribuicoes, other.listaAtribuicoes)) {
+            return false;
+        }
+        if (!Objects.equals(this.listaCandidaturas, other.listaCandidaturas)) {
+            return false;
+        }
+        return true;
     }
 
 }

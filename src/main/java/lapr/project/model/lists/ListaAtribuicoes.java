@@ -7,6 +7,7 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lapr.project.model.Atribuicao;
 
 /**
@@ -45,4 +46,26 @@ public class ListaAtribuicoes {
         return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listAtribuicoes + '}';
     }
 
+ 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ListaAtribuicoes other = (ListaAtribuicoes) obj;
+        if (!Objects.equals(this.listAtribuicoes, other.listAtribuicoes)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
 }

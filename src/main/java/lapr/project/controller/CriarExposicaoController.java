@@ -26,6 +26,12 @@ public class CriarExposicaoController {
         this.exposicao = new Exposicao();
     }
 
+    public Exposicao getExposicao() {
+        return exposicao;
+    }
+    
+    
+
     public Data convertStringToData(String data) {
         final Data d;
 
