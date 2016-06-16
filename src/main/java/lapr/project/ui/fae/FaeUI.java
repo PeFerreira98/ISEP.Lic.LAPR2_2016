@@ -55,7 +55,7 @@ public class FaeUI extends javax.swing.JFrame {
         
         if (listaCandidaturas.isEmpty()) {
             this.jLstCandidaturas.setModel(new DefaultListModel<>());
-            JOptionPane.showMessageDialog(this, "Não existem recursos");
+            JOptionPane.showMessageDialog(this, "Não existem candidaturas");
         }
         
         DefaultListModel listModel = new DefaultListModel() {

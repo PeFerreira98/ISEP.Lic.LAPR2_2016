@@ -17,6 +17,7 @@ import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -79,8 +80,7 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
         }
         return lRetiraveis;
     }
-    
-    
+
     public List<Exposicao> getListaExposicoesCandidaturaTerminada() {
         List<Exposicao> listExpoTemp = new ArrayList<>();
         for (Exposicao expo : listExposicoes) {
@@ -128,7 +128,34 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
 
     @Override
     public ListaExposicoes importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+            //Create document builder //Obtain a new document
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            document.appendChild(document.importNode(node, true));
+
+            //Init
+            NodeList elements1ListaExpo = document.getElementsByTagName(ROOT_ELEMENT_NAME);
+            Node element2ListaExpo = elements1ListaExpo.item(0);
+
+            //Add Lista
+            NodeList elements3Expos = document.getElementsByTagName(EXPO_ELEMENT_NAME);
+            NodeList expos4 = elements3Expos.item(0).getChildNodes();
+            for (int position = 0; position < expos4.getLength(); position++) {
+                Node expo5 = expos4.item(position);
+                Exposicao expo6sicao = new Exposicao();
+                expo6sicao = expo6sicao.importContentFromXMLNode(expo5);
+                addExposicao(expo6sicao);
+            }
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return this;
     }
-    
+
 }

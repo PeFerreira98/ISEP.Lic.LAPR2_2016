@@ -17,6 +17,7 @@ import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -134,7 +135,6 @@ public class RegistoUtilizadores implements Exportable, Importable<RegistoUtiliz
             Document document = builder.newDocument();
             Element elementRegistoUtilizadores = document.createElement(ROOT_ELEMENT_NAME);
 
-            
             //Create a sub-element //iterate over keywords
             Element elementRegUsers = document.createElement(REG_USERS_ELEMENT_NAME);
             elementRegistoUtilizadores.appendChild(elementRegUsers);
@@ -151,7 +151,6 @@ public class RegistoUtilizadores implements Exportable, Importable<RegistoUtiliz
                 elementUnRegUsers.appendChild(document.importNode(utilizadorNode, true));
             }
 
-            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementRegistoUtilizadores);
             node = elementRegistoUtilizadores;
@@ -165,6 +164,44 @@ public class RegistoUtilizadores implements Exportable, Importable<RegistoUtiliz
 
     @Override
     public RegistoUtilizadores importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+            //Create document builder //Obtain a new document
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            document.appendChild(document.importNode(node, true));
+
+            //Init
+            NodeList elements1RegistoUtilizadores = document.getElementsByTagName(ROOT_ELEMENT_NAME);
+            Node element2Registo = elements1RegistoUtilizadores.item(0);
+
+            //Add Lista
+            NodeList elements3RegUsers = document.getElementsByTagName(REG_USERS_ELEMENT_NAME);
+            NodeList reg4Users = elements3RegUsers.item(0).getChildNodes();
+            for (int position = 0; position < reg4Users.getLength(); position++) {
+                Node reg5User = reg4Users.item(position);
+                Utilizador reg6Util = new Utilizador();
+                reg6Util = reg6Util.importContentFromXMLNode(reg5User);
+                addUtilizadorNaoRegistado(reg6Util);
+                registarUtilizador(reg6Util);
+            }
+            
+            //Add Lista
+            NodeList elements3UnRegUsers = document.getElementsByTagName(UNREG_USERS_ELEMENT_NAME);
+            NodeList unreg4Users = elements3UnRegUsers.item(0).getChildNodes();
+            for (int position = 0; position < unreg4Users.getLength(); position++) {
+                Node unreg5User = unreg4Users.item(position);
+                Utilizador unreg6Util = new Utilizador();
+                unreg6Util = unreg6Util.importContentFromXMLNode(unreg5User);
+                addUtilizadorNaoRegistado(unreg6Util);
+            }
+            
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return this;
     }
 }
