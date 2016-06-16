@@ -6,7 +6,7 @@
 package lapr.project.controller;
 
 import java.util.List;
-import lapr.project.model.TipoConflito;
+import lapr.project.model.exhibitions.TipoConflito;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.mecanismos.MecanismoDetecaoConflito;

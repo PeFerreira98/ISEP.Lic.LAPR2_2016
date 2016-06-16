@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import lapr.project.controller.gestor.ConfirmarRegistoController;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.exhibitions.CentroExposicoes;

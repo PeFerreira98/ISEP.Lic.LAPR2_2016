@@ -8,7 +8,7 @@ package lapr.project.model.lists;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import lapr.project.model.Atribuicao;
+import lapr.project.model.submissions.Atribuicao;
 
 /**
  *

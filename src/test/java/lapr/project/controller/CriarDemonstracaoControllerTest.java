@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import lapr.project.controller.organizador.CriarDemonstracaoController;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaRecursos;

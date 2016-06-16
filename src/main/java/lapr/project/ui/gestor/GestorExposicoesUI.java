@@ -10,7 +10,6 @@ import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.Utilizador;
 import lapr.project.ui.AlterarPerfiUtilizadorUI;
-import lapr.project.ui.DefinirRecursoUI;
 import lapr.project.ui.LoginUI;
 import lapr.project.ui.ViewExpoUI;
 

@@ -6,6 +6,7 @@
 package lapr.project.controller;
 
 
+import lapr.project.controller.gestor.CriarExposicaoController;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;

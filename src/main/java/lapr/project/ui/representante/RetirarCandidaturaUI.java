@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import lapr.project.controller.RetirarCandidaturaController;
-import lapr.project.model.Retiravel;
+import lapr.project.controller.representante.RetirarCandidaturaController;
+import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.exhibitions.CentroExposicoes;
 
 /**

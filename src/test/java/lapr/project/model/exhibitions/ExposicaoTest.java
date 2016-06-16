@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.Candidatura;
+import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.lists.ListaAtribuicoes;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;

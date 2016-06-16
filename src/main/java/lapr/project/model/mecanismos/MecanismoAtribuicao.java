@@ -6,7 +6,7 @@
 package lapr.project.model.mecanismos;
 
 import java.util.List;
-import lapr.project.model.Atribuicao;
+import lapr.project.model.submissions.Atribuicao;
 import lapr.project.model.exhibitions.Exposicao;
 
 /**

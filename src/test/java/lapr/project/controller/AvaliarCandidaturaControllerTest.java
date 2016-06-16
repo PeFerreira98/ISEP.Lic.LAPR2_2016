@@ -5,9 +5,10 @@
  */
 package lapr.project.controller;
 
+import lapr.project.controller.fae.AvaliarCandidaturaController;
 import java.util.ArrayList;
-import lapr.project.model.Avaliacao;
-import lapr.project.model.Candidatura;
+import lapr.project.model.submissions.Avaliacao;
+import lapr.project.model.submissions.Candidatura;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

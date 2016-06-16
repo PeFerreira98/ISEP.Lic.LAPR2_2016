@@ -7,8 +7,8 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Candidatura;
-import lapr.project.model.Conflito;
+import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.exhibitions.Conflito;
 import lapr.project.model.users.FAE;
 
 /**

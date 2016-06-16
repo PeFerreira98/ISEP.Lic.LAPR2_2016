@@ -8,8 +8,8 @@ package lapr.project.model.lists;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import lapr.project.model.Candidatura;
-import lapr.project.model.Retiravel;
+import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.submissions.Retiravel;
 
 /**
  *

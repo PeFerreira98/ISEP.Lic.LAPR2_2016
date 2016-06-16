@@ -11,8 +11,6 @@ import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.Organizador;
 import lapr.project.model.users.Utilizador;
 import lapr.project.ui.AlterarPerfiUtilizadorUI;
-import lapr.project.ui.AtribuirCandidaturaUI;
-import lapr.project.ui.DefinirFAEUI;
 import lapr.project.ui.LoginUI;
 
 /**

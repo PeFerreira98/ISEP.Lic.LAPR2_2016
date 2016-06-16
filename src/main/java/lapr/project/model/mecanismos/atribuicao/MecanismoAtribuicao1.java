@@ -7,8 +7,8 @@ package lapr.project.model.mecanismos.atribuicao;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Candidatura;
+import lapr.project.model.submissions.Atribuicao;
+import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;

@@ -7,7 +7,7 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.model.Produto;
+import lapr.project.model.submissions.Produto;
 
 /**
  *

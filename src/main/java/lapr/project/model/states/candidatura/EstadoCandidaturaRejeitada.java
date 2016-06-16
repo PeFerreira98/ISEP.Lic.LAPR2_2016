@@ -5,7 +5,7 @@
  */
 package lapr.project.model.states.candidatura;
 
-import lapr.project.model.Candidatura;
+import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.states.EstadoCandidatura;
 
 /**

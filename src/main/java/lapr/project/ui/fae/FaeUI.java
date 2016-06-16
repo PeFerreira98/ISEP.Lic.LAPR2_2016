@@ -13,14 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Candidatura;
+import lapr.project.model.submissions.Atribuicao;
+import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.Utilizador;
 import lapr.project.ui.AlterarPerfiUtilizadorUI;
-import lapr.project.ui.AvaliarCandidaturaUI;
 import lapr.project.ui.CandidaturaInfoUI;
 import lapr.project.ui.LoginUI;
 

@@ -5,7 +5,7 @@
  */
 package lapr.project.model.mecanismos.detecaoconflito;
 
-import lapr.project.model.Candidatura;
+import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;

@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import lapr.project.controller.representante.CriarCandidaturaExpoController;
 import java.util.List;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.Exposicao;

@@ -11,7 +11,7 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import lapr.project.controller.CriarCandidaturaExpoController;
+import lapr.project.controller.representante.CriarCandidaturaExpoController;
 import lapr.project.model.exhibitions.Exposicao;
 
 /**

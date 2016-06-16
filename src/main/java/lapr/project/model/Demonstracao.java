@@ -5,6 +5,8 @@
  */
 package lapr.project.model;
 
+import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.submissions.Retiravel;
 import java.util.List;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
