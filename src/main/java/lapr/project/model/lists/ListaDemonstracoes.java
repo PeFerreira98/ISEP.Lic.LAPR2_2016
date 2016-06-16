@@ -98,6 +98,13 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
     }
 
     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.listDemonstracoes);
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

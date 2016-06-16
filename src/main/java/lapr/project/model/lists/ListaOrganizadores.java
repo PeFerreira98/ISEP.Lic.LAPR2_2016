@@ -65,6 +65,12 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
         }
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.listOrganizadores);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -84,8 +90,6 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
         return true;
     }
 
-    
-    
     public boolean validaOrganizador(Organizador organizador) {
         return organizador.valida();
     }

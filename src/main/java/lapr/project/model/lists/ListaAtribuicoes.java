@@ -46,7 +46,12 @@ public class ListaAtribuicoes {
         return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listAtribuicoes + '}';
     }
 
- 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.listAtribuicoes);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -66,6 +71,4 @@ public class ListaAtribuicoes {
         return true;
     }
 
-    
-    
 }

@@ -53,7 +53,7 @@ public class ListaCandidaturas {
     public List<Candidatura> getListaCandidaturas() {
         return listCandidaturas;
     }
-    
+
     public List<Retiravel> getCandidaturasRetiraveis() {
         List<Retiravel> lRetiraveis = new ArrayList<>();
         for (Candidatura c : this.listCandidaturas) {
@@ -69,6 +69,12 @@ public class ListaCandidaturas {
         return "\n ListaCandidaturas{" + "listaCandidaturas=" + listCandidaturas + '}';
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.listCandidaturas);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -87,7 +93,5 @@ public class ListaCandidaturas {
         }
         return true;
     }
-    
-    
 
 }

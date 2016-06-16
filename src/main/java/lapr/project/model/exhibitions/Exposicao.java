@@ -252,6 +252,26 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.title);
+        hash = 97 * hash + Objects.hashCode(this.description);
+        hash = 97 * hash + Objects.hashCode(this.local);
+        hash = 97 * hash + Objects.hashCode(this.gestor);
+        hash = 97 * hash + Objects.hashCode(this.dataInicioRealizacao);
+        hash = 97 * hash + Objects.hashCode(this.dataFimRealizacao);
+        hash = 97 * hash + Objects.hashCode(this.dataInicioSubmissao);
+        hash = 97 * hash + Objects.hashCode(this.dataFimSubmissao);
+        hash = 97 * hash + Objects.hashCode(this.listaOrganizadores);
+        hash = 97 * hash + Objects.hashCode(this.listaFAE);
+        hash = 97 * hash + Objects.hashCode(this.listaDemonstracoes);
+        hash = 97 * hash + Objects.hashCode(this.listaAtribuicoes);
+        hash = 97 * hash + Objects.hashCode(this.listaCandidaturas);
+        hash = 97 * hash + Objects.hashCode(this.listaConflitos);
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

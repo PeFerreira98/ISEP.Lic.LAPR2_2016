@@ -112,7 +112,12 @@ public class ListaFAE implements Exportable, Importable<ListaFAE> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-  
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.listFAE);
+        return hash;
+    }
 
     @Override
     public boolean equals(Object obj) {
