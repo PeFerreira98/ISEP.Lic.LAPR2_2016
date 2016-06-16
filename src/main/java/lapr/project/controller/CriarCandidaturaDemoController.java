@@ -11,7 +11,6 @@ import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
-import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaProdutos;
 
 /**

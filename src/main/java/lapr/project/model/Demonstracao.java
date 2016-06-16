@@ -5,7 +5,6 @@
  */
 package lapr.project.model;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
