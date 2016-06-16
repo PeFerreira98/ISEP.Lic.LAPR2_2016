@@ -13,10 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import lapr.project.controller.AvaliarCandidaturaController;
 import lapr.project.model.Atribuicao;
 import lapr.project.model.Candidatura;
-import lapr.project.model.Recurso;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.FAE;
@@ -32,15 +30,20 @@ public class FaeUI extends javax.swing.JFrame {
      * Creates new form FaeUI
      */
     private FAE fae;
+    private Utilizador utilizador;
     private CentroExposicoes centroExpo;
     
     public FaeUI(Utilizador utilizador, CentroExposicoes centroExposicoes) {
         this.centroExpo = centroExposicoes;
+        this.utilizador = utilizador;
         this.fae = new FAE(utilizador);
         
         super.setTitle("FAE Menu (" + utilizador.getUsername() + ")");
+        
         initComponents();
         inicializarLista();
+        
+        super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
     
@@ -104,6 +107,10 @@ public class FaeUI extends javax.swing.JFrame {
         btnAvaliar = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         btnCandidaturaInfo = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuSettings = new javax.swing.JMenuItem();
+        jMenuLogout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +131,28 @@ public class FaeUI extends javax.swing.JFrame {
                 btnCandidaturaInfoActionPerformed(evt);
             }
         });
+
+        jMenu1.setText("My Account");
+
+        jMenuSettings.setText("Settings");
+        jMenuSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSettingsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuSettings);
+
+        jMenuLogout.setText("Logout");
+        jMenuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuLogout);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,7 +175,7 @@ public class FaeUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,11 +220,24 @@ public class FaeUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCandidaturaInfoActionPerformed
 
+    private void jMenuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSettingsActionPerformed
+        new AlterarPerfiUtilizadorUI(this.utilizador, this.centroExpo.getRegistoUtilizadores());
+    }//GEN-LAST:event_jMenuSettingsActionPerformed
+
+    private void jMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLogoutActionPerformed
+        new LoginUI(centroExpo);
+        dispose();
+    }//GEN-LAST:event_jMenuLogoutActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAvaliar;
     private javax.swing.JButton btnCandidaturaInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<Candidatura> jLstCandidaturas;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuLogout;
+    private javax.swing.JMenuItem jMenuSettings;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

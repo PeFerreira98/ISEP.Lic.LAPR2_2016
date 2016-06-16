@@ -27,13 +27,11 @@ public class CriarDemonstracaoUI extends javax.swing.JFrame {
     /**
      * Creates new form CriarDemonstracaoUI
      */
-    private Exposicao expo;
     private CentroExposicoes centroExpo;
     private ListaRecursos listaRecursosAux;
     private CriarDemonstracaoController controller;
 
     public CriarDemonstracaoUI(CentroExposicoes centroExpo, Exposicao expo) {
-        this.expo = expo;
         this.centroExpo = centroExpo;
         this.listaRecursosAux = new ListaRecursos();
         this.controller = new CriarDemonstracaoController(expo);
@@ -114,7 +112,7 @@ public class CriarDemonstracaoUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jLstRecursos = new javax.swing.JList<Recurso>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setText("Exposição:");
 
@@ -244,48 +242,13 @@ public class CriarDemonstracaoUI extends javax.swing.JFrame {
             this.controller.criarDemo(txtCod.getText(), txtDesc.getText(), this.listaRecursosAux);
             JOptionPane.showMessageDialog(CriarDemonstracaoUI.this,
                     "Demonstração criada", "Success", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
         }
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.listaRecursosAux = new ListaRecursos();
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CriarDemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CriarDemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            jjLstRecursoslogging.Logger.getLogger(CriarDemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CriarDemonstracaoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new CriarDemonstracaoUI().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddRecursos;

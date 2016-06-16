@@ -36,10 +36,12 @@ public class DefinirFAEUI extends javax.swing.JFrame {
         this.controller = new DefinirFAEController(this.registoUtilizadores, this.exposicao);
 
         super.setTitle("Define FAE");
+        
         initComponents();
         jLblExpoName.setText(this.exposicao.getTitle());
-        
         inicializarLista();
+        
+        super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
 

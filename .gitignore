@@ -1,5 +1,11 @@
 # Created by http://www.gitignore.io
 
+### Custom Files ###
+CentroExposicoesXML.xml
+newList.txt
+pendingUsers.txt
+userList.txt
+
 ### NetBeans ###
 nbproject/private/
 build/

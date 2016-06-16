@@ -7,7 +7,9 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lapr.project.model.Candidatura;
+import lapr.project.model.Retiravel;
 
 /**
  *
@@ -51,10 +53,41 @@ public class ListaCandidaturas {
     public List<Candidatura> getListaCandidaturas() {
         return listCandidaturas;
     }
+    
+    public List<Retiravel> getCandidaturasRetiraveis() {
+        List<Retiravel> lRetiraveis = new ArrayList<>();
+        for (Candidatura c : this.listCandidaturas) {
+            if (c.isRetiravel()) {
+                lRetiraveis.add(c);
+            }
+        }
+        return lRetiraveis;
+    }
 
     @Override
     public String toString() {
         return "\n ListaCandidaturas{" + "listaCandidaturas=" + listCandidaturas + '}';
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ListaCandidaturas other = (ListaCandidaturas) obj;
+        if (!Objects.equals(this.listCandidaturas, other.listCandidaturas)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

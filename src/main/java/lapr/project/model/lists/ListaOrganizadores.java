@@ -7,6 +7,7 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -64,6 +65,27 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
         }
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ListaOrganizadores other = (ListaOrganizadores) obj;
+        if (!Objects.equals(this.listOrganizadores, other.listOrganizadores)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
     public boolean validaOrganizador(Organizador organizador) {
         return organizador.valida();
     }

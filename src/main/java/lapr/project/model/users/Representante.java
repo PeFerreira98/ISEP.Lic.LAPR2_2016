@@ -14,6 +14,7 @@ import java.util.Objects;
 public class Representante {
 
     private Utilizador utilizador;
+    private String  nomeEmpresa;
 
     /**
      * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
@@ -23,7 +24,14 @@ public class Representante {
     public Representante(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
-
+     public Representante(Utilizador utilizador,String nEmpresa) {
+        this.utilizador = utilizador;
+        this.nomeEmpresa = nEmpresa;
+    }
+     
+     public String getNomeEmpresa(){
+         return this.nomeEmpresa;
+     }
     @Override
     public int hashCode() {
         int hash = 5;

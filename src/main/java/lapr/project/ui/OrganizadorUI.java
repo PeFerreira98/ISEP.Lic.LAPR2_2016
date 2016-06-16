@@ -6,7 +6,6 @@
 package lapr.project.ui;
 
 import javax.swing.JOptionPane;
-import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.Organizador;
@@ -27,24 +26,19 @@ public class OrganizadorUI extends javax.swing.JFrame {
     public OrganizadorUI(Utilizador u, CentroExposicoes centroExpo) {
         this.user = u;
         this.centroExpo = centroExpo;
+        
         super.setTitle("Organizador menu (" + this.user.getUsername() + ")");
 
         initComponents();
         for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
-            if (expo.getListaFAE().getListaFAE().isEmpty()) {
-                Organizador o = new Organizador(user);
-                if (expo.isOrganizador(o)) {
-                    jLstExpo1.add(expo.getTitle());
-                }
 
+            Organizador o = new Organizador(user);
+            if (expo.isOrganizador(o)) {
+                jLstExpo1.add(expo.getTitle());
             }
+
         }
 
-        for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
-            for (Demonstracao d : expo.getListaDemonstracoes().getListaDemonstracoes()) {
-
-            }
-        }
         super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
@@ -170,7 +164,6 @@ public class OrganizadorUI extends javax.swing.JFrame {
 
         } else {
             new DefinirFAEUI(this.centroExpo.getRegistoUtilizadores(), this.centroExpo.getListaExposicoes().getExpoByName(expo));
-
         }
 
     }//GEN-LAST:event_btnDefinirFAEActionPerformed
@@ -180,6 +173,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new LoginUI(centroExpo);
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -200,41 +194,6 @@ public class OrganizadorUI extends javax.swing.JFrame {
     private void btnAtribCandidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtribCandidActionPerformed
         new AtribuirCandidaturaUI(centroExpo);
     }//GEN-LAST:event_btnAtribCandidActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(OrganizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(OrganizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(OrganizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(OrganizadorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new OrganizadorUI().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAtribCandid;

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.users.Utilizador;
+import lapr.project.utils.FileOp;
 
 /**
  *
@@ -73,6 +74,8 @@ public class LoginUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButtonLogRep = new javax.swing.JButton();
@@ -82,6 +85,13 @@ public class LoginUI extends javax.swing.JFrame {
         jButtonLogOrg = new javax.swing.JButton();
         jButtonLogFAE = new javax.swing.JButton();
         jButtonLogGest = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItemExportXML = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +134,20 @@ public class LoginUI extends javax.swing.JFrame {
             }
         });
 
+        jMenu3.setText("File");
+
+        jMenuItemExportXML.setText("Export to XML");
+        jMenuItemExportXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExportXMLActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemExportXML);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,14 +155,11 @@ public class LoginUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonLogGest)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButtonLogFAE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                            .addComponent(jButtonLogFAE, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                            .addGap(42, 42, 42)
                             .addComponent(jSignUp))
-                        .addComponent(jButtonLogOrg, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButtonLogRep, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -146,7 +167,11 @@ public class LoginUI extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                .addComponent(jTextField1)))))
+                                .addComponent(jTextField1))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButtonLogRep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonLogOrg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonLogGest, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
@@ -178,6 +203,8 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void jButtonLogRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogRepActionPerformed
         if (loginVerifications()) {
+            new RepresentanteUI(this.loginUser, this.centroExposicoes);
+            dispose();
             //TODO: Add Representante UI
             JOptionPane.showMessageDialog(LoginUI.this,
                     "RepresentanteUI não implementado!", "Login", JOptionPane.ERROR_MESSAGE);
@@ -209,6 +236,11 @@ public class LoginUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonLogGestActionPerformed
 
+    private void jMenuItemExportXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportXMLActionPerformed
+        // TODO filechooser
+        new FileOp().writeXMLFile(centroExposicoes);
+    }//GEN-LAST:event_jMenuItemExportXMLActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogFAE;
     private javax.swing.JButton jButtonLogGest;
@@ -216,6 +248,11 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogRep;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemExportXML;
     private javax.swing.JButton jSignUp;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

@@ -12,50 +12,25 @@ import lapr.project.model.Demonstracao;
 import lapr.project.model.Keyword;
 import lapr.project.model.Produto;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaProdutos;
 
 /**
  *
  * @author zero_
  */
-public class CriarCandidaturaController {
+public class CriarCandidaturaDemoController {
 
-    private Exposicao exposicao;
+    private Demonstracao demo;
 
     private Candidatura candidatura;
-    private ListaDemonstracoes listaDemonstracoes;
     private ListaProdutos listaProdutos;
     private final List<Keyword> keywordList = new ArrayList<>();
 
-    public CriarCandidaturaController(Exposicao exposicao) {
-        this.exposicao = exposicao;
-        this.listaDemonstracoes = new ListaDemonstracoes();
+    public CriarCandidaturaDemoController(Demonstracao d) {
+        this.demo = d;
         this.listaProdutos = new ListaProdutos();
     }
-
-//    public boolean createCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
-//        System.out.println(nomeEmpresa + " - " + moradaEmpresa + " - " + telemovel
-//                + " - " + areaPretendida + " - " + quantidadeConvites);
-//
-//        if (validate(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites)) {
-//            this.candidatura = new Candidatura(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites);
-//            return true;
-//        }
-//        return false;
-//    }
-//
-//    private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
-//        if (Candidatura.validaNomeEmpresa(nomeEmpresa)
-//                && Candidatura.validaMoradaEmpresa(moradaEmpresa)
-//                && Candidatura.validaTelemovel(telemovel)
-//                && Candidatura.validaAreaPretendida(areaPretendida)
-//                && Candidatura.validaQuantidadeConvites(quantidadeConvites)) {
-//
-//            return true;
-//        }
-//        return false;
-//    }
+    
     public boolean setDados(String nomeEmpresa, String moradaEmpresa, double areaPretendida, int telemovel, int qtdConvites) {
 
         candidatura.setNomeEmpresa(nomeEmpresa);
@@ -64,7 +39,6 @@ public class CriarCandidaturaController {
         candidatura.setTelemovel(telemovel);
         candidatura.setQuantidadeConvites(qtdConvites);
         candidatura.setListaProdutos(listaProdutos);
-        addDemonstracoesToCandidatura();
         return candidatura.valida();
     }
 
@@ -78,7 +52,7 @@ public class CriarCandidaturaController {
     }
 
     public boolean registarCandidatura() {
-        return exposicao.addCandidatura(candidatura);
+        return this.demo.addCandidatura(candidatura);
     }
 
     private boolean validate(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {
@@ -102,17 +76,6 @@ public class CriarCandidaturaController {
         return false;
     }
 
-    public boolean addDemonstracao(Demonstracao demonstracao) {
-        if (demonstracao != null) {
-            return this.listaDemonstracoes.addDemonstracao(demonstracao);
-        }
-        return false;
-    }
-
-    public List<Demonstracao> getListaDemonstracoesExposicao() {
-        return this.exposicao.getListaDemonstracoes().getListaDemonstracoes();
-    }
-
     private void addProdutosToCandidatura() {
         //Não usar func operations, SonarCube não gosta...
         for (Produto p : listaProdutos.getListaProdutos()) {
@@ -120,26 +83,14 @@ public class CriarCandidaturaController {
         }
     }
 
-    private void addDemonstracoesToCandidatura() {
-        //Não usar func operations, SonarCube não gosta...
-        for (Demonstracao d : listaDemonstracoes.getListaDemonstracoes()) {
-            this.candidatura.addDemonstracao(d);
-        }
-    }
-
-    public boolean addCandidaturaToExposicao() {
+    public boolean addCandidaturaToDemo() {
         if (this.candidatura != null) {
-            //adiciona as demonstraçoes da lista temporária na lista dentro da candidatura
-            if (!this.listaDemonstracoes.getListaDemonstracoes().isEmpty()) {
-                addDemonstracoesToCandidatura();
-            }
-
-            //adiciona os produtos da lista temporaria a lista dentro da candidatura
+//adiciona os produtos da lista temporaria a lista dentro da candidatura
             if (!this.listaProdutos.getListaProdutos().isEmpty()) {
                 addProdutosToCandidatura();
             }
 
-            return exposicao.addCandidatura(this.candidatura);
+            return this.demo.addCandidatura(this.candidatura);
         }
 
         return false;

@@ -45,7 +45,6 @@ public class AlterarCandidaturaController {
     public void setCandidatura(Candidatura candidatura) {
         this.candidatura = candidatura;
         listaProdutos=candidatura.getListaProdutos();
-        listaDemonstracoes=candidatura.getListaDemonstracoes();
     }
     
     public List<Candidatura> getListaCandidaturas() {

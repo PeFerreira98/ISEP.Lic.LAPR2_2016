@@ -5,18 +5,18 @@
  */
 package lapr.project.model;
 
-import lapr.project.model.states.CandidaturaState;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaProdutos;
+import lapr.project.model.states.EstadoCandidatura;
+import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
 
 /**
  *
  * @author TiagoSilvestre
  */
-public class Candidatura {
+public class Candidatura implements Retiravel {
 
     private String nomeEmpresa;
     private String moradaEmpresa;
@@ -24,12 +24,11 @@ public class Candidatura {
     private double areaPretendida;
     private int quantidadeConvites;
 
-    private CandidaturaState candidaturaState;
-    private ListaDemonstracoes listaDemonstracoes;
+    private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;
 
     private List<Avaliacao> lstAvaliacoes;
-    private final List<Keyword> keywordList = new ArrayList<>();
+    private List<Keyword> keywordList;
 
     /**
      * Construtor de objecto Candidatura
@@ -47,31 +46,24 @@ public class Candidatura {
         this.areaPretendida = areaPretendida;
         this.quantidadeConvites = quantidadeConvites;
 
-        this.candidaturaState = CandidaturaState.IN_SUBMISSION;
-        this.listaDemonstracoes = new ListaDemonstracoes();
+        this.estadoCandidatura = new EstadoCandidaturaEmSubmissao(this);
         this.listaProdutos = new ListaProdutos();
 
         this.lstAvaliacoes = new ArrayList<>();
+        this.keywordList = new ArrayList<>();
+
         this.keywordList.addAll(keywordList);
     }
 
     public Candidatura() {
-        this.candidaturaState = CandidaturaState.IN_SUBMISSION;
-        this.listaDemonstracoes = new ListaDemonstracoes();
+        this.estadoCandidatura = new EstadoCandidaturaEmSubmissao(this);
         this.listaProdutos = new ListaProdutos();
         this.lstAvaliacoes = new ArrayList<>();
+        this.keywordList = new ArrayList<>();
     }
 
     public void addAvaliacao(Avaliacao a) {
         this.lstAvaliacoes.add(a);
-    }
-
-    public void changeState(CandidaturaState cs) {
-        this.candidaturaState = cs;
-    }
-
-    public boolean addDemonstracao(Demonstracao demonstracao) {
-        return this.listaDemonstracoes.addDemonstracao(demonstracao);
     }
 
     public boolean addProduto(Produto produto) {
@@ -116,12 +108,13 @@ public class Candidatura {
         return quantidadeConvites != 0;
     }
 
+    @Override
     public String getNomeEmpresa() {
         return nomeEmpresa;
     }
 
-    public int getTelemovel() {
-        return telemovel;
+    public List<Avaliacao> getLstAvaliacoes() {
+        return lstAvaliacoes;
     }
 
     public String getMoradaEmpresa() {
@@ -140,9 +133,6 @@ public class Candidatura {
         return listaProdutos;
     }
 
-    public ListaDemonstracoes getListaDemonstracoes() {
-        return listaDemonstracoes;
-    }
 
     public void setMoradaEmpresa(String moradaEmpresa) {
         this.moradaEmpresa = moradaEmpresa;
@@ -168,10 +158,6 @@ public class Candidatura {
         this.listaProdutos = listaProdutos;
     }
 
-    public List<Avaliacao> getLstAvaliacoes() {
-        return lstAvaliacoes;
-    }
-
     public boolean valida() {
         if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
             throw new IllegalArgumentException("Nome inválido!");
@@ -189,6 +175,23 @@ public class Candidatura {
             throw new IllegalArgumentException("Área expositor inválids!");
         }
         return true;
+    }
+
+    public void setEstado(EstadoCandidatura estadoCandidatura) {
+        this.estadoCandidatura = estadoCandidatura;
+    }
+
+    public EstadoCandidatura getEstado() {
+        return this.estadoCandidatura;
+    }
+
+    public boolean isRetiravel() {
+        return this.estadoCandidatura.isEmSubmissao();
+    }
+
+    @Override
+    public boolean setRetirada() {
+        return this.estadoCandidatura.setRetirada();
     }
 
     @Override
@@ -230,7 +233,7 @@ public class Candidatura {
     @Override
     public String toString() {
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
-                + quantidadeConvites + ", candidaturaState=" + candidaturaState + ",\n listaDemonstracoes=" + listaDemonstracoes + ",\n listaProdutos=" + listaProdutos + '}';
+                + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura +  ",\n listaProdutos=" + listaProdutos + '}';
     }
 
 }
