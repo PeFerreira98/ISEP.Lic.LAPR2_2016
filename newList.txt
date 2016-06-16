@@ -85,3 +85,16 @@ PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
 PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
 PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
 PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Marcos,1140956@isep.ipp.pt,1140953,xpto,organizador
+PENDING,Marcos,1140956@isep.ipp.pt,1140956,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Exp,email,username,password,FAE
+PENDING,Exp,email,username,password,FAE
+PENDING,Marcos,1140956@isep.ipp.pt,1140956,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador
+PENDING,Sara,1140957@isep.ipp.pt,1140957,xpto,organizador

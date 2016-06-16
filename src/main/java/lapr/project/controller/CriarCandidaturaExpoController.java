@@ -109,6 +109,10 @@ public class CriarCandidaturaExpoController {
         }
     }
 
+    public Candidatura getCandidatura() {
+        return candidatura;
+    }
+
     public boolean addCandidaturaToExposicao() {
         if (this.candidatura != null) {
 //adiciona os produtos da lista temporaria a lista dentro da candidatura

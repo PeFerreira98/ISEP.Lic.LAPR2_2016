@@ -51,6 +51,10 @@ public class CriarCandidaturaDemoController {
         this.candidatura = new Candidatura();
     }
 
+    public Candidatura getCandidatura() {
+        return candidatura;
+    }
+
     public boolean registarCandidatura() {
         return this.demo.addCandidatura(candidatura);
     }
