@@ -5,7 +5,6 @@
  */
 package lapr.project.ui;
 
-import static com.sun.management.jmx.Trace.isSelected;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
-import lapr.project.model.Atribuicao;
-import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.users.FAE;
 import lapr.project.model.users.Representante;
 import lapr.project.model.users.Utilizador;
 
