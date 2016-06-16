@@ -53,7 +53,6 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
     private ListaDemonstracoes listaDemonstracoes;
-    //TODO export
     private ListaAtribuicoes listaAtribuicoes;
     private ListaCandidaturas listaCandidaturas;
     private RegistoConflitos listaConflitos;
@@ -61,6 +60,8 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
             Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
 
+        //TODO >> add gestor to constructor (check ViewExpoUI)
+//        this.gestor = ???;
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.local = local;
@@ -79,6 +80,9 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
     }
 
     public Exposicao() {
+
+        //TODO >> add gestor to constructor (check ViewExpoUI)
+//        this.gestor = ???;
         this.title = "";
         this.description = "";
         this.local = "";
@@ -253,21 +257,21 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.title);
-        hash = 97 * hash + Objects.hashCode(this.description);
-        hash = 97 * hash + Objects.hashCode(this.local);
-        hash = 97 * hash + Objects.hashCode(this.gestor);
-        hash = 97 * hash + Objects.hashCode(this.dataInicioRealizacao);
-        hash = 97 * hash + Objects.hashCode(this.dataFimRealizacao);
-        hash = 97 * hash + Objects.hashCode(this.dataInicioSubmissao);
-        hash = 97 * hash + Objects.hashCode(this.dataFimSubmissao);
-        hash = 97 * hash + Objects.hashCode(this.listaOrganizadores);
-        hash = 97 * hash + Objects.hashCode(this.listaFAE);
-        hash = 97 * hash + Objects.hashCode(this.listaDemonstracoes);
-        hash = 97 * hash + Objects.hashCode(this.listaAtribuicoes);
-        hash = 97 * hash + Objects.hashCode(this.listaCandidaturas);
-        hash = 97 * hash + Objects.hashCode(this.listaConflitos);
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.title);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.local);
+        hash = 89 * hash + Objects.hashCode(this.gestor);
+        hash = 89 * hash + Objects.hashCode(this.dataInicioRealizacao);
+        hash = 89 * hash + Objects.hashCode(this.dataFimRealizacao);
+        hash = 89 * hash + Objects.hashCode(this.dataInicioSubmissao);
+        hash = 89 * hash + Objects.hashCode(this.dataFimSubmissao);
+        hash = 89 * hash + Objects.hashCode(this.listaOrganizadores);
+        hash = 89 * hash + Objects.hashCode(this.listaFAE);
+        hash = 89 * hash + Objects.hashCode(this.listaDemonstracoes);
+        hash = 89 * hash + Objects.hashCode(this.listaAtribuicoes);
+        hash = 89 * hash + Objects.hashCode(this.listaCandidaturas);
+        hash = 89 * hash + Objects.hashCode(this.listaConflitos);
         return hash;
     }
 
@@ -363,6 +367,10 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
             elementExposicao.appendChild(elementLocal);
 
             //Create a sub-element
+            Node gestorNode = this.gestor.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(gestorNode, true));
+
+            //Create a sub-element
             Node dataInicioReaNode = this.dataInicioRealizacao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataInicioReaNode, true));
 
@@ -387,8 +395,21 @@ public class Exposicao implements Exportable, Importable<Exposicao> {
             elementExposicao.appendChild(document.importNode(listaFaeNode, true));
 
             //Create a sub-element
-//            Node candidaturaNode = this.candidatura.exportContentToXMLNode();
-//            elementExposicao.appendChild(document.importNode(candidaturaNode, true));
+            Node listaDemonstacoesNode = this.listaDemonstracoes.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(listaDemonstacoesNode, true));
+
+            //Create a sub-element
+            Node listaAtribuicoesNode = this.listaAtribuicoes.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(listaAtribuicoesNode, true));
+
+            //Create a sub-element
+            Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(listaCandidaturasNode, true));
+
+            //Create a sub-element
+            Node listaConflitosNode = this.listaConflitos.exportContentToXMLNode();
+            elementExposicao.appendChild(document.importNode(listaConflitosNode, true));
+
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementExposicao);
             node = elementExposicao;

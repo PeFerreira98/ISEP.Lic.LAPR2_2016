@@ -5,6 +5,7 @@
  */
 package lapr.project.model.submissions;
 
+import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.FAE;
 
 /**

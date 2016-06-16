@@ -65,10 +65,18 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
         }
     }
 
+    public boolean validaOrganizador(Organizador organizador) {
+        return organizador.valida();
+    }
+
+    public boolean valida() {
+        return !(listOrganizadores.isEmpty() || listOrganizadores == null);
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.listOrganizadores);
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.listOrganizadores);
         return hash;
     }
 
@@ -88,14 +96,6 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
             return false;
         }
         return true;
-    }
-
-    public boolean validaOrganizador(Organizador organizador) {
-        return organizador.valida();
-    }
-
-    public boolean valida() {
-        return !(listOrganizadores.isEmpty() || listOrganizadores == null);
     }
 
     @Override

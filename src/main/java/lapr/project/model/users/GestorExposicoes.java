@@ -6,12 +6,15 @@
 package lapr.project.model.users;
 
 import java.util.Objects;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author zero_
  */
-public class GestorExposicoes {
+public class GestorExposicoes implements Exportable, Importable<GestorExposicoes>{
 
     private Utilizador utilizador;
 
@@ -55,6 +58,16 @@ public class GestorExposicoes {
     @Override
     public String toString() {
         return "\n GestorExposicoes{" + "utilizador=" + utilizador + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public GestorExposicoes importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

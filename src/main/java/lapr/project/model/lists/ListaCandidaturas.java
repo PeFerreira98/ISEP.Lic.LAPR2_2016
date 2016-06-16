@@ -10,12 +10,15 @@ import java.util.List;
 import java.util.Objects;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Sara Silva
  */
-public class ListaCandidaturas {
+public class ListaCandidaturas implements Exportable, Importable<ListaCandidaturas> {
 
     private List<Candidatura> listCandidaturas;
 
@@ -65,14 +68,9 @@ public class ListaCandidaturas {
     }
 
     @Override
-    public String toString() {
-        return "\n ListaCandidaturas{" + "listaCandidaturas=" + listCandidaturas + '}';
-    }
-
-    @Override
     public int hashCode() {
         int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.listCandidaturas);
+        hash = 11 * hash + Objects.hashCode(this.listCandidaturas);
         return hash;
     }
 
@@ -92,6 +90,21 @@ public class ListaCandidaturas {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "\n ListaCandidaturas{" + "listaCandidaturas=" + listCandidaturas + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ListaCandidaturas importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

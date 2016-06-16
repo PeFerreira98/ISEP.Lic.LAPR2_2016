@@ -21,53 +21,53 @@ import lapr.project.model.lists.ListaProdutos;
  * @author Sara Silva
  */
 public class AlterarCandidaturaController {
-
+    
     private final CentroExposicoes centroExp;
     private Exposicao exposicao;
     private Candidatura candidatura;
     private ListaCandidaturas listaCandidaturas;
     private ListaProdutos listaProdutos;
     private ListaDemonstracoes listaDemonstracoes;
-
+    
     public AlterarCandidaturaController(CentroExposicoes ce) {
         this.centroExp = ce;
     }
-
+    
     public List<Exposicao> getListaExposicoes() {
         return centroExp.getListaExposicoes().getListaExposicoes();
     }
-
+    
     public void setExposicao(Exposicao exposicao) {
         this.exposicao = exposicao;
-        listaCandidaturas = exposicao.getListaCandidaturas();
+        listaCandidaturas= exposicao.getListaCandidaturas();
     }
-
+    
     public void setCandidatura(Candidatura candidatura) {
         this.candidatura = candidatura;
-        listaProdutos = candidatura.getListaProdutos();
+        listaProdutos=candidatura.getListaProdutos();
     }
-
+    
     public List<Candidatura> getListaCandidaturas() {
         return centroExp.getListaCandidaturas().getListaCandidaturas();
     }
-
+    
     public void addProduto(String produto) {
         listaProdutos.addProduto(new Produto(produto));
     }
-
-    public void addKeyword(String keyword) {
+     
+    public void addKeyword(String keyword){
         Keyword kw = new Keyword(keyword);
         candidatura.addKeyword(kw);
     }
-
+    
     public void addDemonstracao(String demo) {
         listaDemonstracoes.addDemonstracao(new Demonstracao(demo));
     }
-
+    
     public boolean registarCandidaturas() {
         return listaCandidaturas.addCandidatura(candidatura);
     }
-
+    
     public void setDados(String nomeEmpresa, String moradaEmpresa, double areaPretendida, int telemovel, int qtdConvites) {
         candidatura.setNomeEmpresa(nomeEmpresa);
         candidatura.setMoradaEmpresa(moradaEmpresa);
@@ -75,7 +75,7 @@ public class AlterarCandidaturaController {
         candidatura.setTelemovel(telemovel);
         candidatura.setQuantidadeConvites(qtdConvites);
         candidatura.setListaProdutos(listaProdutos);
-
+        
     }
-
+    
 }

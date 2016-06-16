@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lapr.project.model.submissions.Atribuicao;
+import lapr.project.utils.Exportable;
+import lapr.project.utils.Importable;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Sara Silva
  */
-public class ListaAtribuicoes {
+public class ListaAtribuicoes implements Exportable, Importable<ListaAtribuicoes>{
 
     private List<Atribuicao> listAtribuicoes;
 
@@ -42,17 +45,12 @@ public class ListaAtribuicoes {
     }
 
     @Override
-    public String toString() {
-        return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listAtribuicoes + '}';
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.listAtribuicoes);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.listAtribuicoes);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -70,5 +68,20 @@ public class ListaAtribuicoes {
         }
         return true;
     }
+    
+    @Override
+    public String toString() {
+        return "\n ListaAtribuicoes{" + "\t listaAtribuicoes=" + listAtribuicoes + '}';
+    }
 
+    @Override
+    public Node exportContentToXMLNode() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ListaAtribuicoes importContentFromXMLNode(Node node) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

@@ -5,8 +5,6 @@
  */
 package lapr.project.model;
 
-import lapr.project.model.submissions.Candidatura;
-import lapr.project.model.submissions.Retiravel;
 import java.util.List;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
@@ -14,6 +12,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaRecursos;
+import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.submissions.Retiravel;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
