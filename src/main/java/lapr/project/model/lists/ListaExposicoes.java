@@ -79,6 +79,17 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
         }
         return lRetiraveis;
     }
+    
+    
+    public List<Exposicao> getListaExposicoesCandidaturaTerminada() {
+        List<Exposicao> listExpoTemp = new ArrayList<>();
+        for (Exposicao expo : listExposicoes) {
+            if (expo.isCandidaturaTerminada()) {
+                listExpoTemp.add(expo);
+            }
+        }
+        return listExpoTemp;
+    }
 
     @Override
     public String toString() {
@@ -119,8 +130,5 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
     public ListaExposicoes importContentFromXMLNode(Node node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public List<Exposicao> getListaExposicoesCandidaturaTerminada() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

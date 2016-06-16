@@ -15,23 +15,10 @@ public class Conflito {
 
     private Candidatura candidatura;
     private FAE fae;
-    private String tipoConflito;
 
-    public Conflito(String tipoConflito) {
-        this.tipoConflito = tipoConflito;
-
-    }
-
-    public String getTipoConflito() {
-        return tipoConflito;
-    }
-
-    public void setTipoConflito(String tipoConflito) {
-        this.tipoConflito = tipoConflito;
-    }
-
-    public boolean valida() {
-        return candidatura.valida() && fae != null && !tipoConflito.isEmpty();
+    public Conflito(FAE fae, Candidatura candidatura) {
+        this.fae = fae;
+        this.candidatura = candidatura;
     }
 
 }
