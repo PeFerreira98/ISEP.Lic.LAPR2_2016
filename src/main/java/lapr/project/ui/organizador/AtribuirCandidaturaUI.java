@@ -13,11 +13,9 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import lapr.project.controller.organizador.AtribuirCandidaturaController;
-import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.mecanismos.MecanismoAtribuicao;
-import lapr.project.model.users.FAE;
 
 /**
  *

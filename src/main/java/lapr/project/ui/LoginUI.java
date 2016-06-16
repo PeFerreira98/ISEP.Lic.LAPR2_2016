@@ -205,9 +205,6 @@ public class LoginUI extends javax.swing.JFrame {
         if (loginVerifications()) {
             new RepresentanteUI(this.loginUser, this.centroExposicoes);
             dispose();
-            //TODO: Add Representante UI
-            JOptionPane.showMessageDialog(LoginUI.this,
-                    "RepresentanteUI não implementado!", "Login", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonLogRepActionPerformed
 

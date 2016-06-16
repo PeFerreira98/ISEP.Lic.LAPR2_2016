@@ -45,14 +45,6 @@ class Main {
 
         new LoginUI(centroExposicoes);
 
-        //Janelas ainda não conectadas (apenas para testes)
-        //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
-        //new OrganizadorUI(centroExposicoes.getRegistoUtilizadores().checkUtilizadorByUsername("organizador"), centroExposicoes);
-        //new AtribuirCandidaturaUI(centroExposicoes);
-        //new DefinirRecursoUI(centroExposicoes);s
-        //new CriarCandidaturaExpoUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
-        new RetirarCandidaturaUI(centroExposicoes);
-
         System.out.println(centroExposicoes);
     }
 

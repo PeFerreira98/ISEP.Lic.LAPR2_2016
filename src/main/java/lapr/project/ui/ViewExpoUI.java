@@ -29,11 +29,15 @@ public class ViewExpoUI extends javax.swing.JFrame {
      */
     public ViewExpoUI(Exposicao e) {
         this.expo = e;
+        
         super.setTitle("View Exhibition");
         initComponents();
         inicializarLista();
+        
+        System.out.println(e);
 
-        jTxtGestor.setText(this.expo.getGestor().getUtilizador().getUsername());
+        //TODO: Fix Gestor in expo issue
+//        jTxtGestor.setText(this.expo.getGestor().getUtilizador().getUsername());
         txtTitulo.setText(this.expo.getTitle());
         txtDescricao.setText(this.expo.getDescription());
         txtLocal.setText(this.expo.getLocal());
@@ -313,7 +317,7 @@ public class ViewExpoUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanelCenter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelNorth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
