@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.ui.representante.RetirarCandidaturaUI;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

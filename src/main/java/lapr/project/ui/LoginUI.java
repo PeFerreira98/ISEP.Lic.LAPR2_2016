@@ -5,6 +5,10 @@
  */
 package lapr.project.ui;
 
+import lapr.project.ui.fae.FaeUI;
+import lapr.project.ui.gestor.GestorExposicoesUI;
+import lapr.project.ui.organizador.OrganizadorUI;
+import lapr.project.ui.representante.RepresentanteUI;
 import javax.swing.JOptionPane;
 import lapr.project.controller.LoginController;
 import lapr.project.model.exhibitions.CentroExposicoes;

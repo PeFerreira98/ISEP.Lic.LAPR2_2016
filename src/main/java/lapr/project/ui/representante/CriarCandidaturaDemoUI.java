@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.ui;
+package lapr.project.ui.representante;
 
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -11,21 +11,23 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import lapr.project.controller.CriarCandidaturaDemoController;
 import lapr.project.controller.CriarCandidaturaExpoController;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.Exposicao;
 
 /**
  *
  * @author Marcos
  */
-public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
+public class CriarCandidaturaDemoUI extends javax.swing.JFrame {
 
-    private CriarCandidaturaExpoController controller;
-    private Exposicao exposicao;
+    private CriarCandidaturaDemoController controller;
+    private Demonstracao demo;
 
-    public CriarCandidaturaExpoUI(Exposicao exposicao) {
-        this.exposicao = exposicao;
-        this.controller = new CriarCandidaturaExpoController(exposicao);
+    public CriarCandidaturaDemoUI(Demonstracao d) {
+        this.demo = d;
+        this.controller = new CriarCandidaturaDemoController(this.demo);
 
         super.setTitle("Create Submission Window");
         initComponents();
@@ -271,20 +273,20 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
                 
                 if (controller.registarCandidatura()) {
 
-                    JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
+                    JOptionPane.showMessageDialog(CriarCandidaturaDemoUI.this,
                             "Candidatura adicionada com Sucesso!", "Create Submission Window", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     
                 } else {
-                    JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
+                    JOptionPane.showMessageDialog(CriarCandidaturaDemoUI.this,
                             "Erro na adição da candidatura, esta candidatura já existe", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
+                JOptionPane.showMessageDialog(CriarCandidaturaDemoUI.this,
                         "Erro na criação da candidatura, por favor verifique os dados inseridos", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
+            JOptionPane.showMessageDialog(CriarCandidaturaDemoUI.this,
                     "Por favor preencha todos os dados necessários", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
         }
 
