@@ -9,12 +9,12 @@ package lapr.project.ui;
  *
  * @author Sara Silva
  */
-public class DefinirConflitoUI extends javax.swing.JFrame {
+public class DefinirTipoConflitoUI extends javax.swing.JFrame {
 
     /**
      * Creates new form DefinirConflitoUI
      */
-    public DefinirConflitoUI() {
+    public DefinirTipoConflitoUI() {
         initComponents();
     }
 
@@ -97,20 +97,21 @@ public class DefinirConflitoUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DefinirConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefinirTipoConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DefinirConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefinirTipoConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DefinirConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefinirTipoConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DefinirConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DefinirTipoConflitoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DefinirConflitoUI().setVisible(true);
+                new DefinirTipoConflitoUI().setVisible(true);
             }
         });
     }

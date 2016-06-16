@@ -5,7 +5,7 @@
  */
 package lapr.project.model;
 
-import lapr.project.model.mecanismos.MecanismoDetecao;
+import lapr.project.model.mecanismos.MecanismoDetecaoConflito;
 
 /**
  *
@@ -14,10 +14,15 @@ import lapr.project.model.mecanismos.MecanismoDetecao;
 public class TipoConflito {
 
     private String descricao;
-    private MecanismoDetecao mecanismoDetecao;
+    private MecanismoDetecaoConflito mecanismoDetecaoConflito;
 
     public TipoConflito(String descricao) {
         this.descricao = descricao;
+    }
+    
+    public TipoConflito(String descricao, MecanismoDetecaoConflito mecanismoDetecaoConflito) {
+        this.descricao = descricao;
+        this.mecanismoDetecaoConflito = mecanismoDetecaoConflito;
     }
 
     public String getDescricao() {
@@ -26,6 +31,10 @@ public class TipoConflito {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+    
+    public MecanismoDetecaoConflito getMecanismoDetecaoConflito(){
+        return this.mecanismoDetecaoConflito;
     }
 
 }

@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.ui.representante.RetirarCandidaturaUI;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.logging.Logger;
 import lapr.project.model.Candidatura;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Recurso;
+import lapr.project.model.TipoConflito;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaExposicoes;
@@ -16,6 +18,7 @@ import lapr.project.model.mecanismos.atribuicao.MecanismoAtribuicao1;
 import lapr.project.model.mecanismos.atribuicao.MecanismoCargaFAE;
 import lapr.project.model.mecanismos.atribuicao.MecanismoExpProfissional;
 import lapr.project.model.mecanismos.atribuicao.MecanismoNumeroFAE;
+import lapr.project.model.mecanismos.detecaoconflito.MecanismoDetecaoConflito1;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
 import lapr.project.utils.Data;
@@ -46,9 +49,8 @@ class Main {
         //new DefinirFAEUI(centroExposicoes.getRegistoUtilizadores(), centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
         //new OrganizadorUI(centroExposicoes.getRegistoUtilizadores().checkUtilizadorByUsername("organizador"), centroExposicoes);
         //new AtribuirCandidaturaUI(centroExposicoes);
-        //new DefinirRecursoUI(centroExposicoes);
-
-        new CriarCandidaturaExpoUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
+        //new DefinirRecursoUI(centroExposicoes);s
+        //new CriarCandidaturaExpoUI(centroExposicoes.getListaExposicoes().getListaExposicoes().get(0));
         new RetirarCandidaturaUI(centroExposicoes);
 
         System.out.println(centroExposicoes);
@@ -121,6 +123,9 @@ class Main {
         centroExposicoes.addMecanismo(new MecanismoExpProfissional());
         centroExposicoes.addMecanismo(new MecanismoNumeroFAE());
         centroExposicoes.addMecanismo(new MecanismoAtribuicao1());
+        
+        TipoConflito tipoConflito1 = new TipoConflito("tipoConflito1", new MecanismoDetecaoConflito1());
+        centroExposicoes.getListaTipoConflito().addTipoConflito(tipoConflito1);
 
         Recurso r1 = new Recurso("Desc1");
         Recurso r2 = new Recurso("Desc2");

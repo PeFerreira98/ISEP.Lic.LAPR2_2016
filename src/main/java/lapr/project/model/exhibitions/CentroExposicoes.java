@@ -10,10 +10,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.TipoConflito;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaRecursos;
+import lapr.project.model.lists.ListaTipoConflito;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.mecanismos.MecanismoAtribuicao;
 import lapr.project.utils.Exportable;
@@ -35,7 +35,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     private ListaCandidaturas listaCandidaturas;
     private List<MecanismoAtribuicao> listaMecanismos;
     private ListaRecursos listaRecursos;
-    private List<TipoConflito> listaTipoConflito;
+    private ListaTipoConflito listaTipoConflito;
 
     /**
      * Construtor de CentroExposicoes
@@ -52,7 +52,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
         listaMecanismos = new ArrayList<>();
         listaRecursos = new ListaRecursos();
-        listaTipoConflito = new ArrayList<>();
+        listaTipoConflito = new ListaTipoConflito();
     }
 
     public CentroExposicoes() {
@@ -62,7 +62,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 
         listaMecanismos = new ArrayList<>();
         listaRecursos = new ListaRecursos();
-        listaTipoConflito = new ArrayList<>();
+        listaTipoConflito = new ListaTipoConflito();
     }
 
     public void addMecanismo(MecanismoAtribuicao mecanismoAtribuicao) {
@@ -85,7 +85,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         return listaMecanismos;
     }
 
-    public List<TipoConflito> getListaTipoConflito() {
+    public ListaTipoConflito getListaTipoConflito() {
         return listaTipoConflito;
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.ui;
+package lapr.project.ui.fae;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -19,6 +19,10 @@ import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.Utilizador;
+import lapr.project.ui.AlterarPerfiUtilizadorUI;
+import lapr.project.ui.AvaliarCandidaturaUI;
+import lapr.project.ui.CandidaturaInfoUI;
+import lapr.project.ui.LoginUI;
 
 /**
  *

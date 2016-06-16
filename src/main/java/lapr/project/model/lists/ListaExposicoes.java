@@ -5,13 +5,11 @@
  */
 package lapr.project.model.lists;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.Candidatura;
 import lapr.project.model.Retiravel;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.utils.Exportable;
@@ -81,6 +79,17 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
         }
         return lRetiraveis;
     }
+    
+    
+    public List<Exposicao> getListaExposicoesCandidaturaTerminada() {
+        List<Exposicao> listExpoTemp = new ArrayList<>();
+        for (Exposicao expo : listExposicoes) {
+            if (expo.isCandidaturaTerminada()) {
+                listExpoTemp.add(expo);
+            }
+        }
+        return listExpoTemp;
+    }
 
     @Override
     public String toString() {
@@ -121,4 +130,5 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes> 
     public ListaExposicoes importContentFromXMLNode(Node node) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

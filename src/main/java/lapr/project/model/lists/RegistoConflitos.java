@@ -7,7 +7,9 @@ package lapr.project.model.lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Candidatura;
 import lapr.project.model.Conflito;
+import lapr.project.model.users.FAE;
 
 /**
  *
@@ -21,24 +23,9 @@ public class RegistoConflitos {
         this.listaConflitos = new ArrayList<>();
     }
 
-    public Conflito novoConflito(String descricao) {
-        return new Conflito(descricao);
-    }
-
-    public boolean addConflito(Conflito c) {
-        return listaConflitos.add(c);
-    }
-
-    public boolean registaConflito(Conflito conflito) {
-        if (validaConflito(conflito)) {
-            return addConflito(conflito);
-        } else {
-            return false;
-        }
-    }
-
-    private boolean validaConflito(Conflito conflito) {
-        return conflito.valida() && !listaConflitos.contains(conflito);
+    public boolean registarConflito(FAE fae, Candidatura candidatura){
+        Conflito conflito = new Conflito(fae, candidatura);
+        return this.listaConflitos.add(conflito);
     }
 
 }

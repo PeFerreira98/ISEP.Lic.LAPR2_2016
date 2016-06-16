@@ -133,7 +133,6 @@ public class Candidatura implements Retiravel {
         return listaProdutos;
     }
 
-
     public void setMoradaEmpresa(String moradaEmpresa) {
         this.moradaEmpresa = moradaEmpresa;
     }
@@ -189,6 +188,16 @@ public class Candidatura implements Retiravel {
         return this.estadoCandidatura.isEmSubmissao();
     }
 
+    public boolean isTerminada() {
+        if (this.estadoCandidatura.isAceite()
+                || this.estadoCandidatura.isRejeitada()
+                || this.estadoCandidatura.isRetirada()
+                || this.estadoCandidatura.isNaoAvaliada()) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean setRetirada() {
         return this.estadoCandidatura.setRetirada();
@@ -233,7 +242,7 @@ public class Candidatura implements Retiravel {
     @Override
     public String toString() {
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
-                + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura +  ",\n listaProdutos=" + listaProdutos + '}';
+                + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura + ",\n listaProdutos=" + listaProdutos + '}';
     }
 
 }
