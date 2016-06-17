@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.gestor;
 
+import java.io.Serializable;
 import lapr.project.model.Recurso;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.lists.ListaRecursos;
@@ -13,7 +14,7 @@ import lapr.project.model.lists.ListaRecursos;
  *
  * @author Sara Silva
  */
-public class DefinirRecursoController {
+public class DefinirRecursoController implements Serializable{
 
     private ListaRecursos listaRecursos;
 

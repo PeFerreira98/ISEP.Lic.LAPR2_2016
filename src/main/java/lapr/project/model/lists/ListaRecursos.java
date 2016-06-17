@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -22,7 +23,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Sara Silva
  */
-public class ListaRecursos implements Exportable, Importable<ListaRecursos>{
+public class ListaRecursos implements Exportable, Importable<ListaRecursos>, Serializable{
     
     private static final String ROOT_ELEMENT_NAME = "listaRecursos";
     private static final String RECUR_ELEMENT_NAME = "recursos";

@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.organizador;
 
+import java.io.Serializable;
 import java.util.List;
 import lapr.project.model.submissions.Atribuicao;
 import lapr.project.model.exhibitions.CentroExposicoes;
@@ -16,7 +17,7 @@ import lapr.project.model.mecanismos.MecanismoAtribuicao;
  *
  * @author Sara Silva
  */
-public class AtribuirCandidaturaController {
+public class AtribuirCandidaturaController implements Serializable{
 
     private final CentroExposicoes centroExp;
     

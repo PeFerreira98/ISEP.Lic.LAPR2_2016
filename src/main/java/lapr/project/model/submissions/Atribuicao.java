@@ -5,6 +5,7 @@
  */
 package lapr.project.model.submissions;
 
+import java.io.Serializable;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.FAE;
 
@@ -12,7 +13,7 @@ import lapr.project.model.users.FAE;
  *
  * @author Sara Silva
  */
-public class Atribuicao {
+public class Atribuicao implements Serializable{
 
     private FAE fae;
     private Candidatura candidatura;
