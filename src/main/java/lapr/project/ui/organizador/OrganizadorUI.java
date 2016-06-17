@@ -281,7 +281,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "Nenhuma candidatura seleccionada", "Candidaturas", JOptionPane.ERROR_MESSAGE);
         } else {
-            new AvaliarCandidaturaInfoUI(c);
+            new AceitarCandidaturaUI(this.centroExpo, c);
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 

@@ -10,23 +10,28 @@ import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
+import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.submissions.Candidatura;
 
 /**
  *
  * @author Marcos
  */
-public class AvaliarCandidaturaInfoUI extends javax.swing.JFrame {
+public class AceitarCandidaturaUI extends javax.swing.JFrame {
 
+    private final CentroExposicoes centroExpo;
     private Candidatura candidatura;
 
-    public AvaliarCandidaturaInfoUI(Candidatura c) {
+    public AceitarCandidaturaUI(CentroExposicoes cExpo, Candidatura c) {
+        this.centroExpo = cExpo;
         this.candidatura = c;
 
         super.setTitle("Info (" + c.getNomeEmpresa() + ")");
         initComponents();
-        
+
         txtEmpresaName.setText(c.getNomeEmpresa());
+        txtAmountGuests.setText(""+c.getQuantidadeConvites());
+        txtEmpresaEmail.setText(c.getMoradaEmpresa());
         setLocationRelativeTo(null);
         super.setVisible(true);
     }
@@ -237,13 +242,14 @@ public class AvaliarCandidaturaInfoUI extends javax.swing.JFrame {
             }
         }
     }// </editor-fold>
-    
+
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void btnAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarActionPerformed
-        this.candidatura.setAceite();
+        new DefinirStandCandidaturaUI(this.centroExpo, this.candidatura);
+        dispose();
     }//GEN-LAST:event_btnAceitarActionPerformed
 
     private void btnAvaliacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliacoesActionPerformed
@@ -252,6 +258,7 @@ public class AvaliarCandidaturaInfoUI extends javax.swing.JFrame {
 
     private void btnRejeitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejeitarActionPerformed
         this.candidatura.setRejeitada();
+        dispose();
     }//GEN-LAST:event_btnRejeitarActionPerformed
 
     private void btnLstProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstProdutosActionPerformed
