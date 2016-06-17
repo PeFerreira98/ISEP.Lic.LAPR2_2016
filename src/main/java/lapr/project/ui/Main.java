@@ -81,7 +81,7 @@ class Main {
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
         exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("organizador"));
-        
+
         exposicao1.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("admin"));
         exposicao2.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("admin"));
         exposicao3.getListaOrganizadores().addOrganizador(registoUtilizadores.checkUtilizadorByUsername("admin"));
@@ -96,9 +96,9 @@ class Main {
 
         candidatura1.isRetiravel();
         candidatura2.isRetiravel();
-        
+
         candidatura1.setRetirada();
-        
+
         exposicao1.addCandidatura(candidatura1);
         exposicao1.addCandidatura(candidatura2);
         exposicao1.addCandidatura(candidatura3);
@@ -115,15 +115,15 @@ class Main {
         listaExposicoes.addExposicao(exposicao3);
 
         CentroExposicoes centroExposicoes = new CentroExposicoes(registoUtilizadores, listaExposicoes);
-        
+
         centroExposicoes.addMecanismo(new MecanismoCargaFAE());
         centroExposicoes.addMecanismo(new MecanismoExpProfissional());
         centroExposicoes.addMecanismo(new MecanismoNumeroFAE());
         centroExposicoes.addMecanismo(new MecanismoAtribuicao1());
-        centroExposicoes.getListaCandidaturas().addCandidatura(candidatura1);
-        centroExposicoes.getListaCandidaturas().addCandidatura(candidatura2);
-        centroExposicoes.getListaCandidaturas().addCandidatura(candidatura3);
-        
+        exposicao1.getListaCandidaturas().addCandidatura(candidatura1);
+        exposicao2.getListaCandidaturas().addCandidatura(candidatura2);
+        exposicao3.getListaCandidaturas().addCandidatura(candidatura3);
+
         TipoConflito tipoConflito1 = new TipoConflito("tipoConflito1", new MecanismoDetecaoConflito1());
         centroExposicoes.getListaTipoConflito().addTipoConflito(tipoConflito1);
 

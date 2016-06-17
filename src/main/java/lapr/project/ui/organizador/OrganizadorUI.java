@@ -36,12 +36,12 @@ public class OrganizadorUI extends javax.swing.JFrame {
     public OrganizadorUI(Utilizador u, CentroExposicoes centroExpo) {
         this.user = u;
         this.centroExpo = centroExpo;
-        
+
         super.setTitle("Organizador menu (" + this.user.getUsername() + ")");
 
         initComponents();
         inicializarListaCandidaturas();
-        
+
         for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
 
             Organizador o = new Organizador(user);
@@ -54,7 +54,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
         super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
-    
+
     private void inicializarListaCandidaturas() {
         final List<Candidatura> lstCandidaturas = getCandidaturasAvaliadas();
 
@@ -78,7 +78,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
         this.jLstCandidaturas.setModel(listModel);
         this.jLstCandidaturas.setCellRenderer(new OrganizadorUI.CellRendererCandidaturas());
     }
-    
+
     private class CellRendererCandidaturas extends JLabel implements ListCellRenderer<Candidatura> {
 
         public CellRendererCandidaturas() {
@@ -100,6 +100,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
             return this;
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -242,7 +243,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
         if (expo == null) {
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "Nenhuma exposiçao seleccionada", "Exposições", JOptionPane.ERROR_MESSAGE);
-        }else {
+        } else {
             new DefinirFAEUI(this.centroExpo.getRegistoUtilizadores(), this.centroExpo.getListaExposicoes().getExpoByName(expo));
         }
 
@@ -285,17 +286,18 @@ public class OrganizadorUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 
-    public List<Candidatura> getCandidaturasAvaliadas(){
+    public List<Candidatura> getCandidaturasAvaliadas() {
         List<Candidatura> lstCandidaturas = new ArrayList<>();
-        
-        for(Candidatura c : this.centroExpo.getListaCandidaturas().getListaCandidaturas()){
-            if(c.isAvaliada()){
-                lstCandidaturas.add(c);
+        for (Exposicao exposicao : centroExpo.getListaExposicoes().getListaExposicoes()) {
+            for (Candidatura c : exposicao.getListaCandidaturas().getListaCandidaturas()) {
+                if (c.isAvaliada()) {
+                    lstCandidaturas.add(c);
+                }
             }
         }
         return lstCandidaturas;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAtribCandid;
     private javax.swing.JToggleButton btnAvaliar;

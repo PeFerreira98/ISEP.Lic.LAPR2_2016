@@ -48,7 +48,7 @@ public class AlterarCandidaturaController {
     }
     
     public List<Candidatura> getListaCandidaturas() {
-        return centroExp.getListaCandidaturas().getListaCandidaturas();
+        return listaCandidaturas.getListaCandidaturas();
     }
     
     public void addProduto(String produto) {

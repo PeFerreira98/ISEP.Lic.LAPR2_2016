@@ -14,8 +14,10 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import lapr.project.model.exhibitions.CentroExposicoes;
+import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.ui.organizador.DefinirFAEUI;
+
 /**
  *
  * @author TiagoSilvestre
@@ -31,7 +33,7 @@ public class ConsultarCandidaturasRetiradasUI extends javax.swing.JFrame {
      */
     public ConsultarCandidaturasRetiradasUI(CentroExposicoes cExpo) {
         this.centroExpo = cExpo;
-        
+
         super.setTitle("Candidaturas retiradas");
         initComponents();
         inicializarLista();
@@ -129,16 +131,15 @@ public class ConsultarCandidaturasRetiradasUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
-       Candidatura c = jLstCandidaturas.getSelectedValue();
-       if(c == null){
-           JOptionPane.showMessageDialog(ConsultarCandidaturasRetiradasUI.this,
+        Candidatura c = jLstCandidaturas.getSelectedValue();
+        if (c == null) {
+            JOptionPane.showMessageDialog(ConsultarCandidaturasRetiradasUI.this,
                     "Seleccione uma candidatura", "Consultar candidaturas retiradas", JOptionPane.ERROR_MESSAGE);
-       }else{
-           new CandidaturaInfoUI(c);
-       }
+        } else {
+            new CandidaturaInfoUI(c);
+        }
     }//GEN-LAST:event_btnInfoActionPerformed
-   
-    
+
     private void inicializarLista() {
         final List<Candidatura> list = getCandidaturasRetiradas();
 
@@ -183,18 +184,20 @@ public class ConsultarCandidaturasRetiradasUI extends javax.swing.JFrame {
             return this;
         }
     }
-    
-    private List<Candidatura> getCandidaturasRetiradas(){
+
+    private List<Candidatura> getCandidaturasRetiradas() {
         List<Candidatura> list = new ArrayList<>();
-        
-        for(Candidatura c : this.centroExpo.getListaCandidaturas().getListaCandidaturas()){
-            if(c.isRetirada()){
-                list.add(c);
+        for (Exposicao exposicao : centroExpo.getListaExposicoes().getListaExposicoes()) {
+            for (Candidatura c : exposicao.getListaCandidaturas().getListaCandidaturas()) {
+                if (c.isRetirada()) {
+                    list.add(c);
+                }
             }
         }
+
         return list;
     }
-    
+
     /**
      * @param args the command line arguments
      */
