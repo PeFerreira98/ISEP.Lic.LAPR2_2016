@@ -9,6 +9,8 @@ import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.states.EstadoUtilizador;
+import lapr.project.model.states.utilizador.EstadoUtilizadorPending;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -37,7 +39,8 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
 
     //TODO: Change string to respective state class
     private String tipoUtilizador;
-    private String estado;
+
+    private EstadoUtilizador estadoUtilizador;
 
     public Utilizador(String nome, String username, String password, String email, String tipoUtilizador) {
         this.nome = nome;
@@ -45,8 +48,9 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
         this.password = password;
         this.email = email;
 
-        this.estado = "PENDING";
         this.tipoUtilizador = tipoUtilizador;
+
+        this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
 
     public Utilizador() {
@@ -55,8 +59,9 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
         this.password = "";
         this.email = "";
 
-        this.estado = "PENDING";
         this.tipoUtilizador = "default";
+
+        this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
 
     public boolean validateUsername(String username) {
@@ -71,20 +76,12 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
         return this.email.equals(email);
     }
 
-    public boolean isRegistado() {
-        return "REGISTERED".equalsIgnoreCase(this.estado);
-    }
-
     public boolean isGestor() {
         return "GESTOR".equalsIgnoreCase(this.tipoUtilizador);
     }
 
     public boolean isFAE() {
         return "FAE".equalsIgnoreCase(this.tipoUtilizador);
-    }
-
-    public void setRegistado() {
-        this.estado = "REGISTERED";
     }
 
     public String getUsername() {
@@ -115,12 +112,35 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
         this.password = password;
     }
 
-    public String getEstado() {
-        return this.estado;
-    }
-
     public String getTipoUtilizador() {
         return this.tipoUtilizador;
+    }
+
+    public void setEstado(EstadoUtilizador estadoUtilizador) {
+        this.estadoUtilizador = estadoUtilizador;
+    }
+
+    public EstadoUtilizador getEstado() {
+        return this.estadoUtilizador;
+    }
+
+    public String getEstadoString() {
+        if (isPending()) {
+            return "PENDING";
+        }
+        return "REGISTERED";
+    }
+
+    public boolean isPending() {
+        return this.estadoUtilizador.isPending();
+    }
+
+    public boolean isRegistado() {
+        return this.estadoUtilizador.isRegistado();
+    }
+
+    public boolean setRegistado() {
+        return this.estadoUtilizador.setRegistado();
     }
 
     @Override
@@ -131,7 +151,6 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
         hash = 73 * hash + Objects.hashCode(this.password);
         hash = 74 * hash + Objects.hashCode(this.email);
         hash = 75 * hash + Objects.hashCode(this.tipoUtilizador);
-        hash = 76 * hash + Objects.hashCode(this.estado);
         return hash;
     }
 
@@ -157,7 +176,7 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
 
     @Override
     public String toString() {
-        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", tipoUtilizador=" + tipoUtilizador + ", estado=" + estado + '}';
+        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", tipoUtilizador=" + tipoUtilizador + ", estado=" + getEstadoString() + '}';
     }
 
     @Override
@@ -198,7 +217,7 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
 
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementState = document.createElement(STATE_ELEMENT_NAME);
-            elementState.setTextContent(getEstado());
+            elementState.setTextContent(getEstadoString());
             elementUtilizador.appendChild(elementState);
 
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
@@ -230,7 +249,7 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
 
             //TODO: Get description
             this.nome = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-            
+
 //            //Get description
 //            this.username = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
 //            
@@ -245,7 +264,6 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
 //            
 //            //Get description
 //            this.estado = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
