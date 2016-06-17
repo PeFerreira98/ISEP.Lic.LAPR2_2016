@@ -51,11 +51,11 @@ class Main {
     private CentroExposicoes bootStrap() {
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
 
-//        try {
-//            registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         final ListaExposicoes listaExposicoes = new ListaExposicoes();
 
@@ -132,8 +132,6 @@ class Main {
 
         centroExposicoes.getListaRecursos().addRecurso(r1);
         centroExposicoes.getListaRecursos().addRecurso(r2);
-                
-        new ConsultarCandidaturasRetiradasUI(centroExposicoes);
 
         return centroExposicoes;
     }
