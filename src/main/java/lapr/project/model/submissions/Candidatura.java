@@ -8,6 +8,7 @@ package lapr.project.model.submissions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lapr.project.model.Stand;
 import lapr.project.model.lists.ListaProdutos;
 import lapr.project.model.states.EstadoCandidatura;
 import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
@@ -26,6 +27,7 @@ public class Candidatura implements Retiravel {
 
     private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;
+    private Stand stand;
 
     private List<Avaliacao> lstAvaliacoes;
     private List<Keyword> keywordList;
@@ -133,6 +135,10 @@ public class Candidatura implements Retiravel {
         return listaProdutos;
     }
 
+    public Stand getStand() {
+        return stand;
+    }
+
     public void setMoradaEmpresa(String moradaEmpresa) {
         this.moradaEmpresa = moradaEmpresa;
     }
@@ -155,6 +161,10 @@ public class Candidatura implements Retiravel {
 
     public void setListaProdutos(ListaProdutos listaProdutos) {
         this.listaProdutos = listaProdutos;
+    }
+
+    public void setStand(Stand stand) {
+        this.stand = stand;
     }
 
     public boolean valida() {

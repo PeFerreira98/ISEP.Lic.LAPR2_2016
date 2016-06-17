@@ -10,6 +10,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.Stand;
 import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaRecursos;
@@ -38,6 +39,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     private ListaRecursos listaRecursos;
     private ListaTipoConflito listaTipoConflito;
     private List<MecanismoAtribuicao> listaMecanismos;
+    private final List<Stand> listaStands;
 
     /**
      * Construtor de CentroExposicoes
@@ -54,6 +56,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         this.listaRecursos = new ListaRecursos();
         this.listaTipoConflito = new ListaTipoConflito();
         this.listaMecanismos = new ArrayList<>();
+        this.listaStands = new ArrayList<>();
     }
 
     public CentroExposicoes() {
@@ -62,10 +65,19 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         this.listaRecursos = new ListaRecursos();
         this.listaTipoConflito = new ListaTipoConflito();
         this.listaMecanismos = new ArrayList<>();
+        this.listaStands = new ArrayList<>();
     }
 
     public void addMecanismo(MecanismoAtribuicao mecanismoAtribuicao) {
         listaMecanismos.add(mecanismoAtribuicao);
+    }
+
+    public void addStand(Stand stand) {
+        getListaStands().add(stand);
+    }
+
+    public List<Stand> getListaStands() {
+        return listaStands;
     }
 
     public ListaExposicoes getListaExposicoes() {
@@ -119,15 +131,13 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             //Create a sub-element
             Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
             elementCentroExposicoes.appendChild(document.importNode(listaCandidaturasNode, true));
-            
+
             //TODO: Create a sub-element
 //            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
 //            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
-            
             //TODO: Create a sub-element
 //            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
 //            elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
-            
             //TODO: Create a sub-element //iterate over keywords
 //            Element elementMecanismos = document.createElement(MECANISMOS_ELEMENT_NAME);
 //            elementCentroExposicoes.appendChild(elementMecanismos);
@@ -135,7 +145,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 //                Node mecanismoNode = meca.exportContentToXMLNode();
 //                elementMecanismos.appendChild(document.importNode(mecanismoNode, true));
 //            }
-
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementCentroExposicoes);
             rootNode = elementCentroExposicoes;
@@ -156,13 +165,12 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
             document.appendChild(document.importNode(node, true));
-            
+
             //Init
             NodeList elements1CentroExposicoes = document.getElementsByTagName(ROOT_ELEMENT_NAME);
             Node element2CentroExposicoes = elements1CentroExposicoes.item(0);
 
             //TODO: Add import for all Lists
-            
             //TODO: Import for Mecanismos List (is this really necessary?)
 //            NodeList elementsKeywords = document.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
 //            NodeList keywords = elementsKeywords.item(0).getChildNodes();
@@ -173,7 +181,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 //                keywordExample = keywordExample.importContentFromXMLNode(keyword);
 //                addKeyword(keywordExample);
 //            }
-            
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
