@@ -197,6 +197,10 @@ public class Candidatura implements Retiravel {
     public boolean isRetiravel() {
         return this.estadoCandidatura.isEmSubmissao();
     }
+    
+    public boolean isAvaliada(){
+        return this.estadoCandidatura.isAvaliada();
+    }
 
     public boolean isTerminada() {
         if (this.estadoCandidatura.isAceite()
@@ -212,6 +216,16 @@ public class Candidatura implements Retiravel {
     public boolean setRetirada() {
         return this.estadoCandidatura.setRetirada();
     }
+    
+    public boolean setAceite(){
+        return this.estadoCandidatura.setAceite();
+    }
+    
+    public boolean setRejeitada(){
+        return this.estadoCandidatura.setRejeitada();
+    }
+
+
 
     @Override
     public int hashCode() {

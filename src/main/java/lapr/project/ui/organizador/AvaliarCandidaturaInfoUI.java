@@ -3,27 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.ui;
+package lapr.project.ui.organizador;
 
 import java.awt.Toolkit;
-import javax.swing.JOptionPane;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
-import lapr.project.controller.representante.CriarCandidaturaExpoController;
 import lapr.project.model.submissions.Candidatura;
-import lapr.project.model.exhibitions.Exposicao;
 
 /**
  *
  * @author Marcos
  */
-public class CandidaturaInfoUI extends javax.swing.JFrame {
+public class AvaliarCandidaturaInfoUI extends javax.swing.JFrame {
 
     private Candidatura candidatura;
 
-    public CandidaturaInfoUI(Candidatura c) {
+    public AvaliarCandidaturaInfoUI(Candidatura c) {
         this.candidatura = c;
 
         super.setTitle("Info (" + c.getNomeEmpresa() + ")");
@@ -52,11 +49,13 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
         txtEmpresaEmail = new javax.swing.JTextField();
         txtAmountGuests = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
-        jOk = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtArea = new javax.swing.JTextField();
         btnLstProdutos = new javax.swing.JButton();
+        btnAceitar = new javax.swing.JButton();
+        btnRejeitar = new javax.swing.JButton();
+        btnAvaliacoes = new javax.swing.JButton();
 
         jToggleButton2.setText("Lista Produtos");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -83,32 +82,46 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
 
         txtPhone.setEditable(false);
 
-        jOk.setText("Ok");
-        jOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jOkActionPerformed(evt);
-            }
-        });
-
         jLabel11.setText("Quantidade Convites");
 
         txtArea.setEditable(false);
         txtArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         btnLstProdutos.setText("Lista Produtos");
+        btnLstProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLstProdutosActionPerformed(evt);
+            }
+        });
+
+        btnAceitar.setText("Aceitar");
+        btnAceitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceitarActionPerformed(evt);
+            }
+        });
+
+        btnRejeitar.setText("Rejeitar");
+        btnRejeitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRejeitarActionPerformed(evt);
+            }
+        });
+
+        btnAvaliacoes.setText("Ver avaliações");
+        btnAvaliacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvaliacoesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jOk, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLstProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -127,8 +140,16 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
                                 .addComponent(txtEmpresaName, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                            .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAceitar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRejeitar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAvaliacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLstProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,10 +180,14 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
                             .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(btnLstProdutos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jOk)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLstProdutos)
+                    .addComponent(btnAvaliacoes))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceitar)
+                    .addComponent(btnRejeitar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ((AbstractDocument)txtAmountGuests.getDocument()).setDocumentFilter(new MyDocumentFilter());
@@ -213,23 +238,37 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
         }
     }// </editor-fold>
     
-    private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        dispose();
-    }//GEN-LAST:event_jOkActionPerformed
-
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
+    private void btnAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarActionPerformed
+        this.candidatura.setAceite();
+    }//GEN-LAST:event_btnAceitarActionPerformed
+
+    private void btnAvaliacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliacoesActionPerformed
+        new VerAvaliacoesUI(this.candidatura);
+    }//GEN-LAST:event_btnAvaliacoesActionPerformed
+
+    private void btnRejeitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejeitarActionPerformed
+        this.candidatura.setRejeitada();
+    }//GEN-LAST:event_btnRejeitarActionPerformed
+
+    private void btnLstProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLstProdutosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceitar;
+    private javax.swing.JButton btnAvaliacoes;
     private javax.swing.JButton btnLstProdutos;
+    private javax.swing.JButton btnRejeitar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton jOk;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JTextField txtAmountGuests;
     private javax.swing.JTextField txtArea;
