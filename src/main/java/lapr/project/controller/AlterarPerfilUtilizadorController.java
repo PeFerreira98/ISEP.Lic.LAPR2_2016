@@ -6,6 +6,7 @@
 package lapr.project.controller;
 
 
+import java.io.Serializable;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.users.Utilizador;
 
@@ -13,7 +14,7 @@ import lapr.project.model.users.Utilizador;
  *
  * @author Marcos
  */
-public class AlterarPerfilUtilizadorController {
+public class AlterarPerfilUtilizadorController implements Serializable{
     
     private Utilizador user;
     private RegistoUtilizadores registoUtilizadores;
