@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -23,7 +24,7 @@ import org.w3c.dom.Node;
  *
  * @author Sara Silva
  */
-public class RegistoConflitos implements Exportable, Importable<RegistoConflitos> {
+public class RegistoConflitos implements Exportable, Importable<RegistoConflitos>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "registoConflitos";
     private static final String CAND_ELEMENT_NAME = "conflitos";

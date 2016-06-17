@@ -5,13 +5,14 @@
  */
 package lapr.project.model.users;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author zero_
  */
-public class Representante {
+public class Representante implements Serializable{
 
     private Utilizador utilizador;
     private String  nomeEmpresa;

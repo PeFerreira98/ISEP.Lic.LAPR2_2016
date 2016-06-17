@@ -5,13 +5,14 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Sara Silva
  */
-public class Recurso {
+public class Recurso implements Serializable{
 
     private String descricao;
 

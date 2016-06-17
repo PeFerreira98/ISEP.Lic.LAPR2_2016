@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.representante;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.submissions.Retiravel;
@@ -15,7 +16,7 @@ import lapr.project.model.exhibitions.Exposicao;
  *
  * @author zero_
  */
-public class RetirarCandidaturaController {
+public class RetirarCandidaturaController implements Serializable{
 
     private CentroExposicoes centroExposicoes;
     private List<Retiravel> lRetiraveis;

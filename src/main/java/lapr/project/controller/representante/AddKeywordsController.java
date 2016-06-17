@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.representante;
 
+import java.io.Serializable;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Keyword;
 
@@ -12,7 +13,7 @@ import lapr.project.model.submissions.Keyword;
  *
  * @author Sara Silva
  */
-public class AddKeywordsController {
+public class AddKeywordsController implements Serializable{
 
     private final Candidatura candidatura;
 

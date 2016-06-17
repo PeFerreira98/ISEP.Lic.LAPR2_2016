@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.representante;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.submissions.Candidatura;
@@ -18,7 +19,7 @@ import lapr.project.model.lists.ListaProdutos;
  *
  * @author zero_
  */
-public class CriarCandidaturaExpoController {
+public class CriarCandidaturaExpoController implements Serializable{
 
     private Exposicao exposicao;
 

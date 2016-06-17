@@ -5,6 +5,7 @@
  */
 package lapr.project.model.submissions;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @author Sara Silva
  */
-public class Avaliacao {
+public class Avaliacao implements Serializable{
 
     private String decisao;
     private String justificacao;

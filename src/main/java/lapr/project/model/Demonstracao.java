@@ -5,6 +5,7 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
@@ -24,7 +25,7 @@ import org.w3c.dom.Node;
  *
  * @author zero_
  */
-public class Demonstracao implements Exportable, Importable<Demonstracao> {
+public class Demonstracao implements Exportable, Importable<Demonstracao>, Serializable {
 
     //Classe incompleta. Não especificação sobre o que a Demonstracao se trata
     private static final String ROOT_ELEMENT_NAME = "demonstracao";

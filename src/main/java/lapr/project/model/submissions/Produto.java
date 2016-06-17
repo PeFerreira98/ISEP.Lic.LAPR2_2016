@@ -5,13 +5,14 @@
  */
 package lapr.project.model.submissions;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author zero_
  */
-public class Produto {
+public class Produto implements Serializable{
 
     //Classe incompleta. Não especificação sobre o que o produto se trata
     

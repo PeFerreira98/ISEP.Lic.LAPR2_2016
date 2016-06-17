@@ -1,5 +1,6 @@
 package lapr.project.utils;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,7 +14,7 @@ import org.w3c.dom.Node;
  *
  * @author ISEP-DEI-PPROG
  */
-public class Data implements Comparable<Data>, Exportable, Importable<Data> {
+public class Data implements Comparable<Data>, Exportable, Importable<Data>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "data";
     private static final String YEAR_ELEMENT_NAME = "ano";

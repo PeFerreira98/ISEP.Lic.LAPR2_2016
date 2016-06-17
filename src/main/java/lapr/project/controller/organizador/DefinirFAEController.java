@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.organizador;
 
+import java.io.Serializable;
 import java.util.List;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaFAE;
@@ -16,7 +17,7 @@ import lapr.project.model.users.Utilizador;
  *
  * @author zero_
  */
-public class DefinirFAEController {
+public class DefinirFAEController implements Serializable{
 
     private RegistoUtilizadores registoUtilizadores;
     private ListaFAE listaFAE;

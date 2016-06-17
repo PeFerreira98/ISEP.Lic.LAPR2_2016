@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.submissions.Produto;
@@ -13,7 +14,7 @@ import lapr.project.model.submissions.Produto;
  *
  * @author zero_
  */
-public class ListaProdutos {
+public class ListaProdutos implements Serializable{
 
     private List<Produto> listProdutos;
 

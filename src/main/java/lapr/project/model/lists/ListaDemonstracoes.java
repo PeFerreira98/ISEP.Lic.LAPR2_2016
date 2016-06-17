@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +24,7 @@ import org.w3c.dom.Node;
  *
  * @author zero_
  */
-public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstracoes> {
+public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstracoes>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaDemonstracoes";
     private static final String DEMO_LST_ELEMENT_NAME = "demonstracoes";

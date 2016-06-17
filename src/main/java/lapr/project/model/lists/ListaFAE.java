@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +23,7 @@ import org.w3c.dom.Node;
  *
  * @author zero_
  */
-public class ListaFAE implements Exportable, Importable<ListaFAE> {
+public class ListaFAE implements Exportable, Importable<ListaFAE>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaFAE";
     private static final String FAE_LST_ELEMENT_NAME = "FAEs";

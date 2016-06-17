@@ -5,13 +5,14 @@
  */
 package lapr.project.model.exhibitions;
 
+import java.io.Serializable;
 import lapr.project.model.mecanismos.MecanismoDetecaoConflito;
 
 /**
  *
  * @author Sara Silva
  */
-public class TipoConflito {
+public class TipoConflito implements Serializable{
 
     private String descricao;
     private MecanismoDetecaoConflito mecanismoDetecaoConflito;
