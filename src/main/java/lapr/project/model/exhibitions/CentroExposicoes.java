@@ -5,6 +5,7 @@
  */
 package lapr.project.model.exhibitions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -28,7 +29,7 @@ import org.w3c.dom.NodeList;
  *
  * @author zero_
  */
-public class CentroExposicoes implements Exportable, Importable<CentroExposicoes> {
+public class CentroExposicoes implements Exportable, Importable<CentroExposicoes>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "centroExposicoes";
     private static final String MECANISMOS_ELEMENT_NAME = "mecanismos";

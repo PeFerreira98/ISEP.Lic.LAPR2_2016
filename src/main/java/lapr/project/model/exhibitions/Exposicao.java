@@ -5,6 +5,7 @@
  */
 package lapr.project.model.exhibitions;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
@@ -32,7 +33,7 @@ import org.w3c.dom.Node;
  *
  * @author TiagoSilvestre
  */
-public class Exposicao implements Exportable, Importable<Exposicao> {
+public class Exposicao implements Exportable, Importable<Exposicao>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "exposicao";
     private static final String TITLE_ELEMENT_NAME = "titulo";

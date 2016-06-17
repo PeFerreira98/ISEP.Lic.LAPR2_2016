@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.fae;
 
+import java.io.Serializable;
 import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.submissions.Candidatura;
 
@@ -12,7 +13,7 @@ import lapr.project.model.submissions.Candidatura;
  *
  * @author Marcos
  */
-public class AvaliarCandidaturaController {
+public class AvaliarCandidaturaController implements Serializable{
     
     private Candidatura candidatura;
     

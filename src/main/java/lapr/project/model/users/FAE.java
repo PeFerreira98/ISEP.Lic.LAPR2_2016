@@ -5,6 +5,7 @@
  */
 package lapr.project.model.users;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,7 +20,7 @@ import org.w3c.dom.Node;
  *
  * @author TiagoSilvestre
  */
-public class FAE implements Exportable, Importable<FAE> {
+public class FAE implements Exportable, Importable<FAE>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "FAE";
 

@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.gestor;
 
+import java.io.Serializable;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaOrganizadores;
@@ -16,7 +17,7 @@ import lapr.project.utils.Data;
  *
  * @author TiagoSilvestre
  */
-public class CriarExposicaoController {
+public class CriarExposicaoController implements Serializable{
 
     private CentroExposicoes centroExposicoes;
     private Exposicao exposicao;
