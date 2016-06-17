@@ -14,6 +14,7 @@ import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -213,7 +214,44 @@ public class Utilizador implements Exportable, Importable<Utilizador> {
 
     @Override
     public Utilizador importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+            //Create document builder
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            //Obtain a new document
+            Document document = builder.newDocument();
+            document.appendChild(document.importNode(node, true));
+
+            NodeList nodeListUtilizador = document.getElementsByTagName(ROOT_ELEMENT_NAME);
+
+            Node nodeUtilizador = nodeListUtilizador.item(0);
+
+            //TODO: Get description
+            this.nome = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
+            
+//            //Get description
+//            this.username = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
+//            
+//            //Get description
+//            this.password = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
+//            
+//            //Get description
+//            this.email = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
+//            
+//            //Get description
+//            this.tipoUtilizador = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
+//            
+//            //Get description
+//            this.estado = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return this;
     }
 
 }

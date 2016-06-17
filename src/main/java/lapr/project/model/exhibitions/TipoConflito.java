@@ -19,10 +19,14 @@ public class TipoConflito {
     public TipoConflito(String descricao) {
         this.descricao = descricao;
     }
-    
+
     public TipoConflito(String descricao, MecanismoDetecaoConflito mecanismoDetecaoConflito) {
         this.descricao = descricao;
         this.mecanismoDetecaoConflito = mecanismoDetecaoConflito;
+    }
+
+    public TipoConflito() {
+        ///For Import use only
     }
 
     public String getDescricao() {
@@ -32,8 +36,8 @@ public class TipoConflito {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    public MecanismoDetecaoConflito getMecanismoDetecaoConflito(){
+
+    public MecanismoDetecaoConflito getMecanismoDetecaoConflito() {
         return this.mecanismoDetecaoConflito;
     }
 

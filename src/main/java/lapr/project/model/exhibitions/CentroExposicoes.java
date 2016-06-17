@@ -132,12 +132,14 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
             elementCentroExposicoes.appendChild(document.importNode(listaCandidaturasNode, true));
 
-            //TODO: Create a sub-element
-//            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
-//            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
-            //TODO: Create a sub-element
-//            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
-//            elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
+            //Create a sub-element
+            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
+            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
+            
+            //Create a sub-element
+            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
+            elementCentroExposicoes.appendChild(document.importNode(listaTipoConflitoNode, true));
+
             //TODO: Create a sub-element //iterate over keywords
 //            Element elementMecanismos = document.createElement(MECANISMOS_ELEMENT_NAME);
 //            elementCentroExposicoes.appendChild(elementMecanismos);
@@ -145,6 +147,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 //                Node mecanismoNode = meca.exportContentToXMLNode();
 //                elementMecanismos.appendChild(document.importNode(mecanismoNode, true));
 //            }
+
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementCentroExposicoes);
             rootNode = elementCentroExposicoes;
@@ -170,7 +173,38 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             NodeList elements1CentroExposicoes = document.getElementsByTagName(ROOT_ELEMENT_NAME);
             Node element2CentroExposicoes = elements1CentroExposicoes.item(0);
 
-            //TODO: Add import for all Lists
+            //TODO: Add import for all Lists (Verify)
+            
+            //Add List Class
+            Node nodeRegUsers = element2CentroExposicoes.getFirstChild();
+            RegistoUtilizadores instanceRegUsers = new RegistoUtilizadores();
+            instanceRegUsers = instanceRegUsers.importContentFromXMLNode(nodeRegUsers);
+            this.registoUtilizadores = instanceRegUsers;
+            
+            //Add List Class
+            Node nodeListExpo = element2CentroExposicoes.getFirstChild().getNextSibling();
+            ListaExposicoes instanceListaExposicoes = new ListaExposicoes();
+            instanceListaExposicoes = instanceListaExposicoes.importContentFromXMLNode(nodeListExpo);
+            this.listaExposicoes = instanceListaExposicoes;
+            
+            //Add List Class
+            Node nodeListCand = element2CentroExposicoes.getFirstChild().getNextSibling().getNextSibling();
+            ListaCandidaturas instanceListCand = new ListaCandidaturas();
+            instanceListCand = instanceListCand.importContentFromXMLNode(nodeListCand);
+            this.listaCandidaturas = instanceListCand;
+            
+            //Add List Class
+            Node nodeListaRecur = element2CentroExposicoes.getFirstChild().getNextSibling().getNextSibling().getNextSibling();
+            ListaRecursos instanceRecursos = new ListaRecursos();
+            instanceRecursos = instanceRecursos.importContentFromXMLNode(nodeListaRecur);
+            this.listaRecursos = instanceRecursos;
+            
+            //Add List Class
+            Node nodeListaTipConf = element2CentroExposicoes.getFirstChild().getNextSibling().getNextSibling().getNextSibling().getNextSibling();
+            ListaTipoConflito instanceListaTipoConf = new ListaTipoConflito();
+            instanceListaTipoConf = instanceListaTipoConf.importContentFromXMLNode(nodeListaTipConf);
+            this.listaTipoConflito = instanceListaTipoConf;
+
             //TODO: Import for Mecanismos List (is this really necessary?)
 //            NodeList elementsKeywords = document.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
 //            NodeList keywords = elementsKeywords.item(0).getChildNodes();

@@ -117,14 +117,13 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
             Document document = builder.newDocument();
             Element elementListaCandidaturas = document.createElement(ROOT_ELEMENT_NAME);
 
-            //Create a sub-element //iterate over keywords
+            //TODO: Create a sub-element //iterate over keywords
 //            Element elementCandidaturas = document.createElement(CAND_ELEMENT_NAME);
 //            elementListaCandidaturas.appendChild(elementCandidaturas);
 //            for (Candidatura candidatura : getListaCandidaturas()) {
 //                Node candiNode = candidatura.exportContentToXMLNode();
 //                elementCandidaturas.appendChild(document.importNode(candiNode, true));
 //            }
-
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementListaCandidaturas);
             node = elementListaCandidaturas;
@@ -150,7 +149,7 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
             NodeList elements1ListaCandidaturas = document.getElementsByTagName(ROOT_ELEMENT_NAME);
             Node element2Candidaturas = elements1ListaCandidaturas.item(0);
 
-            //Add Lista
+            //TODO: Add Lista
 //            NodeList elements3Candidaturas = document.getElementsByTagName(CAND_ELEMENT_NAME);
 //            NodeList cand4idaturas = elements3Candidaturas.item(0).getChildNodes();
 //            for (int position = 0; position < cand4idaturas.getLength(); position++) {
@@ -159,7 +158,6 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
 //                cand6idatura = cand6idatura.importContentFromXMLNode(cand5didaturaNode);
 //                addCandidatura(cand6idatura);
 //            }
-
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

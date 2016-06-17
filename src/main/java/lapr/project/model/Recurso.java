@@ -19,6 +19,10 @@ public class Recurso {
         descricao = desc;
     }
 
+    public Recurso() {
+        //For Import use only
+    }
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
