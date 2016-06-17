@@ -5,16 +5,33 @@
  */
 package lapr.project.ui.representante;
 
+import javax.swing.JOptionPane;
+import lapr.project.controller.representante.AlterarCandidaturaController;
+import lapr.project.model.exhibitions.CentroExposicoes;
+import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.users.Representante;
+import lapr.project.model.users.Utilizador;
+import lapr.project.ui.AdicionarDemoUI;
+
 /**
  *
  * @author Sara Silva
  */
 public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
 
+    public final AlterarCandidaturaController expo;
+
     /**
      * Creates new form AlterarCandidaturaUI
      */
-    public AlterarCandidaturaExpoUI() {
+    public AlterarCandidaturaExpoUI(Utilizador ut, CentroExposicoes centro) {
+        expo = new AlterarCandidaturaController(centro);
+        expo.setUtilizador(ut);
+        Exposicao expo1 = (Exposicao) JOptionPane.showInputDialog(this, "Selecione uma Exposição", "Alterar Candidatura da Exposição", JOptionPane.QUESTION_MESSAGE, null, expo.getListaExposicoes().toArray(), null);
+        expo.setExposicao(expo1);
+        Candidatura c = (Candidatura) JOptionPane.showInputDialog(this, "Selecione uma Candidatura", "Alterar Candidatura da Exposição", JOptionPane.QUESTION_MESSAGE, null, expo.getListaCandidaturas().toArray(), null);
+        expo.setCandidatura(c);
         initComponents();
     }
 
@@ -175,11 +192,11 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        new AddKeywordsUI(expo.getCandidatura());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        new AdicionarDemoUI(expo);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -209,11 +226,19 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        CentroExposicoes centro = new CentroExposicoes();
+        Utilizador ut = new Utilizador();
+        Exposicao exp = new Exposicao();
+        Candidatura can = new Candidatura();
+        Representante r = new Representante(ut);
+        can.setRep(r);
+        exp.addCandidatura(can);
+        centro.getListaExposicoes().addExposicao(exp);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlterarCandidaturaExpoUI().setVisible(true);
+                new AlterarCandidaturaExpoUI(ut, centro).setVisible(true);
             }
         });
     }

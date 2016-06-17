@@ -13,6 +13,7 @@ import lapr.project.model.Stand;
 import lapr.project.model.lists.ListaProdutos;
 import lapr.project.model.states.EstadoCandidatura;
 import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
+import lapr.project.model.users.Representante;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Candidatura implements Retiravel, Serializable {
     private int telemovel;
     private double areaPretendida;
     private int quantidadeConvites;
-
+    private Representante rep;
     private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;
     private Stand stand;
@@ -89,6 +90,14 @@ public class Candidatura implements Retiravel, Serializable {
      */
     public List<Keyword> getKeywordList() {
         return keywordList;
+    }
+
+    public Representante getRep() {
+        return rep;
+    }
+
+    public void setRep(Representante rep) {
+        this.rep = rep;
     }
 
     public static boolean validaNomeEmpresa(String nomeEmpresa) {
@@ -198,12 +207,12 @@ public class Candidatura implements Retiravel, Serializable {
     public boolean isRetiravel() {
         return this.estadoCandidatura.isEmSubmissao();
     }
-    
-    public boolean isRetirada(){
+
+    public boolean isRetirada() {
         return this.estadoCandidatura.isRetirada();
     }
-    
-    public boolean isAvaliada(){
+
+    public boolean isAvaliada() {
         return this.estadoCandidatura.isAvaliada();
     }
 
@@ -221,16 +230,14 @@ public class Candidatura implements Retiravel, Serializable {
     public boolean setRetirada() {
         return this.estadoCandidatura.setRetirada();
     }
-    
-    public boolean setAceite(){
+
+    public boolean setAceite() {
         return this.estadoCandidatura.setAceite();
     }
-    
-    public boolean setRejeitada(){
+
+    public boolean setRejeitada() {
         return this.estadoCandidatura.setRejeitada();
     }
-
-
 
     @Override
     public int hashCode() {

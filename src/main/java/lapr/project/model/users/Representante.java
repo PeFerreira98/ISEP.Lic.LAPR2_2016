@@ -12,10 +12,10 @@ import java.util.Objects;
  *
  * @author zero_
  */
-public class Representante implements Serializable{
+public class Representante implements Serializable {
 
     private Utilizador utilizador;
-    private String  nomeEmpresa;
+    private String nomeEmpresa;
 
     /**
      * Construtor de objecto FAE (Funcionário de Apoio à Exposição)
@@ -25,14 +25,20 @@ public class Representante implements Serializable{
     public Representante(Utilizador utilizador) {
         this.utilizador = utilizador;
     }
-     public Representante(Utilizador utilizador,String nEmpresa) {
+
+    public Representante(Utilizador utilizador, String nEmpresa) {
         this.utilizador = utilizador;
         this.nomeEmpresa = nEmpresa;
     }
-     
-     public String getNomeEmpresa(){
-         return this.nomeEmpresa;
-     }
+
+    public String getNomeEmpresa() {
+        return this.nomeEmpresa;
+    }
+
+    public Utilizador getUtilizador() {
+        return utilizador;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
