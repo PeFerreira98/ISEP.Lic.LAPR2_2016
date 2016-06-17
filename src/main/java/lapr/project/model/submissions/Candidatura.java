@@ -5,6 +5,7 @@
  */
 package lapr.project.model.submissions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,7 @@ import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
  *
  * @author TiagoSilvestre
  */
-public class Candidatura implements Retiravel {
+public class Candidatura implements Retiravel, Serializable {
 
     private String nomeEmpresa;
     private String moradaEmpresa;

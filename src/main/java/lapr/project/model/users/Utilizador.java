@@ -5,6 +5,7 @@
  */
 package lapr.project.model.users;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,7 +23,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Sara Silva
  */
-public class Utilizador implements Exportable, Importable<Utilizador> {
+public class Utilizador implements Exportable, Importable<Utilizador>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "utilizador";
     private static final String NAME_ELEMENT_NAME = "nome";

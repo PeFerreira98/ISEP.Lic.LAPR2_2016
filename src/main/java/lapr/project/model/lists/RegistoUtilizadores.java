@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -23,7 +24,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Sara Silva
  */
-public class RegistoUtilizadores implements Exportable, Importable<RegistoUtilizadores> {
+public class RegistoUtilizadores implements Exportable, Importable<RegistoUtilizadores>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "registoUtilizadores";
     private static final String REG_USERS_ELEMENT_NAME = "utilizadoresRegistados";
