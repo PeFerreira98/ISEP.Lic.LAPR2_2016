@@ -58,6 +58,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         this.listaTipoConflito = new ListaTipoConflito();
         this.listaMecanismos = new ArrayList<>();
         this.listaStands = new ArrayList<>();
+        this.listaCandidaturas = new ListaCandidaturas();
     }
 
     public CentroExposicoes() {
@@ -67,6 +68,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         this.listaTipoConflito = new ListaTipoConflito();
         this.listaMecanismos = new ArrayList<>();
         this.listaStands = new ArrayList<>();
+        this.listaCandidaturas = new ListaCandidaturas();
     }
 
     public void addMecanismo(MecanismoAtribuicao mecanismoAtribuicao) {

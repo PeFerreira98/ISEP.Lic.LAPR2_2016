@@ -42,7 +42,7 @@ public class VerProdutosUI extends javax.swing.JFrame {
 
         if (lstProduto.isEmpty()) {
             this.jLstProdutos.setModel(new DefaultListModel<>());
-            JOptionPane.showMessageDialog(this, "Não existem decisões");
+            JOptionPane.showMessageDialog(this, "Não existem produtos");
         }
 
         DefaultListModel listModel = new DefaultListModel() {

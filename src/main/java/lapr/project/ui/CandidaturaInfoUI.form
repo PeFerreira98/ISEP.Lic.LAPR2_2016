@@ -59,7 +59,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="txtEmpresaEmail" min="-2" pref="279" max="-2" attributes="0"/>
+                              <Component id="txtEmpresaMorada" min="-2" pref="279" max="-2" attributes="0"/>
                               <Component id="txtEmpresaName" min="-2" pref="279" max="-2" attributes="0"/>
                               <Component id="txtPhone" alignment="1" min="-2" pref="279" max="-2" attributes="0"/>
                               <Component id="txtArea" alignment="1" min="-2" pref="279" max="-2" attributes="0"/>
@@ -88,7 +88,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtEmpresaEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEmpresaMorada" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -143,7 +143,7 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEmpresaEmail">
+    <Component class="javax.swing.JTextField" name="txtEmpresaMorada">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
@@ -194,6 +194,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Lista Produtos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLstProdutosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

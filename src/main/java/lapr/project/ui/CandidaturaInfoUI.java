@@ -14,6 +14,7 @@ import javax.swing.text.DocumentFilter;
 import lapr.project.controller.representante.CriarCandidaturaExpoController;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.ui.organizador.VerProdutosUI;
 
 /**
  *
@@ -30,6 +31,8 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
         initComponents();
         
         txtEmpresaName.setText(c.getNomeEmpresa());
+        txtEmpresaMorada.setText(c.getMoradaEmpresa());
+        txtAmountGuests.setText(""+ c.getQuantidadeConvites());
         setLocationRelativeTo(null);
         super.setVisible(true);
     }
@@ -49,7 +52,7 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtEmpresaName = new javax.swing.JTextField();
-        txtEmpresaEmail = new javax.swing.JTextField();
+        txtEmpresaMorada = new javax.swing.JTextField();
         txtAmountGuests = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         jOk = new javax.swing.JButton();
@@ -77,7 +80,7 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
 
         txtEmpresaName.setEditable(false);
 
-        txtEmpresaEmail.setEditable(false);
+        txtEmpresaMorada.setEditable(false);
 
         txtAmountGuests.setEditable(false);
 
@@ -96,6 +99,11 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
         txtArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         btnLstProdutos.setText("Lista Produtos");
+        btnLstProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLstProdutosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +131,7 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtEmpresaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmpresaMorada, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtEmpresaName, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,7 +152,7 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmpresaEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmpresaMorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -221,6 +229,10 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
+    private void btnLstProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstProdutosActionPerformed
+        new VerProdutosUI(this.candidatura);
+    }//GEN-LAST:event_btnLstProdutosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLstProdutos;
     private javax.swing.JLabel jLabel1;
@@ -233,7 +245,7 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JTextField txtAmountGuests;
     private javax.swing.JTextField txtArea;
-    private javax.swing.JTextField txtEmpresaEmail;
+    private javax.swing.JTextField txtEmpresaMorada;
     private javax.swing.JTextField txtEmpresaName;
     private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables

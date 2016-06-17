@@ -51,11 +51,11 @@ class Main {
     private CentroExposicoes bootStrap() {
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
 
-        try {
-            registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            registoUtilizadores = new FileOp().readFile(new File("newList.txt"));
+//        } catch (IOException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
         final ListaExposicoes listaExposicoes = new ListaExposicoes();
 
@@ -94,6 +94,11 @@ class Main {
         exposicao2.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("admin")));
         exposicao3.setGestor(new GestorExposicoes(registoUtilizadores.checkUtilizadorByUsername("admin")));
 
+        candidatura1.isRetiravel();
+        candidatura2.isRetiravel();
+        
+        candidatura1.setRetirada();
+        
         exposicao1.addCandidatura(candidatura1);
         exposicao1.addCandidatura(candidatura2);
         exposicao1.addCandidatura(candidatura3);
@@ -115,6 +120,9 @@ class Main {
         centroExposicoes.addMecanismo(new MecanismoExpProfissional());
         centroExposicoes.addMecanismo(new MecanismoNumeroFAE());
         centroExposicoes.addMecanismo(new MecanismoAtribuicao1());
+        centroExposicoes.getListaCandidaturas().addCandidatura(candidatura1);
+        centroExposicoes.getListaCandidaturas().addCandidatura(candidatura2);
+        centroExposicoes.getListaCandidaturas().addCandidatura(candidatura3);
         
         TipoConflito tipoConflito1 = new TipoConflito("tipoConflito1", new MecanismoDetecaoConflito1());
         centroExposicoes.getListaTipoConflito().addTipoConflito(tipoConflito1);
@@ -124,6 +132,8 @@ class Main {
 
         centroExposicoes.getListaRecursos().addRecurso(r1);
         centroExposicoes.getListaRecursos().addRecurso(r2);
+                
+        new ConsultarCandidaturasRetiradasUI(centroExposicoes);
 
         return centroExposicoes;
     }

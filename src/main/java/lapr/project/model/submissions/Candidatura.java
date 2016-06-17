@@ -199,6 +199,10 @@ public class Candidatura implements Retiravel, Serializable {
         return this.estadoCandidatura.isEmSubmissao();
     }
     
+    public boolean isRetirada(){
+        return this.estadoCandidatura.isRetirada();
+    }
+    
     public boolean isAvaliada(){
         return this.estadoCandidatura.isAvaliada();
     }
