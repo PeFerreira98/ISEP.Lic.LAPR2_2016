@@ -5,11 +5,13 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
+
 /**
  *
  * @author zero_
  */
-public interface EstadoCandidatura {
+public interface EstadoCandidatura extends Serializable{
 
     public boolean setRetirada();
 

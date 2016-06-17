@@ -5,6 +5,7 @@
  */
 package lapr.project.model.mecanismos;
 
+import java.io.Serializable;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.FAE;
@@ -13,8 +14,10 @@ import lapr.project.model.users.FAE;
  *
  * @author Sara Silva
  */
-public interface MecanismoDetecaoConflito {
+public interface MecanismoDetecaoConflito extends Serializable {
+
     public void detectConflitos(Exposicao exposicao);
+
     public boolean isConflito(FAE fae, Candidatura candidatura);
-    
+
 }

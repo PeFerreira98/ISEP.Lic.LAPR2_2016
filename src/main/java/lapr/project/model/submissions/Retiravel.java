@@ -5,11 +5,15 @@
  */
 package lapr.project.model.submissions;
 
+import java.io.Serializable;
+
 /**
  *
  * @author zero_
  */
-public interface Retiravel {
+public interface Retiravel extends Serializable {
+
     public String getNomeEmpresa();
+
     public boolean setRetirada();
 }

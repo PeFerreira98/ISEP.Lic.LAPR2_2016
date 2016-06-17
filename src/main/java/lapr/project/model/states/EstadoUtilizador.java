@@ -5,17 +5,19 @@
  */
 package lapr.project.model.states;
 
+import java.io.Serializable;
+
 /**
  *
  * @author zero_
  */
-public interface EstadoUtilizador {
-    
+public interface EstadoUtilizador extends Serializable {
+
     public boolean setPending();
-    
+
     public boolean setRegistado();
-    
+
     public boolean isPending();
-    
+
     public boolean isRegistado();
 }

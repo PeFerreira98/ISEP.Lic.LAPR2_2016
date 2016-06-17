@@ -5,6 +5,7 @@
  */
 package lapr.project.model.mecanismos;
 
+import java.io.Serializable;
 import java.util.List;
 import lapr.project.model.submissions.Atribuicao;
 import lapr.project.model.exhibitions.Exposicao;
@@ -13,10 +14,10 @@ import lapr.project.model.exhibitions.Exposicao;
  *
  * @author Sara Silva
  */
-public interface MecanismoAtribuicao {
+public interface MecanismoAtribuicao extends Serializable {
 
     public List<Atribuicao> getListaAtribuicoes(Exposicao exposicao);
-    
+
     public String getDescricao();
 
 }
