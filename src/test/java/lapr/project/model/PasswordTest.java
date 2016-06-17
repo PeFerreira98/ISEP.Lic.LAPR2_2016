@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lapr.project.model;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author zero_
+ */
+public class PasswordTest {
+    
+    public PasswordTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of encriptPassword method, of class Password.
+     */
+    @Test
+    public void testEncriptPassword() {
+        System.out.println("encriptPassword");
+        
+        String username = "gestor";
+        String truePassword = "gestor";
+        
+        Password instance = new Password();
+        
+        String expResult = "gestor";
+        
+        String result = instance.encriptPassword(username, truePassword);
+        assertEquals(expResult, result);
+    }
+    
+}
