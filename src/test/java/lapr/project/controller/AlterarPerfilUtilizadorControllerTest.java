@@ -46,7 +46,7 @@ public class AlterarPerfilUtilizadorControllerTest {
     public void testSetName() {
         System.out.println("setName");
         String name = "Pedro";
-        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         rUers.addUtilizadorNaoRegistado(utilizador);
@@ -65,7 +65,7 @@ public class AlterarPerfilUtilizadorControllerTest {
     public void testConfirmPassword() {
         System.out.println("confirmPassword");
         String pw = "pw";
-        Utilizador utilizador = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         boolean expResult = true;
@@ -78,7 +78,7 @@ public class AlterarPerfilUtilizadorControllerTest {
     public void testConfirmPasswordFail() {
         System.out.println("confirmPassword");
         String pw = "passw";
-        Utilizador utilizador = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         boolean expResult = false;
@@ -94,7 +94,7 @@ public class AlterarPerfilUtilizadorControllerTest {
     public void testSetPassword() {
         System.out.println("setPassword");
         String pw = "pw";
-        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         instance.setPassword(pw);
@@ -111,7 +111,7 @@ public class AlterarPerfilUtilizadorControllerTest {
     public void testSetEmail() {
         System.out.println("setEmail");
         String email = "1140956@isep.ipp.pt";
-        Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         boolean expResult = true;
@@ -125,9 +125,9 @@ public class AlterarPerfilUtilizadorControllerTest {
         System.out.println("setEmail");
         
         String email = "1140956@isep.ipp.pt";
-        Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
-        rUers.addUtilizadorNaoRegistado(new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt", "organizador"));
+        rUers.addUtilizadorNaoRegistado(new Utilizador("Marcos", "1140953", "xpto", "1140956@isep.ipp.pt"));
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         
         boolean expResult = false;

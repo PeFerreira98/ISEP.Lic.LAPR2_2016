@@ -45,7 +45,7 @@ public class UtilizadorTest {
         System.out.println("validateUsername");
         
         String username = "username";
-        Utilizador instance = new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador instance = new Utilizador("Exp", "username", "password", "email");
         
         boolean expResult = true;
         boolean result = instance.validateUsername(username);
@@ -61,7 +61,7 @@ public class UtilizadorTest {
         System.out.println("validatePassword");
         
         String password = "password";
-        Utilizador instance =  new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador instance =  new Utilizador("Exp", "username", "password", "email");
         
         boolean expResult = true;
         boolean result = instance.validatePassword(password);
@@ -77,7 +77,7 @@ public class UtilizadorTest {
         System.out.println("validateEmail");
         
         String email = "email";
-        Utilizador instance =  new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador instance =  new Utilizador("Exp", "username", "password", "email");
         
         boolean expResult = true;
         boolean result = instance.validateEmail(email);
@@ -92,41 +92,11 @@ public class UtilizadorTest {
     public void testIsRegistado() {
         System.out.println("isRegistado");
         
-        Utilizador instance =  new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador instance =  new Utilizador("Exp", "username", "password", "email");
         instance.setRegistado();
         
         boolean expResult = true;
         boolean result = instance.isRegistado();
-        
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isGestor method, of class Utilizador.
-     */
-    @Test
-    public void testIsGestor() {
-        System.out.println("isGestor");
-        
-        Utilizador instance =  new Utilizador("Exp", "username", "password", "email", "GESTOR");
-        
-        boolean expResult = true;
-        boolean result = instance.isGestor();
-        
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isFAE method, of class Utilizador.
-     */
-    @Test
-    public void testIsFAE() {
-        System.out.println("isFAE");
-        
-        Utilizador instance =  new Utilizador("Exp", "username", "password", "email", "FAE");
-        
-        boolean expResult = true;
-        boolean result = instance.isFAE();
         
         assertEquals(expResult, result);
     }
@@ -138,7 +108,7 @@ public class UtilizadorTest {
     public void testSetRegistado() {
         System.out.println("setRegistado");
         
-        Utilizador instance =  new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador instance =  new Utilizador("Exp", "username", "password", "email");
         
         instance.setRegistado();
         
@@ -155,8 +125,8 @@ public class UtilizadorTest {
     public void testEquals() {
         System.out.println("equals");
         
-        Object obj = new Utilizador("Exp", "username", "password", "email", "tipo");
-        Utilizador instance = new Utilizador("Exp", "username", "password", "email", "tipo");
+        Object obj = new Utilizador("Exp", "username", "password", "email");
+        Utilizador instance = new Utilizador("Exp", "username", "password", "email");
         
         boolean expResult = true;
         boolean result = instance.equals(obj);

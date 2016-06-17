@@ -72,7 +72,7 @@ public class CriarExposicaoControllerTest {
         System.out.println("addListaOrganizador");
         ListaOrganizadores lst = new ListaOrganizadores();
 
-        Utilizador u = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt", "organizador");
+        Utilizador u = new Utilizador("Marcos", "1140956", "pw", "1140956@isep.ipp.pt");
         lst.addOrganizador(u);
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
 
@@ -91,7 +91,7 @@ public class CriarExposicaoControllerTest {
     @Test
     public void testAddGestor() {
         System.out.println("addGestor");
-        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt");
 
         GestorExposicoes g = new GestorExposicoes(utilizador);
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();

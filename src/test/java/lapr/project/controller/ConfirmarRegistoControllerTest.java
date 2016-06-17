@@ -51,7 +51,7 @@ public class ConfirmarRegistoControllerTest {
         System.out.println("getListUtNaoConfirmado");
         CentroExposicoes ce = new CentroExposicoes();
         ConfirmarRegistoController instance = new ConfirmarRegistoController(ce);
-        Utilizador u1 = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador u1 = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         List<Utilizador> expResult = new ArrayList<>();
         expResult.add(u1);
         ce.getRegistoUtilizadores().addUtilizadorNaoRegistado(u1);
@@ -67,10 +67,10 @@ public class ConfirmarRegistoControllerTest {
     @Test
     public void testSetUtilizadorAndToString() {
         System.out.println("setUtilizadorAndToString");
-        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         ConfirmarRegistoController instance = new ConfirmarRegistoController(new CentroExposicoes());
         instance.setUtilizador(utilizador);
-        String expResult = "\nUtilizador{" + "nome=" + "Sara" + ", username=" + "1140957" + ", password=" + "xpto" + ", email=" + "1140957@isep.ipp.pt" + ", tipoUtilizador=" + "organizador" + ", estado=" + "PENDING" + "}";
+        String expResult = "\nUtilizador{" + "nome=" + "Sara" + ", username=" + "1140957" + ", password=" + "xpto" + ", email=" + "1140957@isep.ipp.pt" + ", estado=" + "PENDING" + "}";
         String result = instance.utilizadorToString();
         assertEquals(expResult, result);
     }
@@ -83,7 +83,7 @@ public class ConfirmarRegistoControllerTest {
         System.out.println("confirmaUtilizador");
         CentroExposicoes ce = new CentroExposicoes();
         ConfirmarRegistoController instance = new ConfirmarRegistoController(ce);
-        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         ce.getRegistoUtilizadores().addUtilizadorNaoRegistado(utilizador);
         instance.setUtilizador(utilizador);
         instance.confirmaUtilizador();

@@ -27,14 +27,11 @@ public class DefinirFAEController {
     }
 
     public boolean addUtilizadorListaFAE(Utilizador utilizador) {
-        if (utilizador.isFAE()) {
-            final FAE fae = new FAE(utilizador);
-            return this.listaFAE.addFAE(fae);
-        }
-        return false;
+        final FAE fae = new FAE(utilizador);
+        return this.listaFAE.addFAE(fae);
     }
-    
-    public List<Utilizador> getListaUtilizadoresRegistados(){      
+
+    public List<Utilizador> getListaUtilizadoresRegistados() {
         return this.registoUtilizadores.getListaUtilizadoresRegistados();
     }
 

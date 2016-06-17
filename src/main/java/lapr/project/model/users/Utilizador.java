@@ -30,27 +30,19 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
     private static final String USERNAME_ELEMENT_NAME = "username";
     private static final String PASSWORD_ELEMENT_NAME = "password";
     private static final String EMAIL_ELEMENT_NAME = "email";
-    private static final String USERTYPE_ELEMENT_NAME = "usertype";
     private static final String STATE_ELEMENT_NAME = "estado";
 
     private String nome;
     private String username;
     private String password;
     private String email;
-
-    //TODO: Change string to respective state class
-    private String tipoUtilizador;
-
     private EstadoUtilizador estadoUtilizador;
 
-    public Utilizador(String nome, String username, String password, String email, String tipoUtilizador) {
+    public Utilizador(String nome, String username, String password, String email) {
         this.nome = nome;
         this.username = username;
         this.password = password;
         this.email = email;
-
-        this.tipoUtilizador = tipoUtilizador;
-
         this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
 
@@ -59,9 +51,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
         this.username = "";
         this.password = "";
         this.email = "";
-
-        this.tipoUtilizador = "default";
-
         this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
 
@@ -75,14 +64,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
 
     public boolean validateEmail(String email) {
         return this.email.equals(email);
-    }
-
-    public boolean isGestor() {
-        return "GESTOR".equalsIgnoreCase(this.tipoUtilizador);
-    }
-
-    public boolean isFAE() {
-        return "FAE".equalsIgnoreCase(this.tipoUtilizador);
     }
 
     public String getUsername() {
@@ -111,10 +92,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getTipoUtilizador() {
-        return this.tipoUtilizador;
     }
 
     public void setEstado(EstadoUtilizador estadoUtilizador) {
@@ -151,7 +128,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
         hash = 72 * hash + Objects.hashCode(this.username);
         hash = 73 * hash + Objects.hashCode(this.password);
         hash = 74 * hash + Objects.hashCode(this.email);
-        hash = 75 * hash + Objects.hashCode(this.tipoUtilizador);
         return hash;
     }
 
@@ -177,7 +153,7 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
 
     @Override
     public String toString() {
-        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", tipoUtilizador=" + tipoUtilizador + ", estado=" + getEstadoString() + '}';
+        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", estado=" + getEstadoString() + '}';
     }
 
     @Override
@@ -210,11 +186,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
             Element elementEmail = document.createElement(EMAIL_ELEMENT_NAME);
             elementEmail.setTextContent(getEmail());
             elementUtilizador.appendChild(elementEmail);
-
-            //Create a sub-element //Set the sub-element value //Add sub-element to root element
-            Element elementUserType = document.createElement(USERTYPE_ELEMENT_NAME);
-            elementUserType.setTextContent(getTipoUtilizador());
-            elementUtilizador.appendChild(elementUserType);
 
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementState = document.createElement(STATE_ELEMENT_NAME);
@@ -259,9 +230,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
 //            
 //            //Get description
 //            this.email = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-//            
-//            //Get description
-//            this.tipoUtilizador = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
 //            
 //            //Get description
 //            this.estado = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();

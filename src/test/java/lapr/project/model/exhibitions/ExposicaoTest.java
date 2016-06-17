@@ -78,8 +78,8 @@ public class ExposicaoTest {
     public void testValida() {
         System.out.println("valida");
 
-        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
-        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt", "ORGANIZADOR");
+        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt");
+        Utilizador utilizador4 = new Utilizador("Dummy5", "organizador", "organizador", "organizador@domain.pt");
 
         Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
 
@@ -100,7 +100,7 @@ public class ExposicaoTest {
         System.out.println("getFAE");
 
         String username = "FAE";
-        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
+        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt");
         FAE fae = new FAE(utilizador2);
 
         Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
@@ -120,7 +120,7 @@ public class ExposicaoTest {
         System.out.println("hasFAE");
 
         String username = "FAE";
-        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt", "FAE");
+        Utilizador utilizador2 = new Utilizador("Dummy3", "FAE", "FAE", "fae@domain.pt");
         FAE fae = new FAE(utilizador2);
 
         Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
@@ -140,7 +140,7 @@ public class ExposicaoTest {
         System.out.println("hasOrganizador");
 
         String username = "ORGANIZADOR";
-        Utilizador utilizador2 = new Utilizador("Dummy3", "ORGANIZADOR", "ORGANIZADOR", "fae@domain.pt", "ORGANIZADOR");
+        Utilizador utilizador2 = new Utilizador("Dummy3", "ORGANIZADOR", "ORGANIZADOR", "fae@domain.pt");
 
         Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
         instance.getListaOrganizadores().addOrganizador(utilizador2);
@@ -159,7 +159,7 @@ public class ExposicaoTest {
         System.out.println("isOrganizador");
 
         String username = "ORGANIZADOR";
-        Utilizador utilizador2 = new Utilizador("Dummy3", "ORGANIZADOR", "ORGANIZADOR", "fae@domain.pt", "ORGANIZADOR");
+        Utilizador utilizador2 = new Utilizador("Dummy3", "ORGANIZADOR", "ORGANIZADOR", "fae@domain.pt");
         Organizador org = new Organizador(utilizador2);
         Exposicao instance = new Exposicao("exposicao1", "descricao1", new Data(2016, 5, 31), new Data(2016, 7, 29), new Data(2016, 6, 31), new Data(2016, 5, 31), "My House");
         instance.getListaOrganizadores().addOrganizador(utilizador2);

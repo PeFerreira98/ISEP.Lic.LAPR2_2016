@@ -128,18 +128,18 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             //Create a sub-element
             Node listaExposicoesNode = this.listaExposicoes.exportContentToXMLNode();
             elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
-
-            //Create a sub-element
-            Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
-            elementCentroExposicoes.appendChild(document.importNode(listaCandidaturasNode, true));
-
-            //Create a sub-element
-            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
-            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
             
-            //Create a sub-element
-            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
-            elementCentroExposicoes.appendChild(document.importNode(listaTipoConflitoNode, true));
+            //TODO: Create a sub-element
+//            Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
+//            elementCentroExposicoes.appendChild(document.importNode(listaCandidaturasNode, true));
+
+            //TODO: Create a sub-element
+//            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
+//            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
+            
+            //TODO: Create a sub-element
+//            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
+//            elementCentroExposicoes.appendChild(document.importNode(listaTipoConflitoNode, true));
 
             //TODO: Create a sub-element //iterate over keywords
 //            Element elementMecanismos = document.createElement(MECANISMOS_ELEMENT_NAME);

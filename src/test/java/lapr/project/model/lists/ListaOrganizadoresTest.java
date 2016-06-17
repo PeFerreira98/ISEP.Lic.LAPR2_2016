@@ -47,7 +47,7 @@ public class ListaOrganizadoresTest {
     @Test
     public void testGetLstOrganizadores() {
         System.out.println("getLstOrganizadores");
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "FAE");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
         Organizador organizador = new Organizador(utilizador);
         
         ListaOrganizadores instance = new ListaOrganizadores();
@@ -68,7 +68,7 @@ public class ListaOrganizadoresTest {
     @Test
     public void testAddOrganizador() {
         System.out.println("addOrganizador");
-        Utilizador u = new Utilizador("user", "user", "pw", "email", "representante");
+        Utilizador u = new Utilizador("user", "user", "pw", "email");
         ListaOrganizadores instance = new ListaOrganizadores();
         instance.addOrganizador(u);
     }
@@ -79,7 +79,7 @@ public class ListaOrganizadoresTest {
     @Test
     public void testValidaOrganizador() {
         System.out.println("validaOrganizador");
-        Utilizador u = new Utilizador("user", "user", "pw", "email", "representante");
+        Utilizador u = new Utilizador("user", "user", "pw", "email");
         Organizador organizador = new Organizador(u);
         ListaOrganizadores instance = new ListaOrganizadores();
         boolean expResult = true;
@@ -93,7 +93,7 @@ public class ListaOrganizadoresTest {
     @Test
     public void testValida() {
         System.out.println("valida");
-        Utilizador u = new Utilizador("user", "user", "pw", "email", "representante");
+        Utilizador u = new Utilizador("user", "user", "pw", "email");
         ListaOrganizadores instance = new ListaOrganizadores();
         instance.addOrganizador(u);
         boolean expResult = true;

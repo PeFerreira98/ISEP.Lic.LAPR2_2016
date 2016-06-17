@@ -48,7 +48,7 @@ public class RegistoUtilizadoresTest {
         System.out.println("checkUtilizadorByUsername");
         String username = "1140957";
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        Utilizador expResult = new Utilizador("Sara", username, "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador expResult = new Utilizador("Sara", username, "xpto", "1140957@isep.ipp.pt");
         instance.addUtilizadorNaoRegistado(expResult);
         Utilizador result = instance.checkUtilizadorByUsername(username);
         assertEquals(expResult, result);
@@ -63,7 +63,7 @@ public class RegistoUtilizadoresTest {
         System.out.println("checkUtilizadorByEmail");
         String email = "1140957@isep.ipp.pt";
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        Utilizador expResult = new Utilizador("Sara", "1140957", "xpto", email, "organizador");
+        Utilizador expResult = new Utilizador("Sara", "1140957", "xpto", email);
         instance.addUtilizadorNaoRegistado(expResult);
         Utilizador result = instance.checkUtilizadorByEmail(email);
         assertEquals(expResult, result);
@@ -76,7 +76,7 @@ public class RegistoUtilizadoresTest {
     @Test
     public void testAddUtilizadorNaoRegistado() {
         System.out.println("addUtilizadorNaoRegistado");
-        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         RegistoUtilizadores instance = new RegistoUtilizadores();
         boolean expResult = true;
         boolean result = instance.addUtilizadorNaoRegistado(utilizador);
@@ -93,7 +93,7 @@ public class RegistoUtilizadoresTest {
     @Test
     public void testRegistarUtilizador() {
         System.out.println("registarUtilizador");
-        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         RegistoUtilizadores instance = new RegistoUtilizadores();
         boolean expResult = false;
         boolean result = instance.registarUtilizador(utilizador);
@@ -113,7 +113,7 @@ public class RegistoUtilizadoresTest {
     public void testGetListaUtilizadoresNaoRegistados() {
         System.out.println("getListaUtilizadoresNaoRegistados");
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        Utilizador ut = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador ut = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         List<Utilizador> expResult = new ArrayList<>();
         expResult.add(ut);
         instance.addUtilizadorNaoRegistado(ut);
@@ -130,9 +130,9 @@ public class RegistoUtilizadoresTest {
     public void testGetListaUtilizadoresRegistados() {
         System.out.println("getListaUtilizadoresRegistados");
         RegistoUtilizadores instance = new RegistoUtilizadores();
-        Utilizador ut = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador ut = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         ut.setRegistado();
-        Utilizador ut2 = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt", "organizador");
+        Utilizador ut2 = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         List<Utilizador> expResult = new ArrayList<>();
         expResult.add(ut);
         instance.addUtilizadorNaoRegistado(ut2);

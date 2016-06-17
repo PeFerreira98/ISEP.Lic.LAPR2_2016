@@ -44,7 +44,7 @@ public class FAETest {
     public void testSetUtilizador() {
         System.out.println("setUtilizador");
 
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
         FAE instance = new FAE();
 
         instance.setUtilizador(utilizador);
@@ -59,7 +59,7 @@ public class FAETest {
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
 
-        Utilizador expResult = new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador expResult = new Utilizador("Exp", "username", "password", "email");
         FAE instance = new FAE(expResult);
 
         Utilizador result = instance.getUtilizador();
@@ -74,7 +74,7 @@ public class FAETest {
     public void testEquals() {
         System.out.println("equals");
 
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "tipo");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
         Object obj = new FAE(utilizador);
         FAE instance = new FAE(utilizador);
 

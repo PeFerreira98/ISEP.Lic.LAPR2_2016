@@ -46,11 +46,11 @@ public class LoginControllerTest {
     public void testGetUtilizador() {
         System.out.println("getUtilizador");
         String username = "1140956";
-        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt", "organizador");
+        Utilizador utilizador = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt");
         RegistoUtilizadores rUers = new RegistoUtilizadores();
         rUers.addUtilizadorNaoRegistado(utilizador);
         LoginController instance = new LoginController(rUers);
-        Utilizador expResult = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt", "organizador");;
+        Utilizador expResult = new Utilizador("Marcos", "1140956", "xpto", "1140956@isep.ipp.pt");;
         Utilizador result = instance.getUtilizador(username);
         assertEquals(expResult, result);
 

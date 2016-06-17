@@ -50,7 +50,7 @@ public class DefinirFAEControllerTest {
     public void testAddUtilizadorListaFAE() {
         System.out.println("addUtilizadorListaFAE");
 
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "FAE");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
 
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
         registoUtilizadores.addUtilizadorNaoRegistado(utilizador);
@@ -73,7 +73,7 @@ public class DefinirFAEControllerTest {
     public void testGetListaUtilizadoresRegistados() {
         System.out.println("getListaUtilizadoresRegistados");
 
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "FAE");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
 
         RegistoUtilizadores registoUtilizadores = new RegistoUtilizadores();
         registoUtilizadores.addUtilizadorNaoRegistado(utilizador);

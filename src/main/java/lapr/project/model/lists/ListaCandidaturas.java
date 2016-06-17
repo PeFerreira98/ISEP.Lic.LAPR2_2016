@@ -124,6 +124,7 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
 //                Node candiNode = candidatura.exportContentToXMLNode();
 //                elementCandidaturas.appendChild(document.importNode(candiNode, true));
 //            }
+
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementListaCandidaturas);
             node = elementListaCandidaturas;

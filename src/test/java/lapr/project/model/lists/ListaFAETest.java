@@ -48,7 +48,7 @@ public class ListaFAETest {
     public void testAddFAE() {
         System.out.println("addFAE");
         
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "FAE");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
 
         FAE fae = new FAE(utilizador);
         ListaFAE instance = new ListaFAE();
@@ -66,7 +66,7 @@ public class ListaFAETest {
     public void testGetListaFAE() {
         System.out.println("getListaFAE");
         
-        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email", "FAE");
+        Utilizador utilizador = new Utilizador("Exp", "username", "password", "email");
         FAE fae = new FAE(utilizador);
         
         ListaFAE instance = new ListaFAE();

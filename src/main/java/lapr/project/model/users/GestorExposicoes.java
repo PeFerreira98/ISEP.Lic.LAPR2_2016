@@ -6,8 +6,13 @@
 package lapr.project.model.users;
 
 import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -16,6 +21,8 @@ import org.w3c.dom.Node;
  */
 public class GestorExposicoes implements Exportable, Importable<GestorExposicoes>{
 
+    private static final String ROOT_ELEMENT_NAME = "gestor";
+    
     private Utilizador utilizador;
 
     /**
@@ -62,7 +69,28 @@ public class GestorExposicoes implements Exportable, Importable<GestorExposicoes
 
     @Override
     public Node exportContentToXMLNode() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Node rootNode = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementGestor = document.createElement(ROOT_ELEMENT_NAME);
+
+            //Create a sub-element
+            Node utilizadorNode = this.utilizador.exportContentToXMLNode();
+            elementGestor.appendChild(document.importNode(utilizadorNode, true));
+
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementGestor);
+            rootNode = elementGestor;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return rootNode;
     }
 
     @Override
