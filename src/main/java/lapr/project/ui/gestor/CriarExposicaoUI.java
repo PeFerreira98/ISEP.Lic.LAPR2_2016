@@ -359,7 +359,7 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if(!txtDescricao.getText().equalsIgnoreCase("") && !txtDescricao.getText().equalsIgnoreCase("") && !txtLocal.getText().equalsIgnoreCase("")){
+        if(!txtTitulo.getText().equalsIgnoreCase("") && !txtDescricao.getText().equalsIgnoreCase("") && !txtLocal.getText().equalsIgnoreCase("")){
             this.controller.addListaOrganizador(lstOrgAux);
             Data dRinicio = this.controller.convertStringToData(fTxtPeriodoRealizacaoInicio.getText());
             Data dRfim = this.controller.convertStringToData(fTxtPeriodoRealizacaoFim.getText());

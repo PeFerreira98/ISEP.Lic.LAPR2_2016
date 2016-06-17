@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.gestor;
 
+import java.io.Serializable;
 import java.util.List;
 import lapr.project.model.Stand;
 import lapr.project.model.exhibitions.CentroExposicoes;
@@ -13,7 +14,7 @@ import lapr.project.model.exhibitions.CentroExposicoes;
  *
  * @author Sara Silva
  */
-public class DefinirStandCentroController {
+public class DefinirStandCentroController implements Serializable{
 
     private final List<Stand> listaStands;
 

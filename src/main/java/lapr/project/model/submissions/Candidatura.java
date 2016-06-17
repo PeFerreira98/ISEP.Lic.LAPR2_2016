@@ -104,7 +104,7 @@ public class Candidatura implements Retiravel, Serializable {
     }
 
     public static boolean validaAreaPretendida(double areaPretendida) {
-        return areaPretendida != 0;
+        return areaPretendida != 0.0f;
     }
 
     public static boolean validaQuantidadeConvites(int quantidadeConvites) {
@@ -182,7 +182,7 @@ public class Candidatura implements Retiravel, Serializable {
             throw new IllegalArgumentException("Número de telemóvel inválido!");
         }
         if (areaPretendida <= 0) {
-            throw new IllegalArgumentException("Área expositor inválids!");
+            throw new IllegalArgumentException("Área expositor inválida!");
         }
         return true;
     }
