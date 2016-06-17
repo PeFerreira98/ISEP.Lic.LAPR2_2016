@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -22,7 +23,7 @@ import org.w3c.dom.NodeList;
  *
  * @author zero_
  */
-public class ListaTipoConflito implements Exportable, Importable<ListaTipoConflito>{
+public class ListaTipoConflito implements Exportable, Importable<ListaTipoConflito>, Serializable{
 
     private static final String ROOT_ELEMENT_NAME = "listaTipoConflito";
     private static final String TIPOCONF_ELEMENT_NAME = "tipoConflitos";

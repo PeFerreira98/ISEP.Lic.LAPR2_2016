@@ -5,11 +5,13 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sara Silva
  */
-public class Stand {
+public class Stand implements Serializable{
 
     private String designacao;
 

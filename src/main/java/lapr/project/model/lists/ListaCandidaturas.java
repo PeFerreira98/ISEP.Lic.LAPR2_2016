@@ -5,6 +5,7 @@
  */
 package lapr.project.model.lists;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +25,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Sara Silva
  */
-public class ListaCandidaturas implements Exportable, Importable<ListaCandidaturas> {
+public class ListaCandidaturas implements Exportable, Importable<ListaCandidaturas>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaCandidaturas";
     private static final String CAND_ELEMENT_NAME = "candidaturas";
