@@ -67,6 +67,7 @@ public class Candidatura implements Retiravel, Serializable {
         this.listaProdutos = new ListaProdutos();
         this.lstAvaliacoes = new ArrayList<>();
         this.keywordList = new ArrayList<>();
+        standConfirmado = false;
     }
 
     public void addAvaliacao(Avaliacao a) {

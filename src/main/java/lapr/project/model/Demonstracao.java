@@ -36,12 +36,14 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
     private String cod;
     private ListaRecursos listaRecursos;
     private ListaCandidaturas listaCandidaturas;
+    private boolean demonstracaoEfetiva;
 
     public Demonstracao() {
         this.cod = "NULL";
         this.designacao = "NULL";
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
+        demonstracaoEfetiva = false;
     }
 
     public Demonstracao(String desc) {
@@ -49,6 +51,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = desc;
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
+        demonstracaoEfetiva = false;
     }
 
     public Demonstracao(String cod, String desc) {
@@ -56,6 +59,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = desc;
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
+        demonstracaoEfetiva = false;
     }
 
     public Demonstracao(String cod, String designacao, ListaRecursos lst) {
@@ -63,6 +67,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = designacao;
         this.listaRecursos = lst;
         this.listaCandidaturas = new ListaCandidaturas();
+        demonstracaoEfetiva = false;
     }
 
     public static boolean validateDesignacao(String designacao) {
@@ -84,17 +89,25 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
     public ListaRecursos getListaRecursos() {
         return listaRecursos;
     }
-    
+
     public boolean addCandidatura(Candidatura candidatura) {
         return this.listaCandidaturas.addCandidatura(candidatura);
     }
-    
+
     public ListaCandidaturas getListaCandidaturas() {
         return listaCandidaturas;
     }
 
     public List<Retiravel> getCandidaturasDemonstracoesRetiraveis() {
         return this.listaCandidaturas.getCandidaturasRetiraveis();
+    }
+
+    public void setDemonstracaoEfetiva(boolean demonstracaoEfetiva) {
+        this.demonstracaoEfetiva = demonstracaoEfetiva;
+    }
+
+    public boolean isDemonstracaoEfetiva() {
+        return demonstracaoEfetiva;
     }
 
     @Override
