@@ -26,7 +26,7 @@ public class Candidatura implements Retiravel, Serializable {
     private int telemovel;
     private double areaPretendida;
     private int quantidadeConvites;
-    
+
     private Representante rep;
     private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;
@@ -34,6 +34,7 @@ public class Candidatura implements Retiravel, Serializable {
 
     private List<Avaliacao> lstAvaliacoes;
     private List<Keyword> keywordList;
+    private boolean standConfirmado;
 
     /**
      * Construtor de objecto Candidatura
@@ -58,6 +59,7 @@ public class Candidatura implements Retiravel, Serializable {
         this.keywordList = new ArrayList<>();
 
         this.keywordList.addAll(keywordList);
+        standConfirmado = false;
     }
 
     public Candidatura() {
@@ -99,6 +101,10 @@ public class Candidatura implements Retiravel, Serializable {
 
     public void setRep(Representante rep) {
         this.rep = rep;
+    }
+
+    public void setStandConfirmado(boolean standConfirmado) {
+        this.standConfirmado = standConfirmado;
     }
 
     public static boolean validaNomeEmpresa(String nomeEmpresa) {
@@ -203,6 +209,10 @@ public class Candidatura implements Retiravel, Serializable {
 
     public EstadoCandidatura getEstado() {
         return this.estadoCandidatura;
+    }
+
+    public boolean isStandConfirmado() {
+        return standConfirmado;
     }
 
     public boolean isRetiravel() {
