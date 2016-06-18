@@ -9,6 +9,7 @@ import java.util.List;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.utils.Data;
 
 /**
  *
@@ -19,6 +20,7 @@ public class DefinirDemoEfetivasController {
     private final CentroExposicoes centroExp;
     private Exposicao exposicao;
     private Demonstracao demonstracao;
+    private Data date;
 
     public DefinirDemoEfetivasController(CentroExposicoes ce) {
         this.centroExp = ce;
@@ -42,6 +44,28 @@ public class DefinirDemoEfetivasController {
 
     public void setExposicao(Exposicao exposicao) {
         this.exposicao = exposicao;
+    }
+
+    public void setData(String data) {
+        Data date = convertStringToData(data);
+        demonstracao.setData(date);
+    }
+
+    public Data getDate() {
+        return date;
+    }
+
+    public Data convertStringToData(String data) {
+        final Data d;
+
+        String[] aux = data.split("-");
+        int dia = Integer.parseInt(aux[0]);
+        int mes = Integer.parseInt(aux[1]);
+        int ano = Integer.parseInt(aux[2]);
+
+        d = new Data(ano, mes, dia);
+
+        return d;
     }
 
 }

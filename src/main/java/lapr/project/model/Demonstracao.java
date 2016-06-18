@@ -15,6 +15,7 @@ import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
+import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -37,6 +38,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
     private ListaRecursos listaRecursos;
     private ListaCandidaturas listaCandidaturas;
     private boolean demonstracaoEfetiva;
+    private Data data;
 
     public Demonstracao() {
         this.cod = "NULL";
@@ -104,6 +106,14 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
 
     public void setDemonstracaoEfetiva(boolean demonstracaoEfetiva) {
         this.demonstracaoEfetiva = demonstracaoEfetiva;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
+    }
+
+    public Data getData() {
+        return data;
     }
 
     public boolean isDemonstracaoEfetiva() {
