@@ -9,9 +9,6 @@ import java.util.List;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
-import lapr.project.model.lists.ListaCandidaturas;
-import lapr.project.model.lists.ListaDemonstracoes;
-import lapr.project.model.submissions.Candidatura;
 
 /**
  *
@@ -21,11 +18,7 @@ public class DefinirDemoEfetivasController {
 
     private final CentroExposicoes centroExp;
     private Exposicao exposicao;
-    private Candidatura candidatura;
-    private ListaCandidaturas listaCandidaturas;
-    private ListaDemonstracoes listaDemonstracoes;
     private Demonstracao demonstracao;
-    private boolean demonstracaoEfetiva;
 
     public DefinirDemoEfetivasController(CentroExposicoes ce) {
         this.centroExp = ce;
@@ -36,21 +29,19 @@ public class DefinirDemoEfetivasController {
     }
 
     public List<Demonstracao> getListaDemonstracoes() {
-        return centroExp.getListaDemonstracoes().getListaDemonstracoes();
+        return exposicao.getListaDemonstracoes().getListaDemonstracoes();
     }
 
     public void setDemonstracao(Demonstracao demonstracao) {
         this.demonstracao = demonstracao;
     }
 
-    public void setDemonstracaoEfetiva(boolean demonstracaoEfetiva) {
-        this.demonstracaoEfetiva = demonstracaoEfetiva;
+    public void setDemonstracaoEfetiva() {
+        demonstracao.setDemonstracaoEfetiva(true);
     }
 
     public void setExposicao(Exposicao exposicao) {
         this.exposicao = exposicao;
-        listaCandidaturas = exposicao.getListaCandidaturas();
-        listaDemonstracoes = exposicao.getListaDemonstracoes();
     }
 
 }
