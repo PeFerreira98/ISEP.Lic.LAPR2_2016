@@ -51,7 +51,7 @@ public class AlterarCandidaturaController {
     public void setExposicao(Exposicao exposicao) {
         this.exposicao = exposicao;
         listaCandidaturas = exposicao.getListaCandidaturas();
-        listaDemonstracoes=exposicao.getListaDemonstracoes();
+        listaDemonstracoes = exposicao.getListaDemonstracoes();
     }
 
     public void setCandidatura(Candidatura candidatura) {

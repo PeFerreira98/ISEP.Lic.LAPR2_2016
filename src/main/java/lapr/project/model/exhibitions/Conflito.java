@@ -17,10 +17,25 @@ public class Conflito implements Serializable {
 
     private Candidatura candidatura;
     private FAE fae;
+    private TipoConflito tipoConflito;
 
+    public Conflito(FAE fae, Candidatura candidatura, TipoConflito tipoConflito) {
+        this.fae = fae;
+        this.candidatura = candidatura;
+        this.tipoConflito = tipoConflito;
+    }
+    
     public Conflito(FAE fae, Candidatura candidatura) {
         this.fae = fae;
         this.candidatura = candidatura;
+        this.tipoConflito = new TipoConflito("SemDescricao");
+    }
+    
+    public boolean isFrom(Candidatura candidatura){
+        return this.candidatura.equals(candidatura);
     }
 
+    public String toStringList(){
+        return this.fae.getUtilizador().getUsername() + " - " + this.candidatura.getNomeEmpresa() + " - " + this.tipoConflito.getDescricao();
+    }
 }

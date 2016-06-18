@@ -32,7 +32,7 @@ public class AceitarCandidaturaUI extends javax.swing.JFrame {
         txtEmpresaName.setText(c.getNomeEmpresa());
         txtAmountGuests.setText(""+c.getQuantidadeConvites());
         txtEmpresaEmail.setText(c.getMoradaEmpresa());
-        setLocationRelativeTo(null);
+        super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
 

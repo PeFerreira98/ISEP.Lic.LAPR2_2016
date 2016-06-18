@@ -16,7 +16,7 @@ import lapr.project.model.exhibitions.Exposicao;
  *
  * @author zero_
  */
-public class RetirarCandidaturaController implements Serializable{
+public class RetirarCandidaturaController implements Serializable {
 
     private CentroExposicoes centroExposicoes;
     private List<Retiravel> lRetiraveis;

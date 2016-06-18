@@ -128,12 +128,15 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
             //TODO: Create a sub-element
 //            Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
 //            elementCentroExposicoes.appendChild(document.importNode(listaCandidaturasNode, true));
+
             //TODO: Create a sub-element
 //            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
 //            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
+
             //TODO: Create a sub-element
 //            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
 //            elementCentroExposicoes.appendChild(document.importNode(listaTipoConflitoNode, true));
+
             //TODO: Create a sub-element //iterate over keywords
 //            Element elementMecanismos = document.createElement(MECANISMOS_ELEMENT_NAME);
 //            elementCentroExposicoes.appendChild(elementMecanismos);
@@ -141,6 +144,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
 //                Node mecanismoNode = meca.exportContentToXMLNode();
 //                elementMecanismos.appendChild(document.importNode(mecanismoNode, true));
 //            }
+
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementCentroExposicoes);
             rootNode = elementCentroExposicoes;

@@ -21,8 +21,12 @@ public class AddKeywordsUI extends javax.swing.JFrame {
      * Creates new form AddKeywords
      */
     public AddKeywordsUI(Candidatura candidatura) {
-        initComponents();
         controller = new AddKeywordsController(candidatura);
+        
+        initComponents();
+        
+        //TODO: add setVisible, setTitle, setLocationRelativeTo
+        
     }
 
     /**

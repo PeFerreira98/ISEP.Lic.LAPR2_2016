@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Conflito;
+import lapr.project.model.exhibitions.TipoConflito;
 import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -38,6 +39,30 @@ public class RegistoConflitos implements Exportable, Importable<RegistoConflitos
     public boolean registarConflito(FAE fae, Candidatura candidatura) {
         Conflito conflito = new Conflito(fae, candidatura);
         return this.listaConflitos.add(conflito);
+    }
+    
+    public boolean registarConflito(FAE fae, Candidatura candidatura, TipoConflito tipoConflito) {
+        Conflito conflito = new Conflito(fae, candidatura, tipoConflito);
+        return this.listaConflitos.add(conflito);
+    }
+    
+    public boolean deleteConflito(Conflito conflito){
+        return this.listaConflitos.remove(conflito);
+    }
+    
+    public boolean hasConflitos(){
+        //Retorna true se tiver pelo menos 1 conflito
+        return !this.listaConflitos.isEmpty();
+    }
+    
+    public List<Conflito> getConflitos(Candidatura candidatura){
+        List<Conflito> listConfTemp = new ArrayList<>();
+        for (Conflito conf : this.listaConflitos) {
+            if (conf.isFrom(candidatura)) {
+                listConfTemp.add(conf);
+            }
+        }
+        return listConfTemp;
     }
 
     @Override

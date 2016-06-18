@@ -26,6 +26,7 @@ public class Candidatura implements Retiravel, Serializable {
     private int telemovel;
     private double areaPretendida;
     private int quantidadeConvites;
+    
     private Representante rep;
     private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;

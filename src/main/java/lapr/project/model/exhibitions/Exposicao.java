@@ -255,6 +255,10 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
         }
         return true;
     }
+    
+    public boolean hasConflitos(){
+        return this.listaConflitos.hasConflitos();
+    }
 
     @Override
     public int hashCode() {

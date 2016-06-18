@@ -10,6 +10,7 @@ import lapr.project.ui.gestor.GestorExposicoesUI;
 import lapr.project.ui.organizador.OrganizadorUI;
 import lapr.project.ui.representante.RepresentanteUI;
 import javax.swing.JOptionPane;
+import lapr.project.controller.DetecaoConflitosController;
 import lapr.project.controller.LoginController;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.users.Utilizador;
@@ -92,6 +93,8 @@ public class LoginUI extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemExportXML = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -149,6 +152,18 @@ public class LoginUI extends javax.swing.JFrame {
         jMenu3.add(jMenuItemExportXML);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Simulation");
+
+        jMenuItem1.setText("DetectConflitos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -238,6 +253,13 @@ public class LoginUI extends javax.swing.JFrame {
         new FileOp().writeXMLFile(centroExposicoes);
     }//GEN-LAST:event_jMenuItemExportXMLActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        final DetecaoConflitosController detectConfl = new DetecaoConflitosController(this.centroExposicoes);
+        detectConfl.processoDeteccaoConflito();
+        JOptionPane.showMessageDialog(LoginUI.this,
+                    "Detect Confl Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogFAE;
     private javax.swing.JButton jButtonLogGest;
@@ -248,7 +270,9 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemExportXML;
     private javax.swing.JButton jSignUp;
     private javax.swing.JTextField jTextField1;

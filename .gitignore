@@ -1,11 +1,5 @@
 # Created by http://www.gitignore.io
 
-### Custom Files ###
-CentroExposicoesXML.xml
-newList.txt
-pendingUsers.txt
-userList.txt
-
 ### NetBeans ###
 nbproject/private/
 build/
@@ -14,7 +8,6 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-
 
 ### Eclipse ###
 *.pydevproject
@@ -152,3 +145,10 @@ fabric.properties
 ### Intellij Patch ###
 *.iml
 /nbproject/
+
+### Custom Files ###
+OOM - Alinhamento Casos de Uso v0.2.pdf
+CentroExposicoesXML.xml
+newList.txt
+pendingUsers.txt
+userList.txt

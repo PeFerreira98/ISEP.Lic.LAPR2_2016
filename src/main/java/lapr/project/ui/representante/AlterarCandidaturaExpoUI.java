@@ -20,19 +20,21 @@ import lapr.project.ui.AdicionarDemoUI;
  */
 public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
 
-    public final AlterarCandidaturaController expo;
+    public final AlterarCandidaturaController controller;
 
     /**
      * Creates new form AlterarCandidaturaUI
      */
     public AlterarCandidaturaExpoUI(Utilizador ut, CentroExposicoes centro) {
-        expo = new AlterarCandidaturaController(centro);
-        expo.setUtilizador(ut);
-        Exposicao expo1 = (Exposicao) JOptionPane.showInputDialog(this, "Selecione uma Exposição", "Alterar Candidatura da Exposição", JOptionPane.QUESTION_MESSAGE, null, expo.getListaExposicoes().toArray(), null);
-        expo.setExposicao(expo1);
-        Candidatura c = (Candidatura) JOptionPane.showInputDialog(this, "Selecione uma Candidatura", "Alterar Candidatura da Exposição", JOptionPane.QUESTION_MESSAGE, null, expo.getListaCandidaturas().toArray(), null);
-        expo.setCandidatura(c);
+        this.controller = new AlterarCandidaturaController(centro);
+        this.controller.setUtilizador(ut);
+        Exposicao expo1 = (Exposicao) JOptionPane.showInputDialog(this, "Selecione uma Exposição", "Alterar Candidatura da Exposição", JOptionPane.QUESTION_MESSAGE, null, controller.getListaExposicoes().toArray(), null);
+        this.controller.setExposicao(expo1);
+        Candidatura c = (Candidatura) JOptionPane.showInputDialog(this, "Selecione uma Candidatura", "Alterar Candidatura da Exposição", JOptionPane.QUESTION_MESSAGE, null, controller.getListaCandidaturas().toArray(), null);
+        this.controller.setCandidatura(c);
+        
         initComponents();
+        //TODO: Check Option pane description && add setVisible, setTitle, setLocationRelativeTo
     }
 
     /**
@@ -192,11 +194,11 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new AddKeywordsUI(expo.getCandidatura());
+        new AddKeywordsUI(this.controller.getCandidatura());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new AdicionarDemoUI(expo);
+        new AdicionarDemoUI(controller);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
