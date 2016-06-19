@@ -6,6 +6,7 @@
 package lapr.project.model.mecanismos;
 
 import java.io.Serializable;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.users.FAE;
@@ -17,6 +18,8 @@ import lapr.project.model.users.FAE;
 public interface MecanismoDetecaoConflito extends Serializable {
 
     public void detectConflitos(Exposicao exposicao);
+    
+    public void detectConflitos(Demonstracao demonstracao);
 
     public boolean isConflito(FAE fae, Candidatura candidatura);
 

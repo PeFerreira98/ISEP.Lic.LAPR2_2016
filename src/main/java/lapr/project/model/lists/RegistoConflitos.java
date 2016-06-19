@@ -28,7 +28,7 @@ import org.w3c.dom.Node;
 public class RegistoConflitos implements Exportable, Importable<RegistoConflitos>, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "registoConflitos";
-    private static final String CAND_ELEMENT_NAME = "conflitos";
+    private static final String CONF_ELEMENT_NAME = "conflitos";
 
     private List<Conflito> listaConflitos;
 

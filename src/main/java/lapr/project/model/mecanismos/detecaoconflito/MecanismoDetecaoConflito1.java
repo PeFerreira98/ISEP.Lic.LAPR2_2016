@@ -5,6 +5,7 @@
  */
 package lapr.project.model.mecanismos.detecaoconflito;
 
+import lapr.project.model.Demonstracao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.lists.ListaCandidaturas;
@@ -29,6 +30,24 @@ public class MecanismoDetecaoConflito1 implements MecanismoDetecaoConflito {
         this.listaCandidaturas = exposicao.getListaCandidaturas();
         this.registoConflitos = exposicao.getRegistoConflitos();
 
+        detectConflitosProcess();
+    }
+
+    @Override
+    public boolean isConflito(FAE fae, Candidatura candidatura) {
+        return true;
+    }
+
+    @Override
+    public void detectConflitos(Demonstracao demonstracao) {
+        this.listaFAE = demonstracao.getListaFAE();
+        this.listaCandidaturas = demonstracao.getListaCandidaturas();
+        this.registoConflitos = demonstracao.getRegistoConflitos();
+        
+        detectConflitosProcess();
+    }
+    
+    private void detectConflitosProcess(){
         for (FAE fae : listaFAE.getListaFAE()) {
             for (Candidatura candidatura : listaCandidaturas.getListaCandidaturas()) {
                 if (isConflito(fae, candidatura)) {
@@ -36,11 +55,6 @@ public class MecanismoDetecaoConflito1 implements MecanismoDetecaoConflito {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean isConflito(FAE fae, Candidatura candidatura) {
-        return true;
     }
 
 }

@@ -12,7 +12,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.lists.ListaCandidaturas;
+import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaRecursos;
+import lapr.project.model.lists.RegistoConflitos;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.utils.Data;
@@ -28,15 +30,15 @@ import org.w3c.dom.Node;
  */
 public class Demonstracao implements Exportable, Importable<Demonstracao>, Serializable {
 
-    //Classe incompleta. Não especificação sobre o que a Demonstracao se trata
     private static final String ROOT_ELEMENT_NAME = "demonstracao";
     private static final String DES_ELEMENT_NAME = "designacao";
 
-    //TODO: depois de adicionar a classe ListaRecursos, retirar os comentarios
     private String designacao;
     private String cod;
     private ListaRecursos listaRecursos;
     private ListaCandidaturas listaCandidaturas;
+    private RegistoConflitos registoConflitos;
+    private ListaFAE listaFAE;
     private boolean demonstracaoEfetiva;
     private Data data;
 
@@ -45,6 +47,8 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = "NULL";
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
+        this.registoConflitos = new RegistoConflitos();
+        this.listaFAE = new ListaFAE();
         demonstracaoEfetiva = false;
     }
 
@@ -53,6 +57,8 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = desc;
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
+        this.registoConflitos = new RegistoConflitos();
+        this.listaFAE = new ListaFAE();
         demonstracaoEfetiva = false;
     }
 
@@ -61,6 +67,8 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = desc;
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
+        this.registoConflitos = new RegistoConflitos();
+        this.listaFAE = new ListaFAE();
         demonstracaoEfetiva = false;
     }
 
@@ -69,6 +77,8 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         this.designacao = designacao;
         this.listaRecursos = lst;
         this.listaCandidaturas = new ListaCandidaturas();
+        this.registoConflitos = new RegistoConflitos();
+        this.listaFAE = new ListaFAE();
         demonstracaoEfetiva = false;
     }
 
@@ -90,6 +100,14 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
 
     public ListaRecursos getListaRecursos() {
         return listaRecursos;
+    }
+    
+    public ListaFAE getListaFAE(){
+        return this.listaFAE;
+    }
+    
+    public RegistoConflitos getRegistoConflitos(){
+        return this.registoConflitos;
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
@@ -118,6 +136,19 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
 
     public boolean isDemonstracaoEfetiva() {
         return demonstracaoEfetiva;
+    }
+    
+    public boolean isCandidaturaTerminada() {
+        for (Candidatura can : this.listaCandidaturas.getListaCandidaturas()) {
+            if (!can.isTerminada()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean hasConflitos(){
+        return this.registoConflitos.hasConflitos();
     }
 
     @Override

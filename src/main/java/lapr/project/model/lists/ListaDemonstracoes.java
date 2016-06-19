@@ -57,6 +57,26 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
         }
         return lRetiraveis;
     }
+    
+    public List<Demonstracao> getListaDemonstracoesCandidaturaTerminada() {
+        List<Demonstracao> listDemoTemp = new ArrayList<>();
+        for (Demonstracao demo : this.listDemonstracoes) {
+            if (demo.isCandidaturaTerminada()) {
+                listDemoTemp.add(demo);
+            }
+        }
+        return listDemoTemp;
+    }
+    
+    public List<Demonstracao> getListaDemonstracoesComConflitos(){
+        List<Demonstracao> listDemoTemp = new ArrayList<>();
+        for (Demonstracao demo : listDemonstracoes) {
+            if (demo.hasConflitos()) {
+                listDemoTemp.add(demo);
+            }
+        }
+        return listDemoTemp;
+    }
 
     @Override
     public int hashCode() {

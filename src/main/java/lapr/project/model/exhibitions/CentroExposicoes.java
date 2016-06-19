@@ -38,6 +38,8 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     private ListaExposicoes listaExposicoes;
     private ListaRecursos listaRecursos;
     private ListaTipoConflito listaTipoConflito;
+    
+    //TODO: Retirar Lista demo daqui! Só pertence as expo
     private ListaDemonstracoes listaDemonstracoes;
     private List<MecanismoAtribuicao> listaMecanismos;
     private final List<Stand> listaStands;
