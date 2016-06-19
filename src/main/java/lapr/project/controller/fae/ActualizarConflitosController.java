@@ -5,7 +5,9 @@
  */
 package lapr.project.controller.fae;
 
+import java.util.ArrayList;
 import java.util.List;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Conflito;
 import lapr.project.model.exhibitions.Exposicao;
@@ -26,6 +28,7 @@ public class ActualizarConflitosController {
     private Candidatura candidatura;
     
     private List<Exposicao> listaExposicoes;
+    private List<Demonstracao> listaDemonstracoes;
     private ListaTipoConflito listaTipoConflito;
     
     private ListaCandidaturas listaCandidaturas;
@@ -35,6 +38,10 @@ public class ActualizarConflitosController {
     
     public ActualizarConflitosController(CentroExposicoes centroExposicoes, FAE fae){
         this.listaExposicoes = centroExposicoes.getListaExposicoes().getListaExposicoesComConflitos();
+        this.listaDemonstracoes = new ArrayList<>();
+        for (Exposicao expo : centroExposicoes.getListaExposicoes().getListaExposicoes()) {
+            this.listaDemonstracoes.addAll(expo.getListaDemonstracoes().getListaDemonstracoesComConflitos());
+        }
         this.listaTipoConflito = centroExposicoes.getListaTipoConflito();
         this.fae = fae;
     }
@@ -43,9 +50,18 @@ public class ActualizarConflitosController {
         return this.listaExposicoes;
     }
     
+    public List<Demonstracao> getListaDemonstracoes(){
+        return this.listaDemonstracoes;
+    }
+    
     public void selectExposicao(Exposicao exposicao){
         this.registoConflitos = exposicao.getRegistoConflitos();
         this.listaCandidaturas = exposicao.getListaCandidaturas();
+    }
+    
+    public void selectDemonstracao(Demonstracao demonstracao){
+        this.registoConflitos = demonstracao.getRegistoConflitos();
+        this.listaCandidaturas = demonstracao.getListaCandidaturas();
     }
     
     public List<Candidatura> getListaCandidaturas(){

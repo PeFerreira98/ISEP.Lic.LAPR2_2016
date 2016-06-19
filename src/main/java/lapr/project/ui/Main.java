@@ -20,7 +20,6 @@ import lapr.project.model.mecanismos.atribuicao.MecanismoNumeroFAE;
 import lapr.project.model.mecanismos.detecaoconflito.MecanismoDetecaoConflito1;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
-import lapr.project.ui.fae.ActualizarConflitosUI;
 import lapr.project.utils.Data;
 import lapr.project.utils.FileOp;
 
@@ -67,13 +66,21 @@ class Main {
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20, new ArrayList<>());
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
+        candidatura2.setEmAvaliacao();
+        candidatura2.setNaoAvaliada();
+        
         candidatura3.setRetirada();
         
         Demonstracao demonstracao1 = new Demonstracao("demo1");
         Demonstracao demonstracao2 = new Demonstracao("demo2");
         Demonstracao demonstracao3 = new Demonstracao("demo3");
         
+        demonstracao1.addCandidatura(candidatura3);
         demonstracao3.addCandidatura(candidatura1);
+        
+        demonstracao1.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
+        demonstracao2.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
+        demonstracao3.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
 
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao1);
         exposicao1.getListaDemonstracoes().addDemonstracao(demonstracao2);
@@ -102,6 +109,7 @@ class Main {
         exposicao1.addCandidatura(candidatura2);
         exposicao1.addCandidatura(candidatura3);
         
+        exposicao2.addCandidatura(candidatura2);
         exposicao2.addCandidatura(candidatura3);
         
         exposicao3.addCandidatura(candidatura3);

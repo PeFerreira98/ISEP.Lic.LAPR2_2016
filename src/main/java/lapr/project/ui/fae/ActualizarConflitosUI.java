@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import lapr.project.controller.fae.ActualizarConflitosController;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.submissions.Candidatura;
@@ -36,6 +37,7 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
 
         initComponents();
         inicializarListaExpo();
+        inicializarListaDemo();
 
         super.setLocationRelativeTo(null);
         super.setVisible(true);
@@ -74,6 +76,53 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
         @Override
         public Component getListCellRendererComponent(JList<? extends Exposicao> list, Exposicao exposicao, int index, boolean isSelected, boolean cellHasFocus) {
             setText(exposicao.getTitle());
+
+            if (isSelected) {
+                setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
+            } else {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            }
+
+            return this;
+        }
+
+    }
+
+    private void inicializarListaDemo() {
+        final List<Demonstracao> listaDemonstracoes = this.controller.getListaDemonstracoes();
+
+        if (listaDemonstracoes.isEmpty()) {
+            this.jListDemo.setModel(new DefaultListModel<>());
+            JOptionPane.showMessageDialog(this, "Não existem Demonstracoes com conflitos");
+        }
+
+        DefaultListModel listModel = new DefaultListModel() {
+            @Override
+            public int getSize() {
+                return listaDemonstracoes.size();
+            }
+
+            @Override
+            public Object getElementAt(int i) {
+                return listaDemonstracoes.get(i);
+            }
+        };
+
+        this.jListDemo.setModel(listModel);
+        this.jListDemo.setCellRenderer(new CellRendererDemo());
+    }
+
+    private class CellRendererDemo extends JLabel implements ListCellRenderer<Demonstracao> {
+
+        public CellRendererDemo() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Demonstracao> list, Demonstracao demonstracao, int index, boolean isSelected, boolean cellHasFocus) {
+            setText(demonstracao.getDesignacao());
 
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
@@ -152,6 +201,10 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
         jButtonAddRemoConf = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListDemo = new javax.swing.JList<>();
+        jButtonCandDemo = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -159,7 +212,7 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jListCand);
 
-        jButtonMostCand.setText("Mostar Candidaturas >>");
+        jButtonMostCand.setText("Mostar Candidaturas >> >>");
         jButtonMostCand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMostCandActionPerformed(evt);
@@ -177,6 +230,17 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
 
         jLabel2.setText("Lista Candidaturas");
 
+        jScrollPane3.setViewportView(jListDemo);
+
+        jButtonCandDemo.setText("Mostrar Candidaturas >>");
+        jButtonCandDemo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCandDemoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Lista Demonstracoes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -184,18 +248,19 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonMostCand, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jButtonAddRemoConf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonMostCand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonCandDemo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonAddRemoConf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
                 .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
@@ -204,15 +269,18 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAddRemoConf)
-                    .addComponent(jButtonMostCand))
+                    .addComponent(jButtonMostCand)
+                    .addComponent(jButtonCandDemo)
+                    .addComponent(jButtonAddRemoConf))
                 .addContainerGap())
         );
 
@@ -239,14 +307,28 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonMostCandActionPerformed
 
+    private void jButtonCandDemoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCandDemoActionPerformed
+        if (this.jListDemo.getSelectedIndex() != -1) {
+            this.controller.selectDemonstracao(this.jListDemo.getSelectedValue());
+            inicializarListaCand();
+        } else {
+            JOptionPane.showMessageDialog(ActualizarConflitosUI.this,
+                    "Select uma Demonstracao", "Actualizar Conflitos", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonCandDemoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddRemoConf;
+    private javax.swing.JButton jButtonCandDemo;
     private javax.swing.JButton jButtonMostCand;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList<Candidatura> jListCand;
+    private javax.swing.JList<Demonstracao> jListDemo;
     private javax.swing.JList<Exposicao> jListExpo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

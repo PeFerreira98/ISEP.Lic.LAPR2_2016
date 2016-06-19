@@ -251,6 +251,14 @@ public class Candidatura implements Retiravel, Serializable {
         return this.estadoCandidatura.setRejeitada();
     }
 
+    public boolean setEmAvaliacao() {
+        return this.estadoCandidatura.setEmAvaliacao();
+    }
+
+    public boolean setNaoAvaliada() {
+        return this.estadoCandidatura.setNaoAvaliada();
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
