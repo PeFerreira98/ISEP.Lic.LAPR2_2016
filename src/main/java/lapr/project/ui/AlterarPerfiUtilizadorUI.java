@@ -227,10 +227,10 @@ public class AlterarPerfiUtilizadorUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmailActionPerformed
 
     private void btnPasswrodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasswrodActionPerformed
-        if(jTxtOldpw.getText().equalsIgnoreCase("") || !jTxtOldpw.getText().equalsIgnoreCase(this.user.getPassword())){
+        if(jTxtOldpw.getText().equalsIgnoreCase("") || !this.controller.confirmPassword(jTxtOldpw.getText())){
             JOptionPane.showMessageDialog(AlterarPerfiUtilizadorUI.this,
                                     "Password errada!", "Settings", JOptionPane.ERROR_MESSAGE);
-        }else if (jTxtOldpw.getText().equalsIgnoreCase(this.user.getPassword()) && jTxtNewpw.getText().equalsIgnoreCase("")){
+        }else if (this.controller.confirmPassword(jTxtOldpw.getText()) && jTxtNewpw.getText().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(AlterarPerfiUtilizadorUI.this,
                                     "Insira uma nova password!", "Settings", JOptionPane.ERROR_MESSAGE);            
         }else if (this.controller.confirmPassword(jTxtOldpw.getText())){

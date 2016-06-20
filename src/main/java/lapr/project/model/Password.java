@@ -5,25 +5,61 @@
  */
 package lapr.project.model;
 
+
 /**
  *
  * @author zero_
  */
 public class Password {
     
-    public String encriptPassword(String username, String truePassword){
+    private String encryptedPassword;
+    private String username;
+    
+    public Password(String username, String truePassword){
+        this.username = username;
+        this.encryptedPassword = encryptPassword(username, truePassword);
+    }   
+    
+    public String getDecryptedPassword(){
+        return decryptPassword();
+    }
+    
+    public String getEncryptedPassword(){
+        return this.encryptedPassword;
+    }
+    
+    public boolean checkPassword(String username, String truePassword){
+        if(!this.username.equalsIgnoreCase(username)){
+            return false;
+        }
+        if(truePassword.equals(decryptPassword())){
+            return true;
+        }
+        return false;
+    }
+    
+    private String encryptPassword(String username, String truePassword){
         int shift = username.length();
-        String criptedPassword = truePassword;
         
-        System.out.println(criptedPassword);
+        char[] encryptedPassword = truePassword.toCharArray();
         
-        for (int i = 32; i < 126-shift; i++) {
-            criptedPassword.replace( (char)(i), (char)(i+shift));
+        for(int j = 0; j < truePassword.length(); j++){
+            encryptedPassword[j] = (char)(encryptedPassword[j] + (char)shift);
         }
         
-        System.out.println(criptedPassword);
+        return new String(encryptedPassword);
+    }
+    
+    private String decryptPassword(){
+        int shift = this.username.length();
+        char[]aux = this.encryptedPassword.toCharArray();
         
-        return criptedPassword;
+        for(int i = 0; i < this.encryptedPassword.length(); i++){
+            aux[i] = (char)(aux[i] - (char)shift);
+        }
+          
+        String password = new String(aux);
+        return password;
     }
     
 }

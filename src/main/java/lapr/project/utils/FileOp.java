@@ -30,7 +30,7 @@ public class FileOp {
         final String nome = utilizador.getNome();
         final String email = utilizador.getEmail();
         final String username = utilizador.getUsername();
-        final String password = utilizador.getPassword();
+        final String password = utilizador.getPassword().getDecryptedPassword();
 
         String estado = "PENDING";
         if (utilizador.isRegistado()) {

@@ -45,13 +45,13 @@ public class PasswordTest {
         System.out.println("encriptPassword");
         
         String username = "gestor";
-        String truePassword = "gestor";
+        String truePassword = "a";
         
-        Password instance = new Password();
+        Password instance = new Password(username, truePassword);
         
-        String expResult = "gestor";
+        String expResult = "g";
         
-        String result = instance.encriptPassword(username, truePassword);
+        String result = instance.getEncryptedPassword();
         assertEquals(expResult, result);
     }
     
