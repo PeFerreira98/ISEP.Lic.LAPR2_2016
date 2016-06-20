@@ -14,12 +14,16 @@ import lapr.project.model.exhibitions.CentroExposicoes;
  *
  * @author Sara Silva
  */
-public class DefinirStandCentroController implements Serializable{
+public class DefinirStandCentroController implements Serializable {
 
     private final List<Stand> listaStands;
 
     public DefinirStandCentroController(CentroExposicoes centroExp) {
         listaStands = centroExp.getListaStands();
+    }
+
+    public boolean addStandByObject(Stand stand) {
+        return listaStands.add(stand);
     }
 
     public void addStand(String stand) {
