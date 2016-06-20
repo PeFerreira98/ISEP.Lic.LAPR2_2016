@@ -99,7 +99,7 @@ public class AlterarPerfilUtilizadorControllerTest {
         AlterarPerfilUtilizadorController instance = new AlterarPerfilUtilizadorController(utilizador, rUers);
         instance.setPassword(pw);
         String expResult = "pw";
-        String result = utilizador.getPassword();
+        String result = utilizador.getPassword().getDecryptedPassword();
 
         assertEquals(expResult, result);
     }

@@ -29,7 +29,7 @@ public class AlterarPerfilUtilizadorController implements Serializable{
     }
     
     public boolean confirmPassword(String pw){
-        if(this.user.getPassword().equals(pw)){
+        if(this.user.validatePassword(pw)){
             return true;
         }
         return false;

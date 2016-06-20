@@ -10,6 +10,7 @@ import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.Password;
 import lapr.project.model.states.EstadoUtilizador;
 import lapr.project.model.states.utilizador.EstadoUtilizadorPending;
 import lapr.project.utils.Exportable;
@@ -34,14 +35,14 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
 
     private String nome;
     private String username;
-    private String password;
+    private Password password;
     private String email;
     private EstadoUtilizador estadoUtilizador;
 
     public Utilizador(String nome, String username, String password, String email) {
         this.nome = nome;
         this.username = username;
-        this.password = password;
+        this.password = new Password(username, password);
         this.email = email;
         this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
@@ -49,17 +50,19 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
     public Utilizador() {
         this.nome = "";
         this.username = "";
-        this.password = "";
         this.email = "";
         this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
 
+    public Password getPassword(){
+        return this.password;
+    }
     public boolean validateUsername(String username) {
         return this.username.equals(username);
     }
 
     public boolean validatePassword(String password) {
-        return this.password.equals(password);
+        return this.password.checkPassword(this.username, password);
     }
 
     public boolean validateEmail(String email) {
@@ -86,12 +89,8 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new Password(this.username, password);
     }
 
     public void setEstado(EstadoUtilizador estadoUtilizador) {
@@ -178,9 +177,9 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
             elementUtilizador.appendChild(elementUserName);
 
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
-            Element elementPassword = document.createElement(PASSWORD_ELEMENT_NAME);
-            elementPassword.setTextContent(getPassword());
-            elementUtilizador.appendChild(elementPassword);
+//            Element elementPassword = document.createElement(PASSWORD_ELEMENT_NAME);
+//            elementPassword.setTextContent(getPassword());
+//            elementUtilizador.appendChild(elementPassword);
 
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementEmail = document.createElement(EMAIL_ELEMENT_NAME);
