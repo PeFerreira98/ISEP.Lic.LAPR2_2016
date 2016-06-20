@@ -94,6 +94,10 @@ public class AlterarCandidaturaController implements Serializable {
         listaDemonstracoes.addDemonstracao(new Demonstracao(demo));
     }
 
+    public void mostrarDemo() {
+
+    }
+
     public boolean registarCandidaturas() {
         return listaCandidaturas.addCandidatura(candidatura);
     }

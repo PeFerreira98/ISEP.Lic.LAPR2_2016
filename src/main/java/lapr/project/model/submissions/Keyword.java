@@ -50,6 +50,11 @@ public class Keyword implements Exportable, Importable<Keyword>, Serializable {
     }
 
     @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
     public Node exportContentToXMLNode() {
         Node node = null;
 

@@ -8,6 +8,7 @@ package lapr.project.ui.representante;
 import javax.swing.DefaultListModel;
 import lapr.project.controller.representante.AddKeywordsController;
 import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.submissions.Keyword;
 
 /**
  *
@@ -24,6 +25,11 @@ public class AddKeywordsUI extends javax.swing.JFrame {
         controller = new AddKeywordsController(candidatura);
 
         initComponents();
+        DefaultListModel lst = new DefaultListModel();
+        for (Keyword p : candidatura.getKeywordList()) {
+            lst.addElement(p);
+        }
+        jList1.setModel(lst);
         super.setVisible(true);
         //TODO: add setVisible, setTitle, setLocationRelativeTo
 
@@ -46,7 +52,7 @@ public class AddKeywordsUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,8 +138,8 @@ public class AddKeywordsUI extends javax.swing.JFrame {
 
         int x = jList1.getModel().getSize();
         if (x <= 4) {
-            DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
-            model.addElement(jTextField1.getText());
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
+            model.addElement(new Keyword(jTextField1.getText()));
             jTextField1.setText("");
         }
 
@@ -142,7 +148,7 @@ public class AddKeywordsUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int selecao = jList1.getSelectedIndex();
         if (selecao > -1) {
-            DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
             model.remove(selecao);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -150,9 +156,10 @@ public class AddKeywordsUI extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int x = jList1.getModel().getSize();
         if (x >= 2) {
-            DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
+            controller.clear();
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
             for (int i = 0; i < model.getSize(); i++) {
-                controller.addKeyword(model.getElementAt(i));
+                controller.addKeyword((Keyword) model.getElementAt(i));
 
             }
 

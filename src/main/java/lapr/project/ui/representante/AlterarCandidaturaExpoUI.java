@@ -7,11 +7,13 @@ package lapr.project.ui.representante;
 
 import javax.swing.JOptionPane;
 import lapr.project.controller.representante.AlterarCandidaturaController;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.Representante;
 import lapr.project.model.users.Utilizador;
+import lapr.project.ui.AddProdutosUI;
 import lapr.project.ui.AdicionarDemoUI;
 
 /**
@@ -19,7 +21,7 @@ import lapr.project.ui.AdicionarDemoUI;
  * @author Sara Silva
  */
 public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
-
+    
     public final AlterarCandidaturaController controller;
 
     /**
@@ -62,7 +64,7 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome da Empresa:");
 
@@ -88,6 +90,11 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
         });
 
         jButton3.setText("OK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancel");
 
@@ -190,7 +197,7 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -200,6 +207,10 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         new AdicionarDemoUI(controller);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,6 +244,8 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
         Exposicao exp = new Exposicao();
         Candidatura can = new Candidatura();
         Representante r = new Representante(ut);
+        Demonstracao d = new Demonstracao("codigo", "designação");
+        exp.getListaDemonstracoes().addDemonstracao(d);
         can.setRep(r);
         can.setNomeEmpresa("empresa");
         exp.setTitle("titulo");

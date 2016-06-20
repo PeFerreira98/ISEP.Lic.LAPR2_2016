@@ -15,7 +15,7 @@ import lapr.project.model.submissions.Produto;
  * @author Sara Silva
  */
 public class AddProdutosUI extends javax.swing.JFrame {
-
+    
     private final List<Produto> lstProdutos;
 
     /**
@@ -49,7 +49,7 @@ public class AddProdutosUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Produto:");
 
@@ -114,27 +114,32 @@ public class AddProdutosUI extends javax.swing.JFrame {
                         .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
-        model.addElement(jTextField1.getText());
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        model.addElement(new Produto(jTextField1.getText()));
         jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int selecao = jList1.getSelectedIndex();
         if (selecao > -1) {
-            DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
             model.remove(selecao);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        lstProdutos.clear();
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            lstProdutos.add((Produto) model.get(i));
+        }
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 

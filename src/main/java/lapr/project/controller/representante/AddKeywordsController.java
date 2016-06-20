@@ -20,8 +20,12 @@ public class AddKeywordsController implements Serializable{
     public AddKeywordsController(Candidatura candidatura) {
         this.candidatura = candidatura;
     }
+    
+    public void clear(){
+        candidatura.getKeywordList().clear();
+    }
 
-    public void addKeyword(String keyword) {
-        candidatura.addKeyword(new Keyword(keyword));
+    public void addKeyword(Keyword keyword) {
+        candidatura.addKeyword(keyword);
     }
 }
