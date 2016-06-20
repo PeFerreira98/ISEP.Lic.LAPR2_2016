@@ -5,17 +5,38 @@
  */
 package lapr.project.ui.representante;
 
+import javax.swing.JOptionPane;
+import lapr.project.controller.representante.AlterarCandidaturaController;
+import lapr.project.model.Demonstracao;
+import lapr.project.model.exhibitions.CentroExposicoes;
+import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.submissions.Candidatura;
+import lapr.project.model.users.Representante;
+import lapr.project.model.users.Utilizador;
+import lapr.project.ui.AddProdutosUI;
+
 /**
  *
  * @author Sara Silva
  */
 public class AlterarCandidaturaDemoUI extends javax.swing.JFrame {
 
+    public final AlterarCandidaturaController controller;
+
     /**
      * Creates new form AlterarCandidaturaDemoUI
      */
-    public AlterarCandidaturaDemoUI() {
+    public AlterarCandidaturaDemoUI(Utilizador ut, CentroExposicoes centro) {
+        this.controller = new AlterarCandidaturaController(centro);
+        this.controller.setUtilizador(ut);
+        Exposicao expo1 = (Exposicao) JOptionPane.showInputDialog(this, "Selecione uma Exposição", "Alterar Candidatura da Demonstração", JOptionPane.QUESTION_MESSAGE, null, controller.getListaExposicoes().toArray(), null);
+        this.controller.setExposicao(expo1);
+        Demonstracao demo1 = (Demonstracao) JOptionPane.showInputDialog(this, "Selecione uma Demonstração", "Alterar Candidatura da Demonstração", JOptionPane.QUESTION_MESSAGE, null, controller.getListaDemonstracoes().getListaDemonstracoes().toArray(), null);
+        this.controller.setDemonstracao(demo1);
+        Candidatura c = (Candidatura) JOptionPane.showInputDialog(this, "Selecione uma Candidatura", "Alterar Candidatura da Demonstração", JOptionPane.QUESTION_MESSAGE, null, controller.getListaCandidaturas().toArray(), null);
+        this.controller.setCandidatura(c);
         initComponents();
+
     }
 
     /**
@@ -62,8 +83,18 @@ public class AlterarCandidaturaDemoUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Alterar Produtos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("OK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancel");
 
@@ -84,10 +115,9 @@ public class AlterarCandidaturaDemoUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField1)
                             .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -139,8 +169,16 @@ public class AlterarCandidaturaDemoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new AddKeywordsUI(this.controller.getCandidatura());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,11 +206,23 @@ public class AlterarCandidaturaDemoUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AlterarCandidaturaDemoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        CentroExposicoes centro = new CentroExposicoes();
+        Utilizador ut = new Utilizador();
+        Exposicao exp = new Exposicao();
+        Candidatura can = new Candidatura();
+        Representante r = new Representante(ut);
+        Demonstracao d = new Demonstracao("codigo", "designação");
+        exp.getListaDemonstracoes().addDemonstracao(d);
+        can.setRep(r);
+        can.setNomeEmpresa("empresa");
+        exp.setTitle("titulo");
+        d.addCandidatura(can);
+        centro.getListaExposicoes().addExposicao(exp);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlterarCandidaturaDemoUI().setVisible(true);
+                new AlterarCandidaturaDemoUI(ut, centro).setVisible(true);
             }
         });
     }

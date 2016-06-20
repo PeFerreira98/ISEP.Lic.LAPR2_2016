@@ -32,6 +32,7 @@ public class AlterarCandidaturaController implements Serializable {
     private ListaProdutos listaProdutos;
     private ListaDemonstracoes listaDemonstracoes;
     private Utilizador utilizador;
+    private Demonstracao demonstracao;
 
     public AlterarCandidaturaController(CentroExposicoes ce) {
         this.centroExp = ce;
@@ -58,6 +59,12 @@ public class AlterarCandidaturaController implements Serializable {
     public void setCandidatura(Candidatura candidatura) {
         this.candidatura = candidatura;
         listaProdutos = candidatura.getListaProdutos();
+    }
+
+    public void setDemonstracao(Demonstracao demonstracao) {
+        this.demonstracao = demonstracao;
+        listaCandidaturas = demonstracao.getListaCandidaturas();
+
     }
 
     public List<Candidatura> getListaCandidaturas() {

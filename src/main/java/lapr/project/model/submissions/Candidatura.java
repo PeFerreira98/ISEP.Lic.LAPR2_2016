@@ -297,6 +297,10 @@ public class Candidatura implements Retiravel, Serializable {
 
     @Override
     public String toString() {
+        return nomeEmpresa;
+    }
+    
+    public String getInfo(){
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
                 + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura + ",\n listaProdutos=" + listaProdutos + '}';
     }

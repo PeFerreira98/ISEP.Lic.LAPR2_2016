@@ -234,6 +234,8 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
         Candidatura can = new Candidatura();
         Representante r = new Representante(ut);
         can.setRep(r);
+        can.setNomeEmpresa("empresa");
+        exp.setTitle("titulo");
         exp.addCandidatura(can);
         centro.getListaExposicoes().addExposicao(exp);
 

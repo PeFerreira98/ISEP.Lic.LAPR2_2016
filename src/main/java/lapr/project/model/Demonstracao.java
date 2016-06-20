@@ -178,7 +178,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
 
     @Override
     public String toString() {
-        return "\nDemonstracao{" + "designacao=" + designacao + '}';
+        return designacao;
     }
 
     @Override

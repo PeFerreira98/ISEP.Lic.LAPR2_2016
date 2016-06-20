@@ -336,6 +336,10 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
 
     @Override
     public String toString() {
+        return title;
+    }
+    
+    public String getInfo(){
         return "\nExposicao{" + "title=" + title + ", description=" + description
                 + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao
                 + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao="
