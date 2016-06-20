@@ -152,7 +152,7 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
 
     @Override
     public String toString() {
-        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", password=" + password + ", email=" + email + ", estado=" + getEstadoString() + '}';
+        return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", email=" + email + ", estado=" + getEstadoString() + '}';
     }
 
     @Override

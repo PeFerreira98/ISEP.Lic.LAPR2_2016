@@ -72,7 +72,7 @@ public class ConfirmarRegistoControllerTest {
         Utilizador utilizador = new Utilizador("Sara", "1140957", "xpto", "1140957@isep.ipp.pt");
         ConfirmarRegistoController instance = new ConfirmarRegistoController(new CentroExposicoes());
         instance.setUtilizador(utilizador);
-        String expResult = "\nUtilizador{" + "nome=" + "Sara" + ", username=" + "1140957" + ", password=" + "xpto" + ", email=" + "1140957@isep.ipp.pt" + ", estado=" + "PENDING" + "}";
+        String expResult = "\nUtilizador{" + "nome=" + "Sara" + ", username=" + "1140957" + ", email=" + "1140957@isep.ipp.pt" + ", estado=" + "PENDING" + "}";
         String result = instance.utilizadorToString();
         assertEquals(expResult, result);
     }
@@ -123,7 +123,7 @@ public class ConfirmarRegistoControllerTest {
         CentroExposicoes centro = new CentroExposicoes(rUtil, lstExpo);
         ConfirmarRegistoController instance = new ConfirmarRegistoController(centro);
         instance.setUtilizador(utilizador);
-        String expResult = "\nUtilizador{nome=Exp, username=username, password=password, email=email, estado=PENDING}";
+        String expResult = "\nUtilizador{nome=Exp, username=username, email=email, estado=PENDING}";
         String result = instance.utilizadorToString();
         assertEquals(expResult, result);
     }

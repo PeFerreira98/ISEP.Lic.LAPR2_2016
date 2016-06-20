@@ -168,7 +168,7 @@ public class UtilizadorTest {
     public void testToString() {
         System.out.println("toString");
         Utilizador instance = new Utilizador("Exp", "username", "password", "email");
-        String expResult = "\nUtilizador{nome=Exp, username=username, password=password, email=email, estado=PENDING}";
+        String expResult = "\nUtilizador{nome=Exp, username=username, email=email, estado=PENDING}";
         String result = instance.toString();
         assertEquals(expResult, result);
     }
