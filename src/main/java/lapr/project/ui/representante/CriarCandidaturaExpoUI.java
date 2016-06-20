@@ -12,7 +12,10 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import lapr.project.controller.representante.CriarCandidaturaExpoController;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.ui.AddProdutosUI;
+import lapr.project.ui.AdicionarDemoUI;
 
 /**
  *
@@ -26,6 +29,7 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
     public CriarCandidaturaExpoUI(Exposicao exposicao) {
         this.exposicao = exposicao;
         this.controller = new CriarCandidaturaExpoController(exposicao);
+        controller.novaCandidatura();
 
         super.setTitle("Create Submission Window");
         initComponents();
@@ -62,6 +66,8 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txtArea = new javax.swing.JTextField();
         jProdButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,6 +112,25 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
         txtArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jProdButton.setText("Adicionar Produtos");
+        jProdButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jProdButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Adicionar Demonstrações");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Adicionar Keywords");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,9 +183,12 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addComponent(jCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jProdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jProdButton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -196,7 +224,11 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
                         .addComponent(txtAmountGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jProdButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jOk)
@@ -251,7 +283,7 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
             }
         }
     }// </editor-fold>
-    
+
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
 
         String nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites;
@@ -266,15 +298,14 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
             int iTelemovel = Integer.parseInt(telemovel);
             double dArea = Double.parseDouble(areaPretendida);
             int iQuantidade = Integer.parseInt(quantidadeConvites);
-            controller.novaCandidatura();
             if (controller.setDados(nomeEmpresa, moradaEmpresa, dArea, iTelemovel, iQuantidade)) {
-                
+
                 if (controller.registarCandidatura()) {
 
                     JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
                             "Candidatura adicionada com Sucesso!", "Create Submission Window", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(CriarCandidaturaExpoUI.this,
                             "Erro na adição da candidatura, esta candidatura já existe", "Create Submission Window", JOptionPane.ERROR_MESSAGE);
@@ -294,7 +325,59 @@ public class CriarCandidaturaExpoUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jCancelActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new AdicionarDemoUI(exposicao, controller.getCandidatura());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProdButtonActionPerformed
+        new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
+    }//GEN-LAST:event_jProdButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new AddKeywordsUI(this.controller.getCandidatura());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdicionarDemoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdicionarDemoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdicionarDemoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdicionarDemoUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        Exposicao exp = new Exposicao();
+        Demonstracao d = new Demonstracao("codigo", "designação");
+        exp.getListaDemonstracoes().addDemonstracao(d);
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CriarCandidaturaExpoUI(exp).setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jCancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

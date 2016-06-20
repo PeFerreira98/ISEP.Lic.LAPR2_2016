@@ -19,7 +19,7 @@ import lapr.project.model.lists.ListaProdutos;
  *
  * @author zero_
  */
-public class CriarCandidaturaExpoController implements Serializable{
+public class CriarCandidaturaExpoController implements Serializable {
 
     private Exposicao exposicao;
 
@@ -30,6 +30,10 @@ public class CriarCandidaturaExpoController implements Serializable{
     public CriarCandidaturaExpoController(Exposicao exposicao) {
         this.exposicao = exposicao;
         this.listaProdutos = new ListaProdutos();
+    }
+
+    public Candidatura getCandidatura() {
+        return candidatura;
     }
 
 //    public boolean createCandidatura(String nomeEmpresa, String moradaEmpresa, int telemovel, double areaPretendida, int quantidadeConvites) {

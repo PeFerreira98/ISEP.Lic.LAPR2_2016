@@ -6,8 +6,9 @@
 package lapr.project.ui;
 
 import javax.swing.DefaultListModel;
-import lapr.project.controller.representante.AlterarCandidaturaController;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.submissions.Candidatura;
 
 /**
  *
@@ -15,18 +16,22 @@ import lapr.project.model.Demonstracao;
  */
 public class AdicionarDemoUI extends javax.swing.JFrame {
 
-    public final AlterarCandidaturaController expo;
+    public final Candidatura candidatura;
 
     /**
      * Creates new form AdicionarDemo
      */
-    public AdicionarDemoUI(AlterarCandidaturaController alt) {
+    public AdicionarDemoUI(Exposicao exposicao, Candidatura candidatura) {
         initComponents();
         setVisible(true);
-        expo = alt;
+        this.candidatura = candidatura;
         DefaultListModel lista = (DefaultListModel) jList2.getModel();
-        for (Demonstracao demo : expo.getListaDemonstracoes().getListaDemonstracoes()) {
-            lista.addElement(demo.getCod());
+        for (Demonstracao demo : exposicao.getListaDemonstracoes().getListaDemonstracoes()) {
+            lista.addElement(demo);
+        }
+        DefaultListModel lista2 = (DefaultListModel) jList3.getModel();
+        for (Demonstracao demo : candidatura.getListaDemonstracoes().getListaDemonstracoes()) {
+            lista2.addElement(demo);
         }
     }
 
@@ -124,14 +129,14 @@ public class AdicionarDemoUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jList2.getSelectedIndex()>=0) {
+        if (jList2.getSelectedIndex() >= 0) {
             DefaultListModel model = (DefaultListModel) jList3.getModel();
-            model.addElement(jList2.getSelectedValue());
+            model.addElement(((DefaultListModel)jList2.getModel()).get(jList2.getSelectedIndex()));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       int selecao = jList1.getSelectedIndex();
+        int selecao = jList3.getSelectedIndex();
         if (selecao > -1) {
             DefaultListModel model = (DefaultListModel) jList3.getModel();
             model.remove(selecao);
@@ -139,7 +144,14 @@ public class AdicionarDemoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        candidatura.getListaDemonstracoes().getListaDemonstracoes().clear();
+        DefaultListModel model = (DefaultListModel) jList3.getModel();
+        for (int i = 0; i < model.getSize(); i++) {
+            candidatura.addDemonstracao((Demonstracao) model.getElementAt(i));
+
+        }
+
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

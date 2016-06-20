@@ -94,10 +94,6 @@ public class AlterarCandidaturaController implements Serializable {
         listaDemonstracoes.addDemonstracao(new Demonstracao(demo));
     }
 
-    public void mostrarDemo() {
-
-    }
-
     public boolean registarCandidaturas() {
         return listaCandidaturas.addCandidatura(candidatura);
     }
@@ -110,6 +106,10 @@ public class AlterarCandidaturaController implements Serializable {
         candidatura.setQuantidadeConvites(qtdConvites);
         candidatura.setListaProdutos(listaProdutos);
 
+    }
+
+    public Exposicao getExposicao() {
+        return exposicao;
     }
 
 }

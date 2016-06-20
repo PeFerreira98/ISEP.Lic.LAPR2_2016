@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.Stand;
+import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaProdutos;
 import lapr.project.model.states.EstadoCandidatura;
 import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
@@ -31,6 +33,7 @@ public class Candidatura implements Retiravel, Serializable {
     private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;
     private Stand stand;
+    private ListaDemonstracoes listaDemonstracoes;
 
     private List<Avaliacao> lstAvaliacoes;
     private List<Keyword> keywordList;
@@ -57,7 +60,7 @@ public class Candidatura implements Retiravel, Serializable {
 
         this.lstAvaliacoes = new ArrayList<>();
         this.keywordList = new ArrayList<>();
-
+        this.listaDemonstracoes = new ListaDemonstracoes();
         this.keywordList.addAll(keywordList);
         standConfirmado = false;
     }
@@ -67,6 +70,7 @@ public class Candidatura implements Retiravel, Serializable {
         this.listaProdutos = new ListaProdutos();
         this.lstAvaliacoes = new ArrayList<>();
         this.keywordList = new ArrayList<>();
+        this.listaDemonstracoes = new ListaDemonstracoes();
         standConfirmado = false;
     }
 
@@ -98,6 +102,15 @@ public class Candidatura implements Retiravel, Serializable {
 
     public Representante getRep() {
         return rep;
+    }
+
+    public ListaDemonstracoes getListaDemonstracoes() {
+        return listaDemonstracoes;
+    }
+
+    public void addDemonstracao(Demonstracao demonstracao) {
+        listaDemonstracoes.addDemonstracao(demonstracao);
+
     }
 
     public void setRep(Representante rep) {
@@ -299,8 +312,8 @@ public class Candidatura implements Retiravel, Serializable {
     public String toString() {
         return nomeEmpresa;
     }
-    
-    public String getInfo(){
+
+    public String getInfo() {
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
                 + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura + ",\n listaProdutos=" + listaProdutos + '}';
     }
