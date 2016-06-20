@@ -5,6 +5,7 @@
  */
 package lapr.project.controller.representante;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.submissions.Candidatura;
@@ -22,7 +23,7 @@ import lapr.project.model.users.Utilizador;
  *
  * @author Sara Silva
  */
-public class AlterarCandidaturaController {
+public class AlterarCandidaturaController implements Serializable {
 
     private final CentroExposicoes centroExp;
     private Exposicao exposicao;
