@@ -39,8 +39,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     private ListaRecursos listaRecursos;
     private ListaTipoConflito listaTipoConflito;
     
-    //TODO: Retirar Lista demo daqui! Só pertence as expo
-    private ListaDemonstracoes listaDemonstracoes;
     private List<MecanismoAtribuicao> listaMecanismos;
     private final List<Stand> listaStands;
 
@@ -101,9 +99,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         return listaMecanismos;
     }
 
-    public ListaDemonstracoes getListaDemonstracoes() {
-        return listaDemonstracoes;
-    }
 
     public ListaTipoConflito getListaTipoConflito() {
         return listaTipoConflito;

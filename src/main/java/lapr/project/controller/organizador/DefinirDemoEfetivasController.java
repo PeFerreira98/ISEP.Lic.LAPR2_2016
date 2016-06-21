@@ -5,10 +5,12 @@
  */
 package lapr.project.controller.organizador;
 
+import java.util.ArrayList;
 import java.util.List;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;
 
 /**
@@ -21,6 +23,7 @@ public class DefinirDemoEfetivasController {
     private Exposicao exposicao;
     private Demonstracao demonstracao;
     private Data date;
+    private Utilizador utilizador;
 
     public DefinirDemoEfetivasController(CentroExposicoes ce) {
         this.centroExp = ce;
@@ -31,7 +34,14 @@ public class DefinirDemoEfetivasController {
     }
 
     public List<Demonstracao> getListaDemonstracoes() {
-        return exposicao.getListaDemonstracoes().getListaDemonstracoes();
+        List<Demonstracao> demos = exposicao.getListaDemonstracoes().getListaDemonstracoes();
+        List<Demonstracao> lista= new ArrayList<>();
+        for(Demonstracao demo: demos){
+            if(demo.getData()==null){
+                lista.add(demo);
+            }
+        }
+        return lista;
     }
 
     public void setDemonstracao(Demonstracao demonstracao) {
@@ -51,6 +61,10 @@ public class DefinirDemoEfetivasController {
         demonstracao.setData(date);
     }
 
+    public void setUtilizador(Utilizador utilizador) {
+        this.utilizador = utilizador;
+    }
+
     public Data getDate() {
         return date;
     }
@@ -66,6 +80,10 @@ public class DefinirDemoEfetivasController {
         d = new Data(ano, mes, dia);
 
         return d;
+    }
+    
+    public String getInfo(){
+        return String.format("Código: %s\nDesignação: %s",demonstracao.getCod(),demonstracao.getDesignacao());
     }
 
 }
