@@ -328,9 +328,9 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
                             .addComponent(jPanelCenter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelNorth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAddOrg, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAddOrg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
@@ -385,9 +385,13 @@ public class CriarExposicaoUI extends javax.swing.JFrame {
 
     private void btnAddOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddOrgActionPerformed
         Utilizador user = jLstUtilizadores.getSelectedValue();
+        Organizador org = new Organizador(user);
         if(user == null){
             JOptionPane.showMessageDialog(CriarExposicaoUI.this,
                     "Nenhum utilizador seleccionado", "Utilizadores", JOptionPane.ERROR_MESSAGE);
+        }else if(lstOrgAux.getLstOrganizadores().contains(org)){
+             JOptionPane.showMessageDialog(CriarExposicaoUI.this,
+                    "Este utilizador ja foi adiconado", "Utilizadores", JOptionPane.ERROR_MESSAGE);
         }else{
             lstOrgAux.addOrganizador(user);
             JOptionPane.showMessageDialog(CriarExposicaoUI.this,
