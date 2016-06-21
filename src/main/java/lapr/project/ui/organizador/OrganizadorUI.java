@@ -119,6 +119,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         jLstCandidaturas = new javax.swing.JList<>();
+        btnRefresh = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -167,6 +168,13 @@ public class OrganizadorUI extends javax.swing.JFrame {
         jLstCandidaturas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane.setViewportView(jLstCandidaturas);
 
+        btnRefresh.setText("refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("My account");
 
         jMenuItem1.setText("Settings");
@@ -210,7 +218,8 @@ public class OrganizadorUI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnAvaliar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(btnRefresh))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -228,10 +237,15 @@ public class OrganizadorUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDefinirFAE)
                     .addComponent(btnAvaliar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDemoCreate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAtribCandid)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDemoCreate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAtribCandid))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(btnRefresh)))
                 .addContainerGap())
         );
 
@@ -286,6 +300,10 @@ public class OrganizadorUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        inicializarListaCandidaturas();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
     public List<Candidatura> getCandidaturasAvaliadas() {
         List<Candidatura> lstCandidaturas = new ArrayList<>();
         for (Exposicao exposicao : centroExpo.getListaExposicoes().getListaExposicoes()) {
@@ -303,6 +321,7 @@ public class OrganizadorUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAvaliar;
     private javax.swing.JToggleButton btnDefinirFAE;
     private javax.swing.JToggleButton btnDemoCreate;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<Candidatura> jLstCandidaturas;

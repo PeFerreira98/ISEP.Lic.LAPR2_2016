@@ -18,6 +18,7 @@ import lapr.project.model.mecanismos.atribuicao.MecanismoCargaFAE;
 import lapr.project.model.mecanismos.atribuicao.MecanismoExpProfissional;
 import lapr.project.model.mecanismos.atribuicao.MecanismoNumeroFAE;
 import lapr.project.model.mecanismos.detecaoconflito.MecanismoDetecaoConflito1;
+import lapr.project.model.submissions.Atribuicao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
 import lapr.project.utils.Data;
@@ -66,8 +67,11 @@ class Main {
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20, new ArrayList<>());
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
+        
+        Atribuicao a = new Atribuicao(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")), candidatura2);
         candidatura2.setEmAvaliacao();
-        candidatura2.setNaoAvaliada();
+        candidatura1.setEmAvaliacao();
+        candidatura1.setAvaliada();
         
         candidatura3.setRetirada();
         
@@ -121,6 +125,8 @@ class Main {
         exposicao2.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
         exposicao3.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
 
+        exposicao1.getListaAtribuicoes().addAtribuicao(a);
+        
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);
         listaExposicoes.addExposicao(exposicao3);
@@ -133,7 +139,7 @@ class Main {
         centroExposicoes.addMecanismo(new MecanismoAtribuicao1());
 
         TipoConflito tipoConflito1 = new TipoConflito("tipoConflito1", new MecanismoDetecaoConflito1());
-
+       
         centroExposicoes.getListaTipoConflito().addTipoConflito(tipoConflito1);
 
         Recurso r1 = new Recurso("Desc1");

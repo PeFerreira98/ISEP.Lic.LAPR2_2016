@@ -26,6 +26,8 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
         this.controller = new AvaliarCandidaturaController(c);
 
         initComponents();
+        super.setLocationRelativeTo(null);
+        super.setVisible(true);
     }
 
     /**
@@ -109,6 +111,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
         } else {
             this.controller.avaliarCandidatura(decisao, justificacao);
+            dispose();
         }
 
     }//GEN-LAST:event_btnAceitarActionPerformed
@@ -122,6 +125,7 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
 
         } else {
             this.controller.avaliarCandidatura(decisao, justificacao);
+            dispose();
         }
     }//GEN-LAST:event_btnRejeitarActionPerformed
 

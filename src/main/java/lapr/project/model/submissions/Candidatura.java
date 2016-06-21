@@ -221,6 +221,10 @@ public class Candidatura implements Retiravel, Serializable {
         this.estadoCandidatura = estadoCandidatura;
     }
 
+    public boolean setAvaliada(){
+        return this.estadoCandidatura.setAvaliada();
+    }
+    
     public EstadoCandidatura getEstado() {
         return this.estadoCandidatura;
     }

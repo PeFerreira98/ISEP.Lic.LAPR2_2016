@@ -51,7 +51,7 @@ public class FaeUI extends javax.swing.JFrame {
     }
     
     private void inicializarLista() {
-        final List<Candidatura> listaCandidaturas = getCandidaturasByFAE(this.fae);
+        final List<Candidatura> listaCandidaturas = getCandidaturasByFAE(this.utilizador);
         
         if (listaCandidaturas.isEmpty()) {
             this.jLstCandidaturas.setModel(new DefaultListModel<>());
@@ -198,12 +198,12 @@ public class FaeUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public List<Candidatura> getCandidaturasByFAE(FAE f) {
+    public List<Candidatura> getCandidaturasByFAE(Utilizador user) {
         List<Candidatura> lstCandidaturas = new ArrayList<>();
         
         for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
             for (Atribuicao a : expo.getListaAtribuicoes().getListaAtribuicoes()) {
-                if (a.getFae() == f) {
+                if (a.getFae().getUtilizador().getUsername().equalsIgnoreCase(user.getUsername())) {
                     lstCandidaturas.add(a.getCandidatura());
                 }
             }
@@ -214,7 +214,8 @@ public class FaeUI extends javax.swing.JFrame {
     private void btnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarActionPerformed
         Candidatura c = jLstCandidaturas.getSelectedValue();
         if (c == null) {
-            
+            JOptionPane.showMessageDialog(FaeUI.this,
+                    "Nenhuma candidatura seleccionada", "Candidaturas", JOptionPane.ERROR_MESSAGE);
         } else {
             new AvaliarCandidaturaUI(c);
         }
@@ -223,7 +224,8 @@ public class FaeUI extends javax.swing.JFrame {
     private void btnCandidaturaInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCandidaturaInfoActionPerformed
         Candidatura c = jLstCandidaturas.getSelectedValue();
         if (c == null) {
-            
+            JOptionPane.showMessageDialog(FaeUI.this,
+                    "Nenhuma candidatura seleccionada", "Candidaturas", JOptionPane.ERROR_MESSAGE);
         } else {
             new CandidaturaInfoUI(c);
         }

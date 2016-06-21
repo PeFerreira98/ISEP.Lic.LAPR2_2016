@@ -6,6 +6,7 @@
 package lapr.project.model.submissions;
 
 import java.io.Serializable;
+import java.util.Objects;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.FAE;
 
@@ -13,11 +14,11 @@ import lapr.project.model.users.FAE;
  *
  * @author Sara Silva
  */
-public class Atribuicao implements Serializable{
+public class Atribuicao implements Serializable {
 
     private FAE fae;
     private Candidatura candidatura;
-    
+
     public Atribuicao(FAE f, Candidatura c) {
         this.fae = f;
         this.candidatura = c;
@@ -29,9 +30,35 @@ public class Atribuicao implements Serializable{
     public FAE getFae() {
         return fae;
     }
-    
-    public Candidatura getCandidatura(){
+
+    public Candidatura getCandidatura() {
         return this.candidatura;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.fae);
+        hash = 61 * hash + Objects.hashCode(this.candidatura);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Atribuicao other = (Atribuicao) obj;
+        if (!Objects.equals(this.fae, other.fae)) {
+            return false;
+        }
+        if (!Objects.equals(this.candidatura, other.candidatura)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

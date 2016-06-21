@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.exhibitions.Exposicao;
+import lapr.project.model.submissions.Atribuicao;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -63,6 +64,16 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes>,
             return this.listExposicoes.add(exposicao);
         }
         return false;
+    }
+    
+    public List<Atribuicao> getAllAtribuicoes(){
+        List<Atribuicao> lst = new ArrayList<>();
+        for(Exposicao e : this.listExposicoes){
+            for(Atribuicao a : e.getListaAtribuicoes().getListaAtribuicoes()){
+                lst.add(a);
+            }
+        }
+        return lst;
     }
 
     public Exposicao getExpoByName(String title) {
