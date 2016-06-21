@@ -90,8 +90,8 @@ public class AlterarCandidaturaController implements Serializable {
         candidatura.addKeyword(kw);
     }
 
-    public void addDemonstracao(String demo) {
-        listaDemonstracoes.addDemonstracao(new Demonstracao(demo));
+    public void addDemonstracao(Demonstracao demo) {
+        candidatura.getListaDemonstracoes().addDemonstracao(demo);
     }
 
     public boolean registarCandidaturas() {

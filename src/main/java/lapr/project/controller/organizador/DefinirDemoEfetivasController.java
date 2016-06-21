@@ -57,7 +57,7 @@ public class DefinirDemoEfetivasController {
     }
 
     public void setData(String data) {
-        Data date = convertStringToData(data);
+        date = convertStringToData(data);
         demonstracao.setData(date);
     }
 
