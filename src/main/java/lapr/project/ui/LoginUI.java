@@ -5,16 +5,19 @@
  */
 package lapr.project.ui;
 
+import javax.swing.JFileChooser;
 import lapr.project.ui.fae.FaeUI;
 import lapr.project.ui.gestor.GestorExposicoesUI;
 import lapr.project.ui.organizador.OrganizadorUI;
 import lapr.project.ui.representante.RepresentanteUI;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import lapr.project.controller.DetecaoConflitosController;
 import lapr.project.controller.LoginController;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.FileOp;
+import lapr.project.utils.StAXParser;
 
 /**
  *
@@ -92,6 +95,7 @@ public class LoginUI extends javax.swing.JFrame {
         jButtonLogGest = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemExportXML = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -142,6 +146,14 @@ public class LoginUI extends javax.swing.JFrame {
         });
 
         jMenu3.setText("File");
+
+        jMenuItem2.setText("Import from XML");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
 
         jMenuItemExportXML.setText("Export to XML");
         jMenuItemExportXML.addActionListener(new java.awt.event.ActionListener() {
@@ -251,14 +263,31 @@ public class LoginUI extends javax.swing.JFrame {
     private void jMenuItemExportXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportXMLActionPerformed
         // TODO filechooser
         new FileOp().writeXMLFile(centroExposicoes);
+        JOptionPane.showMessageDialog(LoginUI.this,
+                "Export XML Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItemExportXMLActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         final DetecaoConflitosController detectConfl = new DetecaoConflitosController(this.centroExposicoes);
         detectConfl.processoDeteccaoConflito();
         JOptionPane.showMessageDialog(LoginUI.this,
-                    "Detect Confl Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
+                "Detect Confl Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Event List Files *.xml", "xml");
+        fileChooser.setFileFilter(filter);
+
+        int rVal = fileChooser.showOpenDialog(null);
+        if (rVal == JFileChooser.APPROVE_OPTION) {
+            new StAXParser(this.centroExposicoes, fileChooser.getSelectedFile().toString());
+        }
+        JOptionPane.showMessageDialog(LoginUI.this,
+                "Import XML Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogFAE;
@@ -273,6 +302,7 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemExportXML;
     private javax.swing.JButton jSignUp;
     private javax.swing.JTextField jTextField1;

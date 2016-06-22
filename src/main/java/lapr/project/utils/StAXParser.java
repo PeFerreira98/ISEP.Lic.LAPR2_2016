@@ -325,31 +325,31 @@ public class StAXParser {
                         Characters characters = event.asCharacters();
 
                         if (b_Nome) {
-                            System.out.println("nome: " + characters.getData());
+                            System.out.println("\tnome: " + characters.getData());
                             m_Nome = characters.getData();
                             b_Nome = false;
                         }
 
                         if (b_Email) {
-                            System.out.println("email: " + characters.getData());
+                            System.out.println("\temail: " + characters.getData());
                             m_Email = characters.getData();
                             b_Email = false;
                         }
 
                         if (b_Username) {
-                            System.out.println("username: " + characters.getData());
+                            System.out.println("\tusername: " + characters.getData());
                             m_Username = characters.getData();
                             b_Username = false;
                         }
 
                         if (b_Password) {
-                            System.out.println("password: " + characters.getData());
+                            System.out.println("\tpassword: " + characters.getData());
                             m_Password = characters.getData();
                             b_Password = false;
                         }
 
                         if (b_Descricao) {
-                            System.out.println("descricao: " + characters.getData());
+                            System.out.println("\tdescricao: " + characters.getData());
                             if (b_cand) {
                                 m_Descricao_cand = characters.getData();
                             } else {
@@ -359,97 +359,97 @@ public class StAXParser {
                         }
 
                         if (b_titulo) {
-                            System.out.println("titulo: " + characters.getData());
+                            System.out.println("\ttitulo: " + characters.getData());
                             m_titulo = characters.getData();
                             b_titulo = false;
                         }
 
                         if (b_dataInicio) {
-                            System.out.println("dataInicio: " + characters.getData());
+                            System.out.println("\tdataInicio: " + characters.getData());
                             d_dataInicio = parseStringtoData(characters.getData());
                             b_dataInicio = false;
                         }
 
                         if (b_dataFim) {
-                            System.out.println("dataFim: " + characters.getData());
+                            System.out.println("\tdataFim: " + characters.getData());
                             d_dataFim = parseStringtoData(characters.getData());
                             b_dataFim = false;
                         }
 
                         if (b_subInicio) {
-                            System.out.println("subInicio: " + characters.getData());
+                            System.out.println("\tsubInicio: " + characters.getData());
                             d_subInicio = parseStringtoData(characters.getData());
                             b_subInicio = false;
                         }
 
                         if (b_subFim) {
-                            System.out.println("subFim: " + characters.getData());
+                            System.out.println("\tsubFim: " + characters.getData());
                             d_subFim = parseStringtoData(characters.getData());
                             b_subFim = false;
                         }
 
                         if (b_dataLimiteConflitos) {
-                            System.out.println("dataLimiteConflitos: " + characters.getData());
+                            System.out.println("\tdataLimiteConflitos: " + characters.getData());
                             d_dataLimiteConflitos = parseStringtoData(characters.getData());
                             b_dataLimiteConflitos = false;
                         }
 
                         if (b_local) {
-                            System.out.println("local: " + characters.getData());
+                            System.out.println("\tlocal: " + characters.getData());
                             m_local = characters.getData();
                             b_local = false;
                         }
                         
                         if (b_aceite) {
-                            System.out.println("aceite: " + characters.getData());
+                            System.out.println("\taceite: " + characters.getData());
                             b_isAceite = "true".equalsIgnoreCase(characters.getData());
                             b_aceite = false;
                         }
 
                         if (b_areaPetendida) {
-                            System.out.println("areaPetendida: " + characters.getData());
+                            System.out.println("\tareaPetendida: " + characters.getData());
                             d_areaPetendida = Double.parseDouble(characters.getData());
                             b_areaPetendida = false;
                         }
 
                         if (b_quantidadeConvites) {
-                            System.out.println("quantidadeConvites: " + characters.getData());
+                            System.out.println("\tquantidadeConvites: " + characters.getData());
                             i_quantidadeConvites = Integer.parseInt(characters.getData());
                             b_quantidadeConvites = false;
                         }
                         
                         if (b_texto) {
-                            System.out.println("texto: " + characters.getData());
+                            System.out.println("\ttexto: " + characters.getData());
                             m_texto = characters.getData();
                             b_texto = false;
                         }
                         
                         if (b_conhecimentoFAE) {
-                            System.out.println("conhecimentoFAE: " + characters.getData());
+                            System.out.println("\tconhecimentoFAE: " + characters.getData());
                             i_conhecimentoFAE = Integer.parseInt(characters.getData());
                             b_conhecimentoFAE = false;
                         }
                         
                         if (b_adequacaoExposicao) {
-                            System.out.println("adequacaoExposicao: " + characters.getData());
+                            System.out.println("\tadequacaoExposicao: " + characters.getData());
                             i_adequacaoExposicao = Integer.parseInt(characters.getData());
                             b_adequacaoExposicao = false;
                         }
                         
                         if (b_adequacaoDemonstracoes) {
-                            System.out.println("adequacaoDemonstracoes: " + characters.getData());
+                            System.out.println("\tadequacaoDemonstracoes: " + characters.getData());
                             i_adequacaoDemonstracoes = Integer.parseInt(characters.getData());
                             b_adequacaoDemonstracoes = false;
                         }
                         
                         if (b_adequacaoConvites) {
-                            System.out.println("adequacaoConvites: " + characters.getData());
+                            System.out.println("\tadequacaoConvites: " + characters.getData());
                             i_adequacaoConvites = Integer.parseInt(characters.getData());
                             b_adequacaoConvites = false;
                         }
                         
                         if (b_recomendacao) {
-                            System.out.println("recomendacao: " + characters.getData());
+                            System.out.println("\trecomendacao: " + characters.getData());
                             i_recomendacao = Integer.parseInt(characters.getData());
                             b_recomendacao = false;
                         }

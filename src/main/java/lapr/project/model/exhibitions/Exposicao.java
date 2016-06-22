@@ -402,10 +402,6 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
             elementExposicao.appendChild(elementLocal);
 
             //Create a sub-element
-            Node gestorNode = this.gestor.exportContentToXMLNode();
-            elementExposicao.appendChild(document.importNode(gestorNode, true));
-
-            //Create a sub-element
             Node dataInicioReaNode = this.dataInicioRealizacao.exportContentToXMLNode();
             elementExposicao.appendChild(document.importNode(dataInicioReaNode, true));
 
