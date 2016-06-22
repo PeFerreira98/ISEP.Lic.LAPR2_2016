@@ -23,6 +23,11 @@ public class Atribuicao implements Serializable {
         this.fae = f;
         this.candidatura = c;
     }
+    
+    public Atribuicao(FAE fae){
+        this.fae = fae;
+        //used in XML Don't know about candidatura
+    }
 
     /**
      * @return the fae

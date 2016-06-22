@@ -94,7 +94,7 @@ public class RegistoUtilizadores implements Exportable, Importable<RegistoUtiliz
         }
         return listaUtilizadoresNaoRegistados.add(utilizador);
     }
-
+    
     public boolean registarUtilizador(Utilizador utilizador) {
         for (Utilizador u : listaUtilizadoresNaoRegistados) {
             if (u.equals(utilizador)) {

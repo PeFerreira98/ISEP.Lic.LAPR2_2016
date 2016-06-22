@@ -8,6 +8,7 @@ package lapr.project.model.exhibitions;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -50,19 +51,20 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
     private Data dataFimRealizacao;
     private Data dataInicioSubmissao;
     private Data dataFimSubmissao;
+    private Data dataLimiteConflitos;
 
     private ListaOrganizadores listaOrganizadores;
     private ListaFAE listaFAE;
-    private ListaDemonstracoes listaDemonstracoes;
-    private ListaAtribuicoes listaAtribuicoes;
     private ListaCandidaturas listaCandidaturas;
+    private ListaAtribuicoes listaAtribuicoes;
+
+    private ListaDemonstracoes listaDemonstracoes;
     private RegistoConflitos listaConflitos;
 
     public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
-            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, Data dataLimiteConflitos,
+            String local) {
 
-        //TODO >> add gestor to constructor (check ViewExpoUI)
-//        this.gestor = ???;
         this.title = nomeExposicao;
         this.description = descricaoExposicao;
         this.local = local;
@@ -71,19 +73,41 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
         this.dataFimRealizacao = dataFimRealizacao;
         this.dataInicioSubmissao = dataInicioSubmissao;
         this.dataFimSubmissao = dataFimSubmissao;
+        this.dataLimiteConflitos = dataLimiteConflitos;
 
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
-        this.listaDemonstracoes = new ListaDemonstracoes();
-        this.listaAtribuicoes = new ListaAtribuicoes();
         this.listaCandidaturas = new ListaCandidaturas();
+        this.listaAtribuicoes = new ListaAtribuicoes();
+
+        this.listaDemonstracoes = new ListaDemonstracoes();
+        this.listaConflitos = new RegistoConflitos();
+    }
+
+    public Exposicao(String nomeExposicao, String descricaoExposicao, Data dataInicioRealizacao,
+            Data dataFimRealizacao, Data dataInicioSubmissao, Data dataFimSubmissao, String local) {
+
+        this.title = nomeExposicao;
+        this.description = descricaoExposicao;
+        this.local = local;
+
+        this.dataInicioRealizacao = dataInicioRealizacao;
+        this.dataFimRealizacao = dataFimRealizacao;
+        this.dataInicioSubmissao = dataInicioSubmissao;
+        this.dataFimSubmissao = dataFimSubmissao;
+        this.dataLimiteConflitos = new Data();
+
+        this.listaOrganizadores = new ListaOrganizadores();
+        this.listaFAE = new ListaFAE();
+        this.listaCandidaturas = new ListaCandidaturas();
+        this.listaAtribuicoes = new ListaAtribuicoes();
+
+        this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaConflitos = new RegistoConflitos();
     }
 
     public Exposicao() {
 
-        //TODO >> add gestor to constructor (check ViewExpoUI)
-//        this.gestor = ???;
         this.title = "";
         this.description = "";
         this.local = "";
@@ -92,12 +116,14 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
         this.dataFimRealizacao = new Data();
         this.dataInicioSubmissao = new Data();
         this.dataFimSubmissao = new Data();
+        this.dataLimiteConflitos = new Data();
 
         this.listaOrganizadores = new ListaOrganizadores();
         this.listaFAE = new ListaFAE();
-        this.listaDemonstracoes = new ListaDemonstracoes();
-        this.listaAtribuicoes = new ListaAtribuicoes();
         this.listaCandidaturas = new ListaCandidaturas();
+        this.listaAtribuicoes = new ListaAtribuicoes();
+
+        this.listaDemonstracoes = new ListaDemonstracoes();
         this.listaConflitos = new RegistoConflitos();
     }
 
@@ -255,11 +281,11 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
         }
         return true;
     }
-    
-    public boolean hasConflitos(){
+
+    public boolean hasConflitos() {
         return this.listaConflitos.hasConflitos();
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -338,8 +364,8 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
     public String toString() {
         return title;
     }
-    
-    public String getInfo(){
+
+    public String getInfo() {
         return "\nExposicao{" + "title=" + title + ", description=" + description
                 + ", local=" + local + ", dataInicioRealizacao=" + dataInicioRealizacao
                 + ", dataFimRealizacao=" + dataFimRealizacao + ", dataInicioSubmissao="

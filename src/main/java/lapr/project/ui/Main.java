@@ -23,6 +23,7 @@ import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
 import lapr.project.utils.Data;
 import lapr.project.utils.FileOp;
+import lapr.project.utils.StAXParser;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -43,6 +44,8 @@ class Main {
 
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
 
+//        final CentroExposicoes centroExposicoes = new StAXParser().XMLReader("CentroExposicoesImportExample_v0.2.xml");
+        
         new LoginUI(centroExposicoes);
 
         System.out.println(centroExposicoes);
@@ -67,8 +70,8 @@ class Main {
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20, new ArrayList<>());
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
-        
         Atribuicao a = new Atribuicao(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")), candidatura2);
+        
         candidatura2.setEmAvaliacao();
         candidatura1.setEmAvaliacao();
         candidatura1.setAvaliada();

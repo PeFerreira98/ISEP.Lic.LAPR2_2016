@@ -17,10 +17,23 @@ public class Avaliacao implements Serializable{
 
     private String decisao;
     private String justificacao;
-    int[] array = new int[5];
-
+    private int[] array = new int[5]; //conhecimento, adequacaoExpo, adequDemo, adequConv, reco
+    
+    private String texto;
+    private Atribuicao atribuicao;
+    
     public Avaliacao() {
         //To use with sets
+    }
+    
+    public Avaliacao(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoCon, int recomendacao, Atribuicao atribuicao){
+        this.texto = texto;
+        this.array[0] = conhecimentoFAE;
+        this.array[1] = adequacaoExpo;
+        this.array[2] = adequacaoDemo;
+        this.array[3] = adequacaoCon;
+        this.array[4] = recomendacao;
+        this.atribuicao = atribuicao;
     }
 
     /**
