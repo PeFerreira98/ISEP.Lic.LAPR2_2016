@@ -109,7 +109,7 @@ public class AlterarCandidaturaControllerTest {
         CentroExposicoes ce = new CentroExposicoes();
         Utilizador utilizador = new Utilizador();
         Representante rep = new Representante(utilizador);
-        Candidatura can = new Candidatura();
+        Candidatura can = new Candidatura("nome", "morada", 911111111, 2, 2, new ArrayList<>());
         can.setRep(rep);
         Exposicao exp = new Exposicao();
         Demonstracao demo = new Demonstracao();
@@ -195,7 +195,7 @@ public class AlterarCandidaturaControllerTest {
     public void testRegistarCandidaturas() {
         System.out.println("registarCandidaturas");
         CentroExposicoes ce = new CentroExposicoes();
-        Candidatura can = new Candidatura();
+        Candidatura can = new Candidatura("nome", "morada", 911111111, 2, 2, new ArrayList<>());
         AlterarCandidaturaController instance = new AlterarCandidaturaController(ce);
         instance.setExposicao(new Exposicao());
         instance.setCandidatura(can);

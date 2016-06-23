@@ -93,6 +93,7 @@ public class RegistarCandidaturaDemoControllerTest {
         RegistarCandidaturaDemoController instance = new RegistarCandidaturaDemoController(ce);
         instance.setDemonstracao(new Demonstracao());
         instance.novaCandidatura();
+        instance.setDados("nome", "morada", 3, 911111111, 3);
         boolean expResult = true;
         boolean result = instance.registarCandidatura();
         assertEquals(expResult, result);
@@ -113,6 +114,7 @@ public class RegistarCandidaturaDemoControllerTest {
         instance.novaCandidatura();
         Demonstracao demo = new Demonstracao();
         instance.setDemonstracao(demo);
+        instance.setDados("nome", "morada", 2, 911111111, 9);
         instance.addKeyword(keyword);
         instance.registarCandidatura();
         List<Keyword> expResult = new ArrayList<>();

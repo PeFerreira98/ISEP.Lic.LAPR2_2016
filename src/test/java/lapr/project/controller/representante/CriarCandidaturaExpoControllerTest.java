@@ -119,7 +119,8 @@ public class CriarCandidaturaExpoControllerTest {
         System.out.println("registarCandidatura");
         Exposicao exposicao = new Exposicao();
         CriarCandidaturaExpoController instance = new CriarCandidaturaExpoController(exposicao);
-        //instance.novaCandidatura();
+        instance.novaCandidatura();
+        instance.setDados("nomeEmpresa", "moradaEmpresa", 5, 911111111, 9);
         boolean expResult = true;
         boolean result = instance.registarCandidatura();
         assertEquals(expResult, result);
