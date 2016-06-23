@@ -200,19 +200,19 @@ public class Candidatura implements Retiravel, Serializable {
 
     public boolean valida() {
         if (nomeEmpresa == null || nomeEmpresa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome inválido!");
+            return false;
         }
         if (moradaEmpresa == null || moradaEmpresa.trim().isEmpty()) {
-            throw new IllegalArgumentException("Morada inválida!");
+            return false;
         }
         if (quantidadeConvites < 0) {
-            throw new IllegalArgumentException("Convites inválidos!");
+            return false;
         }
         if (telemovel < 100000000 || telemovel > 999999999) {
-            throw new IllegalArgumentException("Número de telemóvel inválido!");
+            return false;
         }
         if (areaPretendida <= 0) {
-            throw new IllegalArgumentException("Área expositor inválida!");
+            return false;
         }
         return true;
     }
