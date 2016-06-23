@@ -123,15 +123,15 @@ public class ListaExposicoes implements Exportable, Serializable {
         return listFAEFinal.getListaFAE();
     }
     
-//    public List<Avaliacao> getAllSubFAE(FAE fae){
-//        List<Avaliacao> listSubFAEFinal = new ArrayList<>();
-//
-//        for (Exposicao expo : listExposicoes) {
-//            expo.getAllFAE(listFAEFinal);
-//        }
-//
-//        return listSubFAEFinal;
-//    }
+    public List<Avaliacao> getAllSubFAE(FAE fae){
+        List<Avaliacao> listSubFAEFinal = new ArrayList<>();
+
+        for (Exposicao expo : listExposicoes) {
+            expo.getAllSubFAE(fae, listSubFAEFinal);
+        }
+
+        return listSubFAEFinal;
+    }
 
     @Override
     public String toString() {

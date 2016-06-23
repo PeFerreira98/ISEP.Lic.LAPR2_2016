@@ -12,8 +12,10 @@ import java.util.Objects;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
+import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -75,6 +77,12 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
             }
         }
         return lRetiraveis;
+    }
+    
+    public void getAllSubFAE(FAE fae, List<Avaliacao> listSubFAEFinal) {
+        for (Candidatura cand : this.listCandidaturas) {
+            cand.getAllSubFAE(fae, listSubFAEFinal);
+        }
     }
 
     @Override

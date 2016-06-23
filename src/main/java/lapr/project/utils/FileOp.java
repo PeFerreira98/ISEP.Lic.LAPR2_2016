@@ -12,8 +12,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.Utilizador;
 
@@ -113,7 +115,7 @@ public class FileOp {
             BufferedWriter bw = new BufferedWriter(fw);
 
             for (FAE fae : centroExposicoes.getListaExposicoes().getAllFAE()) {
-                writeFaeLine(fae, bw);
+                writeFaeLine(fae, centroExposicoes.getListaExposicoes().getAllSubFAE(fae), bw);
             }
             
             bw.close();
@@ -124,15 +126,41 @@ public class FileOp {
         }
     }
     
-    private void writeFaeLine(FAE fae, BufferedWriter bw) throws IOException{
+    private void writeFaeLine(FAE fae, List<Avaliacao> listAval, BufferedWriter bw) throws IOException{
+        
+        
         final String faeNick = fae.getUtilizador().getUsername();
-        final String nrSub = "default";
-        final String mediaClassFae = "default";
+        final String nrSub = getNrSub(listAval);
+        final String mediaClassFae = getMedia(listAval);
         final String mediaDesv = "default";
         final String valorObsEstTeste = "default";
         final String decisaoAlerta = "default";
         
+        System.out.println(faeNick + "," + nrSub + "," + mediaClassFae + "," + mediaDesv + "," + valorObsEstTeste + "," + decisaoAlerta);
         bw.write(faeNick + "," + nrSub + "," + mediaClassFae + "," + mediaDesv + "," + valorObsEstTeste + "," + decisaoAlerta);
         bw.newLine();
+    }
+    
+    private String getNrSub(List<Avaliacao> listAval){
+        if (listAval.isEmpty()) {
+            return "0";
+        }
+        return String.valueOf(listAval.size());
+    }
+    
+    private String getMedia(List<Avaliacao> listAval){
+        if (listAval.isEmpty()) {
+            return "0";
+        }
+        
+        double media = 0;
+        
+        for (Avaliacao avaliacao : listAval) {
+            media += avaliacao.getRecomendacao();
+        }
+        
+        media = media / listAval.size();
+        
+        return String.valueOf(media);
     }
 }

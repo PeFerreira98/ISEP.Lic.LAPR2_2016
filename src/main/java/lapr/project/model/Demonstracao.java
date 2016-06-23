@@ -15,6 +15,7 @@ import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.RegistoConflitos;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.users.FAE;
@@ -155,6 +156,10 @@ public class Demonstracao implements Exportable, Serializable {
         for (FAE fae : listaFAE.getListaFAE()) {
             listFAEFinal.addFAE(fae);
         }
+    }
+    
+    public void getAllSubFAE(FAE fae, List<Avaliacao> listSubFAEFinal) {
+        listaCandidaturas.getAllSubFAE(fae, listSubFAEFinal);
     }
 
     @Override
