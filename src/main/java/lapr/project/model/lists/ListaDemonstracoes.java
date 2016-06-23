@@ -14,6 +14,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.submissions.Retiravel;
+import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -57,7 +58,7 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
         }
         return lRetiraveis;
     }
-    
+
     public List<Demonstracao> getListaDemonstracoesCandidaturaTerminada() {
         List<Demonstracao> listDemoTemp = new ArrayList<>();
         for (Demonstracao demo : this.listDemonstracoes) {
@@ -67,8 +68,8 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
         }
         return listDemoTemp;
     }
-    
-    public List<Demonstracao> getListaDemonstracoesComConflitos(){
+
+    public List<Demonstracao> getListaDemonstracoesComConflitos() {
         List<Demonstracao> listDemoTemp = new ArrayList<>();
         for (Demonstracao demo : listDemonstracoes) {
             if (demo.hasConflitos()) {
@@ -76,6 +77,12 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
             }
         }
         return listDemoTemp;
+    }
+
+    public void getAllFAE(ListaFAE listFAEFinal) {
+        for (Demonstracao demo : listDemonstracoes) {
+            demo.getAllFAE(listFAEFinal);
+        }
     }
 
     @Override

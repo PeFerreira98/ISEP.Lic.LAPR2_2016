@@ -12,24 +12,21 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Stand;
-import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaExposicoes;
 import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.ListaTipoConflito;
 import lapr.project.model.lists.RegistoUtilizadores;
 import lapr.project.model.mecanismos.MecanismoAtribuicao;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
  * @author zero_
  */
-public class CentroExposicoes implements Exportable, Importable<CentroExposicoes>, Serializable {
+public class CentroExposicoes implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "centroExposicoes";
     private static final String MECANISMOS_ELEMENT_NAME = "mecanismos";
@@ -38,7 +35,7 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
     private ListaExposicoes listaExposicoes;
     private ListaRecursos listaRecursos;
     private ListaTipoConflito listaTipoConflito;
-    
+
     private List<MecanismoAtribuicao> listaMecanismos;
     private final List<Stand> listaStands;
 
@@ -99,7 +96,6 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         return listaMecanismos;
     }
 
-
     public ListaTipoConflito getListaTipoConflito() {
         return listaTipoConflito;
     }
@@ -154,62 +150,4 @@ public class CentroExposicoes implements Exportable, Importable<CentroExposicoes
         }
         return rootNode;
     }
-
-    @Override
-    public CentroExposicoes importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-            //Create document builder //Obtain a new document
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-            document.appendChild(document.importNode(node, true));
-
-            //Init
-            NodeList elements1CentroExposicoes = document.getElementsByTagName(ROOT_ELEMENT_NAME);
-            Node element2CentroExposicoes = elements1CentroExposicoes.item(0);
-
-            //TODO: Add import for all Lists (Verify)
-            //Add List Class
-            Node nodeRegUsers = element2CentroExposicoes.getFirstChild();
-            RegistoUtilizadores instanceRegUsers = new RegistoUtilizadores();
-            instanceRegUsers = instanceRegUsers.importContentFromXMLNode(nodeRegUsers);
-            this.registoUtilizadores = instanceRegUsers;
-
-            //Add List Class
-            Node nodeListExpo = element2CentroExposicoes.getFirstChild().getNextSibling();
-            ListaExposicoes instanceListaExposicoes = new ListaExposicoes();
-            instanceListaExposicoes = instanceListaExposicoes.importContentFromXMLNode(nodeListExpo);
-            this.listaExposicoes = instanceListaExposicoes;
-
-            //Add List Class
-            Node nodeListaRecur = element2CentroExposicoes.getFirstChild().getNextSibling().getNextSibling().getNextSibling();
-            ListaRecursos instanceRecursos = new ListaRecursos();
-            instanceRecursos = instanceRecursos.importContentFromXMLNode(nodeListaRecur);
-            this.listaRecursos = instanceRecursos;
-
-            //Add List Class
-            Node nodeListaTipConf = element2CentroExposicoes.getFirstChild().getNextSibling().getNextSibling().getNextSibling().getNextSibling();
-            ListaTipoConflito instanceListaTipoConf = new ListaTipoConflito();
-            instanceListaTipoConf = instanceListaTipoConf.importContentFromXMLNode(nodeListaTipConf);
-            this.listaTipoConflito = instanceListaTipoConf;
-
-            //TODO: Import for Mecanismos List (is this really necessary?)
-//            NodeList elementsKeywords = document.getElementsByTagName(KEYWORDS_ELEMENT_NAME);
-//            NodeList keywords = elementsKeywords.item(0).getChildNodes();
-//            for (int position = 0; position < keywords.getLength(); position++) {
-//                Node keyword = keywords.item(position);
-//                KeywordExample keywordExample = new KeywordExample();
-//
-//                keywordExample = keywordExample.importContentFromXMLNode(keyword);
-//                addKeyword(keywordExample);
-//            }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return this;
-    }
-
 }

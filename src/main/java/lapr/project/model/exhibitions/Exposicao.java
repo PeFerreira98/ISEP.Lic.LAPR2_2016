@@ -12,6 +12,7 @@ import java.util.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import lapr.project.model.Demonstracao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.lists.ListaAtribuicoes;
@@ -285,7 +286,15 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
     public boolean hasConflitos() {
         return this.listaConflitos.hasConflitos();
     }
-    
+
+    public void getAllFAE(ListaFAE listFAEFinal) {
+        for (FAE fae : listaFAE.getListaFAE()) {
+            listFAEFinal.addFAE(fae);
+        }
+
+        this.listaDemonstracoes.getAllFAE(listFAEFinal);
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

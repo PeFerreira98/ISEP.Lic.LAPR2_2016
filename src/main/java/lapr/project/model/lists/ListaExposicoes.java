@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.submissions.Atribuicao;
+import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
@@ -111,6 +112,20 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes>,
             }
         }
         return listExpoTemp;
+    }
+    
+    public List<FAE> getAllFAE() {
+        ListaFAE listFAEFinal = new ListaFAE();
+
+        for (Exposicao expo : listExposicoes) {
+            expo.getAllFAE(listFAEFinal);
+        }
+
+        return listFAEFinal.getListaFAE();
+    }
+    
+    public int nrSubFAE(FAE fae){
+        return 0;
     }
 
     @Override

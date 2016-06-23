@@ -19,11 +19,11 @@ import lapr.project.model.mecanismos.atribuicao.MecanismoExpProfissional;
 import lapr.project.model.mecanismos.atribuicao.MecanismoNumeroFAE;
 import lapr.project.model.mecanismos.detecaoconflito.MecanismoDetecaoConflito1;
 import lapr.project.model.submissions.Atribuicao;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
 import lapr.project.utils.Data;
 import lapr.project.utils.FileOp;
-import lapr.project.utils.StAXParser;
 
 /**
  * @author Nuno Bettencourt <nmb@isep.ipp.pt> on 24/05/16.
@@ -44,11 +44,9 @@ class Main {
 
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
 
-//        final CentroExposicoes centroExposicoes = new StAXParser().XMLReader("CentroExposicoesImportExample_v0.2.xml");
-        
         new LoginUI(centroExposicoes);
 
-        System.out.println(centroExposicoes);
+        System.out.println(centroExposicoes + "\n");
     }
 
     private CentroExposicoes bootStrap() {
@@ -70,11 +68,16 @@ class Main {
         Candidatura candidatura2 = new Candidatura("GirasPontoPt", "Rua das Pegas", 936969696, 5, 20, new ArrayList<>());
         Candidatura candidatura3 = new Candidatura("SoBrincaLDA", "Parque nacional", 965555555, 100, 800, new ArrayList<>());
 
-        Atribuicao a = new Atribuicao(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")), candidatura2);
+        Atribuicao atribuicao1 = new Atribuicao(new FAE(registoUtilizadores.checkUtilizadorByUsername("FAE")), candidatura2);
+        Atribuicao atribuicao2 = new Atribuicao(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")), candidatura1);
+        
+        Avaliacao avaliacao1 = new Avaliacao("default", 3, 4, 2, 4, 5, atribuicao2);
+        
+        candidatura1.setEmAvaliacao();
+        candidatura1.addAvaliacao(avaliacao1);
+        candidatura1.setAvaliada();
         
         candidatura2.setEmAvaliacao();
-        candidatura1.setEmAvaliacao();
-        candidatura1.setAvaliada();
         
         candidatura3.setRetirada();
         
@@ -128,7 +131,7 @@ class Main {
         exposicao2.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
         exposicao3.getListaFAE().addFAE(new FAE(registoUtilizadores.checkUtilizadorByUsername("admin")));
 
-        exposicao1.getListaAtribuicoes().addAtribuicao(a);
+        exposicao1.getListaAtribuicoes().addAtribuicao(atribuicao1);
         
         listaExposicoes.addExposicao(exposicao1);
         listaExposicoes.addExposicao(exposicao2);

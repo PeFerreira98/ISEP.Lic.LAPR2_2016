@@ -17,6 +17,7 @@ import lapr.project.model.lists.ListaRecursos;
 import lapr.project.model.lists.RegistoConflitos;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
+import lapr.project.model.users.FAE;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
 import lapr.project.utils.Importable;
@@ -101,12 +102,12 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
     public ListaRecursos getListaRecursos() {
         return listaRecursos;
     }
-    
-    public ListaFAE getListaFAE(){
+
+    public ListaFAE getListaFAE() {
         return this.listaFAE;
     }
-    
-    public RegistoConflitos getRegistoConflitos(){
+
+    public RegistoConflitos getRegistoConflitos() {
         return this.registoConflitos;
     }
 
@@ -137,7 +138,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
     public boolean isDemonstracaoEfetiva() {
         return demonstracaoEfetiva;
     }
-    
+
     public boolean isCandidaturaTerminada() {
         for (Candidatura can : this.listaCandidaturas.getListaCandidaturas()) {
             if (!can.isTerminada()) {
@@ -146,9 +147,15 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
         }
         return true;
     }
-    
-    public boolean hasConflitos(){
+
+    public boolean hasConflitos() {
         return this.registoConflitos.hasConflitos();
+    }
+
+    public void getAllFAE(ListaFAE listFAEFinal) {
+        for (FAE fae : listaFAE.getListaFAE()) {
+            listFAEFinal.addFAE(fae);
+        }
     }
 
     @Override
