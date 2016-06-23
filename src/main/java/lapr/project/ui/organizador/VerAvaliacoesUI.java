@@ -69,7 +69,7 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
 
         @Override
         public Component getListCellRendererComponent(JList<? extends Avaliacao> list, Avaliacao avaliacao, int index, boolean isSelected, boolean cellHasFocus) {
-            setText(avaliacao.getDecisao());
+            setText(String.valueOf(avaliacao.getRecomendacao()));
 
             if (isSelected) {
                 setBackground(list.getSelectionBackground());

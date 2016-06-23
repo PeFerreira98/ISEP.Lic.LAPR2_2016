@@ -21,12 +21,21 @@ public class AvaliarCandidaturaController implements Serializable{
         this.candidatura = c;
     }
     
-    public void avaliarCandidatura(String decisao, String justificacao){
-        Avaliacao a = new Avaliacao();
-        a.setDecisao(decisao);
-        a.setJustificacao(justificacao);
-        
-        this.candidatura.addAvaliacao(a);
+//    public void avaliarCandidatura(String decisao, String justificacao){
+//        Avaliacao a = new Avaliacao();
+//        a.setDecisao(decisao);
+//        a.setJustificacao(justificacao);
+//        
+//        this.candidatura.addAvaliacao(a);
+//    }
+    
+    public boolean avaliarCandidatura(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoConvites, int recomendacao){
+        Avaliacao a = new Avaliacao(texto, conhecimentoFAE, adequacaoExpo, adequacaoDemo, adequacaoConvites, recomendacao);
+        if(a.valida()){
+            this.candidatura.addAvaliacao(a);
+            return true;
+        }
+        return false;
     }
     
 }

@@ -7,7 +7,6 @@ package lapr.project.model.submissions;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  *
@@ -15,8 +14,6 @@ import java.util.Objects;
  */
 public class Avaliacao implements Serializable{
 
-    private String decisao;
-    private String justificacao;
     private int[] array = new int[5]; //conhecimento, adequacaoExpo, adequDemo, adequConv, reco
     
     private String texto;
@@ -24,6 +21,15 @@ public class Avaliacao implements Serializable{
     
     public Avaliacao() {
         //To use with sets
+    }
+    
+    public Avaliacao(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoCon, int recomendacao){
+        this.texto = texto;
+        this.array[0] = conhecimentoFAE;
+        this.array[1] = adequacaoExpo;
+        this.array[2] = adequacaoDemo;
+        this.array[3] = adequacaoCon;
+        this.array[4] = recomendacao;
     }
     
     public Avaliacao(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoCon, int recomendacao, Atribuicao atribuicao){
@@ -35,33 +41,26 @@ public class Avaliacao implements Serializable{
         this.array[4] = recomendacao;
         this.atribuicao = atribuicao;
     }
-
-    /**
-     * @return the decisao
-     */
-    public String getDecisao() {
-        return decisao;
+    
+    public void setTexto(String texto){
+        this.texto = texto;
     }
-
-    public void setDecisao(String decisao) {
-        this.decisao = decisao;
+    
+    public int getRecomendacao(){
+        return this.array[4];
     }
-
-    public String getJustificacao() {
-        return justificacao;
+    
+    public String getTexto(){
+        return this.texto;
     }
-
-    public void setJustificacao(String justificacao) {
-        this.justificacao = justificacao;
-    }
-
     public boolean valida() {
-        if (justificacao == null || justificacao.trim().isEmpty()) {
-            throw new IllegalArgumentException("Texto descritivo inválido!");
-        } else if (decisao == null || decisao.trim().isEmpty()) {
-            throw new IllegalArgumentException("Decisão inválida!");
-        } else if (!"sim".equalsIgnoreCase(decisao) && !"Nao".equalsIgnoreCase(decisao)) {
+        if (texto == null || texto.trim().isEmpty()) {
             return false;
+        }
+        for(int i = 0; i < array.length; i++){
+            if(this.array[i]>6 || this.array[i]<0){
+                return false;
+            }
         }
         return true;
     }
@@ -69,8 +68,6 @@ public class Avaliacao implements Serializable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.decisao);
-        hash = 89 * hash + Objects.hashCode(this.justificacao);
         hash = 89 * hash + Arrays.hashCode(this.array);
         return hash;
     }
@@ -87,12 +84,6 @@ public class Avaliacao implements Serializable{
             return false;
         }
         final Avaliacao other = (Avaliacao) obj;
-        if (!Objects.equals(this.decisao, other.decisao)) {
-            return false;
-        }
-        if (!Objects.equals(this.justificacao, other.justificacao)) {
-            return false;
-        }
         if (!Arrays.equals(this.array, other.array)) {
             return false;
         }

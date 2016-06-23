@@ -20,22 +20,22 @@ import static org.junit.Assert.*;
  * @author Marcos
  */
 public class AvaliarCandidaturaControllerTest {
-    
+
     public AvaliarCandidaturaControllerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -46,8 +46,11 @@ public class AvaliarCandidaturaControllerTest {
     @Test
     public void testAvaliarCandidatura() {
         System.out.println("avaliarCandidatura");
-        String decisao = "decisao";
-        String justificacao = "justificacao";
+        String texto = "blablabla";
+        int[] array = new int[5];
+        for(int i = 0; i < 5; i++){
+            array[i] = 2;
+        }
         String nomeEmpresa = "nome";
         String moradaEmpresa = "morada";
         int telemovel = 914796854;
@@ -57,12 +60,11 @@ public class AvaliarCandidaturaControllerTest {
         Candidatura c = new Candidatura(nomeEmpresa, moradaEmpresa, telemovel, areaPretendida, quantidadeConvites, new ArrayList<>());
         AvaliarCandidaturaController instance = new AvaliarCandidaturaController(c);
 
-        instance.avaliarCandidatura(decisao, justificacao);
-        Avaliacao expResult = new Avaliacao();
-        expResult.setDecisao(decisao);
-        expResult.setJustificacao(justificacao);
+        instance.avaliarCandidatura(texto, array[0], array[1], array[2], array[3], array[4]);
+        Avaliacao expResult = new Avaliacao(texto, array[0], array[1], array[2], array[3], array[4]);
         Avaliacao result = c.getLstAvaliacoes().get(0);
         assertEquals(expResult, result);
+
     }
-    
+
 }

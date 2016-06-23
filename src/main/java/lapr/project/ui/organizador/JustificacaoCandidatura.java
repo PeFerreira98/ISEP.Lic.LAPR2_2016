@@ -22,7 +22,7 @@ public class JustificacaoCandidatura extends javax.swing.JFrame {
         this.avaliacao = a;
         initComponents();
         
-        jTextArea1.setText(a.getJustificacao());
+        jTextArea1.setText(a.getTexto());
     }
 
     /**
