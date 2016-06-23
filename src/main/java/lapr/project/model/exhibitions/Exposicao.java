@@ -161,7 +161,7 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
-        return this.listaCandidaturas.addCandidatura(candidatura);
+        return this.listaCandidaturas.registaCandidatura(candidatura);
     }
 
     public Data getDataInicioSubmissao() {

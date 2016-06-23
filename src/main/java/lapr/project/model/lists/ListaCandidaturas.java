@@ -44,7 +44,7 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
         }
     }
 
-    public boolean addCandidatura(Candidatura candidatura) {
+    private boolean addCandidatura(Candidatura candidatura) {
 
         //procura na lista se ja existe esta cand
         for (Candidatura c : this.listCandidaturas) {

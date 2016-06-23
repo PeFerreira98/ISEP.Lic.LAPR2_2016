@@ -112,7 +112,7 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
     }
 
     public boolean addCandidatura(Candidatura candidatura) {
-        return this.listaCandidaturas.addCandidatura(candidatura);
+        return this.listaCandidaturas.registaCandidatura(candidatura);
     }
 
     public ListaCandidaturas getListaCandidaturas() {

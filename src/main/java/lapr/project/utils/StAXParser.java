@@ -488,7 +488,7 @@ public class StAXParser {
                                 cand.setRejeitada();
                             }
 
-                            listaCandidaturas.addCandidatura(cand);
+                            listaCandidaturas.registaCandidatura(cand);
                             b_cand = false;
                             
 //                            System.out.println(cand.getInfo());

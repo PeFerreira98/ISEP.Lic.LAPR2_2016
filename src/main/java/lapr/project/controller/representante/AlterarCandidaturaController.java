@@ -95,7 +95,7 @@ public class AlterarCandidaturaController implements Serializable {
     }
 
     public boolean registarCandidaturas() {
-        return listaCandidaturas.addCandidatura(candidatura);
+        return listaCandidaturas.registaCandidatura(candidatura);
     }
 
     public void setDados(String nomeEmpresa, String moradaEmpresa, double areaPretendida, int telemovel, int qtdConvites) {
