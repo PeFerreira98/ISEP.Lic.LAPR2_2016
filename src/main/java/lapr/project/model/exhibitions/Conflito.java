@@ -24,18 +24,31 @@ public class Conflito implements Serializable {
         this.candidatura = candidatura;
         this.tipoConflito = tipoConflito;
     }
-    
+
     public Conflito(FAE fae, Candidatura candidatura) {
         this.fae = fae;
         this.candidatura = candidatura;
         this.tipoConflito = new TipoConflito("SemDescricao");
     }
-    
-    public boolean isFrom(Candidatura candidatura){
+
+    public boolean isFrom(Candidatura candidatura) {
         return this.candidatura.equals(candidatura);
     }
 
-    public String toStringList(){
+    public String toStringList() {
         return this.fae.getUtilizador().getUsername() + " - " + this.candidatura.getNomeEmpresa() + " - " + this.tipoConflito.getDescricao();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Conflito) {
+            Conflito c = (Conflito) obj;
+            return this.fae.equals(c.fae) && this.candidatura.equals(c.candidatura) && this.tipoConflito.equals(c.tipoConflito);
+        }
+        return false;
+    }
+
 }

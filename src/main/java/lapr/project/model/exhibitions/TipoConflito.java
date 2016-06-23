@@ -12,7 +12,7 @@ import lapr.project.model.mecanismos.MecanismoDetecaoConflito;
  *
  * @author Sara Silva
  */
-public class TipoConflito implements Serializable{
+public class TipoConflito implements Serializable {
 
     private String descricao;
     private MecanismoDetecaoConflito mecanismoDetecaoConflito;
@@ -42,4 +42,15 @@ public class TipoConflito implements Serializable{
         return this.mecanismoDetecaoConflito;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof TipoConflito) {
+            TipoConflito tc = (TipoConflito) obj;
+            return this.descricao.equals(tc.descricao);
+        }
+        return false;
+    }
 }
