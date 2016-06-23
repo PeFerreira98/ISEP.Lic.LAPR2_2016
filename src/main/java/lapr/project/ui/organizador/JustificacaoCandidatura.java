@@ -21,7 +21,7 @@ public class JustificacaoCandidatura extends javax.swing.JFrame {
     public JustificacaoCandidatura(Avaliacao a) {
         this.avaliacao = a;
         initComponents();
-        
+        setVisible(true);
         jTextArea1.setText(a.getTexto());
     }
 
@@ -42,7 +42,7 @@ public class JustificacaoCandidatura extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Avaliar candidatura");
 
-        jLabel1.setText("Justificaçao");
+        jLabel1.setText("Texto");
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
