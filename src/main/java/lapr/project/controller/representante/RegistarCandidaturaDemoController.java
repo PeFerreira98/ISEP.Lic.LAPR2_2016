@@ -25,7 +25,6 @@ public class RegistarCandidaturaDemoController {
     private Candidatura candidatura;
     private Demonstracao demo;
     private ListaProdutos listaProdutos;
-    private Demonstracao demonstracao;
 
     public RegistarCandidaturaDemoController(CentroExposicoes ce) {
         this.centroExp = ce;
@@ -44,7 +43,7 @@ public class RegistarCandidaturaDemoController {
     }
 
     public void setDemonstracao(Demonstracao demonstracao) {
-        this.demonstracao = demonstracao;
+        this.demo = demonstracao;
     }
 
     public void novaCandidatura() {
