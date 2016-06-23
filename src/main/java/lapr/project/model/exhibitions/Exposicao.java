@@ -8,11 +8,9 @@ package lapr.project.model.exhibitions;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.Timer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import lapr.project.model.Demonstracao;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.lists.ListaAtribuicoes;
@@ -26,7 +24,6 @@ import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -35,7 +32,7 @@ import org.w3c.dom.Node;
  *
  * @author TiagoSilvestre
  */
-public class Exposicao implements Exportable, Importable<Exposicao>, Serializable {
+public class Exposicao implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "exposicao";
     private static final String TITLE_ELEMENT_NAME = "titulo";
@@ -459,11 +456,6 @@ public class Exposicao implements Exportable, Importable<Exposicao>, Serializabl
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public Exposicao importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

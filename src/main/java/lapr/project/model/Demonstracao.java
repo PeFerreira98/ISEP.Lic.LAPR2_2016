@@ -20,7 +20,6 @@ import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.users.FAE;
 import lapr.project.utils.Data;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -29,7 +28,7 @@ import org.w3c.dom.Node;
  *
  * @author zero_
  */
-public class Demonstracao implements Exportable, Importable<Demonstracao>, Serializable {
+public class Demonstracao implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "demonstracao";
     private static final String DES_ELEMENT_NAME = "designacao";
@@ -213,11 +212,6 @@ public class Demonstracao implements Exportable, Importable<Demonstracao>, Seria
             throw new RuntimeException(e);
         }
         return rootNode;
-    }
-
-    @Override
-    public Demonstracao importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
