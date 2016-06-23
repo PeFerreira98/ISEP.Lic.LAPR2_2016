@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import lapr.project.model.exhibitions.CentroExposicoes;
 import lapr.project.model.lists.RegistoUtilizadores;
+import lapr.project.model.users.FAE;
 import lapr.project.model.users.Utilizador;
 
 /**
@@ -87,11 +88,11 @@ public class FileOp {
         return registoUtilizadores;
     }
 
-    public void writeXMLFile(CentroExposicoes centroExposicoes) {
+    public void writeXMLFile(CentroExposicoes centroExposicoes, String path) {
         final String centroExposicoesString = centroExposicoes.exportContentToString();
 
         try {
-            File file = new File("CentroExposicoesXML.xml");
+            File file = new File(path);
 
             FileWriter fw = new FileWriter(file.getAbsoluteFile(), false);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -101,5 +102,37 @@ public class FileOp {
         } catch (IOException e) {
             System.out.println("IOException >> No file found/created");
         }
+    }
+    
+    public void writeCSVFile(CentroExposicoes centroExposicoes, String path) {
+
+        try {
+            File file = new File(path);
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile(), false);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (FAE fae : centroExposicoes.getListaExposicoes().getAllFAE()) {
+                writeFaeLine(fae, bw);
+            }
+            
+            bw.close();
+
+            fw.close();
+        } catch (IOException ex) {
+            System.out.println("IOException >> No file found/created");
+        }
+    }
+    
+    private void writeFaeLine(FAE fae, BufferedWriter bw) throws IOException{
+        final String faeNick = fae.getUtilizador().getUsername();
+        final String nrSub = "default";
+        final String mediaClassFae = "default";
+        final String mediaDesv = "default";
+        final String valorObsEstTeste = "default";
+        final String decisaoAlerta = "default";
+        
+        bw.write(faeNick + "," + nrSub + "," + mediaClassFae + "," + mediaDesv + "," + valorObsEstTeste + "," + decisaoAlerta);
+        bw.newLine();
     }
 }

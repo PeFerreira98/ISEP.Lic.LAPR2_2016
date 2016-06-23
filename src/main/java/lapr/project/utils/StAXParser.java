@@ -7,18 +7,10 @@ package lapr.project.utils;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.text.DateFormat;
-import java.text.FieldPosition;
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -125,7 +117,6 @@ public class StAXParser {
     private int i_adequacaoConvites;
     private int i_recomendacao;
 
-    
     
     public StAXParser(CentroExposicoes e, String filePath) {
         this.centroExposicoes = e;
@@ -595,8 +586,6 @@ public class StAXParser {
     }
 
     private Data parseStringtoData(String s) {
-
-        System.out.println(s);
 
         try {
             Calendar cl = Calendar.getInstance();

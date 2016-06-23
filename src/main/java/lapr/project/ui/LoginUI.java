@@ -97,6 +97,7 @@ public class LoginUI extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemExportXML = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -162,6 +163,14 @@ public class LoginUI extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItemExportXML);
+
+        jMenuItem3.setText("Export CSV File");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
 
@@ -262,7 +271,7 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void jMenuItemExportXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExportXMLActionPerformed
         // TODO filechooser
-        new FileOp().writeXMLFile(centroExposicoes);
+        new FileOp().writeXMLFile(centroExposicoes, "CExpoXMLTestFile.xml");
         JOptionPane.showMessageDialog(LoginUI.this,
                 "Export XML Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItemExportXMLActionPerformed
@@ -289,6 +298,13 @@ public class LoginUI extends javax.swing.JFrame {
                 "Import XML Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO filechooser
+        new FileOp().writeCSVFile(centroExposicoes, "CSVTestFile.csv");
+        JOptionPane.showMessageDialog(LoginUI.this,
+                "Export CSV Done!", "Login", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogFAE;
     private javax.swing.JButton jButtonLogGest;
@@ -303,6 +319,7 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemExportXML;
     private javax.swing.JButton jSignUp;
     private javax.swing.JTextField jTextField1;
