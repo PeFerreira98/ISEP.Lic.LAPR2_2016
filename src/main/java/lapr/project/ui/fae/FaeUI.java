@@ -35,55 +35,57 @@ public class FaeUI extends javax.swing.JFrame {
     private FAE fae;
     private Utilizador utilizador;
     private CentroExposicoes centroExpo;
-    
+    private List<Atribuicao> listaAtribuicao;
+
     public FaeUI(Utilizador utilizador, CentroExposicoes centroExposicoes) {
         this.centroExpo = centroExposicoes;
         this.utilizador = utilizador;
+        this.listaAtribuicao = new ArrayList<>();
         this.fae = new FAE(utilizador);
-        
+
         super.setTitle("FAE Menu (" + utilizador.getUsername() + ")");
-        
+
         initComponents();
         inicializarLista();
-        
+
         super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
-    
+
     private void inicializarLista() {
         final List<Candidatura> listaCandidaturas = getCandidaturasByFAE(this.utilizador);
-        
+
         if (listaCandidaturas.isEmpty()) {
             this.jLstCandidaturas.setModel(new DefaultListModel<>());
             JOptionPane.showMessageDialog(this, "Não existem candidaturas");
         }
-        
+
         DefaultListModel listModel = new DefaultListModel() {
             @Override
             public int getSize() {
                 return listaCandidaturas.size();
             }
-            
+
             @Override
             public Object getElementAt(int i) {
                 return listaCandidaturas.get(i);
             }
         };
-        
+
         this.jLstCandidaturas.setModel(listModel);
         this.jLstCandidaturas.setCellRenderer(new CellRenderer());
     }
-    
+
     private class CellRenderer extends JLabel implements ListCellRenderer<Candidatura> {
-        
+
         public CellRenderer() {
             setOpaque(true);
         }
-        
+
         @Override
         public Component getListCellRendererComponent(JList<? extends Candidatura> list, Candidatura candidatura, int index, boolean isSelected, boolean cellHasFocus) {
             setText(candidatura.getNomeEmpresa());
-            
+
             if (isSelected) {
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());
@@ -91,7 +93,7 @@ public class FaeUI extends javax.swing.JFrame {
                 setBackground(list.getBackground());
                 setForeground(list.getForeground());
             }
-            
+
             return this;
         }
     }
@@ -200,24 +202,32 @@ public class FaeUI extends javax.swing.JFrame {
 
     public List<Candidatura> getCandidaturasByFAE(Utilizador user) {
         List<Candidatura> lstCandidaturas = new ArrayList<>();
-        
+
         for (Exposicao expo : this.centroExpo.getListaExposicoes().getListaExposicoes()) {
             for (Atribuicao a : expo.getListaAtribuicoes().getListaAtribuicoes()) {
                 if (a.getFae().getUtilizador().getUsername().equalsIgnoreCase(user.getUsername())) {
                     lstCandidaturas.add(a.getCandidatura());
+                    this.listaAtribuicao.add(a);
                 }
             }
         }
         return lstCandidaturas;
     }
-    
+
     private void btnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarActionPerformed
         Candidatura c = jLstCandidaturas.getSelectedValue();
+        Atribuicao atr = new Atribuicao(fae);
         if (c == null) {
             JOptionPane.showMessageDialog(FaeUI.this,
                     "Nenhuma candidatura seleccionada", "Candidaturas", JOptionPane.ERROR_MESSAGE);
         } else {
-            new AvaliarCandidaturaUI(c);
+
+            for (Atribuicao a : this.listaAtribuicao) {
+                if (a.getCandidatura().equals(c)) {
+                    atr = a;
+                }
+            }
+            new AvaliarCandidaturaUI(c, atr);
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 

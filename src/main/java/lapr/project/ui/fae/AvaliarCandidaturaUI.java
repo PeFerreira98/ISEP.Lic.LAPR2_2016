@@ -7,6 +7,7 @@ package lapr.project.ui.fae;
 
 import javax.swing.JOptionPane;
 import lapr.project.controller.fae.AvaliarCandidaturaController;
+import lapr.project.model.submissions.Atribuicao;
 import lapr.project.model.submissions.Candidatura;
 
 /**
@@ -18,12 +19,10 @@ public class AvaliarCandidaturaUI extends javax.swing.JFrame {
     /**
      * Creates new form AvaliarCandidaturaUI
      */
-    private final Candidatura candidatura;
     private final AvaliarCandidaturaController controller;
 
-    public AvaliarCandidaturaUI(Candidatura c) {
-        this.candidatura = c;
-        this.controller = new AvaliarCandidaturaController(c);
+    public AvaliarCandidaturaUI(Candidatura c, Atribuicao atribuicao) {
+        this.controller = new AvaliarCandidaturaController(c, atribuicao);
 
         initComponents();
         super.setLocationRelativeTo(null);

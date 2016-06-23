@@ -128,33 +128,4 @@ public class ListaAtribuicoesTest {
 
     }
 
-    /**
-     * Test of exportContentToXMLNode method, of class ListaAtribuicoes.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        ListaAtribuicoes instance = new ListaAtribuicoes();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of importContentFromXMLNode method, of class ListaAtribuicoes.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        ListaAtribuicoes instance = new ListaAtribuicoes();
-        ListaAtribuicoes expResult = null;
-        ListaAtribuicoes result = instance.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
 }
