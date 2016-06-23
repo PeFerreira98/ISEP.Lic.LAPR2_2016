@@ -14,19 +14,18 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.exhibitions.Exposicao;
 import lapr.project.model.submissions.Atribuicao;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Marcos
  */
-public class ListaExposicoes implements Exportable, Importable<ListaExposicoes>, Serializable {
+public class ListaExposicoes implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaExposicoes";
     private static final String EXPO_ELEMENT_NAME = "exposicoes";
@@ -124,9 +123,15 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes>,
         return listFAEFinal.getListaFAE();
     }
     
-    public int nrSubFAE(FAE fae){
-        return 0;
-    }
+//    public List<Avaliacao> getAllSubFAE(FAE fae){
+//        List<Avaliacao> listSubFAEFinal = new ArrayList<>();
+//
+//        for (Exposicao expo : listExposicoes) {
+//            expo.getAllFAE(listFAEFinal);
+//        }
+//
+//        return listSubFAEFinal;
+//    }
 
     @Override
     public String toString() {
@@ -161,38 +166,6 @@ public class ListaExposicoes implements Exportable, Importable<ListaExposicoes>,
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public ListaExposicoes importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-            //Create document builder //Obtain a new document
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-            document.appendChild(document.importNode(node, true));
-
-            //Init
-            NodeList elements1ListaExpo = document.getElementsByTagName(ROOT_ELEMENT_NAME);
-            Node element2ListaExpo = elements1ListaExpo.item(0);
-
-            //Add Lista
-            NodeList elements3Expos = document.getElementsByTagName(EXPO_ELEMENT_NAME);
-            NodeList expos4 = elements3Expos.item(0).getChildNodes();
-            for (int position = 0; position < expos4.getLength(); position++) {
-                Node expo5 = expos4.item(position);
-                Exposicao expo6sicao = new Exposicao();
-                expo6sicao = expo6sicao.importContentFromXMLNode(expo5);
-                addExposicao(expo6sicao);
-            }
-
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return this;
     }
 
 }

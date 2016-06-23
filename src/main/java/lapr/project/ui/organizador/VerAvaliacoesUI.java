@@ -25,6 +25,7 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
      * Creates new form OrganizadorUI
      */
     private Candidatura cand;
+    private int media = 0;
 
     public VerAvaliacoesUI(Candidatura c) {
         this.cand = c;
@@ -33,8 +34,19 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
 
         initComponents();
         inicializarLista();
+        txtMedia.setText(String.valueOf(calcularMedia(this.cand.getLstAvaliacoes())));
+        
         super.setLocationRelativeTo(null);
         super.setVisible(true);
+    }
+    
+    public int calcularMedia(List<Avaliacao> lst){
+        int media = 0;
+        if(lst.size()==0) return 0;
+        for(int i = 0; i < lst.size(); i++){
+            media = media + lst.get(i).getRecomendacao();
+        }
+        return media/lst.size();
     }
 
     private void inicializarLista() {
@@ -96,6 +108,8 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         jLstDecisoes = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
+        txtMedia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,6 +125,10 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
         jLstDecisoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane.setViewportView(jLstDecisoes);
 
+        jLabel1.setText("Média:");
+
+        txtMedia.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,8 +138,13 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,10 +152,14 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInfo)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,8 +177,10 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnInfo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<Avaliacao> jLstDecisoes;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTextField txtMedia;
     // End of variables declaration//GEN-END:variables
 }

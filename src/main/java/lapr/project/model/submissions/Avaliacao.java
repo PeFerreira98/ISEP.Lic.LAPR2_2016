@@ -46,6 +46,10 @@ public class Avaliacao implements Serializable{
         this.texto = texto;
     }
     
+    public Atribuicao getAtribuicao(){
+        return this.atribuicao;
+    }
+    
     public int getRecomendacao(){
         return this.array[4];
     }

@@ -14,9 +14,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.submissions.Retiravel;
-import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,7 +23,7 @@ import org.w3c.dom.Node;
  *
  * @author zero_
  */
-public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstracoes>, Serializable {
+public class ListaDemonstracoes implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaDemonstracoes";
     private static final String DEMO_LST_ELEMENT_NAME = "demonstracoes";
@@ -144,10 +142,4 @@ public class ListaDemonstracoes implements Exportable, Importable<ListaDemonstra
         }
         return node;
     }
-
-    @Override
-    public ListaDemonstracoes importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
