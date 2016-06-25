@@ -26,8 +26,8 @@ public class DefinirStandCentroController implements Serializable {
         return listaStands.add(stand);
     }
 
-    public void addStand(String stand) {
-        listaStands.add(new Stand(stand));
+    public boolean addStand(String stand) {
+        return listaStands.add(new Stand(stand));
 
     }
 
