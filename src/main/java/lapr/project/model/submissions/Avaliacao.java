@@ -12,18 +12,18 @@ import java.util.Arrays;
  *
  * @author Sara Silva
  */
-public class Avaliacao implements Serializable{
+public class Avaliacao implements Serializable {
 
     private int[] array = new int[5]; //conhecimento, adequacaoExpo, adequDemo, adequConv, reco
-    
+
     private String texto;
     private Atribuicao atribuicao;
-    
+
     public Avaliacao() {
         //To use with sets
     }
-    
-    public Avaliacao(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoCon, int recomendacao, Atribuicao atribuicao){
+
+    public Avaliacao(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoCon, int recomendacao, Atribuicao atribuicao) {
         this.texto = texto;
         this.array[0] = conhecimentoFAE;
         this.array[1] = adequacaoExpo;
@@ -32,28 +32,38 @@ public class Avaliacao implements Serializable{
         this.array[4] = recomendacao;
         this.atribuicao = atribuicao;
     }
-    
-    public void setTexto(String texto){
+
+    public Avaliacao(String texto, int conhecimentoFAE, int adequacaoExpo, int adequacaoDemo, int adequacaoCon, int recomendacao) {
+        this.texto = texto;
+        this.array[0] = conhecimentoFAE;
+        this.array[1] = adequacaoExpo;
+        this.array[2] = adequacaoDemo;
+        this.array[3] = adequacaoCon;
+        this.array[4] = recomendacao;
+    }
+
+    public void setTexto(String texto) {
         this.texto = texto;
     }
-    
-    public Atribuicao getAtribuicao(){
+
+    public Atribuicao getAtribuicao() {
         return this.atribuicao;
     }
-    
-    public int getRecomendacao(){
+
+    public int getRecomendacao() {
         return this.array[4];
     }
-    
-    public String getTexto(){
+
+    public String getTexto() {
         return this.texto;
     }
+
     public boolean valida() {
         if (texto == null || texto.trim().isEmpty()) {
             return false;
         }
-        for(int i = 0; i < array.length; i++){
-            if(this.array[i]>6 || this.array[i]<0){
+        for (int i = 0; i < array.length; i++) {
+            if (this.array[i] > 6 || this.array[i] < 0) {
                 return false;
             }
         }
@@ -84,7 +94,5 @@ public class Avaliacao implements Serializable{
         }
         return true;
     }
-    
-    
 
 }
