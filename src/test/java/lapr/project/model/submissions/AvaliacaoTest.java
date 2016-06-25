@@ -58,7 +58,7 @@ public class AvaliacaoTest {
     @Test
     public void testGetRecomendacao() {
         System.out.println("getRecomendacao");
-        Avaliacao instance = new Avaliacao("texto", 2, 2, 4, 1, 3);
+        Avaliacao instance = new Avaliacao("texto", 2, 2, 4, 1, 3, new Atribuicao(new FAE()));
         int expResult = 3;
         int result = instance.getRecomendacao();
         assertEquals(expResult, result);
@@ -84,8 +84,8 @@ public class AvaliacaoTest {
     @Test
     public void testHashCode() {
         System.out.println("hashCode");
-        Avaliacao instance = new Avaliacao("texto", 2, 2, 4, 1, 3);
-        Avaliacao av = new Avaliacao("texto", 2, 2, 4, 1, 3);
+        Avaliacao instance = new Avaliacao("texto", 2, 2, 4, 1, 3, new Atribuicao(new FAE()));
+        Avaliacao av = new Avaliacao("texto", 2, 2, 4, 1, 3, new Atribuicao(new FAE()));
         int expResult = av.hashCode();
         int result = instance.hashCode();
         assertEquals(expResult, result);
@@ -99,11 +99,11 @@ public class AvaliacaoTest {
     public void testEquals() {
         System.out.println("equals");
         Object obj = new Object();
-        Avaliacao instance = new Avaliacao("texto", 2, 2, 4, 1, 3);
+        Avaliacao instance = new Avaliacao("texto", 2, 2, 4, 1, 3, new Atribuicao(new FAE()));
         boolean expResult = false;
         boolean result = instance.equals(obj);
         assertEquals(expResult, result);
-        Avaliacao av = new Avaliacao("texto", 2, 2, 4, 1, 3);
+        Avaliacao av = new Avaliacao("texto", 2, 2, 4, 1, 3, new Atribuicao(new FAE()));
         expResult = true;
         result = instance.equals(av);
         assertEquals(expResult, result);

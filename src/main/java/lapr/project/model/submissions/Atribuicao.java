@@ -7,15 +7,24 @@ package lapr.project.model.submissions;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.FAE;
+import lapr.project.utils.Exportable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author Sara Silva
  */
-public class Atribuicao implements Serializable {
+public class Atribuicao implements Exportable, Serializable {
 
+    private static final String ROOT_ELEMENT_NAME = "atribuicao";
+    
     private FAE fae;
     private Candidatura candidatura;
 
@@ -69,6 +78,32 @@ public class Atribuicao implements Serializable {
     @Override
     public String toString() {
         return "\n Atribuicao{" + "fae=" + fae + ", candidatura=" + candidatura + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+       Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementAtribuicao = document.createElement(ROOT_ELEMENT_NAME);
+
+            //Create a sub-element
+            Node faeNode = this.fae.exportContentToXMLNode();
+            elementAtribuicao.appendChild(document.importNode(faeNode, true));
+
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementAtribuicao);
+            node = elementAtribuicao;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
     }
 
 }

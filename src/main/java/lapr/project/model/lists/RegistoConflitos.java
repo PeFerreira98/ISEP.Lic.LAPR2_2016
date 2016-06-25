@@ -16,7 +16,6 @@ import lapr.project.model.exhibitions.Conflito;
 import lapr.project.model.exhibitions.TipoConflito;
 import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -25,7 +24,7 @@ import org.w3c.dom.Node;
  *
  * @author Sara Silva
  */
-public class RegistoConflitos implements Exportable, Importable<RegistoConflitos>, Serializable {
+public class RegistoConflitos implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "registoConflitos";
     private static final String CONF_ELEMENT_NAME = "conflitos";
@@ -74,30 +73,25 @@ public class RegistoConflitos implements Exportable, Importable<RegistoConflitos
             //Create document builder //Obtain a new document //Create root element
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
-            Element elementListaCandidaturas = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementListaConflitos = document.createElement(ROOT_ELEMENT_NAME);
 
-            //TODO: Create a sub-element //iterate over keywords
-//            Element elementCandidaturas = document.createElement(CAND_ELEMENT_NAME);
-//            elementListaCandidaturas.appendChild(elementCandidaturas);
-//            for (Candidatura candidatura : getListaCandidaturas()) {
-//                Node candiNode = candidatura.exportContentToXMLNode();
-//                elementCandidaturas.appendChild(document.importNode(candiNode, true));
-//            }
+            //Create a sub-element //iterate over keywords
+            Element elementConflitos = document.createElement(CONF_ELEMENT_NAME);
+            elementListaConflitos.appendChild(elementConflitos);
+            for (Conflito conflito : this.listaConflitos) {
+                Node confNode = conflito.exportContentToXMLNode();
+                elementConflitos.appendChild(document.importNode(confNode, true));
+            }
 
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
-            document.appendChild(elementListaCandidaturas);
-            node = elementListaCandidaturas;
+            document.appendChild(elementListaConflitos);
+            node = elementListaConflitos;
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public RegistoConflitos importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

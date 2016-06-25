@@ -17,7 +17,6 @@ import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -27,7 +26,7 @@ import org.w3c.dom.NodeList;
  *
  * @author Sara Silva
  */
-public class ListaCandidaturas implements Exportable, Importable<ListaCandidaturas>, Serializable {
+public class ListaCandidaturas implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaCandidaturas";
     private static final String CAND_ELEMENT_NAME = "candidaturas";
@@ -127,12 +126,12 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
             Element elementListaCandidaturas = document.createElement(ROOT_ELEMENT_NAME);
 
             //TODO: Create a sub-element //iterate over keywords
-//            Element elementCandidaturas = document.createElement(CAND_ELEMENT_NAME);
-//            elementListaCandidaturas.appendChild(elementCandidaturas);
-//            for (Candidatura candidatura : getListaCandidaturas()) {
-//                Node candiNode = candidatura.exportContentToXMLNode();
-//                elementCandidaturas.appendChild(document.importNode(candiNode, true));
-//            }
+            Element elementCandidaturas = document.createElement(CAND_ELEMENT_NAME);
+            elementListaCandidaturas.appendChild(elementCandidaturas);
+            for (Candidatura candidatura : getListaCandidaturas()) {
+                Node candiNode = candidatura.exportContentToXMLNode();
+                elementCandidaturas.appendChild(document.importNode(candiNode, true));
+            }
 
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementListaCandidaturas);
@@ -143,37 +142,6 @@ public class ListaCandidaturas implements Exportable, Importable<ListaCandidatur
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public ListaCandidaturas importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-            //Create document builder //Obtain a new document
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-            document.appendChild(document.importNode(node, true));
-
-            //Init
-            NodeList elements1ListaCandidaturas = document.getElementsByTagName(ROOT_ELEMENT_NAME);
-            Node element2Candidaturas = elements1ListaCandidaturas.item(0);
-
-            //TODO: Add Lista
-//            NodeList elements3Candidaturas = document.getElementsByTagName(CAND_ELEMENT_NAME);
-//            NodeList cand4idaturas = elements3Candidaturas.item(0).getChildNodes();
-//            for (int position = 0; position < cand4idaturas.getLength(); position++) {
-//                Node cand5didaturaNode = cand4idaturas.item(position);
-//                Candidatura cand6idatura = new Candidatura();
-//                cand6idatura = cand6idatura.importContentFromXMLNode(cand5didaturaNode);
-//                addCandidatura(cand6idatura);
-//            }
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return this;
     }
 
 }

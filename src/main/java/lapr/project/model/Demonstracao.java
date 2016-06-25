@@ -33,9 +33,12 @@ public class Demonstracao implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "demonstracao";
     private static final String DES_ELEMENT_NAME = "designacao";
+    private static final String COD_ELEMENT_NAME = "codigo";
+    private static final String EFETIVA_ELEMENT_NAME = "efetiva";
 
     private String designacao;
     private String cod;
+    //Será que a lista de recursos pertence aqui? (Tem uma no centro de exposicoes)
     private ListaRecursos listaRecursos;
     private ListaCandidaturas listaCandidaturas;
     private RegistoConflitos registoConflitos;
@@ -44,8 +47,8 @@ public class Demonstracao implements Exportable, Serializable {
     private Data data;
 
     public Demonstracao() {
-        this.cod = "NULL";
-        this.designacao = "NULL";
+        this.cod = "default";
+        this.designacao = "default";
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
         this.registoConflitos = new RegistoConflitos();
@@ -54,7 +57,7 @@ public class Demonstracao implements Exportable, Serializable {
     }
 
     public Demonstracao(String desc) {
-        this.cod = "NULL";
+        this.cod = "default";
         this.designacao = desc;
         this.listaRecursos = new ListaRecursos();
         this.listaCandidaturas = new ListaCandidaturas();
@@ -207,7 +210,33 @@ public class Demonstracao implements Exportable, Serializable {
             Element elementDescricao = document.createElement(DES_ELEMENT_NAME);
             elementDescricao.setTextContent(getDesignacao());
             elementDemo.appendChild(elementDescricao);
-
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementCodigo = document.createElement(COD_ELEMENT_NAME);
+            elementCodigo.setTextContent(getCod());
+            elementDemo.appendChild(elementCodigo);
+            
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementEfetiva = document.createElement(EFETIVA_ELEMENT_NAME);
+            elementEfetiva.setTextContent(String.valueOf(this.demonstracaoEfetiva));
+            elementDemo.appendChild(elementEfetiva);
+            
+            //Create a sub-element
+            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
+            elementDemo.appendChild(document.importNode(listaRecursosNode, true));
+            
+            //Create a sub-element
+            Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
+            elementDemo.appendChild(document.importNode(listaCandidaturasNode, true));
+            
+            //Create a sub-element
+            Node listaConflitosNode = this.registoConflitos.exportContentToXMLNode();
+            elementDemo.appendChild(document.importNode(listaConflitosNode, true));
+            
+            //Create a sub-element
+            Node listaFaeNode = this.listaFAE.exportContentToXMLNode();
+            elementDemo.appendChild(document.importNode(listaFaeNode, true));
+            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementDemo);
             rootNode = elementDemo;

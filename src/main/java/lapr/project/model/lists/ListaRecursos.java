@@ -13,17 +13,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Recurso;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Sara Silva
  */
-public class ListaRecursos implements Exportable, Importable<ListaRecursos>, Serializable{
+public class ListaRecursos implements Exportable, Serializable{
     
     private static final String ROOT_ELEMENT_NAME = "listaRecursos";
     private static final String RECUR_ELEMENT_NAME = "recursos";
@@ -64,12 +62,12 @@ public class ListaRecursos implements Exportable, Importable<ListaRecursos>, Ser
             Element elementListaRecursos = document.createElement(ROOT_ELEMENT_NAME);
 
             //TODO: Create a sub-element //iterate over keywords
-//            Element elementRecurso = document.createElement(RECUR_ELEMENT_NAME);
-//            elementListaRecursos.appendChild(elementRecurso);
-//            for (Recurso recurso : getListaRecursos()) {
-//                Node recursoNode = recurso.exportContentToXMLNode();
-//                elementRecurso.appendChild(document.importNode(recursoNode, true));
-//            }
+            Element elementRecurso = document.createElement(RECUR_ELEMENT_NAME);
+            elementListaRecursos.appendChild(elementRecurso);
+            for (Recurso recurso : getListaRecursos()) {
+                Node recursoNode = recurso.exportContentToXMLNode();
+                elementRecurso.appendChild(document.importNode(recursoNode, true));
+            }
 
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementListaRecursos);
@@ -80,38 +78,6 @@ public class ListaRecursos implements Exportable, Importable<ListaRecursos>, Ser
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public ListaRecursos importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-            //Create document builder //Obtain a new document
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.newDocument();
-            document.appendChild(document.importNode(node, true));
-
-            //Init
-            NodeList elements1ListaRecursos = document.getElementsByTagName(ROOT_ELEMENT_NAME);
-            Node element2Recursos = elements1ListaRecursos.item(0);
-
-            //TODO: Add Lista
-//            NodeList elements3Recursos = document.getElementsByTagName(RECUR_ELEMENT_NAME);
-//            NodeList rec4ursos = elements3Recursos.item(0).getChildNodes();
-//            for (int position = 0; position < rec4ursos.getLength(); position++) {
-//                Node rec5urso = rec4ursos.item(position);
-//                Recurso rec6urso = new Recurso();
-//                rec6urso = rec6urso.importContentFromXMLNode(rec5urso);
-//                addRecurso(rec6urso);
-//            }
-            
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return this;
     }
 
 }

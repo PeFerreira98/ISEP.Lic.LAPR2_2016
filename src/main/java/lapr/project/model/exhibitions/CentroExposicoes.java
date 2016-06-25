@@ -124,22 +124,14 @@ public class CentroExposicoes implements Exportable, Serializable {
             Node listaExposicoesNode = this.listaExposicoes.exportContentToXMLNode();
             elementCentroExposicoes.appendChild(document.importNode(listaExposicoesNode, true));
 
-            //TODO: Create a sub-element
-//            Node listaCandidaturasNode = this.listaCandidaturas.exportContentToXMLNode();
-//            elementCentroExposicoes.appendChild(document.importNode(listaCandidaturasNode, true));
-            //TODO: Create a sub-element
-//            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
-//            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
-            //TODO: Create a sub-element
-//            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
-//            elementCentroExposicoes.appendChild(document.importNode(listaTipoConflitoNode, true));
-            //TODO: Create a sub-element //iterate over keywords
-//            Element elementMecanismos = document.createElement(MECANISMOS_ELEMENT_NAME);
-//            elementCentroExposicoes.appendChild(elementMecanismos);
-//            for (MecanismoAtribuicao meca : getListaMecanismos()) {
-//                Node mecanismoNode = meca.exportContentToXMLNode();
-//                elementMecanismos.appendChild(document.importNode(mecanismoNode, true));
-//            }
+            //Create a sub-element
+            Node listaRecursosNode = this.listaRecursos.exportContentToXMLNode();
+            elementCentroExposicoes.appendChild(document.importNode(listaRecursosNode, true));
+
+            //Create a sub-element
+            Node listaTipoConflitoNode = this.listaTipoConflito.exportContentToXMLNode();
+            elementCentroExposicoes.appendChild(document.importNode(listaTipoConflitoNode, true));
+            
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
             document.appendChild(elementCentroExposicoes);
             rootNode = elementCentroExposicoes;

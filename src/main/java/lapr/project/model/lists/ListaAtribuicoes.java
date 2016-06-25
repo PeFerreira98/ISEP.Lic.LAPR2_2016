@@ -23,7 +23,7 @@ import org.w3c.dom.Node;
  *
  * @author Sara Silva
  */
-public class ListaAtribuicoes implements Exportable, Importable<ListaAtribuicoes>, Serializable{
+public class ListaAtribuicoes implements Exportable, Serializable{
 
     private static final String ROOT_ELEMENT_NAME = "listaAtribuicoes";
     private static final String ATRIB_ELEMENT_NAME = "atribuicoes";
@@ -92,30 +92,25 @@ public class ListaAtribuicoes implements Exportable, Importable<ListaAtribuicoes
             //Create document builder //Obtain a new document //Create root element
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.newDocument();
-            Element elementListaCandidaturas = document.createElement(ROOT_ELEMENT_NAME);
+            Element elementListaAtribuicoes = document.createElement(ROOT_ELEMENT_NAME);
 
             //TODO: Create a sub-element //iterate over keywords
-//            Element elementCandidaturas = document.createElement(CAND_ELEMENT_NAME);
-//            elementListaCandidaturas.appendChild(elementCandidaturas);
-//            for (Candidatura candidatura : getListaCandidaturas()) {
-//                Node candiNode = candidatura.exportContentToXMLNode();
-//                elementCandidaturas.appendChild(document.importNode(candiNode, true));
-//            }
+            Element elementAtribuicoes = document.createElement(ATRIB_ELEMENT_NAME);
+            elementListaAtribuicoes.appendChild(elementAtribuicoes);
+            for (Atribuicao candidatura : getListaAtribuicoes()) {
+                Node candiNode = candidatura.exportContentToXMLNode();
+                elementAtribuicoes.appendChild(document.importNode(candiNode, true));
+            }
 
             //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
-            document.appendChild(elementListaCandidaturas);
-            node = elementListaCandidaturas;
+            document.appendChild(elementListaAtribuicoes);
+            node = elementListaAtribuicoes;
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public ListaAtribuicoes importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
