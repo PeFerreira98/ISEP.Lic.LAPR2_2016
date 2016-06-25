@@ -39,35 +39,6 @@ public class KeywordTest {
     }
 
     /**
-     * Test of exportContentToXMLNode method, of class Keyword.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        Keyword instance = null;
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of importContentFromXMLNode method, of class Keyword.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        Keyword instance = null;
-        Keyword expResult = null;
-        Keyword result = instance.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of equals method, of class Keyword.
      */
     @Test
