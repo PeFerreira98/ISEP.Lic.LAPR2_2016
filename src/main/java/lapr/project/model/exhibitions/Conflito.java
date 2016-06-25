@@ -6,15 +6,24 @@
 package lapr.project.model.exhibitions;
 
 import java.io.Serializable;
-import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.FAE;
+import lapr.project.utils.Exportable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import java.util.Objects;
 
 /**
  *
  * @author Sara Silva
  */
-public class Conflito implements Serializable {
+public class Conflito implements Exportable, Serializable {
+
+    private static final String ROOT_ELEMENT_NAME = "conflito";
 
     private Candidatura candidatura;
     private FAE fae;
@@ -59,6 +68,36 @@ public class Conflito implements Serializable {
         hash = 29 * hash + Objects.hashCode(this.fae);
         hash = 29 * hash + Objects.hashCode(this.tipoConflito);
         return hash;
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementConflito = document.createElement(ROOT_ELEMENT_NAME);
+
+            //Create a sub-element
+            Node faeNode = this.fae.exportContentToXMLNode();
+            elementConflito.appendChild(document.importNode(faeNode, true));
+
+            //Create a sub-element
+            Node candNode = this.candidatura.exportContentToXMLNode();
+            elementConflito.appendChild(document.importNode(candNode, true));
+
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementConflito);
+            node = elementConflito;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
     }
 
 }

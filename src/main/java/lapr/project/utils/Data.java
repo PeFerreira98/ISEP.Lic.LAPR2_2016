@@ -14,7 +14,7 @@ import org.w3c.dom.Node;
  *
  * @author ISEP-DEI-PPROG
  */
-public class Data implements Comparable<Data>, Exportable, Importable<Data>, Serializable {
+public class Data implements Comparable<Data>, Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "data";
     private static final String YEAR_ELEMENT_NAME = "ano";
@@ -353,10 +353,5 @@ public class Data implements Comparable<Data>, Exportable, Importable<Data>, Ser
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public Data importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

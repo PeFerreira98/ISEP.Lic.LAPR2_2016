@@ -11,7 +11,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,7 +19,7 @@ import org.w3c.dom.Node;
  *
  * @author TiagoSilvestre
  */
-public class FAE implements Exportable, Importable<FAE>, Serializable {
+public class FAE implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "FAE";
 
@@ -100,11 +99,6 @@ public class FAE implements Exportable, Importable<FAE>, Serializable {
             throw new RuntimeException(e);
         }
         return rootNode;
-    }
-
-    @Override
-    public FAE importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -15,7 +15,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.users.Organizador;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,7 +23,7 @@ import org.w3c.dom.Node;
  *
  * @author TiagoSilvestre
  */
-public class ListaOrganizadores implements Exportable, Importable<ListaOrganizadores>, Serializable {
+public class ListaOrganizadores implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaOrganizadores";
     private static final String ORG_LST_ELEMENT_NAME = "organizadores";
@@ -132,11 +131,6 @@ public class ListaOrganizadores implements Exportable, Importable<ListaOrganizad
             throw new RuntimeException(e);
         }
         return node;
-    }
-
-    @Override
-    public ListaOrganizadores importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

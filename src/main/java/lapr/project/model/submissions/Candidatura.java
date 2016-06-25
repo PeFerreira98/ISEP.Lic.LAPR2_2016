@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
 import lapr.project.model.Stand;
 import lapr.project.model.lists.ListaDemonstracoes;
@@ -17,12 +20,27 @@ import lapr.project.model.states.EstadoCandidatura;
 import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.Representante;
+import lapr.project.utils.Exportable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  *
  * @author TiagoSilvestre
  */
-public class Candidatura implements Retiravel, Serializable {
+public class Candidatura implements Exportable, Retiravel, Serializable {
+
+    private static final String ROOT_ELEMENT_NAME = "candidatura";
+    private static final String NOMEEMP_ELEMENT_NAME = "nomeEmpresa";
+    private static final String MOREMP_ELEMENT_NAME = "moradaEmpresa";
+    private static final String TELEM_ELEMENT_NAME = "telemovel";
+    private static final String AREA_ELEMENT_NAME = "areaPretendida";
+    private static final String QUANT_ELEMENT_NAME = "quantidadeConvites";
+    private static final String STCONF_ELEMENT_NAME = "standConfirmado";
+    private static final String ACEITE_ELEMENT_NAME = "aceite";
+    private static final String AVALI_ELEMENT_NAME = "avaliacoes";
+    private static final String KEYS_ELEMENT_NAME = "keywords";
 
     private String nomeEmpresa;
     private String moradaEmpresa;
@@ -34,6 +52,8 @@ public class Candidatura implements Retiravel, Serializable {
     private EstadoCandidatura estadoCandidatura;
     private ListaProdutos listaProdutos;
     private Stand stand;
+
+    //Verificar com os docentes se a lista de demo pertence aqui...
     private ListaDemonstracoes listaDemonstracoes;
 
     private List<Avaliacao> lstAvaliacoes;
@@ -222,10 +242,10 @@ public class Candidatura implements Retiravel, Serializable {
         this.estadoCandidatura = estadoCandidatura;
     }
 
-    public boolean setAvaliada(){
+    public boolean setAvaliada() {
         return this.estadoCandidatura.setAvaliada();
     }
-    
+
     public EstadoCandidatura getEstado() {
         return this.estadoCandidatura;
     }
@@ -236,6 +256,10 @@ public class Candidatura implements Retiravel, Serializable {
 
     public boolean isRetiravel() {
         return this.estadoCandidatura.isEmSubmissao();
+    }
+
+    public boolean isAceite() {
+        return this.estadoCandidatura.isAceite();
     }
 
     public boolean isRetirada() {
@@ -276,10 +300,10 @@ public class Candidatura implements Retiravel, Serializable {
     public boolean setNaoAvaliada() {
         return this.estadoCandidatura.setNaoAvaliada();
     }
-    
+
     public void getAllSubFAE(FAE fae, List<Avaliacao> listSubFAEFinal) {
         for (Avaliacao avaliacao : this.lstAvaliacoes) {
-            if(fae.equals(avaliacao.getAtribuicao().getFae())){
+            if (fae.equals(avaliacao.getAtribuicao().getFae())) {
                 listSubFAEFinal.add(avaliacao);
             }
         }
@@ -329,6 +353,83 @@ public class Candidatura implements Retiravel, Serializable {
     public String getInfo() {
         return "\nCandidatura{" + "nomeEmpresa=" + nomeEmpresa + ", moradaEmpresa=" + moradaEmpresa + ", telemovel=" + telemovel + ", areaPretendida=" + areaPretendida + ", quantidadeConvites="
                 + quantidadeConvites + ", estadoCandidatura=" + estadoCandidatura + ",\n listaProdutos=" + listaProdutos + '}';
+    }
+
+    @Override
+    public Node exportContentToXMLNode() {
+        Node node = null;
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            //Create document builder //Obtain a new document //Create root element
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.newDocument();
+            Element elementCandidatura = document.createElement(ROOT_ELEMENT_NAME);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementNomeEmpresa = document.createElement(NOMEEMP_ELEMENT_NAME);
+            elementNomeEmpresa.setTextContent(getNomeEmpresa());
+            elementCandidatura.appendChild(elementNomeEmpresa);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementMoradaEmpresa = document.createElement(MOREMP_ELEMENT_NAME);
+            elementMoradaEmpresa.setTextContent(getMoradaEmpresa());
+            elementCandidatura.appendChild(elementMoradaEmpresa);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementTelemovel = document.createElement(TELEM_ELEMENT_NAME);
+            elementTelemovel.setTextContent(String.valueOf(telemovel));
+            elementCandidatura.appendChild(elementTelemovel);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementArea = document.createElement(AREA_ELEMENT_NAME);
+            elementArea.setTextContent(String.valueOf(areaPretendida));
+            elementCandidatura.appendChild(elementArea);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementQuant = document.createElement(QUANT_ELEMENT_NAME);
+            elementQuant.setTextContent(String.valueOf(quantidadeConvites));
+            elementCandidatura.appendChild(elementQuant);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementEstadoAceite = document.createElement(ACEITE_ELEMENT_NAME);
+            elementEstadoAceite.setTextContent(String.valueOf(isAceite()));
+            elementCandidatura.appendChild(elementEstadoAceite);
+
+            //Create a sub-element //Set the sub-element value //Add sub-element to root element
+            Element elementStandConf = document.createElement(STCONF_ELEMENT_NAME);
+            elementStandConf.setTextContent(String.valueOf(standConfirmado));
+            elementCandidatura.appendChild(elementStandConf);
+
+            //Create a sub-element
+            Node listaProdNode = this.listaProdutos.exportContentToXMLNode();
+            elementCandidatura.appendChild(document.importNode(listaProdNode, true));
+
+            //Create a sub-element //iterate over keywords
+            Element elementAval = document.createElement(AVALI_ELEMENT_NAME);
+            elementCandidatura.appendChild(elementAval);
+            for (Avaliacao aval : this.lstAvaliacoes) {
+                Node avalNode = aval.exportContentToXMLNode();
+                elementAval.appendChild(document.importNode(avalNode, true));
+            }
+            
+            //Create a sub-element //iterate over keywords
+            Element elementKeys = document.createElement(KEYS_ELEMENT_NAME);
+            elementCandidatura.appendChild(elementKeys);
+            for (Keyword keyword : this.keywordList) {
+                Node keywordNode = keyword.exportContentToXMLNode();
+                elementKeys.appendChild(document.importNode(keywordNode, true));
+            }
+
+            //Add root element to document //It exports only the element representation to XMÇ, ommiting the XML header
+            document.appendChild(elementCandidatura);
+            node = elementCandidatura;
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return node;
     }
 
 }

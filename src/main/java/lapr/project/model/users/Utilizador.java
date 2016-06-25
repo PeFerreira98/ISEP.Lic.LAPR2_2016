@@ -14,21 +14,20 @@ import lapr.project.model.Password;
 import lapr.project.model.states.EstadoUtilizador;
 import lapr.project.model.states.utilizador.EstadoUtilizadorPending;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
  * @author Sara Silva
  */
-public class Utilizador implements Exportable, Importable<Utilizador>, Serializable {
+public class Utilizador implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "utilizador";
     private static final String NAME_ELEMENT_NAME = "nome";
     private static final String USERNAME_ELEMENT_NAME = "username";
+    private static final String PASSWORD_ELEMENT_NAME = "password";
     private static final String EMAIL_ELEMENT_NAME = "email";
     private static final String STATE_ELEMENT_NAME = "estado";
 
@@ -53,9 +52,10 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
         this.estadoUtilizador = new EstadoUtilizadorPending(this);
     }
 
-    public Password getPassword(){
+    public Password getPassword() {
         return this.password;
     }
+
     public boolean validateUsername(String username) {
         return this.username.equals(username);
     }
@@ -153,7 +153,7 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
     public String toString() {
         return "\nUtilizador{" + "nome=" + nome + ", username=" + username + ", email=" + email + ", estado=" + getEstadoString() + '}';
     }
-
+    
     @Override
     public Node exportContentToXMLNode() {
         Node node = null;
@@ -176,9 +176,9 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
             elementUtilizador.appendChild(elementUserName);
 
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
-//            Element elementPassword = document.createElement(PASSWORD_ELEMENT_NAME);
-//            elementPassword.setTextContent(getPassword());
-//            elementUtilizador.appendChild(elementPassword);
+            Element elementPassword = document.createElement(PASSWORD_ELEMENT_NAME);
+            elementPassword.setTextContent(getPassword().getEncryptedPassword());
+            elementUtilizador.appendChild(elementPassword);
 
             //Create a sub-element //Set the sub-element value //Add sub-element to root element
             Element elementEmail = document.createElement(EMAIL_ELEMENT_NAME);
@@ -200,43 +200,4 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
         }
         return node;
     }
-
-    @Override
-    public Utilizador importContentFromXMLNode(Node node) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-            //Create document builder
-            DocumentBuilder builder = factory.newDocumentBuilder();
-
-            //Obtain a new document
-            Document document = builder.newDocument();
-            document.appendChild(document.importNode(node, true));
-
-            NodeList nodeListUtilizador = document.getElementsByTagName(ROOT_ELEMENT_NAME);
-
-            Node nodeUtilizador = nodeListUtilizador.item(0);
-
-            //TODO: Get description
-            this.nome = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-
-//            //Get description
-//            this.username = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-//            
-//            //Get description
-//            this.password = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-//            
-//            //Get description
-//            this.email = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-//            
-//            //Get description
-//            this.estado = nodeUtilizador.getFirstChild().getFirstChild().getNodeValue();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return this;
-    }
-
 }

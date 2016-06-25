@@ -14,7 +14,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
-import lapr.project.utils.Importable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -23,7 +22,7 @@ import org.w3c.dom.Node;
  *
  * @author zero_
  */
-public class ListaFAE implements Exportable, Importable<ListaFAE>, Serializable {
+public class ListaFAE implements Exportable, Serializable {
 
     private static final String ROOT_ELEMENT_NAME = "listaFAE";
     private static final String FAE_LST_ELEMENT_NAME = "FAEs";
@@ -132,10 +131,5 @@ public class ListaFAE implements Exportable, Importable<ListaFAE>, Serializable 
         }
         return node;
     }
-
-    @Override
-    public ListaFAE importContentFromXMLNode(Node node) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }
