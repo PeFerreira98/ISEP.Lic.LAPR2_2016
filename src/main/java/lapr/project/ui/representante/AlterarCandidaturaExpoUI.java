@@ -208,15 +208,18 @@ public class AlterarCandidaturaExpoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_telemovelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
+        AddProdutosUI addProdutosUI = new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
+        addProdutosUI.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new AddKeywordsUI(this.controller.getCandidatura());
+        AddKeywordsUI addKeywordsUI = new AddKeywordsUI(this.controller.getCandidatura());
+        addKeywordsUI.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new AdicionarDemoUI(controller.getExposicao(), controller.getCandidatura());
+        AdicionarDemoUI adicionarDemoUI = new AdicionarDemoUI(controller.getExposicao(), controller.getCandidatura());
+        adicionarDemoUI.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

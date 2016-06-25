@@ -244,20 +244,24 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewUserActionPerformed
 
     private void btnExpoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpoCreateActionPerformed
-        new CriarExposicaoUI(centroExposicoes, this.user);
+        CriarExposicaoUI criarExposicaoUI = new CriarExposicaoUI(centroExposicoes, this.user);
+        criarExposicaoUI.setVisible(true);
     }//GEN-LAST:event_btnExpoCreateActionPerformed
 
     private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
-       new AlterarPerfiUtilizadorUI(user, centroExposicoes.getRegistoUtilizadores());
+        AlterarPerfiUtilizadorUI alterarPerfiUtilizadorUI = new AlterarPerfiUtilizadorUI(user, centroExposicoes.getRegistoUtilizadores());
+        alterarPerfiUtilizadorUI.setVisible(true);
     }//GEN-LAST:event_jMenuItemSettingsActionPerformed
 
     private void jMenuItemLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLogoutActionPerformed
-        new LoginUI(centroExposicoes);
+        LoginUI loginUI = new LoginUI(centroExposicoes);
+        loginUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItemLogoutActionPerformed
 
     private void btnViewExpoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewExpoActionPerformed
-        new ViewExpoUI(this.centroExposicoes.getListaExposicoes().getExpoByName(jlstExpo.getSelectedItem()));
+        ViewExpoUI viewExpoUI = new ViewExpoUI(this.centroExposicoes.getListaExposicoes().getExpoByName(jlstExpo.getSelectedItem()));
+        viewExpoUI.setVisible(true);
     }//GEN-LAST:event_btnViewExpoActionPerformed
 
     private void btnRefreshMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRefreshMousePressed
@@ -275,7 +279,8 @@ public class GestorExposicoesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void jBRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRecursoActionPerformed
-        new DefinirRecursoUI(centroExposicoes);
+        DefinirRecursoUI definirRecursoUI = new DefinirRecursoUI(centroExposicoes);
+        definirRecursoUI.setVisible(true);
     }//GEN-LAST:event_jBRecursoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

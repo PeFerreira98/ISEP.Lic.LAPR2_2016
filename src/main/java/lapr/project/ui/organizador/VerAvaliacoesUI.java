@@ -171,7 +171,8 @@ public class VerAvaliacoesUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(VerAvaliacoesUI.this,
                     "Nenhuma decisão seleccionada", "Decisões", JOptionPane.ERROR_MESSAGE);
         } else {
-                new JustificacaoCandidatura(a);
+            JustificacaoCandidatura justificacaoCandidatura = new JustificacaoCandidatura(a);
+            justificacaoCandidatura.setVisible(true);
         }
     }//GEN-LAST:event_btnInfoActionPerformed
 

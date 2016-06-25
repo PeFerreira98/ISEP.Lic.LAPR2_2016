@@ -19,7 +19,7 @@ import lapr.project.model.users.Utilizador;
  */
 public class DefinirDemoEfetivasUI extends javax.swing.JFrame {
 
-    public final DefinirDemoEfetivasController controller;
+    public final transient DefinirDemoEfetivasController controller;
 
     /**
      * Creates new form DefinirDemoEfetivasUI

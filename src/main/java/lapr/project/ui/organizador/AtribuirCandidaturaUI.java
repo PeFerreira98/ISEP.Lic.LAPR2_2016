@@ -210,7 +210,8 @@ public class AtribuirCandidaturaUI extends javax.swing.JFrame {
                 controller.setExposicao(this.jListExposicao.getSelectedValue());
                 controller.setMecanismo(this.jListMecanismo.getSelectedValue());
 
-                new AtribuicaoTempListUI(controller);
+                AtribuicaoTempListUI atribuicaoTempListUI = new AtribuicaoTempListUI(controller);
+                atribuicaoTempListUI.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(AtribuirCandidaturaUI.this,
                         "Seleccione um mecanismo", "Atribuir Candidatura", JOptionPane.INFORMATION_MESSAGE);

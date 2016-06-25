@@ -5,11 +5,14 @@
  */
 package lapr.project.model;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  *
  * @author zero_
  */
-public class Password {
+public class Password implements Serializable{
 
     private String encryptedPassword;
     private String username;
@@ -71,6 +74,14 @@ public class Password {
             return this.username.equals(p.username) && this.encryptedPassword.equals(p.encryptedPassword);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.encryptedPassword);
+        hash = 41 * hash + Objects.hashCode(this.username);
+        return hash;
     }
 
 }

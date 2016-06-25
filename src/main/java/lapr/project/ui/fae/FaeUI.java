@@ -227,7 +227,8 @@ public class FaeUI extends javax.swing.JFrame {
                     atr = a;
                 }
             }
-            new AvaliarCandidaturaUI(c, atr);
+            AvaliarCandidaturaUI avaliarCandidaturaUI = new AvaliarCandidaturaUI(c, atr);
+            avaliarCandidaturaUI.setVisible(true);
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 
@@ -237,21 +238,25 @@ public class FaeUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(FaeUI.this,
                     "Nenhuma candidatura seleccionada", "Candidaturas", JOptionPane.ERROR_MESSAGE);
         } else {
-            new CandidaturaInfoUI(c);
+            CandidaturaInfoUI candidaturaInfoUI = new CandidaturaInfoUI(c);
+            candidaturaInfoUI.setVisible(true);
         }
     }//GEN-LAST:event_btnCandidaturaInfoActionPerformed
 
     private void jMenuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSettingsActionPerformed
-        new AlterarPerfiUtilizadorUI(this.utilizador, this.centroExpo.getRegistoUtilizadores());
+        AlterarPerfiUtilizadorUI alterarPerfiUtilizadorUI = new AlterarPerfiUtilizadorUI(this.utilizador, this.centroExpo.getRegistoUtilizadores());
+        alterarPerfiUtilizadorUI.setVisible(true);
     }//GEN-LAST:event_jMenuSettingsActionPerformed
 
     private void jMenuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLogoutActionPerformed
-        new LoginUI(this.centroExpo);
+        LoginUI loginUI = new LoginUI(this.centroExpo);
+        loginUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuLogoutActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ActualizarConflitosUI(this.centroExpo, this.fae);
+        ActualizarConflitosUI actualizarConflitosUI = new ActualizarConflitosUI(this.centroExpo, this.fae);
+        actualizarConflitosUI.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

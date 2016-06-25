@@ -136,7 +136,8 @@ public class ConsultarCandidaturasRetiradasUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(ConsultarCandidaturasRetiradasUI.this,
                     "Seleccione uma candidatura", "Consultar candidaturas retiradas", JOptionPane.ERROR_MESSAGE);
         } else {
-            new CandidaturaInfoUI(c);
+            CandidaturaInfoUI candidaturaInfoUI = new CandidaturaInfoUI(c);
+            candidaturaInfoUI.setVisible(true);
         }
     }//GEN-LAST:event_btnInfoActionPerformed
 

@@ -248,12 +248,14 @@ public class AceitarCandidaturaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void btnAceitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceitarActionPerformed
-        new DefinirStandCandidaturaUI(this.centroExpo, this.candidatura);
+        DefinirStandCandidaturaUI definirStandCandidaturaUI = new DefinirStandCandidaturaUI(this.centroExpo, this.candidatura);
+        definirStandCandidaturaUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAceitarActionPerformed
 
     private void btnAvaliacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliacoesActionPerformed
-        new VerAvaliacoesUI(this.candidatura);
+        VerAvaliacoesUI verAvaliacoesUI = new VerAvaliacoesUI(this.candidatura);
+        verAvaliacoesUI.setVisible(true);
     }//GEN-LAST:event_btnAvaliacoesActionPerformed
 
     private void btnRejeitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejeitarActionPerformed

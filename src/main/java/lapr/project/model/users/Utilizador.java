@@ -29,7 +29,6 @@ public class Utilizador implements Exportable, Importable<Utilizador>, Serializa
     private static final String ROOT_ELEMENT_NAME = "utilizador";
     private static final String NAME_ELEMENT_NAME = "nome";
     private static final String USERNAME_ELEMENT_NAME = "username";
-    private static final String PASSWORD_ELEMENT_NAME = "password";
     private static final String EMAIL_ELEMENT_NAME = "email";
     private static final String STATE_ELEMENT_NAME = "estado";
 

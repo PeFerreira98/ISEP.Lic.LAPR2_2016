@@ -6,6 +6,7 @@
 package lapr.project.model.exhibitions;
 
 import java.io.Serializable;
+import java.util.Objects;
 import lapr.project.model.mecanismos.MecanismoDetecaoConflito;
 
 /**
@@ -52,5 +53,12 @@ public class TipoConflito implements Serializable {
             return this.descricao.equals(tc.descricao);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.descricao);
+        return hash;
     }
 }

@@ -34,7 +34,6 @@ public class VerProdutosUI extends javax.swing.JFrame {
         initComponents();
         inicializarLista();
         super.setLocationRelativeTo(null);
-        super.setVisible(true);
     }
 
     private void inicializarLista() {

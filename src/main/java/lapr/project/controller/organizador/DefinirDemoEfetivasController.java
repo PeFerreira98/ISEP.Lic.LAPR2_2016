@@ -83,7 +83,7 @@ public class DefinirDemoEfetivasController {
     }
     
     public String getInfo(){
-        return String.format("Código: %s\nDesignação: %s",demonstracao.getCod(),demonstracao.getDesignacao());
+        return String.format("Código: %s%nDesignação: %s",demonstracao.getCod(),demonstracao.getDesignacao());
     }
 
 }

@@ -44,7 +44,8 @@ class Main {
 
         final CentroExposicoes centroExposicoes = new Main().bootStrap();
 
-        new LoginUI(centroExposicoes);
+        LoginUI loginUI = new LoginUI(centroExposicoes);
+        loginUI.setVisible(true);
 
         System.out.println(centroExposicoes + "\n");
     }

@@ -239,32 +239,37 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void jButtonLogRepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogRepActionPerformed
         if (loginVerifications()) {
-            new RepresentanteUI(this.loginUser, this.centroExposicoes);
+            RepresentanteUI representanteUI = new RepresentanteUI(this.loginUser, this.centroExposicoes);
+            representanteUI.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jButtonLogRepActionPerformed
 
     private void jSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignUpActionPerformed
-        new CriacaoUtilizadorUI(this.centroExposicoes.getRegistoUtilizadores());
+        CriacaoUtilizadorUI criacaoUtilizadorUI = new CriacaoUtilizadorUI(this.centroExposicoes.getRegistoUtilizadores());
+        criacaoUtilizadorUI.setVisible(true);
     }//GEN-LAST:event_jSignUpActionPerformed
 
     private void jButtonLogOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOrgActionPerformed
         if (loginVerifications()) {
-            new OrganizadorUI(loginUser, centroExposicoes);
+            OrganizadorUI organizadorUI = new OrganizadorUI(loginUser, centroExposicoes);
+            organizadorUI.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jButtonLogOrgActionPerformed
 
     private void jButtonLogFAEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogFAEActionPerformed
         if (loginVerifications()) {
-            new FaeUI(loginUser, centroExposicoes);
+            FaeUI faeUI = new FaeUI(loginUser, centroExposicoes);
+            faeUI.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jButtonLogFAEActionPerformed
 
     private void jButtonLogGestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogGestActionPerformed
         if (loginVerifications()) {
-            new GestorExposicoesUI(loginUser, centroExposicoes);
+            GestorExposicoesUI gestorExposicoesUI = new GestorExposicoesUI(loginUser, centroExposicoes);
+            gestorExposicoesUI.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jButtonLogGestActionPerformed
@@ -292,7 +297,8 @@ public class LoginUI extends javax.swing.JFrame {
 
         int rVal = fileChooser.showOpenDialog(null);
         if (rVal == JFileChooser.APPROVE_OPTION) {
-            new StAXParser(this.centroExposicoes, fileChooser.getSelectedFile().toString());
+            StAXParser stAXParser = new StAXParser(this.centroExposicoes);
+            stAXParser.XMLReader(fileChooser.getSelectedFile().toString());
         }
         JOptionPane.showMessageDialog(LoginUI.this,
                 "Import XML Done!", "Login", JOptionPane.INFORMATION_MESSAGE);

@@ -316,11 +316,13 @@ public class CriarCandidaturaDemoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jCancelActionPerformed
 
     private void jProdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProdButtonActionPerformed
-        new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
+        AddProdutosUI addProdutosUI = new AddProdutosUI(this.controller.getCandidatura().getListaProdutos().getListaProdutos());
+        addProdutosUI.setVisible(true);
     }//GEN-LAST:event_jProdButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AddKeywordsUI(this.controller.getCandidatura());
+        AddKeywordsUI addKeywordsUI = new AddKeywordsUI(this.controller.getCandidatura());
+        addKeywordsUI.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

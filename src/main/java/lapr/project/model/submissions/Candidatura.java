@@ -135,11 +135,11 @@ public class Candidatura implements Retiravel, Serializable {
     }
 
     public static boolean validaAreaPretendida(double areaPretendida) {
-        return areaPretendida != 0.0f;
+        return areaPretendida > 0;
     }
 
     public static boolean validaQuantidadeConvites(int quantidadeConvites) {
-        return quantidadeConvites != 0;
+        return quantidadeConvites > 0;
     }
 
     @Override

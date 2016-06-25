@@ -282,7 +282,8 @@ public class RepresentanteUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(RepresentanteUI.this,
                     "Seleccione uma exposição", "Exposição", JOptionPane.ERROR_MESSAGE);
         } else {
-            new CriarCandidaturaExpoUI(expo);
+            CriarCandidaturaExpoUI criarCandidaturaExpoUI = new CriarCandidaturaExpoUI(expo);
+            criarCandidaturaExpoUI.setVisible(true);
         }
     }//GEN-LAST:event_btnCriarCandidaturaExpoActionPerformed
 
@@ -307,21 +308,25 @@ public class RepresentanteUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(RepresentanteUI.this,
                     "Seleccione uma demonstração", "Demonstração", JOptionPane.ERROR_MESSAGE);
         } else {
-            new CriarCandidaturaDemoUI(demo);
+            CriarCandidaturaDemoUI criarCandidaturaDemoUI = new CriarCandidaturaDemoUI(demo);
+            criarCandidaturaDemoUI.setVisible(true);
         }
     }//GEN-LAST:event_btnCriarCandidaturaDemoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new LoginUI(centroExpo);
+        LoginUI loginUI = new LoginUI(centroExpo);
+        loginUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new AlterarPerfiUtilizadorUI(this.utilizador, this.centroExpo.getRegistoUtilizadores());
+        AlterarPerfiUtilizadorUI alterarPerfiUtilizadorUI = new AlterarPerfiUtilizadorUI(this.utilizador, this.centroExpo.getRegistoUtilizadores());
+        alterarPerfiUtilizadorUI.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new RetirarCandidaturaUI(this.centroExpo);
+        RetirarCandidaturaUI retirarCandidaturaUI = new RetirarCandidaturaUI(this.centroExpo);
+        retirarCandidaturaUI.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

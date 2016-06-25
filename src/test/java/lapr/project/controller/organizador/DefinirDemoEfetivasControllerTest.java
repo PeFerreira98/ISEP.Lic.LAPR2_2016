@@ -125,7 +125,7 @@ public class DefinirDemoEfetivasControllerTest {
         DefinirDemoEfetivasController instance = new DefinirDemoEfetivasController(ce);
         Demonstracao demo=new Demonstracao("codigo", "designacao");
         instance.setDemonstracao(demo);
-        String expResult = "Código: codigo\nDesignação: designacao";
+        String expResult = String.format("Código: codigo%nDesignação: designacao");
         String result = instance.getInfo();
         assertEquals(expResult, result);
 

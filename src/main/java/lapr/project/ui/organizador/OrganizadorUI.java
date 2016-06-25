@@ -258,17 +258,20 @@ public class OrganizadorUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "Nenhuma exposiçao seleccionada", "Exposições", JOptionPane.ERROR_MESSAGE);
         } else {
-            new DefinirFAEUI(this.centroExpo.getRegistoUtilizadores(), this.centroExpo.getListaExposicoes().getExpoByName(expo));
+            DefinirFAEUI definirFAEUI = new DefinirFAEUI(this.centroExpo.getRegistoUtilizadores(), this.centroExpo.getListaExposicoes().getExpoByName(expo));
+            definirFAEUI.setVisible(true);
         }
 
     }//GEN-LAST:event_btnDefinirFAEActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new AlterarPerfiUtilizadorUI(user, centroExpo.getRegistoUtilizadores());
+        AlterarPerfiUtilizadorUI alterarPerfiUtilizadorUI = new AlterarPerfiUtilizadorUI(user, centroExpo.getRegistoUtilizadores());
+        alterarPerfiUtilizadorUI.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new LoginUI(centroExpo);
+        LoginUI loginUI = new LoginUI(centroExpo);
+        loginUI.setVisible(true);
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -282,12 +285,14 @@ public class OrganizadorUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "Nenhuma exposiçao seleccionada", "Exposições", JOptionPane.ERROR_MESSAGE);
         } else {
-            new CriarDemonstracaoUI(centroExpo, this.centroExpo.getListaExposicoes().getExpoByName(expo));
+            CriarDemonstracaoUI criarDemonstracaoUI = new CriarDemonstracaoUI(centroExpo, this.centroExpo.getListaExposicoes().getExpoByName(expo));
+            criarDemonstracaoUI.setVisible(true);
         }
     }//GEN-LAST:event_btnDemoCreateActionPerformed
 
     private void btnAtribCandidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtribCandidActionPerformed
-        new AtribuirCandidaturaUI(centroExpo);
+        AtribuirCandidaturaUI atribuirCandidaturaUI = new AtribuirCandidaturaUI(centroExpo);
+        atribuirCandidaturaUI.setVisible(true);
     }//GEN-LAST:event_btnAtribCandidActionPerformed
 
     private void btnAvaliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvaliarActionPerformed
@@ -296,7 +301,8 @@ public class OrganizadorUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(OrganizadorUI.this,
                     "Nenhuma candidatura seleccionada", "Candidaturas", JOptionPane.ERROR_MESSAGE);
         } else {
-            new AceitarCandidaturaUI(this.centroExpo, c);
+            AceitarCandidaturaUI aceitarCandidaturaUI = new AceitarCandidaturaUI(this.centroExpo, c);
+            aceitarCandidaturaUI.setVisible(true);
         }
     }//GEN-LAST:event_btnAvaliarActionPerformed
 

@@ -6,6 +6,7 @@
 package lapr.project.model.exhibitions;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,7 +16,11 @@ import lapr.project.model.lists.ListaCandidaturas;
 import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
+import lapr.project.model.lists.RegistoConflitos;
+import lapr.project.model.submissions.Avaliacao;
+import lapr.project.model.submissions.Retiravel;
 import lapr.project.model.users.FAE;
+import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
 import lapr.project.model.users.Utilizador;
 import lapr.project.utils.Data;

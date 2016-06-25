@@ -230,7 +230,8 @@ public class CandidaturaInfoUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void btnLstProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLstProdutosActionPerformed
-        new VerProdutosUI(this.candidatura);
+        VerProdutosUI verProdutosUI = new VerProdutosUI(this.candidatura);
+        verProdutosUI.setVisible(true);
     }//GEN-LAST:event_btnLstProdutosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

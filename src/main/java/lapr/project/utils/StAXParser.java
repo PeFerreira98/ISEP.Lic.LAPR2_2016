@@ -118,9 +118,8 @@ public class StAXParser {
     private int i_recomendacao;
 
     
-    public StAXParser(CentroExposicoes e, String filePath) {
+    public StAXParser(CentroExposicoes e) {
         this.centroExposicoes = e;
-        XMLReader(filePath);
     }
 
     public StAXParser() {

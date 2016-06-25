@@ -6,6 +6,7 @@
 package lapr.project.model.exhibitions;
 
 import java.io.Serializable;
+import java.util.Objects;
 import lapr.project.model.submissions.Candidatura;
 import lapr.project.model.users.FAE;
 
@@ -49,6 +50,15 @@ public class Conflito implements Serializable {
             return this.fae.equals(c.fae) && this.candidatura.equals(c.candidatura) && this.tipoConflito.equals(c.tipoConflito);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.candidatura);
+        hash = 29 * hash + Objects.hashCode(this.fae);
+        hash = 29 * hash + Objects.hashCode(this.tipoConflito);
+        return hash;
     }
 
 }

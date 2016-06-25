@@ -290,7 +290,8 @@ public class ActualizarConflitosUI extends javax.swing.JFrame {
     private void jButtonAddRemoConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRemoConfActionPerformed
         if (this.jListCand.getSelectedIndex() != -1) {
             this.controller.selectCandidatura(this.jListCand.getSelectedValue());
-            new AddRemoveConflitosUI(this.controller);
+            AddRemoveConflitosUI addRemoveConflitosUI = new AddRemoveConflitosUI(this.controller);
+            addRemoveConflitosUI.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(ActualizarConflitosUI.this,
                     "Select uma Candidatura", "Actualizar Conflitos", JOptionPane.ERROR_MESSAGE);
