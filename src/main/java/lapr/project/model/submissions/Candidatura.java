@@ -15,6 +15,7 @@ import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaProdutos;
 import lapr.project.model.states.EstadoCandidatura;
 import lapr.project.model.states.candidatura.EstadoCandidaturaEmSubmissao;
+import lapr.project.model.users.FAE;
 import lapr.project.model.users.Representante;
 
 /**
@@ -274,6 +275,14 @@ public class Candidatura implements Retiravel, Serializable {
 
     public boolean setNaoAvaliada() {
         return this.estadoCandidatura.setNaoAvaliada();
+    }
+    
+    public void getAllSubFAE(FAE fae, List<Avaliacao> listSubFAEFinal) {
+        for (Avaliacao avaliacao : this.lstAvaliacoes) {
+            if(fae.equals(avaliacao.getAtribuicao().getFae())){
+                listSubFAEFinal.add(avaliacao);
+            }
+        }
     }
 
     @Override

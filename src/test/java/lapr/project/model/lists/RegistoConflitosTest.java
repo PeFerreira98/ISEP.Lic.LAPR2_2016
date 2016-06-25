@@ -131,33 +131,4 @@ public class RegistoConflitosTest {
 
     }
 
-    /**
-     * Test of exportContentToXMLNode method, of class RegistoConflitos.
-     */
-    @Test
-    public void testExportContentToXMLNode() {
-        System.out.println("exportContentToXMLNode");
-        RegistoConflitos instance = new RegistoConflitos();
-        Node expResult = null;
-        Node result = instance.exportContentToXMLNode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of importContentFromXMLNode method, of class RegistoConflitos.
-     */
-    @Test
-    public void testImportContentFromXMLNode() {
-        System.out.println("importContentFromXMLNode");
-        Node node = null;
-        RegistoConflitos instance = new RegistoConflitos();
-        RegistoConflitos expResult = null;
-        RegistoConflitos result = instance.importContentFromXMLNode(node);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
 }

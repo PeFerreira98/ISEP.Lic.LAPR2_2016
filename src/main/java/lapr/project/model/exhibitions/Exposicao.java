@@ -19,6 +19,7 @@ import lapr.project.model.lists.ListaDemonstracoes;
 import lapr.project.model.lists.ListaFAE;
 import lapr.project.model.lists.ListaOrganizadores;
 import lapr.project.model.lists.RegistoConflitos;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.users.FAE;
 import lapr.project.model.users.GestorExposicoes;
 import lapr.project.model.users.Organizador;
@@ -290,6 +291,13 @@ public class Exposicao implements Exportable, Serializable {
         }
 
         this.listaDemonstracoes.getAllFAE(listFAEFinal);
+    }
+
+    public void getAllSubFAE(FAE fae, List<Avaliacao> listSubFAEFinal) {
+        
+        listaCandidaturas.getAllSubFAE(fae, listSubFAEFinal);
+
+        this.listaDemonstracoes.getAllSubFAE(fae, listSubFAEFinal);
     }
 
     @Override

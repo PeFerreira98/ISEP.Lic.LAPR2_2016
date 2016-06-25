@@ -13,7 +13,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import lapr.project.model.Demonstracao;
+import lapr.project.model.submissions.Avaliacao;
 import lapr.project.model.submissions.Retiravel;
+import lapr.project.model.users.FAE;
 import lapr.project.utils.Exportable;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -80,6 +82,12 @@ public class ListaDemonstracoes implements Exportable, Serializable {
     public void getAllFAE(ListaFAE listFAEFinal) {
         for (Demonstracao demo : listDemonstracoes) {
             demo.getAllFAE(listFAEFinal);
+        }
+    }
+    
+    public void getAllSubFAE(FAE fae, List<Avaliacao> listSubFAEFinal) {
+        for (Demonstracao demo : this.listDemonstracoes) {
+            demo.getAllSubFAE(fae, listSubFAEFinal);
         }
     }
 
