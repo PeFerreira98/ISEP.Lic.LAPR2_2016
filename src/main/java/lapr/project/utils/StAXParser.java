@@ -55,6 +55,7 @@ public class StAXParser {
     private List<Avaliacao> listaAvaliacoes;
     private ListaAtribuicoes listaAtribuicoes;
     private Atribuicao atrib;
+    private List<Keyword> keywordList;
 
     private boolean b_User_Reg = false;
     private boolean b_User_Type = false;
@@ -85,6 +86,8 @@ public class StAXParser {
     private boolean b_adequacaoDemonstracoes = false;
     private boolean b_adequacaoConvites = false;
     private boolean b_recomendacao = false;
+    
+    private boolean b_keyword = false;
 
     //users
     private String m_Nome;
@@ -116,6 +119,8 @@ public class StAXParser {
     private int i_adequacaoDemonstracoes;
     private int i_adequacaoConvites;
     private int i_recomendacao;
+    
+    private String m_keyword;
 
     
     public StAXParser(CentroExposicoes e) {
@@ -300,6 +305,15 @@ public class StAXParser {
                             b_recomendacao = true;
                         }
                         
+                        if (qName.equalsIgnoreCase("keywords")) {
+                            System.out.println("Start Element : keywords");
+                            this.keywordList = new ArrayList<>();
+                        }
+
+                        if (qName.equalsIgnoreCase("keyword")) {
+                            b_keyword = true;
+                        }
+                        
                         if (qName.equalsIgnoreCase("registoAtribuicoes")) {
                             System.out.println("Start Element : registoAtribuicoes");
                             this.listaAtribuicoes = new ListaAtribuicoes();
@@ -443,6 +457,12 @@ public class StAXParser {
                             i_recomendacao = Integer.parseInt(characters.getData());
                             b_recomendacao = false;
                         }
+                        
+                        if (b_keyword) {
+                            System.out.println("\tkeyword: " + characters.getData());
+                            m_keyword = characters.getData();
+                            b_keyword = false;
+                        }
 
                         break;
 
@@ -471,12 +491,25 @@ public class StAXParser {
                         if (endName.equalsIgnoreCase("avaliacoes")) {
                             System.out.println("End Element : avaliacoes");
                         }
+                        
+                        if (endName.equalsIgnoreCase("keyword")) {
+                            Keyword keyword = new Keyword(m_keyword);
+                            this.keywordList.add(keyword);
+                        }
+
+                        if (endName.equalsIgnoreCase("keywords")) {
+                            System.out.println("End Element : keywords");
+                        }
 
                         if (endName.equalsIgnoreCase("candidatura")) {
                             Candidatura cand = new Candidatura(m_Descricao_cand, m_Descricao_cand, 911111111, d_areaPetendida, i_quantidadeConvites, new ArrayList<Keyword>());
 
                             for (Avaliacao aval : this.listaAvaliacoes) {
                                 cand.addAvaliacao(aval);
+                            }
+                            
+                            for (Keyword key : this.keywordList) {
+                                cand.addKeyword(key);
                             }
 
                             cand.setEmAvaliacao();
